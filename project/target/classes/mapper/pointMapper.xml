@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acorn.PointMapper">
+    <select id="count" resultType="int">
+        SELECT count(*) FROM pointtbl
+    </select>
+    
+    <select id="selectAll" resultType="Point">
+        SELECT *
+        FROM pointtbl     
+    </select>
+    
+    <select id="selectOne" parameterType="String" resultType="Point">
+    	SELECT *
+		FROM pointtbl 
+		Where userCode = #{userCode}
+	</select>
+
+    <insert id="buyBoard" parameterType="Point">
+    	INSERT INTO pointtbl (userCode, boardCode, pointStatus, pointAmount) 
+		VALUES (#{userCode}, #{boardCode}, 0, #{pointAmount})
+    </insert>
+    
+    <insert id="buyPoint" parameterType="map">
+    	INSERT INTO pointtbl (userCode, pointStatus, pointAmount) 
+		VALUES (#{userCode}, 1, #{pointAmount})
+    </insert>
+    
+    <insert id="pointExchange" parameterType="map">
+    	INSERT INTO pointtbl (userCode, pointStatus, pointAmount)
+    	VALUES (#{userCode}, 2, #{pointAmount})
+	</insert>
+
+</mapper>
