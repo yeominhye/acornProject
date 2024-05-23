@@ -21,10 +21,9 @@
         <div class="pt_nav_down">
             <div class="pt_nav_char"><h1>전체내역</h1>
              <a href="#"> <p>사용내역</p> </a>
-             <a href="/project/point/showMyEarnedPoint.do"> <p>획득내역</p> </a>
+             <a href="#"> <p>획득내역</p> </a>
             </div>
             <div class="pt_nav_all"><h1>충전/환전</h1>
-            <a href="/project/point/showMyEarnedPoint.do"> <p>획득내역</p> </a>
             <a href="/project/point/pointCharge.do"> <p>충전하기</p></a>
             <a href="/project/point/pointExchange.do""> <p>환전하기</p></a>
             </div>
@@ -32,7 +31,7 @@
     </div>
     
     <div class="pt_content">
-        <div class="pt_title">포인트 전체내역</div>
+        <div class="pt_title">얻은 포인트 내역</div>
         <div class="pt_categori">
             <div class="pt_date1"></div>
             <div class="pt_date2"></div>
@@ -46,26 +45,23 @@
                     <th>날짜</th>
                     <th>사용구분</th>
                     <th>내역</th>
-                    <th>사용 포인트</th>
-                    <th>잔여 포인트</th>
+                    <th>얻은 포인트</th>
+                    <th>총 포인트</th>
                 </tr>
             </thead>
             <tbody>
             <c:if test="${not empty pointList}">
                 <c:forEach var="point" items="${pointList}">
-                    <tr class="pt_table_info">
-                        <td id="t_date"><c:out value="${point.pointDate}"/></td>
-                        <td id="t_division">
-                            <c:choose>
-                                <c:when test="${point.pointStatus == 0}">게시물 구매</c:when>
-                                <c:when test="${point.pointStatus == 1}">포인트 충전</c:when>
-                                <c:when test="${point.pointStatus == 2}">포인트 환전</c:when>
-                            </c:choose>
-                        </td>
-                        <td id="t_list"><c:out value="${point.boardCode}"/></td>
-                        <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
-                        <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
-                    </tr>
+                    <c:if test="${point.pointStatus == 1}">
+                        <tr class="pt_table_info">
+                            <td id="t_date"><c:out value="${point.pointDate}"/></td>
+                            <td id="t_division">얻은 포인트
+                            </td>
+                            <td id="t_list"><c:out value="${point.boardCode}"/></td>
+                            <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
+                            <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
+                        </tr>
+                    </c:if>
                 </c:forEach>
             </c:if>
             <c:if test="${empty pointList}">

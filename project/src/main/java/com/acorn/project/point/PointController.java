@@ -35,7 +35,6 @@ public class PointController {
 	            String userCode = user.getUserCode();
 	            List<Point> pointList = service.getPointOne(userCode);
 
-	            // 시간순으로 정렬
 	            Collections.sort(pointList, new Comparator<Point>() {
 	                @Override
 	                public int compare(Point p1, Point p2) {
@@ -43,12 +42,11 @@ public class PointController {
 	                }
 	            });
 
-	            // 잔여 포인트 계산
-	            int remainingPoints = 0; // 시작 포인트는 0에서 시작
+	            int remainingPoints = 0;
 	            for (Point point : pointList) {
-	                if (point.getPointStatus() == 1) { // 충전
+	                if (point.getPointStatus() == 1) {
 	                    remainingPoints += point.getPointAmount();
-	                } else if (point.getPointStatus() == 2) { // 환전
+	                } else if (point.getPointStatus() == 2) {
 	                    remainingPoints -= point.getPointAmount();
 	                }
 	                point.setRemainingPoints(remainingPoints);
@@ -56,6 +54,48 @@ public class PointController {
 
 	            mv.addObject("pointList", pointList);
 	            mv.setViewName("point/showMyPoint");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            mv.setViewName("errorPage");
+	            mv.addObject("message", "Error occurred while fetching user points.");
+	        }
+	    } else {
+	        mv.setViewName("user/login");
+	        mv.addObject("message", "Login");
+	    }
+
+	    return mv;
+	}
+	
+	@RequestMapping("showMyEarnedPoint.do")
+	public ModelAndView showMyEarnedPoint(HttpSession session) {
+	    ModelAndView mv = new ModelAndView();
+	    User user = (User) session.getAttribute("user");
+
+	    if (user != null) {
+	        try {
+	            String userCode = user.getUserCode();
+	            List<Point> pointList = service.getPointOne(userCode);
+
+	            Collections.sort(pointList, new Comparator<Point>() {
+	                @Override
+	                public int compare(Point p1, Point p2) {
+	                    return p1.getPointDate().compareTo(p2.getPointDate());
+	                }
+	            });
+
+	            int remainingPoints = 0;
+	            for (Point point : pointList) {
+	                if (point.getPointStatus() == 1) {
+	                    remainingPoints += point.getPointAmount();
+	                } else if (point.getPointStatus() == 2) {
+	                    remainingPoints -= point.getPointAmount();
+	                }
+	                point.setRemainingPoints(remainingPoints);
+	            }
+
+	            mv.addObject("pointList", pointList);
+	            mv.setViewName("point/showMyEarnedPoint");
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	            mv.setViewName("errorPage");
