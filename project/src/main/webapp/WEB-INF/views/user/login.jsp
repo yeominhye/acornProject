@@ -105,10 +105,35 @@
             function formatPhoneNumber(phoneNumber) {
                 return phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
             }
+
+            $('#sign-in-form').keypress(function(event){
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if(keycode == '13'){
+                    submitLoginForm();
+                }
+            });
+
+            function submitLoginForm() {
+                var userId = $("#loginUserId").val();
+                var userPw = $("#loginUserPw").val(); 
+                
+                if(userId == ""){
+                    $("#loginUserId").focus();
+                    return false;
+                }
+                if(userPw == ""){ 
+                    $("#loginUserPw").focus();
+                    return false;
+                }
+
+                document.loginForm.action = "${path}/user/login_check.do";
+                document.loginForm.submit();
+
+                return false;
+            }
         });
     </script>
 </head>
-
 <body>
     <div class="container">
         <div class="overlay" id="overlay">
@@ -145,14 +170,14 @@
                     </div>
                 </div>
                 <p class="small">혹은 당신의 정보로 로그인하세요:</p>
-                <form id="sign-in-form" name="loginForm" method="post">
+                <form id="sign-in-form" name="loginForm" method="post" onsubmit="return submitLoginForm();">
                     <input type="text" id="loginUserId" name="userId" placeholder="ID" required/><br>
                     <input type="password" id="loginUserPw" name="userPw" placeholder="Password" required/><br>
                     <c:if test="${message == 'error'}">
                         <div style="color:red;">아이디 또는 비밀번호가 일치하지 않습니다.</div>
                     </c:if>
                     <a href="/project/user/findMyInfo.do"><p class="forgot-password">아이디/비밀번호를 잊으셨나요?</p></a>
-                    <button type="button" id="btnLogin" class="control-button in">Sign In</button>
+                    <button type="submit" id="btnLogin" class="control-button in">Sign In</button>
                 </form>
             </div>
 

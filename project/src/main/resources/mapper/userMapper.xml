@@ -21,6 +21,10 @@
 	<select id="checkNickname" parameterType="String" resultType="int">
     	select count(*) from usertbl where nickname = #{nickname}
 	</select>
+	
+	<select id="checkUserTel" parameterType="String" resultType="int">
+    	select count(*) from usertbl where userTel = #{userTel}
+	</select>
     
    	<select id="findCode" parameterType="String" resultType="String">
    		SELECT userCode from usertbl where userId = #{userId}
