@@ -102,7 +102,6 @@ table {
     margin-right: 10px;
 }
 .point-wrap {
-    border: 1px solid black;
     display: flex;
     align-items: center;
 }
