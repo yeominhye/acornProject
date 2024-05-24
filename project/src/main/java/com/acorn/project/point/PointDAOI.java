@@ -17,4 +17,6 @@ public interface PointDAOI {
 	int buyBoard(Point point, User user) throws Exception;
 
 	int pointExchange(int pointAmount, String userCode) throws Exception;
+
+	List<Point> selectPointsWithinDateRange(String userCode, String startDate, String endDate) throws Exception;
 }

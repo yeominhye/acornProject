@@ -17,4 +17,6 @@ public interface PointServiceI {
 	int buyPoint(int pointAmount, String userCode) throws Exception;
 
 	int pointExchange(int pointAmount, String userCode) throws Exception;
+
+	List<Point> getPointsWithinDateRange(String userCode, String startDate, String endDate) throws Exception;
 }
