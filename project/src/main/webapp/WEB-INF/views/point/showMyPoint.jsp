@@ -84,21 +84,24 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="pt_title">포인트 전체내역</div>
         <div class="pt_categori">
             <form action="/project/point/showMyPoint.do" method="GET">
-                <div class="pt_date1">
-                    <label for="startDate">시작일</label>
-                    <input type="text" id="startDate" name="startDate" class="flatpickr" placeholder="날짜 선택">
+                <div class="point-wrap">
+                    <div><button id="resetButton" type="button" onclick="location.href='/project/point/showMyPoint.do'">날짜<br>초기화</button></div>
+                    <div><span class="pt_span">검색 기간</span></div>
+                    <div class="pt_date1">
+                        <input type="text" id="startDate" name="startDate" class="flatpickr" placeholder="시작 날짜">
+                    </div>
+                    <div><span class="pt_span"> ~ </span></div>
+                    <div class="pt_date2">
+                        <input type="text" id="endDate" name="endDate" class="flatpickr" placeholder="종료 날짜">
+                    </div>
+                    
+                    
+                    <div><button type="submit" class="pt_cont_btn">날짜 검색</button></div>
+                    <div class="pt_search">
+                        <input id="search" name="search" placeholder="사용내역을 입력하세요">
+                    </div>
                 </div>
-                <div class="pt_date2">
-                    <label for="endDate">종료일</label>
-                    <input type="text" id="endDate" name="endDate" class="flatpickr" placeholder="날짜 선택">
-                </div>
-                <div><button id="resetButton" type="button" onclick="location.href='/project/point/showMyPoint.do'">초기화</button></div>
-                
-                <button type="submit" class="pt_cont_btn">날짜 검색</button>
             </form>
-            <div class="pt_search">
-                    <input id="search" name="search" placeholder="사용내역을 입력하세요">
-                </div>
         </div>
 
         <table class="pt_table" border="1">
