@@ -11,39 +11,41 @@ import com.acorn.project.user.User;
 @Component
 public class PointService implements PointServiceI {
 
-	@Inject
-	PointDAO dao;
-	
-	@Override
-	public int count() {
-		return dao.count();
-	}
-	
-	@Override
-	public List<Point> getListAll() throws Exception {
-		return dao.selectAll();
-	}
-	
-	@Override
-	public List<Point> getPointOne(String userCode) throws Exception {
-		return dao.selectOne(userCode);
-	}
-	
-	@Override
-	public int buyBoard(Point point, User user) throws Exception {
-		return dao.buyBoard(point, user);
-	}
+    @Inject
+    PointDAO dao;
+    
+    @Override
+    public int count() {
+        return dao.count();
+    }
+    
+    @Override
+    public List<Point> getListAll() throws Exception {
+        return dao.selectAll();
+    }
+    
+    @Override
+    public List<Point> getPointOne(String userCode) throws Exception {
+        return dao.selectOne(userCode);
+    }
+    
+    @Override
+    public int buyBoard(Point point, User user) throws Exception {
+        return dao.buyBoard(point, user);
+    }
 
+    @Override
+    public int buyPoint(int pointAmount, String userCode) throws Exception {
+        return dao.buyPoint(pointAmount, userCode);
+    }
 
-	@Override
-	public int buyPoint(int pointAmount, String userCode) throws Exception {
-		return dao.buyPoint(pointAmount, userCode);
-	}
-
-	@Override
-	public int pointExchange(int pointAmount, String userCode) throws Exception {
+    @Override
+    public int pointExchange(int pointAmount, String userCode) throws Exception {
         return dao.pointExchange(pointAmount, userCode);
     }
-	
-	
+    
+    @Override
+    public List<Point> getPointsWithinDateRange(String userCode, String startDate, String endDate) throws Exception {
+        return dao.selectPointsWithinDateRange(userCode, startDate, endDate);
+    }
 }

@@ -26,14 +26,23 @@ public class PointController {
 	UserServiceI userService;
 	
 	@RequestMapping("showMyPoint.do")
-	public ModelAndView showMyPoint(HttpSession session) {
+	public ModelAndView showMyPoint(HttpSession session, 
+	                                @RequestParam(value = "startDate", required = false) String startDate,
+	                                @RequestParam(value = "endDate", required = false) String endDate) {
 	    ModelAndView mv = new ModelAndView();
 	    User user = (User) session.getAttribute("user");
 
 	    if (user != null) {
 	        try {
 	            String userCode = user.getUserCode();
-	            List<Point> pointList = service.getPointOne(userCode);
+	            List<Point> pointList;
+	            
+	            if (startDate != null && endDate != null) {
+	                pointList = service.getPointsWithinDateRange(userCode, startDate, endDate);
+	            } else {
+	            
+	                pointList = service.getPointOne(userCode);
+	            }
 
 	            Collections.sort(pointList, new Comparator<Point>() {
 	                @Override
@@ -46,7 +55,7 @@ public class PointController {
 	            for (Point point : pointList) {
 	                if (point.getPointStatus() == 1 || point.getPointStatus() == 3) {
 	                    remainingPoints += point.getPointAmount();
-	                } else if (point.getPointStatus() == 0 || point.getPointStatus() == 2 ) {
+	                } else if (point.getPointStatus() == 0 || point.getPointStatus() == 2) {
 	                    remainingPoints -= point.getPointAmount();
 	                }
 	                point.setRemainingPoints(remainingPoints);
@@ -66,16 +75,24 @@ public class PointController {
 
 	    return mv;
 	}
-	
+
 	@RequestMapping("showMyEarnedPoint.do")
-	public ModelAndView showMyEarnedPoint(HttpSession session) {
+	public ModelAndView showMyEarnedPoint(HttpSession session, 
+	                                      @RequestParam(value = "startDate", required = false) String startDate,
+	                                      @RequestParam(value = "endDate", required = false) String endDate) {
 	    ModelAndView mv = new ModelAndView();
 	    User user = (User) session.getAttribute("user");
 
 	    if (user != null) {
 	        try {
 	            String userCode = user.getUserCode();
-	            List<Point> pointList = service.getPointOne(userCode);
+	            List<Point> pointList;
+	            
+	            if (startDate != null && endDate != null) {
+	                pointList = service.getPointsWithinDateRange(userCode, startDate, endDate);
+	            } else {
+	                pointList = service.getPointOne(userCode);
+	            }
 
 	            Collections.sort(pointList, new Comparator<Point>() {
 	                @Override

@@ -32,6 +32,13 @@
     	INSERT INTO pointtbl (userCode, pointStatus, pointAmount)
     	VALUES (#{userCode}, 2, #{pointAmount})
 	</insert>
+	
+	<select id="selectPointsWithinDateRange" parameterType="map" resultType="com.acorn.project.point.Point">
+    	SELECT * FROM pointtbl
+    	WHERE userCode = #{userCode}
+    	AND pointDate BETWEEN #{startDate} AND DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+	</select>
+
 
 </mapper>
 

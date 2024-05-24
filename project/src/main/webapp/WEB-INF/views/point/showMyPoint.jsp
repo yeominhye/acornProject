@@ -8,6 +8,55 @@
 <meta charset="UTF-8">
 <title>My Points</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/showMypoint.css" >
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    flatpickr(".flatpickr", {
+        dateFormat: "Y-m-d"
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const startDate = urlParams.get('startDate');
+    const endDate = urlParams.get('endDate');
+
+    if (startDate && endDate) {
+        document.getElementById('startDate').value = startDate;
+        document.getElementById('endDate').value = endDate;
+    }
+
+    const form = document.querySelector('form[action="/project/point/showMyPoint.do"]');
+
+    form.addEventListener('submit', function(event) {
+        const startDateValue = document.getElementById('startDate').value;
+        const endDateValue = document.getElementById('endDate').value;
+        const searchValue = document.getElementById('search').value;
+
+        if (!startDateValue || !endDateValue) {
+            event.preventDefault();
+            return;
+        }
+    });
+
+    const filterTable = () => {
+        const searchValue = document.getElementById('search').value.toLowerCase();
+        const tableRows = document.querySelectorAll('.pt_table_info');
+
+        tableRows.forEach(row => {
+            const listText = row.querySelector('#t_list').innerText.toLowerCase();
+            if (listText.includes(searchValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    };
+
+    document.getElementById('search').addEventListener('keyup', filterTable);
+});
+
+    
+</script>
 </head>
 <body>
 <div class="pt_wrap">
@@ -34,15 +83,27 @@
     <div class="pt_content">
         <div class="pt_title">포인트 전체내역</div>
         <div class="pt_categori">
-            <div class="pt_date1"></div>
-            <div class="pt_date2"></div>
-            <input class="pt_search" placeholder="사용내역을 입력하세요"></input>
-            <button class="pt_cont_btn">검색</button>
+            <form action="/project/point/showMyPoint.do" method="GET">
+                <div class="pt_date1">
+                    <label for="startDate">시작일</label>
+                    <input type="text" id="startDate" name="startDate" class="flatpickr" placeholder="날짜 선택">
+                </div>
+                <div class="pt_date2">
+                    <label for="endDate">종료일</label>
+                    <input type="text" id="endDate" name="endDate" class="flatpickr" placeholder="날짜 선택">
+                </div>
+                <div><button id="resetButton" type="button" onclick="location.href='/project/point/showMyPoint.do'">초기화</button></div>
+                
+                <button type="submit" class="pt_cont_btn">날짜 검색</button>
+            </form>
+            <div class="pt_search">
+                    <input id="search" name="search" placeholder="사용내역을 입력하세요">
+                </div>
         </div>
 
         <table class="pt_table" border="1">
             <thead>
-                <tr style="background-color: rgb(201, 201, 201); ">
+                <tr style="background-color: rgb(201, 201, 201);">
                     <th>날짜</th>
                     <th>사용구분</th>
                     <th>내역</th>
@@ -51,29 +112,29 @@
                 </tr>
             </thead>
             <tbody>
-            <c:if test="${not empty pointList}">
-                <c:forEach var="point" items="${pointList}">
-                    <tr class="pt_table_info">
-                        <td id="t_date"><c:out value="${point.pointDate}"/></td>
-                        <td id="t_division">
-                            <c:choose>
-                                <c:when test="${point.pointStatus == 0}">게시글 구매</c:when>
-                                <c:when test="${point.pointStatus == 1}">포인트 충전</c:when>
-                                <c:when test="${point.pointStatus == 2}">포인트 환전</c:when>
-                                <c:when test="${point.pointStatus == 3}">게시글 판매</c:when>
-                            </c:choose>
-                        </td>
-                        <td id="t_list"><c:out value="${point.boardCode}"/></td>
-                        <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
-                        <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
+                <c:if test="${not empty pointList}">
+                    <c:forEach var="point" items="${pointList}">
+                        <tr class="pt_table_info">
+                            <td id="t_date"><c:out value="${point.pointDate}"/></td>
+                            <td id="t_division">
+                                <c:choose>
+                                    <c:when test="${point.pointStatus == 0}">게시글 구매</c:when>
+                                    <c:when test="${point.pointStatus == 1}">포인트 충전</c:when>
+                                    <c:when test="${point.pointStatus == 2}">포인트 환전</c:when>
+                                    <c:when test="${point.pointStatus == 3}">게시글 판매</c:when>
+                                </c:choose>
+                            </td>
+                            <td id="t_list"><c:out value="${point.boardCode}"/></td>
+                            <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
+                            <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${empty pointList}">
+                    <tr>
+                        <td colspan="5">No points found.</td>
                     </tr>
-                </c:forEach>
-            </c:if>
-            <c:if test="${empty pointList}">
-                <tr>
-                    <td colspan="5">No points found.</td>
-                </tr>
-            </c:if>
+                </c:if>
             </tbody>
             <tfoot>
                 <tr>

@@ -57,15 +57,14 @@ public class PointDAO implements PointDAOI  {
         return session.insert(namespace+"pointExchange", paramMap);
     }
 	
-	public static void main(String[] args) throws Exception {
-		PointDAO dao = new PointDAO();
-		Point point = new Point();
-		point.setBoardCode("b0001");
-		point.setPointAmount(100);
-		User user = new User();
-		
-		System.out.println(dao.buyBoard(point, user));
-	}
+	@Override
+	public List<Point> selectPointsWithinDateRange(String userCode, String startDate, String endDate) throws Exception {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userCode", userCode);
+        paramMap.put("startDate", startDate);
+        paramMap.put("endDate", endDate);
+        return session.selectList(namespace + "selectPointsWithinDateRange", paramMap);
+    }
 }
 
  
