@@ -2,12 +2,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ include file="../nav-sub.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>My Points</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/showMypoint.css" >
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
@@ -63,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- 왼쪽 네비 위-->
     <div class="pt_nav">
         <div class="pt_nav_up">
-            <div class="pt_nav"></div>
             <div class="pt_nav_h2"><h2>${user.nickname}님</h2></div>
             <div class="pt_nav_pt"><span>포인트</span> <span style="color: rgba(253, 177, 177, 0.924);">${user.userPoint}</span></div>
         </div>
@@ -73,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
              <a href="/project/point/showMyEarnedPoint.do"> <p>획득내역</p> </a>
             </div>
             <div class="pt_nav_all"><h1>충전/환전</h1>
-            <a href="/project/point/showMyEarnedPoint.do"> <p>획득내역</p> </a>
             <a href="/project/point/pointCharge.do"> <p>충전하기</p></a>
             <a href="/project/point/pointExchange.do""> <p>환전하기</p></a>
             </div>
@@ -81,11 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     
     <div class="pt_content">
-        <div class="pt_title">포인트 전체내역</div>
+        <div class="pt_title">#포인트 전체내역</div>
         <div class="pt_categori">
             <form action="/project/point/showMyPoint.do" method="GET">
                 <div class="point-wrap">
-                    <div><button id="resetButton" type="button" onclick="location.href='/project/point/showMyPoint.do'">날짜<br>초기화</button></div>
+                    <div><button class="pt_cont_btn" id="resetButton" type="button" onclick="location.href='/project/point/showMyPoint.do'">날짜 초기화</button></div>
                     <div><span class="pt_span">검색 기간</span></div>
                     <div class="pt_date1">
                         <input type="text" id="startDate" name="startDate" class="flatpickr" placeholder="시작 날짜">
@@ -147,5 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </table>
     </div>
 </div>
+
+<%@ include file="../footer-sub.jsp" %>
 </body>
 </html>

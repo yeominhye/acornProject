@@ -17,52 +17,9 @@
 <body>
     <div class="wrap">
         <!-- nav -->
-        <nav>
-            <div class="nav-container">
-
-                <div class="nav-icon">
-                    <img src="https://via.placeholder.com/150x50.jpg" alt="logo-icon">
-                </div>
-
-                <div class="nav-menu">
-                    <ul>
-                        <li><a href="#">홈</a></li>
-                        <li><a href="#">관광</a></li>
-                        <li><a href="#">루트</a></li>
-                        <li><a href="#">자유게시판</a></li>
-                        <li><a href="#">고객센터</a></li>
-                    </ul>
-                </div>
-
-                <div class="nav-proflie">
-                    <div class="nav-proflie-text"><a href="#">로그인</a></div> <!-- 로그인 시 닉네임으로 -->
-                    <div class="proflie-icon">
-                        <img src="https://via.placeholder.com/50x50.jpg" alt="proflie-icon">
-                    </div>
-                </div>
-
-                <!-- 800px 이하일때 생기는 네비 박스 -->
-                <img class="tablet-icon" src="https://via.placeholder.com/50x50.jpg" alt="proflie-icon">
-                <div class="tablet-nav-box">
-                    <div class="tablet-nav-proflie">
-                        <div class="proflie-icon">
-                            <img src="https://via.placeholder.com/50x50.jpg" alt="proflie-icon">
-                        </div>
-                        <div class="nav-proflie-text"><a href="#">로그인</a></div> <!-- 로그인 시 닉네임으로 -->
-                    </div>
-
-                    <div class="tablet-nav-menu">
-                        <ul>
-                            <li><a href="#">홈</a></li>
-                            <li><a href="#">관광</a></li>
-                            <li><a href="#">루트</a></li>
-                            <li><a href="#">자유게시판</a></li>
-                            <li><a href="#">고객센터</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav> <!-- header -->
+        <%@ include file="../nav-sub.jsp" %>
+        
+        <!-- header -->
 
         <div class="container">
 

@@ -215,7 +215,7 @@
 <body>
     <div class="wrap">
         <!-- nav -->
-        <%@ include file="../nav.jsp" %>
+        <%@ include file="../nav-sub.jsp" %>
 
         <div class="container">
             <div class="side-container">

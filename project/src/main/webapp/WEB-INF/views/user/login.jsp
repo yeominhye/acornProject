@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ include file="../nav-sub.jsp" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -35,14 +35,12 @@
                     success: function(data) {
                         if (data == "duplicate") {
                             $("#idCheckMsg").text("이미 사용 중인 아이디입니다.");
-                            $("#registerBtn").prop("disabled", true);
                             $("input:not(#registerUserId), button").on('mousedown click keydown focusin', function(e) {
                                 e.preventDefault();
                                 return false;
                             });
                         } else {
                             $("#idCheckMsg").text("");
-                            $("#registerBtn").prop("disabled", false);
                             $('input:not(#registerUserId), button').off('mousedown click keydown focusin');
                         }
                     }
@@ -90,6 +88,7 @@
                 
                 if (!regex.test(userPw)) {
                     $("#pwError").text("비밀번호는 영문자와 숫자의 조합으로 최소 8자리 이상이어야 합니다.");
+                    $("#btnLogin").removeClass("valid-password");
                     $("#registerBtn").prop("disabled", true);
                     $("input:not(#registerUserPw), button").on('mousedown click keydown focusin', function(e) {
                         e.preventDefault();
@@ -99,6 +98,7 @@
                     $("#pwError").text("");
                     $("#registerBtn").prop("disabled", false);
                     $('input:not(#registerUserPw), button').off('mousedown click keydown focusin');
+                    $("#btnLogin").addClass("valid-password");
                 }
             });
 
@@ -131,6 +131,10 @@
 
                 return false;
             }
+        });
+        
+        $("#loginUserId").on('input', function() {
+            alert("아이디를 입력 중입니다.");
         });
     </script>
 </head>
@@ -212,5 +216,6 @@
         </div>
     </div>
     <script src="${path}/resources/js/login.js"></script>
+    
 </body>
 </html>
