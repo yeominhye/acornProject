@@ -20,16 +20,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.acorn.project.archive.Archive;
+import com.acorn.project.archive.ArchiveServiceI;
 import com.acorn.project.comment.Comment;
 import com.acorn.project.comment.CommentServiceI;
+import com.acorn.project.like.Like;
+import com.acorn.project.like.LikeServiceI;
+import com.acorn.project.report.Report;
+import com.acorn.project.report.ReportServiceI;
 import com.acorn.project.user.User;
 import com.acorn.project.user.UserServiceI;
 
@@ -48,7 +52,17 @@ public class BoardController {
 	
 	@Autowired
 	CommentServiceI commentService;
-
+	
+	@Autowired
+	LikeServiceI likeService;
+	
+	@Autowired
+	ArchiveServiceI archiveService;
+	
+	@Autowired
+	ReportServiceI reportService;
+	
+	
 	private String fileDir ="c:\\test\\upload\\";
 	
 	@RequestMapping(value = "/free", method=RequestMethod.GET)
@@ -102,6 +116,7 @@ public class BoardController {
         int count = commentService.count(code);
         model.addAttribute("count", count);
         return "board/freeboardDetail";
+       
     }
     
     @PostMapping("/free/{code}")
@@ -136,11 +151,86 @@ public class BoardController {
     @ResponseBody
 	@RequestMapping(value = "/free/{code}", method = RequestMethod.DELETE)
 	public void CommentDel(@PathVariable String code, @RequestBody String commentcode, HttpSession session) {
-			commentService.delete(commentcode);
-			System.out.println(commentcode);
+		commentService.delete(commentcode);
+		System.out.println(commentcode);
 	}
+    
+
+    
+    @ResponseBody
+    @RequestMapping(value = "/free/{code}/likeCheck", method = RequestMethod.POST)
+    public int checkLike(@PathVariable String code, @RequestBody Like like, HttpSession session, Model model) {
+    	Like check = likeService.checkLike(like);
+    	if (check != null) {
+    		return 1;
+    	}else {
+    		return 0;
+    	}    		
+    }
+  
+    @ResponseBody
+    @RequestMapping(value = "/free/{code}/likes", method = RequestMethod.POST)
+    public void incrLike(@PathVariable String code, @RequestBody Like like) {
+    	likeService.incrLike(like);
+    	System.out.println("추가"+like);
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/free/{code}/likes", method = RequestMethod.DELETE)
+    public void decrLike(@PathVariable String code, @RequestBody Like like) {
+    	likeService.decrLike(like);
+    	System.out.println("삭제"+like);
+    }
+    
+    
+    
+    @ResponseBody
+    @RequestMapping(value = "/free/{code}/archCheck", method = RequestMethod.POST)
+    public int checkArch(@PathVariable String code, @RequestBody Archive archive, HttpSession session, Model model) {
+    	Archive check = archiveService.checkArch(archive);
+    	if (check != null) {
+    		return 1;
+    	}else {
+    		return 0;
+    	}
+    }
+  
+    @ResponseBody
+    @RequestMapping(value = "/free/{code}/arch", method = RequestMethod.POST)
+    public void regArch(@PathVariable String code, @RequestBody Archive archive) {
+    	archiveService.insert(archive);
+    	System.out.println("추가"+archive);
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/free/{code}/arch", method = RequestMethod.DELETE)
+    public void deleteArch(@PathVariable String code, @RequestBody Archive archive) {
+    	archiveService.delete(archive);
+    	System.out.println("삭제"+archive);
+    }
+    
 
 	
+    @PostMapping("/free/{code}/report")
+    public ResponseEntity<Map<String, Object>> regReport(@PathVariable String code, @RequestBody Report report, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        Map<String, Object> response = new HashMap<>();
+        
+        if (user != null) {
+            reportService.register(report);
+            System.out.println(report);
+            response.put("status", "success");
+            response.put("message", "Comment posted successfully");
+            response.put("redirect", "/project/board/free/"+code);
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("status", "error");
+            response.put("message", "User not logged in");
+            response.put("redirect", "/project/user/login.do");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+    }
+    
 	@RequestMapping(value = "/freeboard/{theme}")
 	public String BoardListTheme(@PathVariable String theme, Model model) {
 		List<Board> freeBoardList = boardService.getBoardBytheme(theme);
@@ -148,16 +238,16 @@ public class BoardController {
 		return "board/freeboardList";
 	}
 	
-	@RequestMapping(value="/my", method = RequestMethod.GET)
-	public String myBoardList(HttpSession session, Model model){
-		User user = (User)session.getAttribute("user");
-		String userId =user.getUserId();
-		List<Board> BoardList = boardService.getBoardByuser(userId);
-		model.addAttribute("BoardList",BoardList);
-		return "/board/myboard";
-	}
+//	@RequestMapping(value="/my", method = RequestMethod.GET)
+//	public String myBoardList(HttpSession session, Model model){
+//		User user = (User)session.getAttribute("user");
+//		String userId =user.getUserId();
+//		List<Board> BoardList = boardService.getBoardByuser(userId);
+//		model.addAttribute("BoardList",BoardList);
+//		return "/board/myboard";
+//	}
 	
-	@RequestMapping(value = "/my/reg{code}", method = RequestMethod.GET)
+	@RequestMapping(value = "/my/{code}", method = RequestMethod.GET)
 	public String myfreeBoard(@PathVariable String code, HttpSession session) {
 		Board board = boardService. getBoardBycode(code);
 		session.setAttribute("myboard", board);
@@ -165,18 +255,18 @@ public class BoardController {
 		return "/board/myboardForm";
 	}
 	
-	@RequestMapping(value = "/my/reg{code}", method = RequestMethod.POST)
+	@RequestMapping(value = "/my/{code}", method = RequestMethod.POST)
 	public String boardModi(Board board) {
 		boardService.modiBoard(board);
 		System.out.println(board);
-		return "redirect:/board/my";
+		return "redirect:/user/mypage.do";
 	}
 	
 	
-	@RequestMapping(value = "/my/del{code}", method = RequestMethod.GET)
+	@RequestMapping(value = "/my/del/{code}", method = RequestMethod.GET)
 	public String boardDelete(@PathVariable String code) {
 	boardService.delBoard(code);
-		return "redirect:/board/my";
+		return "redirect:/user/mypage.do";
 	}
 	
 	@RequestMapping("/faq")
@@ -209,7 +299,7 @@ public class BoardController {
 
 	            Board board = new Board(vo.getBoardCode(), vo.getUserCode(), vo.getNickname(), originalName, realName, 
 	                    vo.getBoardTitle(), vo.getBoardContent(), vo.getBoardTheme(), vo.getBoardTourdays(),
-	                    vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardLikes(), vo.getBoardPoint(), vo.getBoardType());
+	                    vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType());
 	            System.out.println(board);
 	            String fullPath = fileDir + realName;
 	            file.transferTo(new File(fullPath));
@@ -223,7 +313,7 @@ public class BoardController {
 	        System.out.println("파일이 업로드되지 않았습니다.");
 	        Board board = new Board(vo.getBoardCode(), vo.getUserCode(), vo.getNickname(), null, null, 
 	                vo.getBoardTitle(), vo.getBoardContent(), vo.getBoardTheme(), vo.getBoardTourdays(),
-	                vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardLikes(), vo.getBoardPoint(), vo.getBoardType());
+	                vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType());
 	        boardService.regBoard(board);
 	    }
 
@@ -265,6 +355,12 @@ public class BoardController {
    @RequestMapping(value = "/route", method = RequestMethod.GET)
    public String festival() {
       return "/board/route";
+   }
+   
+  
+   @RequestMapping(value = "/route/post", method = RequestMethod.GET)
+   public String festivalPost() {
+      return "/board/routePost";
    }
 
 }

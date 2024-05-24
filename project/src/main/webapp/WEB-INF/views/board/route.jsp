@@ -286,7 +286,7 @@
                             <div class="info-01">
                                 <div class="local-icon">경기</div>
                                 <div class="route-name">
-                                    가평 유럽마을 당일치기 일정
+                                    <a href="${pageContext.request.contextPath}/board/route/post">가평 유럽마을 당일치기 일정</a> 
                                 </div>
                             </div>
                             <div class="info-02">

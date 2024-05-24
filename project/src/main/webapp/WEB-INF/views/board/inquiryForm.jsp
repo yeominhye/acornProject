@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../nav.jsp" %>	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ include file="../nav.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,13 +29,13 @@
             </div>
 
             <span class="notice-required" id="notice-star">*</span><span class="notice-required">필수입력사항입니다</span>
-            <a href="#" class="myInquiry">내 문의내역</a>
+            <a href="/project/board/my/inquiry6" class="myInquiry">내 문의내역</a>
             <div class="inquiry-content">
             
             
                 <form action="inquiry" method="post"  enctype="multipart/form-data">
-               		
-               	    <input type="hidden" name="userCode" value="${user.userCode}">
+                     
+                      <input type="hidden" name="userCode" value="${user.userCode}">
                     <fieldset>
                         <div>
                             <label for="title">제목</label>
@@ -59,16 +60,18 @@
                         <p class="notice"> 첨부된 이미지 미리보기는 최대 3개까지 가능합니다.</p>
                         
                         
-						<input type=hidden name="boardTheme" id="boardTheme" value="0">
-				     	<input type=hidden name="boardTourdays" id="boardTourdays" value="0">
-				     	<input type=hidden name="boardViews" id="boardViews" value="0" >
-				     	<input type=hidden name="boardLikes" id="boardLikes"value="0" >
-				     	<input type=hidden name="boardPoint" id="boardPoint"value="0" >
-			    	    <input type="hidden" name="boardType" value="6">
+                  <input type=hidden name="boardTheme" id="boardTheme" value="0">
+                    <input type=hidden name="boardTourdays" id="boardTourdays" value="0">
+                    <input type=hidden name="boardViews" id="boardViews" value="0" >
+                    <input type=hidden name="boardLikes" id="boardLikes"value="0" >
+                    <input type=hidden name="boardPoint" id="boardPoint"value="0" >
+                    <input type="hidden" name="boardType" value="6">
                         
                         
-                        <a href="/project/board/faq">취소</a>
-                        <input type="submit" value="문의하기" class="submit">
+                       <!-- <a class="cancle-button" href="/project/board/faq">취소</a> --> 
+                       <!-- 문의내역에서 들어가는 경우랑 고객센터에서 들어가는 경우 두 가지라서 링크 말고 뒤로가기로 바꿨음 -->
+                        <button class="cancle-button" onclick="history.back()">취소</button>
+                        <button class="submit-button">문의등록</button>
                     </fieldset>
                     
                 </form>

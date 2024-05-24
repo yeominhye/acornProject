@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../nav.jsp" %>	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ include file="../nav.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,10 +44,11 @@
                      </c:forEach>
                       </tbody>
                 </table>
-                <button class="btn-write">문의하기</button>
+                <button onclick="location.href='/project/board/inquiry'" class="btn-write">문의하기</button>
             </div>
             
 
+        </div>
         </div>
 
         <footer>

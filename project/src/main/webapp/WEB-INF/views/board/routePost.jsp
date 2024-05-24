@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="routePost.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost.css" >
 
     <!-- icon key -->
     <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
@@ -239,8 +239,9 @@
             <div class="comment-container">
                 <h2>댓글</h2>
                 <div class="comment-section">
-
+               <div id="no-comments-message" style="display: none;">작성된 댓글이 없습니다.</div>
                     <div class="comment-box">
+                         
                         <div class="each-comment">
                             <div class="comment-nickname">
                                 <p>예원의 뽀대왕쟈님</p>
@@ -358,6 +359,24 @@
 
     init();
 </script>
+
+<script>
+    function checkComments() {
+        var comments = document.getElementsByClassName("each-comment");
+        var noCommentsMessage = document.getElementById("no-comments-message");
+        
+        if (comments.length === 0) {
+            noCommentsMessage.style.display = "block";
+        } else {
+            noCommentsMessage.style.display = "none";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        checkComments();
+    });
+</script>
+
 
 
 </html>

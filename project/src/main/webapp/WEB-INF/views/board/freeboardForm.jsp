@@ -15,6 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/freeBoardForm.css" >
    	<script type="text/javascript">    
 	   // editor의 내용 input으로 전달
    		function send(){
@@ -56,33 +58,38 @@
    	</script>
 	    
 	    
-   	</script>
 </head>
 <body>
+	<div class="wrap">
 
-<div class="wrap">
-  
-	 
 	
-     <form  name="frm" action="reg" method="post"> 
-     	제목 : <input type="text" name="boardTitle" id="boardTitle" required>
-     	<div id="titleMessage" style="display:none; color:red;"></div>
-     	닉네임 : ${user.nickname}
-     	<input type=hidden name="userCode" id="userCode" value="${user.userCode}">
-     	<input type=hidden name="boardImgOrigin" id="boardImgOrigin" value="null">
-     	<input type=hidden name="boardImgReal" id="boardImgReal" value="null">
-     	<input type=hidden name="boardTheme" id="boardTheme" value="-1">
-     	<input type=hidden name="boardTourdays" id="boardTourdays" value="-1">
-     	<input type=hidden name="boardViews" id="boardViews" value="0" >
-     	<input type=hidden name="boardLikes" id="boardLikes"value="0" >
-     	<input type=hidden name="boardPoint" id="boardPoint"value="0" >
-     
-     	 <select name="boardType" id="boardType"required>
-	        <option value="1">여행후기</option>
-	        <option value="2">꿀팁공유</option>
-	        <option value="3">질문있어요</option>
-	        <option value="4">수다방</option>
-   		 </select>
+	    <div class="freeBoardForm-container">
+		    <div class="freeBoardForm-section">
+		        <h2>글쓰기</h2>
+		    </div>
+		     <form  name="frm" action="reg" method="post">
+			    <div class="custom-section">
+			    	 <select name="boardType" id="boardType" required>
+	                    <option value="1">여행후기</option>
+			            <option value="2">꿀팁공유</option>
+			            <option value="3">질문있어요</option>
+			            <option value="4">수다방</option>
+	                    <option value="5">동행구해요!</option>
+	                </select>
+	                <input type="text" placeholder="제목을 입력하세요." name="boardTitle" id="boardTitle" required>
+	            </div>  
+			        <div id="titleMessage" style="display:none; color:red;"></div>
+			        <input type="hidden" name="userCode" id="userCode" value="${user.userCode}">
+			        <input type="hidden" name="boardImgOrigin" id="boardImgOrigin" value="null">
+			        <input type="hidden" name="boardImgReal" id="boardImgReal" value="null">
+			        <input type="hidden" name="boardTheme" id="boardTheme" value="-1">
+			        <input type="hidden" name="boardTourdays" id="boardTourdays" value="-1">
+			        <input type="hidden" name="boardViews" id="boardViews" value="0">
+			        <input type="hidden" name="boardPoint" id="boardPoint" value="0">
+		    
+		
+
+			   	
 	    <!-- Create the editor container -->
 	    <div id="contentMessage" style="display:none; color:red;"></div>
 	    <div id="toolbar-container">
@@ -135,7 +142,11 @@
 	      <div id="editor"></div>
 	      <input type="hidden" id="boardContent" name="boardContent" required>
 	      
-	      <button  type="button"   onclick="validate()"> 전송</button>
+	      
+	       <div class="freeBoardForm-btn">
+            <button onclick="history.back()">뒤로가기</button>
+            <button  type="button"   onclick="validate()"> 전송</button>
+        	</div>
 	  </form>    
 	
 	     <!-- Include the Quill library -->
@@ -154,6 +165,8 @@
 	       
 	      </script>
 	    </div>
+     </div>
+
       
 </body>
 </html>

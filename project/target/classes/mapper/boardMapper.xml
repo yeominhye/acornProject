@@ -5,7 +5,8 @@
 <mapper namespace="com.acorn.boardMapper">
 
     <select id="selectAll" resultType="Board" parameterType="int">
-		SELECT u.nickname,b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, b.boardViews 
+		SELECT u.nickname,b.boardCode, b.boardTitle, b.boardContent, 
+		DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews 
 	    FROM boardtbl b 
 	    JOIN usertbl u ON b.userCode = u.userCode
 	    <where>
@@ -22,7 +23,7 @@
    <select id="selectOne" resultType="Board" parameterType="String">
 		SELECT 
 			u.nickname, b.userCode, b.boardCode,b.boardImgReal,b.boardTitle,b.boardContent, b.boardWritedate, 
-			b.boardViews,b.boardLikes, b.boardType
+			b.boardViews,b.boardType
 		FROM boardtbl b 
 		JOIN usertbl u
 		ON b.userCode = u.userCode
@@ -35,7 +36,7 @@
 		SET boardViews= boardViews+1
 		WHERE boardCode=#{boardCode}
    </update>
-   
+
 	<select id="selectTheme" resultType="Board" parameterType="String">
 		SELECT u.nickname,b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, b.boardViews 
 		FROM boardtbl b 
@@ -46,8 +47,9 @@
    
    <select id="selectMy" resultType="Board" parameterType="String">
 		SELECT 
-			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, 
-			b.boardViews,b.boardLikes, b.boardType
+			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
+			b.boardViews,b.boardType
 		FROM boardtbl b 
 		JOIN usertbl u on b.userCode=u.userCode
 		WHERE u.userId=#{userId}
@@ -58,7 +60,7 @@
    <select id="selectMyinqu" resultType="Board" parameterType="String">
 		SELECT 
 			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, 
-			b.boardViews,b.boardLikes, b.boardType
+			b.boardViews,b.boardType
 		FROM boardtbl b 
 		JOIN usertbl u on b.userCode=u.userCode
 		WHERE u.userId=#{userId}
@@ -68,11 +70,11 @@
 	
 	<insert id="insert" parameterType="Board">
 		INSERT INTO boardtbl
-			(userCode, boardImgOrigin, boardImgReal, boardTitle, boardContent, boardTheme, boardTourdays, boardWritedate, boardViews, 
-			boardLikes, boardPoint, boardType)
+			(userCode, boardImgOrigin, boardImgReal, boardTitle, boardContent, boardTheme, boardTourdays, boardWritedate, 
+			boardViews, boardPoint, boardType)
 		VALUES 
 		(#{userCode}, #{boardImgOrigin}, #{boardImgReal}, #{boardTitle}, #{boardContent},#{boardTheme},#{boardTourdays},now(),
-		#{boardViews},#{boardLikes},#{boardPoint},#{boardType})
+		#{boardViews},#{boardPoint},#{boardType})
 	</insert>
 	
 	<update id="update" parameterType="Board">

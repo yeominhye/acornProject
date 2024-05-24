@@ -408,6 +408,12 @@ nav {
     background-color: rgba(240, 238, 238, 0.491)
 }
 
+/* 댓글 없을 때 */
+#no-comments-message{
+    margin: 15px 0px 20px 20px;
+    padding: 0px 0px 20px 20px;
+}
+
 /* 개별 댓글 */
 .each-comment{
     border-bottom: 1px dotted rgb(158, 157, 157);

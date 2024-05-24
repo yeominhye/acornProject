@@ -56,6 +56,10 @@
     text-align: justify;
 }
 
+.upload-img{
+   margin-bottom: 30px;
+}
+
 #content-answer{
     margin-bottom: 150px;
 }
@@ -79,8 +83,12 @@ button{
     width: 300px;
     height: 60px;
     border-style: none;
+    cursor: pointer;
 }
 
+button:hover{
+   cursor: pointer;
+}
 
 /* 푸터 잠시만~ */
 footer{

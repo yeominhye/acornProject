@@ -3,7 +3,6 @@
 *, :after, :before {box-sizing:border-box;}
 html,body {width: 100%;height:100%;overflow-x: hidden;}
 a {text-decoration:none; color:black; margin:0;}
-a:hover{color: black;text-decoration-line: underline;}
 ul, li {list-style: none;}
 table {border-collapse:collapse;border-spacing:0}
 
@@ -22,16 +21,53 @@ table {border-collapse:collapse;border-spacing:0}
 .my_point_btn{ width: 60px; height: 25px;position: absolute; background-color: rgb(250, 250, 188); border-radius: 20px; right: 12px; top:14px}
 .my_point_btn:hover{cursor: pointer;}
 .my_point_btn>span{margin-left: 15px;}
+
 .my_list{ border-radius: 10px; background-color: rgba(226, 226, 226, 0.842); width: 750px; height: 450px; position: relative; margin: 70px 0 0 260px;} 
-.my_list_ul{border-bottom: 1px solid rgba(168, 168, 168, 0.898); width: 650px;  height: 35px; margin: 35px 0 0 50px; position: absolute; }
+.my_list_ul{border-bottom: 2px solid rgba(136, 136, 136, 0.447); width: 650px;  height: 35px; margin: 35px 0 0 50px; position: absolute; }
 .my_list_ul>ul{display: flex; justify-content: space-between;}
 .my_list_ul_under{border-bottom:1px solid rgba(168, 168, 168, 0.898); position: relative; border-top:1px solid rgba(168, 168, 168, 0.898); height: 80px; top:60px; }
 
 
 
-.my_list_board{border-bottom: 1px solid black; width: 100%; margin-top: 20px;}
-.my_list_board tr{border-bottom: 1px solid black; width: 100%; text-align: center;}
-.my_list_board th,td{border: 1px solid black;}
+.my_list_board{
+   width: 100%; 
+   margin-top: 10px;
+   table-layout: fixed;
+}
+
+.each-post{
+    border-bottom: 1px dotted rgb(158, 158, 158);
+}
+
+.each-post td{
+    padding: 10px 0 10px 0;
+}
+
+.each-post td:hover{
+   font-weight: bold;
+   text-decoration: none;   
+}
+
+.post-index{
+   width: 10%;
+}
+
+.post-title a {
+   display: block;
+   width: 100%;
+   text-align:left;
+   text-indent: 10px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.post-title a(title){
+   
+}
+
+.my_list_board tr{ width: 100%; text-align: center;}
+ /* .my_list_board th,td{border: 1px solid black;} */
 .my_list_index{width: 15%;}
 .my_list_title{width: 50%;}
 .my_list_type{width: 15%;}

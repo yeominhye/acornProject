@@ -6,6 +6,9 @@
 ----------------------
 */
 
+button{
+   cursor: pointer;
+}
 
 .container{ 
     /* border: 1px solid black; */
@@ -54,13 +57,18 @@ th, td:not(.table-number, .table-title){
     padding-right: 150px;
     font-weight: 600;
     text-indent: 10px;
-    color: rgb(50, 50, 50);
 }
 
-.table-title:hover{
-    cursor: pointer;
-    color: gray;
+.table-title a{
+    color: black;
 }
+
+.table-title a:hover{
+    cursor: pointer;
+    color: rgb(66, 66, 66);
+    text-decoration: none;
+}
+
 
 tr:not(.table-top){
     border-bottom: 1px solid rgb(0, 0, 0);

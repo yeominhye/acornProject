@@ -71,9 +71,9 @@ nav {
                 </div> 
            <div class="nav-proflie">
                <div class="nav-proflie-text">
-                       <c:if test="${empty user}">
-                            <a href="user/login.do">로그인</a>
-                      <a href="user/register.do">회원가입</a>
+                 <c:if test="${empty user}">
+                      <a href="/project/user/login.do">로그인</a>
+                      <a href="/project/user/login.do">회원가입</a>
                    </c:if>
                    <c:if test="${not empty user}">
                       <a href="/project/user/logout.do">로그아웃</a>

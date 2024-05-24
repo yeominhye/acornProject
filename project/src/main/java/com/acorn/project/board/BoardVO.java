@@ -20,7 +20,6 @@ public class BoardVO {
 	private int boardTourdays;
 	private String boardWritedate;
 	private int boardViews;
-	private int boardLikes;
 	private int boardPoint;
 	private int boardType;
 }

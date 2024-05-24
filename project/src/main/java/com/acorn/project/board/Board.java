@@ -1,6 +1,5 @@
 package com.acorn.project.board;
 
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +20,6 @@ public class Board {
 	private int boardTourdays;
 	private String boardWritedate;
 	private int boardViews;
-	private int boardLikes;
 	private int boardPoint;
 	private int boardType;
 }

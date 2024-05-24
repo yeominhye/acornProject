@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.acorn.project.user.User" %>
 <%@ include file="../nav.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -20,160 +21,15 @@
       display: none;
    }
 </style>
-<script type="text/javascript">
-   var boardCode = "${freeboard.boardCode}";
-   
-   function regComment() {
-   //    let boardCode = $("#regBoardCode").val(); 
-       let userCode = $("#regUserCode").val();
-       let commentDate = $("#regCommentDate").val();
-       let commentContent = $("#regComment").val();
-       let comment = {
-           boardCode: boardCode,
-           userCode: userCode,
-           commentDate: commentDate,
-           commentContent: commentContent
-       }; // JSON 객체
-       console.log(comment);
-       
-       // JSON 객체를 문자열로 변환
-       let commentString = JSON.stringify(comment);
-       console.log(commentString);
-       
-       $.ajax({
-           type: "post",
-           url: "${pageContext.request.contextPath}/board/free/" + boardCode,
-           data: commentString,
-           contentType: "application/json",
-           
-           success: function(response) {
-               if (response.status === 'success') {
-                   if (response.redirect) {
-                       window.location.href = response.redirect; 
-                   }
-               } else {
-                   console.error('Error: ' + response.message);
-               }
-           },
-           error: function(xhr, status, error) {
-               if (xhr.status === 401) {
-                   window.location.href = "${pageContext.request.contextPath}/user/login.do";
-               } else {
-                   console.error('AJAX Error: ' + status + ' ' + error);
-               }
-           }
-       });
-   }
-
-   
-     $(document).ready(function() {
-           // 각 댓글에 대해 사용자 코드를 확인하여 버튼을 표시하거나 숨기는 작업 수행
-           $('.comment').each(function() {
-               var commentUserCode = $(this).data('user-code');
-               checkUserCode(commentUserCode, $(this));
-           });
-       });
-
-       // 각 댓글에 대해 사용자 코드를 확인하여 버튼을 표시하거나 숨기는 함수
-       function checkUserCode(commentUserCode, $comment) {
-           var userCode = "${user.userCode}";
-           var $btnModi = $comment.find('.btnModi');
-           var $btnDel = $comment.find('.btnDel');
-
-           if (userCode === commentUserCode) {
-               // 해당 댓글의 작성자와 현재 사용자의 코드가 일치할 경우 버튼을 보이도록 설정
-               $btnModi.show();
-               $btnDel.show();
-           } else {
-               // 해당 댓글의 작성자와 현재 사용자의 코드가 일치하지 않을 경우 버튼을 숨기도록 설정
-               $btnModi.hide();
-               $btnDel.hide();
-           }
-       }
-    
-    function editComment(btn) {
-          var $commentDiv = $(btn).closest('.comment');
-          var $commentContent = $commentDiv.find('.comment_content');
-          var $editInput = $('<textarea class="edit_comment_input" style="width:600px; height:50px;">' + $commentContent.text() + '</textarea>');
-          $commentContent.replaceWith($editInput);
-          $(btn).text('저장').removeClass('btnModi').addClass('btnSave').attr('onclick', 'saveComment(this)');
-          
-          // document 전체에 클릭 이벤트 등록
-          $(document).on('click', function(e) {
-              // 수정 중인 댓글을 제외한 영역을 클릭했을 때
-              if (!$(e.target).closest('.comment').is($commentDiv)) {
-                  // 수정 상태 종료
-                  $editInput.replaceWith('<div class="comment_content">' + $editInput.val() + '</div>');
-                  $(btn).text('수정').removeClass('btnSave').addClass('btnModi').attr('onclick', 'editComment(this)');
-                  // document 전체에 등록된 클릭 이벤트 제거
-                  $(document).off('click');
-              }
-          });
-      }
-
-    
-    function saveComment(btn) {
-       
-          var $commentDiv = $(btn).closest('.comment');
-          var $editInput = $commentDiv.find('.edit_comment_input');
-          var commentContent = $editInput.val(); 
-          var commentCode = $commentDiv.find('.modiCommentCode').val(); 
-          
-          var comment = {
-              commentCode: commentCode,
-              commentContent: commentContent
-          }; 
-          
-          var commentString = JSON.stringify(comment);
-
-          $.ajax({
-              type: "PUT", // PUT 요청 사용
-              url: "/project/board/free/" + boardCode, // boardCode 변수를 사용하여 URL을 지정
-              data: commentString,
-              contentType: "application/json",
-              success: function(data) {
-                  console.log(data);
-              },
-              error: function(xhr, status, error) {
-                  console.log(xhr, status, error);
-              }
-          });
-          
-          $editInput.replaceWith('<div class="comment_content">' + commentContent + '</div>');
-          $(btn).text('수정').removeClass('btnSave').addClass('btnModi').attr('onclick', 'editComment(this)');
-          // document 전체에 클릭 이벤트 제거
-          $(document).off('click');
-      }
-
-    function delComment(btn) {
-          // 댓글 요소를 찾습니다.
-          var $commentDiv = $(btn).closest('.comment');
-          
-          // 댓글의 commentCode 값을 가져옵니다.
-          var commentCode = $commentDiv.find('.modiCommentCode').val();
-          
-          // 삭제를 확인하는 다이얼로그를 표시하거나 직접 삭제 요청을 보낼 수 있습니다.
-          if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
-              // AJAX를 사용하여 삭제 요청을 보냅니다.
-              $.ajax({
-                  type: "DELETE",
-                  url: "/project/board/free/" + boardCode, // 댓글을 삭제하는 URL을 지정합니다. 확인이 필요합니다.
-                  data: commentCode,
-                  success: function(data) {
-                      console.log(data); // 성공적으로 삭제된 경우 로그에 출력합니다.
-                      
-                      // 삭제된 댓글을 화면에서 숨깁니다.
-                      $commentDiv.hide();
-                  },
-                  error: function(xhr, status, error) {
-                      console.error(xhr, status, error); // 오류가 발생한 경우 콘솔에 오류를 출력합니다.
-                  }
-              });
-          }
-      }   
-    
-    
-</script>
+<script defer src="${pageContext.request.contextPath}/resources/js/changeType.js"></script>
+<script defer src="${pageContext.request.contextPath}/resources/js/LikeArch.js"></script>
+<script defer src="${pageContext.request.contextPath}/resources/js/report.js"></script>
+<script defer src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
+ 
+<%
+  User user = (User) session.getAttribute("user");
+  String userCode = (user != null) ? user.getUserCode() : null;
+%>
 
 </head>
 <body>
@@ -197,13 +53,18 @@
             <div class="content_wrap">
                 <!-- 게시판이름 -->
                 <div class="boardType">${freeboard.boardType}</div>
+                <div class="report"> <button onclick="report()">신고</button> </div>
                 <div class="freeboard_page_title">
                     <div class="title">${freeboard.boardTitle}</div>
-                    <div class="nickname">${user.nickname}
+                    <div class="nickname">${freeboard.nickname}
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSirRCxfXvgU4rkE8dmKE6lqewZ4D7wa40h0Q&s" alt="" >
                     </div>
                     <div class="writeDatw">${freeboard.boardWritedate}</div>
-                    <div class="boardViews"> ${freeboard.boardViews}</div>
+                    <div class="boardViews"> 조회수 ${freeboard.boardViews}</div>
+                    
+                    <input type="hidden" class="boardUsercode" value="${freeboard.userCode}">
+                    <input type="hidden" class="userCode" value=<%=userCode%>>
+                    <input type="hidden" class="boardCode" value="${freeboard.boardCode}">
               </div>
                 
               
@@ -267,80 +128,5 @@
                    </div>
                 </div>
             </div>
-
-    <script>
-    function changeType(){
-        let typeElement = document.querySelector(".boardType");
-        let value = parseInt(typeElement.innerHTML, 10);
-
-        switch (value) {
-            case 0:
-                typeElement.innerHTML = "루트게시판";
-                break;
-            case 1:
-                typeElement.innerHTML = "여행후기";
-                break;
-            case 2:
-                typeElement.innerHTML = "꿀팁공유";
-                break;
-            case 3:
-                typeElement.innerHTML = "질문있어요!";
-                break;
-            case 4:
-                typeElement.innerHTML = "수다방";
-                break;
-            case 5:
-                typeElement.innerHTML = "동행 구해요!";
-                break;
-            case 6:
-                typeElement.innerHTML = "문의";
-                break;
-            default:
-                typeElement.innerHTML = "에러";
-        }
-    }
-    window.onload = function() {
-        changeType(); // 페이지가 로드될 때 자동으로 함수 호출
-    };
-
-    // 좋아요 버튼 클릭 시
-    document.querySelector('.like-btn').addEventListener('click', function() {
-        // 좋아요 버튼 요소를 가져옵니다.
-        const likeBtn = document.querySelector('.like-btn');
-        const likeIcon = likeBtn.querySelector('.like-icon');
-        const likedIcon = likeBtn.querySelector('.liked-icon');
-
-        // 좋아요 버튼의 상태를 확인하여 변경합니다.
-        if (likeIcon.classList.contains('hidden')) {
-            // 좋아요를 이미 누른 상태이면 좋아요를 취소합니다.
-            likeIcon.classList.remove('hidden');
-            likedIcon.classList.add('hidden');
-        } else {
-            // 좋아요를 누르지 않은 상태이면 좋아요를 누릅니다.
-            likeIcon.classList.add('hidden');
-            likedIcon.classList.remove('hidden');
-        }
-    });
-
-    // 스크랩 버튼 클릭 시
-    document.querySelector('.scrap-btn').addEventListener('click', function() {
-        // 스크랩 버튼 요소를 가져옵니다.
-        const scrapBtn = document.querySelector('.scrap-btn');
-        const scrapIcon = scrapBtn.querySelector('.scrap-icon');
-        const scrapedIcon = scrapBtn.querySelector('.scraped-icon');
-
-        // 스크랩 버튼의 상태를 확인하여 변경합니다.
-        if (scrapIcon.classList.contains('hidden')) {
-            // 이미 스크랩한 상태이면 스크랩을 취소합니다.
-            scrapIcon.classList.remove('hidden');
-            scrapedIcon.classList.add('hidden');
-        } else {
-            // 스크랩하지 않은 상태이면 스크랩합니다.
-            scrapIcon.classList.add('hidden');
-            scrapedIcon.classList.remove('hidden');
-        }
-    });
-
-</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../nav.jsp" %>	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="../nav.jsp" %>   
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +23,7 @@
 </head>
 
 <body>
-	<script>
+   <script>
         // 이전 페이지로 이동하는 함수
         function goBack() {
             window.history.back();
@@ -55,7 +56,7 @@
                     <li>
                         <dl class="inner-each-box">
                             <dt class="inner-title">작성자
-                            <dd class="inner-content">${userId}</dd>
+                            <dd class="inner-content">${user.nickname}</dd>
                             </dt>
                         </dl>
                     </li>
@@ -64,8 +65,8 @@
                             <dt class="inner-title">내용
                             <dd class="inner-content">
                             
-             					<img alt="문의사진" src="/project/board/images/${myboard.boardImgReal}">	               
-                                ${myboard.boardContent}
+                            <img class="upload-img" alt="문의사진" src="/project/board/images/${myboard.boardImgReal}">            
+                                <p>${myboard.boardContent}</p>
                             </dd>
                             </dt>
                         </dl>
@@ -100,7 +101,7 @@
 
             </div>
         </div> <!-- container -->
-        <div id="btn-wrapper"><button onclick="goBack()">목록 돌아가기</button></div>
+        <div id="btn-wrapper"><button onclick="history.back()">목록 돌아가기</button></div>
 
 
     </div>
