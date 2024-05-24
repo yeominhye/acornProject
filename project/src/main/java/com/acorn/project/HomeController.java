@@ -12,4 +12,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/whdqja", method = RequestMethod.GET)
+	public String whdqja() {
+		return "nav-sub";
+	}
 }
+

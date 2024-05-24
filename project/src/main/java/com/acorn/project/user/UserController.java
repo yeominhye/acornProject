@@ -66,11 +66,6 @@ public class UserController {
 	    return "redirect:/";
 	}
 	
-	@RequestMapping("register.do")
-	public String register() {
-		return "user/register";	
-	}
-	
 	@RequestMapping("register_process.do")
 	public ModelAndView registerProcess(@ModelAttribute User user) {
 		ModelAndView mv = new ModelAndView();
