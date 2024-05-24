@@ -44,9 +44,9 @@ public class PointController {
 
 	            int remainingPoints = 0;
 	            for (Point point : pointList) {
-	                if (point.getPointStatus() == 1) {
+	                if (point.getPointStatus() == 1 || point.getPointStatus() == 3) {
 	                    remainingPoints += point.getPointAmount();
-	                } else if (point.getPointStatus() == 2) {
+	                } else if (point.getPointStatus() == 0 || point.getPointStatus() == 2 ) {
 	                    remainingPoints -= point.getPointAmount();
 	                }
 	                point.setRemainingPoints(remainingPoints);

@@ -36,7 +36,7 @@
         <div class="pt_categori">
             <div class="pt_date1"></div>
             <div class="pt_date2"></div>
-            <input class="pt_search" placeholder="    사용내역을 입력하세요"></input>
+            <input class="pt_search" placeholder="사용내역을 입력하세요"></input>
             <button class="pt_cont_btn">검색</button>
         </div>
 
@@ -57,9 +57,10 @@
                         <td id="t_date"><c:out value="${point.pointDate}"/></td>
                         <td id="t_division">
                             <c:choose>
-                                <c:when test="${point.pointStatus == 0}">게시물 구매</c:when>
+                                <c:when test="${point.pointStatus == 0}">게시글 구매</c:when>
                                 <c:when test="${point.pointStatus == 1}">포인트 충전</c:when>
                                 <c:when test="${point.pointStatus == 2}">포인트 환전</c:when>
+                                <c:when test="${point.pointStatus == 3}">게시글 판매</c:when>
                             </c:choose>
                         </td>
                         <td id="t_list"><c:out value="${point.boardCode}"/></td>
