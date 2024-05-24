@@ -16,6 +16,11 @@
 
     <!-- index.js -->
     <script defer src="${pageContext.request.contextPath}/resources/js/home.js"></script>
+    
+	<!-- google-font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="wrap">
@@ -24,9 +29,15 @@
         <header>
             <div class="header-container">
                 <div class="header-text-box">
-                    <div class="header-text01">국내여행,<br>경로를 공유하는 당신</div>
+                    <div class="header-text01">경로를 공유하는 당신</div>
                     <div class="header-text02">경로당</div>
                 </div>
+            </div>
+            <div class="header-img-box">
+                <img class="header-img2" src="${pageContext.request.contextPath}/resources/img/header-map.png" alt="">
+                <img class="header-img0" src="${pageContext.request.contextPath}/resources/img/header-img.png" alt="">
+                <img class="header-img1" src="${pageContext.request.contextPath}/resources/img/header-img01.png" alt="">
+                <img class="header-img4" src="${pageContext.request.contextPath}/resources/img/header-img04.png" alt="">
             </div>
         </header>
 
@@ -36,75 +47,75 @@
                 <div class="section-slide">
                     <div class="section-slide-items">
                         <div class="slide-item slide-item01" id="#"> <!-- id는 지역명으로 -->
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon01.png" alt="">
                             <div>전체</div>
                         </div>
                         <div class="slide-item slide-item02">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon02.png" alt="">
                             <div>서울</div>
                         </div>
                         <div class="slide-item slide-item03">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon03.png" alt="">
                             <div>인천</div>
                         </div>
                         <div class="slide-item slide-item04">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon04.png" alt="">
                             <div>대전</div>
                         </div>
                         <div class="slide-item slide-item05">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon05.png" alt="">
                             <div>대구</div>
                         </div>
                         <div class="slide-item slide-item06">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon06.png" alt="">
                             <div>경기</div>
                         </div>
                         <div class="slide-item slide-item07">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon07.png" alt="">
                             <div>부산</div>
                         </div>
                         <div class="slide-item slide-item08">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon08.png" alt="">
                             <div>울산</div>
                         </div>
                         <div class="slide-item slide-item09">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon09.png" alt="">
                             <div>광주</div>
                         </div>
                         <div class="slide-item slide-item10">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon10.png" alt="">
                             <div>강원</div>
                         </div>
                         <div class="slide-item slide-item11">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon11.png" alt="">
                             <div>충북</div>
                         </div>
                         <div class="slide-item slide-item12">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon12.png" alt="">
                             <div>충남</div>
                         </div>
                         <div class="slide-item slide-item13">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon13.png" alt="">
                             <div>경북</div>
                         </div>
                         <div class="slide-item slide-item14">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon14.png" alt="">
                             <div>경남</div>
                         </div>
                         <div class="slide-item slide-item15">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon15.png" alt="">
                             <div>전북</div>
                         </div>
                         <div class="slide-item slide-item16">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon16.png" alt="">
                             <div>전남</div>
                         </div>
                         <div class="slide-item slide-item17">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon17.png" alt="">
                             <div>제주</div>
                         </div>
-                        <div class="slide-item slide-item">
-                            <img src="https://via.placeholder.com/80x80.jpg" alt="">
+                        <div class="slide-item slide-item18">
+                            <img src="${pageContext.request.contextPath}/resources/img/header-icon18.png" alt="">
                             <div>세종</div>
                         </div>
                     </div>
@@ -311,8 +322,8 @@
                         </div>
                         <div class="footer-text03">
                             <div class="copyright-info">
-                                <span><img src="https://via.placeholder.com/100x50.jpg" alt=""></span>
-                                <span><img src="https://via.placeholder.com/100x50.jpg" alt=""></span>
+                                <span><img src="${pageContext.request.contextPath}/resources/img/footer-img.png" alt=""></span>
+                                <span><img src="${pageContext.request.contextPath}/resources/img/footer-img01.png" alt=""></span>
                             </div>
                         </div>
                         <div class="footer-text04">
