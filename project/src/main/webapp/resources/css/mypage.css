@@ -27,7 +27,8 @@ table {border-collapse:collapse;border-spacing:0}
 .my_list_ul>ul{display: flex; justify-content: space-between;}
 .my_list_ul_under{border-bottom:1px solid rgba(168, 168, 168, 0.898); position: relative; border-top:1px solid rgba(168, 168, 168, 0.898); height: 80px; top:60px; }
 
-
+/* //	@RequestMapping(value="/my", method = RequestMethod.GET)
+//	public String myBoardList(HttpSession session, Model model){ */
 
 .my_list_board{
    width: 100%; 
