@@ -24,7 +24,7 @@ git clone https://github.com/yeominhye/acornProject.git
 Ⅱ. clone : (포크한)리포지토리를 내 로컬에 복제하기
    -> git clone URL
 
-   ⅰ. 내가 받고자 하는 폴더에 들어가서 우클릭 -> git bash here 로 cmd 켜기.
+   ⅰ. 내가 사용할 폴더에 들어가서 우클릭 -> git bash here 로 cmd 켜기.
    
    ⅱ. git clone http://포크한 당신의 리포지토리 URL // 민혜 거 X. 직접 포크한 당신의 리포지토리 url
    
