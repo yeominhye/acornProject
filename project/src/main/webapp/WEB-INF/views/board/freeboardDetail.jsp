@@ -124,6 +124,7 @@
                         </div>
                        </div>
                        <div class="freeBoardForm-btn">
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/board/my/${freeboard.boardCode}'">수정</button>
                         <button onclick="history.back()">뒤로가기</button>
                        </div>
                    </div>

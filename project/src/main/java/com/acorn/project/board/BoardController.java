@@ -252,19 +252,6 @@ public class BoardController {
 //		
 //	}
 	
-//	@RequestMapping(value="/my", method = RequestMethod.GET)
-//	public String myBoardList(HttpSession session, Model model){
-//		User user = (User)session.getAttribute("user");
-//		String userId =user.getUserId();
-//		List<Board> BoardList = boardService.getBoardByuser(userId);
-//		model.addAttribute("BoardList",BoardList);
-//		return "/board/myboard";
-//	}
-	
-	
-//	public void myBoardScrap() {
-//		
-//	}
 	
 	@RequestMapping(value = "/my/{code}", method = RequestMethod.GET)
 	public String myfreeBoard(@PathVariable String code, HttpSession session) {

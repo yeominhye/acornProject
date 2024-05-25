@@ -122,7 +122,7 @@
 							<td class="post-index"><%=index%></td>
 							<td class="post-title" style="text-align: center;"
 								title="${board.boardTitle}"><a
-								href="/project/board/my/${board.boardCode}">${board.boardTitle}</a>
+								href="/project/board/free/${board.boardCode}">${board.boardTitle}</a>
 							</td>
 							<td class="post-boardType">${board.boardType}</td>
 							<td class="post-date">${board.boardWritedate}</td>
