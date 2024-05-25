@@ -26,18 +26,18 @@ git clone https://github.com/yeominhye/acornProject.git
 
    -> git clone URL
 
-   ⅰ. 내가 사용할 폴더에 들어가서 우클릭 -> git bash here 로 cmd 켜기.
+  ⅰ. 내가 사용할 폴더에 들어가서 우클릭 -> git bash here 로 cmd 켜기.
    
-   ⅱ. git clone http://포크한 당신의 리포지토리 URL // 민혜 거 X. 직접 포크한 당신의 리포지토리 url
+  ⅱ. git clone http://포크한 당신의 리포지토리 URL // 민혜 거 X. 직접 포크한 당신의 리포지토리 url
    
-   ⅲ. 자신의 로컬 폴더에 복제되었는지 확인하기. 
+  ⅲ. 자신의 로컬 폴더에 복제되었는지 확인하기. 
 
 
 Ⅲ. remote add로 팀 버전 이력도 확인하기 
 
-   -> git remote -v // 리모트중인 리포지토리 확인
+  -> git remote -v // 리모트중인 리포지토리 확인
 
-   -> git remote add upstream(이 부분은 별칭.. 일반적으로 업스트림으로 씀) URL
+  -> git remote add upstream(이 부분은 별칭.. 일반적으로 업스트림으로 씀) URL
 
    $ git remote add upstream https://github.com/yeominhye/acornProject.git    <- 가져다 쓰세요 
 
