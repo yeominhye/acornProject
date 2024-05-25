@@ -1,99 +1,320 @@
 /* 기본세팅 */
-* {margin: 0; padding: 0;}
-*, :after, :before {box-sizing:border-box;}
-html,body {width: 100%;height:100%;overflow-x: hidden;}
-a {text-decoration:none; color:black; margin:0;}
-ul, li {list-style: none;}
-table {border-collapse:collapse;border-spacing:0}
+* {
+	margin: 0;
+	padding: 0;
+}
+
+*, :after, :before {
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	margin: 0;
+}
+
+ul, li {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
 
 /* content */
-.my_wrap{width: 1200px; margin: 0 auto;} 
-.my_top{display: flex;}
-.my_nav{border-radius:8px; background-color: rgba(226, 226, 226, 0.842); width: 175px; height: 240px;  text-align: center; position:relative; margin:50px 0 0 260px; float: left; } 
-.my_nav>ul>li {padding-bottom: 4px; padding-top: 30px;}
-.my_show{background-color: rgba(226, 226, 226, 0.842); position: relative; width: 560px; border-radius: 8px; height: 240px; float: right; margin: 50px 0 0 15px;}
-.my_show_top{display: flex; margin: 60px 0 0 45px; }
-.my_img{ position: relative; bottom:20px; }
-.my_active{position: relative; font-size: large; width: 80px; height: 50px; float: right; top: 325px; right: 730px;}
-.my_name{position: relative; margin: 10px 0 0 40px; width: 400px; height: 40px;}
-.my_point{background-color: white; position: absolute; border-radius: 8px; width: 320px; height: 50px; margin-left: 205px; bottom: 70px; display: flex;}
-.my_point_text{ margin: 13px 0 0 120px; }
-.my_point_btn{ width: 60px; height: 25px;position: absolute; background-color: rgb(250, 250, 188); border-radius: 20px; right: 12px; top:14px}
-.my_point_btn:hover{cursor: pointer;}
-.my_point_btn>span{margin-left: 15px;}
-
-.my_list{ border-radius: 10px; background-color: rgba(226, 226, 226, 0.842); width: 750px; height: 450px; position: relative; margin: 70px 0 0 260px;} 
-.my_list_ul{border-bottom: 2px solid rgba(136, 136, 136, 0.447); width: 650px;  height: 35px; margin: 35px 0 0 50px; position: absolute; }
-.my_list_ul>ul{display: flex; justify-content: space-between;}
-.my_list_ul_under{border-bottom:1px solid rgba(168, 168, 168, 0.898); position: relative; border-top:1px solid rgba(168, 168, 168, 0.898); height: 80px; top:60px; }
-
-
-
-.my_list_board{
-   width: 100%; 
-   margin-top: 10px;
-   table-layout: fixed;
+.my_wrap {
+	width: 1200px;
+	margin: 0 auto;
 }
 
-.each-post{
-    border-bottom: 1px dotted rgb(158, 158, 158);
+.my_top {
+	display: flex;
 }
 
-.each-post td{
-    padding: 10px 0 10px 0;
+.my_nav {
+	border-radius: 8px;
+	background-color: rgba(226, 226, 226, 0.842);
+	width: 175px;
+	height: 240px;
+	text-align: center;
+	position: relative;
+	margin: 50px 0 0 260px;
+	float: left;
 }
 
-.each-post td:hover{
-   font-weight: bold;
-   text-decoration: none;   
+.my_nav>ul>li {
+	padding-bottom: 4px;
+	padding-top: 30px;
 }
 
-.post-index{
-   width: 10%;
+.my_show {
+	background-color: rgba(226, 226, 226, 0.842);
+	position: relative;
+	width: 560px;
+	border-radius: 8px;
+	height: 240px;
+	float: right;
+	margin: 50px 0 0 15px;
+}
+
+.my_show_top {
+	display: flex;
+	margin: 60px 0 0 45px;
+}
+
+.my_img {
+	position: relative;
+	bottom: 20px;
+}
+
+.my_active {
+	position: relative;
+	font-size: large;
+	width: 80px;
+	height: 50px;
+	float: right;
+	top: 325px;
+	right: 730px;
+}
+
+.my_name {
+	position: relative;
+	margin: 10px 0 0 40px;
+	width: 400px;
+	height: 40px;
+}
+
+.my_point {
+	background-color: white;
+	position: absolute;
+	border-radius: 8px;
+	width: 320px;
+	height: 50px;
+	margin-left: 205px;
+	bottom: 70px;
+	display: flex;
+}
+
+.my_point_text {
+	margin: 13px 0 0 120px;
+}
+
+.my_point_btn {
+	width: 60px;
+	height: 25px;
+	position: absolute;
+	background-color: rgb(250, 250, 188);
+	border-radius: 20px;
+	right: 12px;
+	top: 14px
+}
+
+.my_point_btn:hover {
+	cursor: pointer;
+}
+
+.my_point_btn>span {
+	margin-left: 15px;
+}
+
+.my_list {
+	border-radius: 10px;
+	background-color: rgba(226, 226, 226, 0.842);
+	width: 750px;
+	height: 450px;
+	position: relative;
+	margin: 70px 0 0 260px;
+}
+
+.my_list_ul {
+	border-bottom: 2px solid rgba(136, 136, 136, 0.447);
+	width: 650px;
+	height: 35px;
+	margin: 35px 0 0 50px;
+	position: absolute;
+}
+
+.my_list_ul>ul {
+	display: flex;
+	justify-content: space-between;
+}
+
+.my_list_ul_under {
+	border-bottom: 1px solid rgba(168, 168, 168, 0.898);
+	position: relative;
+	border-top: 1px solid rgba(168, 168, 168, 0.898);
+	height: 80px;
+	top: 60px;
+}
+
+.my_list_board {
+	width: 100%;
+	margin-top: 10px;
+	table-layout: fixed;
+}
+
+.each-post {
+	border-bottom: 1px dotted rgb(158, 158, 158);
+}
+
+.each-post td {
+	padding: 10px 0 10px 0;
+}
+
+.each-post td:hover {
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.index {
+	width: 10%;
+}
+
+.title{
+	width: 50%;
+}
+
+.date {
+	width: 20%;
 }
 
 .post-title a {
-   display: block;
-   width: 100%;
-   text-align:left;
-   text-indent: 10px;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   white-space: nowrap;
+	display: block;
+	width: 100%;
+	text-align: left;
+	text-indent: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-.post-title a(title){
-   
+.post-title a(title) {
+	
 }
 
-.my_list_board tr{ width: 100%; text-align: center;}
- /* .my_list_board th,td{border: 1px solid black;} */
-.my_list_index{width: 15%;}
-.my_list_title{width: 50%;}
-.my_list_type{width: 15%;}
-.my_list_date{width: 20%;}
+.my_list_board tr {
+	width: 100%;
+	text-align: center;
+}
+/* .my_list_board th,td{border: 1px solid black;} */
+.my_list_index {
+	width: 15%;
+}
 
+.my_list_title {
+	width: 50%;
+}
 
+.my_list_type {
+	width: 15%;
+}
 
-
+.my_list_date {
+	width: 20%;
+}
 
 /* 요기부터 반응형 입니다 */
-
-.my_ban_top{display: none;}
-@media screen and (max-width: 1020px) {
-    .my_ban_top {display: block; }
-    .my_top{display: none;}
-    .my_list{border-radius: 10px; background-color: rgba(226, 226, 226, 0.842); width: 680px; height: 450px; position: relative; margin: 20px 0 0 160px;}
-    .my_list_ul{border-bottom: 1px solid rgba(168, 168, 168, 0.898); width: 650px;  height: 35px; margin: 35px 0 0 20px; position: absolute; }
+.my_ban_top {
+	display: none;
 }
 
-.ban_span{color:rgba(153, 153, 153, 0.78); margin-left: 50px; border-bottom:1px solid rgba(153, 153, 153, 0.78);}
-.my_ban_show{ margin: 50px 0 0 160px; width: 680px; height: 330px; border-radius: 13px; background-color: rgba(226, 226, 226, 0.842);}
-.my_ban_img{position: relative; top:50px; left:70px }
-.my_ban_name{ position: relative; left:250px; bottom:90px;  width: 400px;}
-.my_ban_point_text{position: relative; left:170px; top:9px; font-size: x-large;}
-.my_ban_point{position: relative; width: 370px; height: 50px; background-color: white; margin-left: 270px; bottom: 50px;}
-.my_ban_point_btn{ width: 70px; height: 25px;position: absolute; background-color: rgb(250, 250, 188); border-radius: 20px; right: 15px; top:14px;}
-.my_ban_icon{position: relative; margin:0 0 0 50px; width: 600px;}
-.my_ban_icon>ul>li>img{width: 70px; margin-left: 18px;}
-.my_ban_icon>ul{display: flex; justify-content: space-between;}
+@media screen and (max-width: 1020px) {
+	.my_ban_top {
+		display: block;
+	}
+	.my_top {
+		display: none;
+	}
+	.my_list {
+		border-radius: 10px;
+		background-color: rgba(226, 226, 226, 0.842);
+		width: 680px;
+		height: 450px;
+		position: relative;
+		margin: 20px 0 0 160px;
+	}
+	.my_list_ul {
+		border-bottom: 1px solid rgba(168, 168, 168, 0.898);
+		width: 650px;
+		height: 35px;
+		margin: 35px 0 0 20px;
+		position: absolute;
+	}
+}
+
+.ban_span {
+	color: rgba(153, 153, 153, 0.78);
+	margin-left: 50px;
+	border-bottom: 1px solid rgba(153, 153, 153, 0.78);
+}
+
+.my_ban_show {
+	margin: 50px 0 0 160px;
+	width: 680px;
+	height: 330px;
+	border-radius: 13px;
+	background-color: rgba(226, 226, 226, 0.842);
+}
+
+.my_ban_img {
+	position: relative;
+	top: 50px;
+	left: 70px
+}
+
+.my_ban_name {
+	position: relative;
+	left: 250px;
+	bottom: 90px;
+	width: 400px;
+}
+
+.my_ban_point_text {
+	position: relative;
+	left: 170px;
+	top: 9px;
+	font-size: x-large;
+}
+
+.my_ban_point {
+	position: relative;
+	width: 370px;
+	height: 50px;
+	background-color: white;
+	margin-left: 270px;
+	bottom: 50px;
+}
+
+.my_ban_point_btn {
+	width: 70px;
+	height: 25px;
+	position: absolute;
+	background-color: rgb(250, 250, 188);
+	border-radius: 20px;
+	right: 15px;
+	top: 14px;
+}
+
+.my_ban_icon {
+	position: relative;
+	margin: 0 0 0 50px;
+	width: 600px;
+}
+
+.my_ban_icon>ul>li>img {
+	width: 70px;
+	margin-left: 18px;
+}
+
+.my_ban_icon>ul {
+	display: flex;
+	justify-content: space-between;
+}
