@@ -248,9 +248,11 @@ public class BoardController {
 //	}
 	
 	
-//	public void myBoardScrap() {
-//		
-//	}
+	@ResponseBody
+	@RequestMapping(value="/my/scrap", method = RequestMethod.POST)
+	public void myBoardScrap(@RequestBody Board board) {
+		
+	}
 	
 	
 	@RequestMapping(value = "/my/{code}", method = RequestMethod.GET)
