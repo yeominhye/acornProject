@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('endDate').value = endDate;
     }
 
-    const form = document.querySelector('form[action="/project/point/showMyEarnedPoint.do"]');
+    const form = document.querySelector('form[action="/project/point/showMyUsePoint.do"]');
 
     form.addEventListener('submit', function(event) {
         const startDateValue = document.getElementById('startDate').value;
@@ -85,9 +85,9 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     
     <div class="pt_content">
-        <div class="pt_title">#포인트 획득 내역</div>
+        <div class="pt_title">#포인트 사용 내역</div>
         <div class="pt_categori">
-            <form action="/project/point/showMyEarnedPoint.do" method="GET">
+            <form action="/project/point/showMyUsePoint.do" method="GET">
                 <div class="point-wrap">
                     <div><button class="pt_cont_btn" id="resetButton" type="button" onclick="location.href='/project/point/showMyPoint.do'">날짜 초기화</button></div>
                     <div><span class="pt_span">검색 기간</span></div>
@@ -121,13 +121,13 @@ document.addEventListener('DOMContentLoaded', function() {
             <tbody>
                 <c:if test="${not empty pointList}">
                     <c:forEach var="point" items="${pointList}">
-					    <c:if test="${point.pointStatus == 1 || point.pointStatus == 3}">
+					    <c:if test="${point.pointStatus == 0 || point.pointStatus == 2}">
 					        <tr class="pt_table_info">
 					            <td id="t_date"><c:out value="${point.pointDate}"/></td>
 					            <td id="t_division">
 					                <c:choose>
-					                    <c:when test="${point.pointStatus == 1}">포인트 충전</c:when>
-					                    <c:when test="${point.pointStatus == 3}">게시글 판매</c:when>
+					                    <c:when test="${point.pointStatus == 0}">게시글 구매</c:when>
+					                    <c:when test="${point.pointStatus == 2}">포인트 환전</c:when>
 					                </c:choose>
 					            </td>
 					            <td id="t_list"><c:out value="${point.boardTitle}"/></td>

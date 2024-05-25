@@ -12,34 +12,35 @@
         FROM pointtbl     
     </select>
     
-    <select id="selectOne" parameterType="String" resultType="Point">
-    	SELECT *
-		FROM pointtbl 
-		Where userCode = #{userCode}
-	</select>
+    <select id="selectOne" parameterType="String" resultType="map">
+        SELECT p.*, b.boardTitle
+        FROM pointtbl p
+        LEFT JOIN boardtbl b ON p.boardCode = b.boardCode
+        WHERE p.userCode = #{userCode}
+    </select>
 
     <insert id="buyBoard" parameterType="Point">
-    	INSERT INTO pointtbl (userCode, boardCode, pointStatus, pointAmount) 
-		VALUES (#{userCode}, #{boardCode}, 0, #{pointAmount})
+        INSERT INTO pointtbl (userCode, boardCode, pointStatus, pointAmount) 
+        VALUES (#{userCode}, #{boardCode}, 0, #{pointAmount})
     </insert>
     
     <insert id="buyPoint" parameterType="map">
-    	INSERT INTO pointtbl (userCode, pointStatus, pointAmount) 
-		VALUES (#{userCode}, 1, #{pointAmount})
+        INSERT INTO pointtbl (userCode, pointStatus, pointAmount) 
+        VALUES (#{userCode}, 1, #{pointAmount})
     </insert>
     
     <insert id="pointExchange" parameterType="map">
-    	INSERT INTO pointtbl (userCode, pointStatus, pointAmount)
-    	VALUES (#{userCode}, 2, #{pointAmount})
-	</insert>
-	
-	<select id="selectPointsWithinDateRange" parameterType="map" resultType="com.acorn.project.point.Point">
-    	SELECT * FROM pointtbl
-    	WHERE userCode = #{userCode}
-    	AND pointDate BETWEEN #{startDate} AND DATE_ADD(#{endDate}, INTERVAL 1 DAY)
-	</select>
-
-
+        INSERT INTO pointtbl (userCode, pointStatus, pointAmount)
+        VALUES (#{userCode}, 2, #{pointAmount})
+    </insert>
+    
+    <select id="selectPointsWithinDateRange" parameterType="map" resultType="map">
+        SELECT p.*, b.boardTitle
+        FROM pointtbl p
+        LEFT JOIN boardtbl b ON p.boardCode = b.boardCode
+        WHERE p.userCode = #{userCode}
+        AND p.pointDate BETWEEN #{startDate} AND DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+    </select>
 </mapper>
 
 <!-- 

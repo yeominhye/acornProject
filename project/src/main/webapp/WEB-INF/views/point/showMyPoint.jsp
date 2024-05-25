@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="pt_nav_down">
             <div class="pt_nav_char">
             <h1><a href="/project/point/showMyPoint.do">전체내역</a></h1>
-             <a href="#"> <p>사용내역</p> </a>
+             <a href="/project/point/showMyUsePoint.do"> <p>사용내역</p> </a>
              <a href="/project/point/showMyEarnedPoint.do"> <p>획득내역</p> </a>
             </div>
             <div class="pt_nav_all"><h1>충전/환전</h1>
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <c:when test="${point.pointStatus == 3}">게시글 판매</c:when>
                                 </c:choose>
                             </td>
-                            <td id="t_list"><c:out value="${point.boardCode}"/></td>
+                            <td id="t_list"><c:out value="${point.boardTitle}"/></td>
                             <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
                             <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
                         </tr>

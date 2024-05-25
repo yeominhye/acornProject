@@ -3,6 +3,9 @@ package com.acorn.project.point;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.sql.Timestamp;
+
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -26,106 +29,163 @@ public class PointController {
 	UserServiceI userService;
 	
 	@RequestMapping("showMyPoint.do")
-	public ModelAndView showMyPoint(HttpSession session, 
-	                                @RequestParam(value = "startDate", required = false) String startDate,
-	                                @RequestParam(value = "endDate", required = false) String endDate) {
-	    ModelAndView mv = new ModelAndView();
-	    User user = (User) session.getAttribute("user");
+    public ModelAndView showMyPoint(HttpSession session, 
+                                    @RequestParam(value = "startDate", required = false) String startDate,
+                                    @RequestParam(value = "endDate", required = false) String endDate) {
+        ModelAndView mv = new ModelAndView();
+        User user = (User) session.getAttribute("user");
 
-	    if (user != null) {
-	        try {
-	            String userCode = user.getUserCode();
-	            List<Point> pointList;
-	            
-	            if (startDate != null && endDate != null) {
-	                pointList = service.getPointsWithinDateRange(userCode, startDate, endDate);
-	            } else {
-	            
-	                pointList = service.getPointOne(userCode);
-	            }
+        if (user != null) {
+            try {
+                String userCode = user.getUserCode();
+                List<Map<String, Object>> pointList;
 
-	            Collections.sort(pointList, new Comparator<Point>() {
-	                @Override
-	                public int compare(Point p1, Point p2) {
-	                    return p1.getPointDate().compareTo(p2.getPointDate());
-	                }
-	            });
+                if (startDate != null && endDate != null) {
+                    pointList = service.getPointsWithinDateRange(userCode, startDate, endDate);
+                } else {
+                    pointList = service.getPointOne(userCode);
+                }
 
-	            int remainingPoints = 0;
-	            for (Point point : pointList) {
-	                if (point.getPointStatus() == 1 || point.getPointStatus() == 3) {
-	                    remainingPoints += point.getPointAmount();
-	                } else if (point.getPointStatus() == 0 || point.getPointStatus() == 2) {
-	                    remainingPoints -= point.getPointAmount();
-	                }
-	                point.setRemainingPoints(remainingPoints);
-	            }
+                Collections.sort(pointList, new Comparator<Map<String, Object>>() {
+                    @Override
+                    public int compare(Map<String, Object> p1, Map<String, Object> p2) {
+                        return ((Timestamp) p1.get("pointDate")).compareTo((Timestamp) p2.get("pointDate"));
+                    }
+                });
 
-	            mv.addObject("pointList", pointList);
-	            mv.setViewName("point/showMyPoint");
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	            mv.setViewName("errorPage");
-	            mv.addObject("message", "Error occurred while fetching user points.");
-	        }
-	    } else {
-	        mv.setViewName("user/login");
-	        mv.addObject("message", "Login");
-	    }
+                int remainingPoints = 0;
+                for (Map<String, Object> point : pointList) {
+                    int pointStatus = (int) point.get("pointStatus");
+                    int pointAmount = (int) point.get("pointAmount");
 
-	    return mv;
-	}
+                    if (pointStatus == 1 || pointStatus == 3) {
+                        remainingPoints += pointAmount;
+                    } else if (pointStatus == 0 || pointStatus == 2) {
+                        remainingPoints -= pointAmount;
+                    }
+                    point.put("remainingPoints", remainingPoints);
+                }
+
+                mv.addObject("pointList", pointList);
+                mv.setViewName("point/showMyPoint");
+            } catch (Exception e) {
+                e.printStackTrace();
+                mv.setViewName("errorPage");
+                mv.addObject("message", "Error occurred while fetching user points.");
+            }
+        } else {
+            mv.setViewName("user/login");
+            mv.addObject("message", "Login");
+        }
+
+        return mv;
+    }
 
 	@RequestMapping("showMyEarnedPoint.do")
 	public ModelAndView showMyEarnedPoint(HttpSession session, 
 	                                      @RequestParam(value = "startDate", required = false) String startDate,
 	                                      @RequestParam(value = "endDate", required = false) String endDate) {
-		ModelAndView mv = new ModelAndView();
-	    User user = (User) session.getAttribute("user");
+        ModelAndView mv = new ModelAndView();
+        User user = (User) session.getAttribute("user");
 
-	    if (user != null) {
-	        try {
-	            String userCode = user.getUserCode();
-	            List<Point> pointList;
-	            
-	            if (startDate != null && endDate != null) {
-	                pointList = service.getPointsWithinDateRange(userCode, startDate, endDate);
-	            } else {
-	            
-	                pointList = service.getPointOne(userCode);
-	            }
+        if (user != null) {
+            try {
+                String userCode = user.getUserCode();
+                List<Map<String, Object>> pointList;
 
-	            Collections.sort(pointList, new Comparator<Point>() {
-	                @Override
-	                public int compare(Point p1, Point p2) {
-	                    return p1.getPointDate().compareTo(p2.getPointDate());
-	                }
-	            });
+                if (startDate != null && endDate != null) {
+                    pointList = service.getPointsWithinDateRange(userCode, startDate, endDate);
+                } else {
+                    pointList = service.getPointOne(userCode);
+                }
 
-	            int remainingPoints = 0;
-	            for (Point point : pointList) {
-	                if (point.getPointStatus() == 1 || point.getPointStatus() == 3) {
-	                    remainingPoints += point.getPointAmount();
-	                } else if (point.getPointStatus() == 0 || point.getPointStatus() == 2) {
-	                    remainingPoints -= point.getPointAmount();
-	                }
-	                point.setRemainingPoints(remainingPoints);
-	            }
+                Collections.sort(pointList, new Comparator<Map<String, Object>>() {
+                    @Override
+                    public int compare(Map<String, Object> p1, Map<String, Object> p2) {
+                        return ((Timestamp) p1.get("pointDate")).compareTo((Timestamp) p2.get("pointDate"));
+                    }
+                });
 
-	            mv.addObject("pointList", pointList);
-	            mv.setViewName("point/showMyEarnedPoint");
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	            mv.setViewName("errorPage");
-	            mv.addObject("message", "Error occurred while fetching user points.");
-	        }
-	    } else {
-	        mv.setViewName("user/login");
-	        mv.addObject("message", "Login");
-	    }
+                int remainingPoints = 0;
+                for (Map<String, Object> point : pointList) {
+                    int pointStatus = (int) point.get("pointStatus");
+                    int pointAmount = (int) point.get("pointAmount");
 
-	    return mv;
-	}
+                    if (pointStatus == 1 || pointStatus == 3) {
+                        remainingPoints += pointAmount;
+                    } else if (pointStatus == 0 || pointStatus == 2) {
+                        remainingPoints -= pointAmount;
+                    }
+                    point.put("remainingPoints", remainingPoints);
+                }
+
+                mv.addObject("pointList", pointList);
+                mv.setViewName("point/showMyEarnedPoint");
+            } catch (Exception e) {
+                e.printStackTrace();
+                mv.setViewName("errorPage");
+                mv.addObject("message", "Error occurred while fetching user points.");
+            }
+        } else {
+            mv.setViewName("user/login");
+            mv.addObject("message", "Login");
+        }
+
+        return mv;
+    }
+	
+	@RequestMapping("showMyUsePoint.do")
+    public ModelAndView showMyUsePoint(HttpSession session, 
+                                    @RequestParam(value = "startDate", required = false) String startDate,
+                                    @RequestParam(value = "endDate", required = false) String endDate) {
+        ModelAndView mv = new ModelAndView();
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            try {
+                String userCode = user.getUserCode();
+                List<Map<String, Object>> pointList;
+
+                if (startDate != null && endDate != null) {
+                    pointList = service.getPointsWithinDateRange(userCode, startDate, endDate);
+                } else {
+                    pointList = service.getPointOne(userCode);
+                }
+
+                Collections.sort(pointList, new Comparator<Map<String, Object>>() {
+                    @Override
+                    public int compare(Map<String, Object> p1, Map<String, Object> p2) {
+                        return ((Timestamp) p1.get("pointDate")).compareTo((Timestamp) p2.get("pointDate"));
+                    }
+                });
+
+                int remainingPoints = 0;
+                for (Map<String, Object> point : pointList) {
+                    int pointStatus = (int) point.get("pointStatus");
+                    int pointAmount = (int) point.get("pointAmount");
+
+                    if (pointStatus == 1 || pointStatus == 3) {
+                        remainingPoints += pointAmount;
+                    } else if (pointStatus == 0 || pointStatus == 2) {
+                        remainingPoints -= pointAmount;
+                    }
+                    point.put("remainingPoints", remainingPoints);
+                }
+
+                mv.addObject("pointList", pointList);
+                mv.setViewName("point/showMyUsePoint");
+            } catch (Exception e) {
+                e.printStackTrace();
+                mv.setViewName("errorPage");
+                mv.addObject("message", "Error occurred while fetching user points.");
+            }
+        } else {
+            mv.setViewName("user/login");
+            mv.addObject("message", "Login");
+        }
+
+        return mv;
+    }
 
 	
 	@RequestMapping("pointCharge.do")

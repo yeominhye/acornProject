@@ -1,6 +1,8 @@
 package com.acorn.project.point;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -25,7 +27,7 @@ public class PointService implements PointServiceI {
     }
     
     @Override
-    public List<Point> getPointOne(String userCode) throws Exception {
+    public List<Map<String, Object>> getPointOne(String userCode) throws Exception {
         return dao.selectOne(userCode);
     }
     
@@ -45,7 +47,7 @@ public class PointService implements PointServiceI {
     }
     
     @Override
-    public List<Point> getPointsWithinDateRange(String userCode, String startDate, String endDate) throws Exception {
+    public List<Map<String, Object>> getPointsWithinDateRange(String userCode, String startDate, String endDate) throws Exception {
         return dao.selectPointsWithinDateRange(userCode, startDate, endDate);
     }
 }

@@ -1,6 +1,7 @@
 package com.acorn.project.point;
 
 import java.util.List;
+import java.util.Map;
 
 import com.acorn.project.user.User;
 
@@ -10,7 +11,7 @@ public interface PointDAOI {
 
 	List<Point> selectAll() throws Exception;
 
-	List<Point> selectOne(String userCode) throws Exception;
+	List<Map<String, Object>> selectOne(String userCode) throws Exception;
 	
 	int buyPoint(int pointAmount, String userCode) throws Exception;
 
@@ -18,5 +19,5 @@ public interface PointDAOI {
 
 	int pointExchange(int pointAmount, String userCode) throws Exception;
 
-	List<Point> selectPointsWithinDateRange(String userCode, String startDate, String endDate) throws Exception;
+	List<Map<String, Object>> selectPointsWithinDateRange(String userCode, String startDate, String endDate) throws Exception;
 }
