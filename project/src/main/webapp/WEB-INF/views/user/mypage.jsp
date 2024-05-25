@@ -104,7 +104,12 @@
 
 
             <table class="my_list_board">
-
+            <tr class="each-post">
+                     <td class="index">No.</td>
+                     <td class="title">제목</td>
+                     <td class="boardType">카테고리</td>
+                     <td class="date">작성날짜</td>
+                  </tr>
                <%
                int index = 0;
                %>
@@ -114,8 +119,9 @@
                   %>
                   <tr class="each-post">
                      <td class="post-index"><%=index%></td>
-                     <td class="post-title" title="${board.boardTitle}">
-                     	<a href="/project/board/my/${board.boardCode}">${board.boardTitle}</a></td>
+                     <td class="post-title" style="text-align: center;" title="${board.boardTitle}">
+                     	<a href="/project/board/my/${board.boardCode}">${board.boardTitle}</a>
+                     </td>
                      <td class="post-boardType">${board.boardType}</td>
                      <td class="post-date">${board.boardWritedate}</td>
                   </tr>
