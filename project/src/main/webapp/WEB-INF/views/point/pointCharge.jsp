@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="../nav-sub.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>포인트 충전</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/pointCharge.css" >
 <script defer src="${pageContext.request.contextPath}/resources/js/pointChar.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -30,20 +33,10 @@ $(document).ready(function(){
 
 </head>
 <body>
-<%-- <a href="/project/">홈</a>
-${user.nickname}님의 보유 포인트 : ${user.userPoint}
-<form name="form1" method="post">
-    충전 금액<br>
-    <input type='radio' name='pointAmount' value=1000 />1000P
-    <input type='radio' name='pointAmount' value=5000 />5000P
-    <button type="button" id="chargeBtn">충전</button>
-</form> --%>
-
 
   <!-- 본문 --> 
     <div class="ptc_wrap">
          <!-- 왼쪽 네비 위-->
-         ${user}
  <div class="pt_nav">
     <div class="pt_nav_up">
         <div class="pt_nav"></div>

@@ -247,6 +247,11 @@ public class BoardController {
 //		return "/board/myboard";
 //	}
 	
+	
+//	public void myBoardScrap() {
+//		
+//	}
+	
 	@RequestMapping(value = "/my/{code}", method = RequestMethod.GET)
 	public String myfreeBoard(@PathVariable String code, HttpSession session) {
 		Board board = boardService. getBoardBycode(code);
