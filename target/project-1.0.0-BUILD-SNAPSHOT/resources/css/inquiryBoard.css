@@ -1,0 +1,86 @@
+.wrap {width: 100%; margin: 0 auto;}
+
+/* 
+----------------------
+        구조
+----------------------
+*/
+
+
+.container{ 
+    /* border: 1px solid black; */
+    margin: 50px auto;
+    width: 1100px;
+}
+
+.notice, .notice-detail{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.notice-detail{
+    color: gray;
+    font-size: 10pt;
+    margin-bottom: 30px;
+}
+
+.table-container{
+    border-top: 2px solid black;
+    padding: 80px 0 50px 0;
+    width: 1100px;
+}
+
+.inner-table{
+    margin: 0 auto;
+    width: 800px;
+}
+
+th{
+    border-bottom: 2px solid black;
+}
+
+th, td:not(.table-number, .table-title){
+    /* border: 1px solid yellow;  */
+    padding: 20px;
+    text-align: center;
+}
+
+.table-number{
+    text-align: center;
+}
+
+.table-title{
+    /* padding-left: 10px; */
+    padding-right: 150px;
+    font-weight: 600;
+    text-indent: 10px;
+    color: rgb(50, 50, 50);
+}
+
+.table-title:hover{
+    cursor: pointer;
+    color: gray;
+}
+
+tr:not(.table-top){
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.btn-write{
+    float: right;
+    position: relative;
+    right: 250px;
+    top: 50px;
+    width: 100px;
+    height: 40px;
+    border-style: none;
+    border-radius: 10px;
+    color: gray;
+    font-weight: bold;
+}
+
+
+/* 푸터 잠시만요~ */
+footer{
+    height: 300px;
+}

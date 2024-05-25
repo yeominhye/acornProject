@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.acorn.boardMapper">
+
+    <select id="selectAll" resultType="Board" parameterType="int">
+		SELECT u.nickname,b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, b.boardViews 
+	    FROM boardtbl b 
+	    JOIN usertbl u ON b.userCode = u.userCode
+	    <where>
+	        <if test="boardType &gt;= 0 and boardType &lt;= 6">
+	            AND boardType = #{boardType}
+	        </if>
+	        <if test="boardType == -1">
+	            AND boardType &gt;= 1 AND boardType &lt;= 5
+	        </if>
+    	</where>
+    	ORDER BY b.boardWritedate desc
+    </select>
+   		
+   <select id="selectOne" resultType="Board" parameterType="String">
+		SELECT 
+			u.nickname, b.userCode, b.boardCode,b.boardImgReal,b.boardTitle,b.boardContent, b.boardWritedate, 
+			b.boardViews,b.boardLikes, b.boardType
+		FROM boardtbl b 
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		WHERE b.boardCode = #{boardCode}
+		ORDER BY b.boardWritedate desc
+   </select>
+   
+   
+   <select id="selectBoardPoint" resultType="int" parameterType="String">
+   		select boardPoint from boardtbl where boardCode = #{boardCode}
+   </select>
+   <update id="updateView" parameterType="Board">
+	   	UPDATE boardtbl
+		SET boardViews= boardViews+1
+		WHERE boardCode=#{boardCode}
+   </update>
+   
+	<select id="selectTheme" resultType="Board" parameterType="String">
+		SELECT u.nickname,b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, b.boardViews 
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		WHERE b.boardTheme=#{boardTheme}
+		ORDER BY b.boardWritedate desc
+   </select>
+   
+   <select id="selectMy" resultType="Board" parameterType="String">
+		SELECT 
+			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, 
+			b.boardViews,b.boardLikes, b.boardType
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		WHERE u.userId=#{userId}
+		AND b.boardType IN (1,2,3,4,5) 
+		ORDER BY b.boardWritedate desc
+    </select>
+   
+   <select id="selectMyinqu" resultType="Board" parameterType="String">
+		SELECT 
+			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, 
+			b.boardViews,b.boardLikes, b.boardType
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		WHERE u.userId=#{userId}
+		AND b.boardType = 6
+		ORDER BY b.boardWritedate desc
+    </select>
+	
+	<insert id="insert" parameterType="Board">
+		INSERT INTO boardtbl
+			(userCode, boardImgOrigin, boardImgReal, boardTitle, boardContent, boardTheme, boardTourdays, boardWritedate, boardViews, 
+			boardLikes, boardPoint, boardType)
+		VALUES 
+		(#{userCode}, #{boardImgOrigin}, #{boardImgReal}, #{boardTitle}, #{boardContent},#{boardTheme},#{boardTourdays},now(),
+		#{boardViews},#{boardLikes},#{boardPoint},#{boardType})
+	</insert>
+	
+	<update id="update" parameterType="Board">
+		update boardtbl 
+		SET 
+			boardImgOrigin =#{boardImgOrigin},boardImgReal =#{boardImgReal},boardTitle=#{boardTitle}, boardContent=#{boardContent},
+			boardTheme=#{boardTheme},boardTourdays=#{boardTourdays}, boardType=#{boardType}
+		WHERE 
+			boardCode = #{boardCode}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM boardtbl 
+		WHERE boardCode = #{boardCode}
+	</delete>
+	
+	<sql id="search">
+		<if test="condition=='title'">
+			 WHERE boardTitle LIKE CONCAT('%', #{keyword}, '%') 
+			 And boardType IN (1,2,3,4,5) 
+		</if>	
+		<if test="condition=='writer'">
+			 WHERE userCode LIKE CONCAT('%', #{keyword}, '%')
+			 And boardType IN (1,2,3,4,5) 
+		</if>
+		<if test="condition=='content'">
+			 WHERE boardContent LIKE CONCAT('%', #{keyword}, '%')
+			 And boardType IN (1,2,3,4,5) 
+		</if>
+	</sql>
+	
+	<select id="selectSearch" resultType="Board" parameterType="SearchCondition">
+		SELECT * 
+		FROM boardtbl
+		<include refid="search"/>
+		ORDER BY boardWritedate DESC
+	</select>
+	
+</mapper>

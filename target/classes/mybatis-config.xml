@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="Board" type="com.acorn.project.board.Board"/>
+		<typeAlias alias="Comment" type="com.acorn.project.comment.Comment"/>
+		<typeAlias alias="SearchCondition" type="com.acorn.project.board.SearchCondition"/>
+		<typeAlias alias="User" type="com.acorn.project.user.User"/>	
+		<typeAlias alias="Point" type="com.acorn.project.point.Point"/>		
+	</typeAliases>
+</configuration>
