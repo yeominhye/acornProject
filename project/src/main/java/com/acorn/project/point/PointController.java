@@ -80,7 +80,7 @@ public class PointController {
 	public ModelAndView showMyEarnedPoint(HttpSession session, 
 	                                      @RequestParam(value = "startDate", required = false) String startDate,
 	                                      @RequestParam(value = "endDate", required = false) String endDate) {
-	    ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView();
 	    User user = (User) session.getAttribute("user");
 
 	    if (user != null) {
@@ -91,6 +91,7 @@ public class PointController {
 	            if (startDate != null && endDate != null) {
 	                pointList = service.getPointsWithinDateRange(userCode, startDate, endDate);
 	            } else {
+	            
 	                pointList = service.getPointOne(userCode);
 	            }
 
@@ -103,9 +104,9 @@ public class PointController {
 
 	            int remainingPoints = 0;
 	            for (Point point : pointList) {
-	                if (point.getPointStatus() == 1) {
+	                if (point.getPointStatus() == 1 || point.getPointStatus() == 3) {
 	                    remainingPoints += point.getPointAmount();
-	                } else if (point.getPointStatus() == 2) {
+	                } else if (point.getPointStatus() == 0 || point.getPointStatus() == 2) {
 	                    remainingPoints -= point.getPointAmount();
 	                }
 	                point.setRemainingPoints(remainingPoints);
@@ -125,7 +126,6 @@ public class PointController {
 
 	    return mv;
 	}
-
 
 	
 	@RequestMapping("pointCharge.do")

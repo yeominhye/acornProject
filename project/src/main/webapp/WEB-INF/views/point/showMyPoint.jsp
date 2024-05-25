@@ -72,7 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="pt_nav_pt"><span>포인트</span> <span style="color: rgba(253, 177, 177, 0.924);">${user.userPoint}</span></div>
         </div>
         <div class="pt_nav_down">
-            <div class="pt_nav_char"><h1>전체내역</h1>
+            <div class="pt_nav_char">
+            <h1><a href="/project/point/showMyPoint.do">전체내역</a></h1>
              <a href="#"> <p>사용내역</p> </a>
              <a href="/project/point/showMyEarnedPoint.do"> <p>획득내역</p> </a>
             </div>
