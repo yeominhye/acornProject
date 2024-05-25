@@ -21,7 +21,7 @@ git clone https://github.com/yeominhye/acornProject.git
 
 -> fork 하는 이유는? 팀프로젝트에 직접적인 영향 X. 실수로 올려도 팀프로젝트 기록에 남지 X
 
-Ⅱ. clone : 팀프로젝트 내 로컬에 복제하기
+Ⅱ. clone : (포크한)리포지토리를 내 로컬에 복제하기
    -> git clone URL
 
    ⅰ. 내가 받고자 하는 폴더에 들어가서 우클릭 -> git bash here 로 cmd 켜기.
