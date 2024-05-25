@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.acorn.project.user.User" %>
-<%@ include file="../nav.jsp" %>
+<%@ include file="../nav-sub.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>

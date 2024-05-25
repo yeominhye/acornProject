@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+<!-- index.css -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
+
+
 <style>
 /***************
 ****** nav *****
@@ -12,6 +19,8 @@
 nav {
     width: 100%;
     height: 75px;
+    background-color: white;
+    box-shadow: 2px 5px 5px lightgray;
 }
 .nav-container {
     position: relative;
@@ -71,11 +80,9 @@ nav {
                 </div> 
            <div class="nav-proflie">
                <div class="nav-proflie-text">
-
-                 <c:if test="${empty user}">
-                      <a href="user/login.do">로그인/회원가입</a>
+                       <c:if test="${empty user}">
+                            <a href="/project/user/login.do">로그인/회원가입</a>
                    </c:if>
-                   
                    <c:if test="${not empty user}">
                       <a href="/project/user/logout.do">로그아웃</a>
                       <a href="/project/user/mypage.do">마이페이지</a>
