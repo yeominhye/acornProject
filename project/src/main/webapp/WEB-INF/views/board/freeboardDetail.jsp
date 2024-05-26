@@ -32,7 +32,6 @@
   String userCode = (user != null) ? user.getUserCode() : null;
 %>
 
-
 </head>
 <body>
     <div class="wrap">
@@ -94,19 +93,21 @@
 
                     <!-- 댓글 보기 -->
                     <div class="freeboard_page_comments">
-                       
+                    
+                       <div id="no-comments-message" style="display: none;">작성된 댓글이 없습니다.</div>
+                          <div class="comment-box"> <!-- test -->
                             <c:forEach var="comment" items="${comments}" varStatus="loop">
                     
-                           	 <div class="comment" id="comment_${loop.index}" data-user-code="${comment.userCode}">
+                               <div class="comment" id="comment_${loop.index}" data-user-code="${comment.userCode}">
                                 <div class="comment_name">${comment.nickname}</div>
                                 <input type="hidden" class="modiCommentCode" value="${comment.commentCode}">
                                 <div class="comment_content">${comment.commentContent}</div>
                                 <div class="comment_date">${comment.commentDate}</div>
                                 <button class="btnModi" onclick="editComment(this)">수정</button>
                                 <button class="btnDel" onclick="delComment(this)">삭제</button>
-                           	 </div>
+                               </div>
                              </c:forEach>    
-                       
+                          </div>
 
                         <!-- 댓글 작성 -->
                            <div>
@@ -125,27 +126,29 @@
                         </div>
                        </div>
                        <div class="freeBoardForm-btn">
-                        <button id="boardModi" onclick="window.location.href='${pageContext.request.contextPath}/board/my/${freeboard.boardCode}'">수정</button>
                         <button onclick="history.back()">뒤로가기</button>
                        </div>
                    </div>
                 </div>
             </div>
-            
-<script type="text/javascript">
-
-	$(document).ready(function(){
-	    var boardUserCode = document.querySelector('.boardUsercode').value;
-	    var userCode = document.querySelector('.userCode').value;
-	    var boardModi = document.querySelector('#boardModi');
-	    
-	    if (userCode === boardUserCode){
-	        boardModi.style.display = "inline";
-	    } else {
-	        boardModi.style.display = "none";
-	    }
-	});
-	
-</script>
 </body>
+
+<script>
+    function checkComments() {
+        var comments = document.getElementsByClassName("comment");
+        var noCommentsMessage = document.getElementById("no-comments-message");
+        
+        if (comments.length === 0) {
+            noCommentsMessage.style.display = "block";
+        } else {
+            noCommentsMessage.style.display = "none";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        checkComments();
+    });
+    
+</script>
+
 </html>
