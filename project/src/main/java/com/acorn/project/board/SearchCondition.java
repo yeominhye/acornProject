@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class SearchCondition {
 	String condition;
 	String keyword;
-	int board_type;
 }

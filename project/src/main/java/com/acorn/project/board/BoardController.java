@@ -73,8 +73,9 @@ public class BoardController {
 		return "board/freeboardList";
 	}
 	
-	@RequestMapping(value="/free/search", method = RequestMethod.GET)
+	@RequestMapping(value="/free/search", method = RequestMethod.POST)
 	public String Searchboard (SearchCondition search, Model model, HttpSession session) {
+		
 		List<Board> freeBoardList = boardService.getList(search);
 		System.out.println(freeBoardList);
 		System.out.println(session.getAttribute("user"));

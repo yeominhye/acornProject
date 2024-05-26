@@ -97,7 +97,7 @@
 			 And boardType IN (1,2,3,4,5) 
 		</if>	
 		<if test="condition=='writer'">
-			 WHERE userCode LIKE CONCAT('%', #{keyword}, '%')
+			 WHERE nickname LIKE CONCAT('%', #{keyword}, '%')
 			 And boardType IN (1,2,3,4,5) 
 		</if>
 		<if test="condition=='content'">
@@ -107,8 +107,13 @@
 	</sql>
 	
 	<select id="selectSearch" resultType="Board" parameterType="SearchCondition">
-		SELECT * 
-		FROM boardtbl
+		SELECT 
+			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
+			b.boardViews,b.boardType 
+		FROM boardtbl b
+		JOIN usertbl u
+		ON b.userCode = u.userCode
 		<include refid="search"/>
 		ORDER BY boardWritedate DESC
 	</select>
