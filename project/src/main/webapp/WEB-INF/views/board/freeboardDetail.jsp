@@ -126,6 +126,7 @@
                         </div>
                        </div>
                        <div class="freeBoardForm-btn">
+                         <button id="boardModi" onclick="window.location.href='${pageContext.request.contextPath}/board/my/${freeboard.boardCode}'">수정</button>
                         <button onclick="history.back()">뒤로가기</button>
                        </div>
                    </div>
@@ -148,6 +149,19 @@
     document.addEventListener("DOMContentLoaded", function() {
         checkComments();
     });
+    
+    $(document).ready(function(){
+        var boardUserCode = document.querySelector('.boardUsercode').value;
+        var userCode = document.querySelector('.userCode').value;
+        var boardModi = document.querySelector('#boardModi');
+        
+        if (userCode === boardUserCode){
+            boardModi.style.display = "inline";
+        } else {
+            boardModi.style.display = "none";
+        }
+    });
+    
     
 </script>
 
