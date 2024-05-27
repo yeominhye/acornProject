@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,10 @@ public class BoardController {
 	
 	@Autowired
 	ReportServiceI reportService;
+	
+	@Autowired
+	private HttpServletRequest request;
+
 	
 	
 	private String fileDir ="c:\\test\\upload\\";
@@ -268,14 +273,15 @@ public class BoardController {
 	public String boardModi(Board board) {
 		boardService.modiBoard(board);
 		System.out.println(board);
-		return "redirect:/user/mypage.do";
+		
+		return "redirect:/board/free/{code}";
 	}
 	
 	
 	@RequestMapping(value = "/my/del/{code}", method = RequestMethod.GET)
 	public String boardDelete(@PathVariable String code) {
 	boardService.delBoard(code);
-		return "redirect:/user/mypage.do";
+		return  "board/freeboardDetail";
 	}
 	
 	@RequestMapping("/faq")

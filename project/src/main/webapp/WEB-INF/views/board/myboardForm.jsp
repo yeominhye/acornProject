@@ -66,8 +66,9 @@
           <div class="freeBoardForm-section">
               <h2>수정하기</h2>
           </div>
-         <form action="reg{code}" method="post" name="frm">
+         <form action="/project/board/my/${myboard.boardCode}" method="post" name="frm">
              <div class="custom-section">
+              <input type="hidden"  name="boardCode" id="boardCode" value="${myboard.boardCode}" >
                  <select name="boardType" id="boardType" >
                        <option value="1">여행후기</option>
                      <option value="2">꿀팁공유</option>
@@ -144,7 +145,7 @@
          
           <div class="freeBoardForm-btn">
 	         <button type="button" onclick="validate()"> 수정</button>
-	         <button type="button" onclick="location.href='/project/board/my/del/${myboard.boardCode}'">삭제</button>
+	           <button type="button" onclick="location.href='/project/board/my/del/${myboard.boardCode}'">삭제</button>
            </div>
      </form>    
    
