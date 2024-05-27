@@ -120,6 +120,12 @@
     float: right;
 }
 /* 댓글 보기*/
+
+.count-comment{
+   margin-bottom: 5px;
+    margin-left: 5px;
+}
+
 .freeboard_page_comments{
     border: 0.1px solid rgba(0, 0, 0, 0);
     width: 100%;
@@ -157,6 +163,20 @@
 .comment_date{
     color: #7c7c7c;
 }
+
+/* 좋아요, 스크랩 */
+.like-btn:hover{
+   text-decoration: none;
+}
+
+.like-btn i{
+   margin-right: 5px;
+}
+
+.scrap-btn i{
+   margin-right: 10px;
+}
+
 /* 댓글작성 */
 .my_comment{
     /* border: 1px solid black; */

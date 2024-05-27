@@ -150,7 +150,7 @@ function delComment(btn) {
                 console.log(data); // 성공적으로 삭제된 경우 로그에 출력합니다.
                 
                 // 삭제된 댓글을 화면에서 숨깁니다.
-                $commentDiv.hide();
+                location.reload(true);
             },
             error: function(xhr, status, error) {
                 console.error(xhr, status, error); // 오류가 발생한 경우 콘솔에 오류를 출력합니다.
