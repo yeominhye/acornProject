@@ -5,7 +5,7 @@ import java.util.List;
 public interface BoardDAOI {
 
 	// 목록 전체조회
-	List<Board> selectAll(int board_type);
+	List<Board> selectAll( int boardType,  int currentPage);
 
 	// 1개 상세조회
 	Board selectOne(String board_code);

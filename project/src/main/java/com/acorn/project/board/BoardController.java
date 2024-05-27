@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -71,9 +72,10 @@ public class BoardController {
 	private String fileDir ="c:\\test\\upload\\";
 	
 	@RequestMapping(value = "/free", method=RequestMethod.GET)
-	public String  BoardListType(String type, Model model) {
+	public String BoardListType(String type, Model model, @RequestParam(defaultValue = "1") int page) {
+
 		int board_type = Integer.parseInt(type);
-		List<Board> freeBoardList = boardService.getBoardBytype(board_type);
+		List<Board> freeBoardList = boardService.getBoardBytype(board_type ,page);
 		model.addAttribute("freeBoardList",freeBoardList);
 		return "board/freeboardList";
 	}
@@ -281,7 +283,7 @@ public class BoardController {
 	@RequestMapping(value = "/my/del/{code}", method = RequestMethod.GET)
 	public String boardDelete(@PathVariable String code) {
 	boardService.delBoard(code);
-		return  "board/freeboardDetail";
+		return  "redirect:/board/free?type=-1";
 	}
 	
 	@RequestMapping("/faq")

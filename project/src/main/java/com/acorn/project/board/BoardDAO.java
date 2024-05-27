@@ -1,6 +1,8 @@
 package com.acorn.project.board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,20 @@ public class BoardDAO implements BoardDAOI {
 	
 	// 전체 목록 조회
 	@Override
-	public List<Board> selectAll(int board_type){
-		return session.selectList(namespace+"selectAll", board_type);
+	public List<Board> selectAll( int boardType ,   int currentPage){
+		
+		 //현재페이지정보,  전체레코드수      // 1    1:5     // 2   == > 5-10
+		int pageSize=15;
+	 
+		int start  =   (currentPage  -1) *pageSize  +1;
+		int  end  =   currentPage * pageSize;
+	 	
+		Map info = new  HashMap();
+		info.put("boardType",  boardType);
+		info.put("start",  start);
+		info.put("end", end);
+		
+		return session.selectList(namespace+"selectAll", info );
 	}
 	
 	// 1개 상세조회

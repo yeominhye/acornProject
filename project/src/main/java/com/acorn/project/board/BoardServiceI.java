@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface BoardServiceI {
 
-	List<Board> getBoardBytype(int board_type);
+	List<Board> getBoardBytype(int board_type,int Page);
 
 	Board getBoardBycode(String board_code);
 	

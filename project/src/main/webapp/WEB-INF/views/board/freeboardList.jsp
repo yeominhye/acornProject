@@ -87,7 +87,7 @@
                             <% index++;%>
                               <tr>
                                 <td>${freeBoardList.size() - loop.index}</td>
-                                <td class="td22"><a href="/project/board/free/${list.boardCode}">${list.boardTitle}</a></td>
+                                <td class="td-title"><a href="/project/board/free/${list.boardCode}">${list.boardTitle}</a></td>
                                 <td>${list.nickname}</td>
                                 <td>${list.boardWritedate}</td>
                                 <td>${list.boardViews}</td>

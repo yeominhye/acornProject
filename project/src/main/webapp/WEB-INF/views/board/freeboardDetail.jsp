@@ -149,8 +149,7 @@ String userCode = (user != null) ? user.getUserCode() : null;
 								<input type="hidden" id="regUserCode" value="${user.userCode}"> 
 								<input type="hidden" id="regCommentDate" value="null">
 								<div class="comment_textarea">
-									<textarea class="my_comment_content" name="" id="regComment"
-										placeholder="댓글을 입력하세요."></textarea>
+									<textarea class="my_comment_content" name="" maxlength="400" id="regComment" placeholder="댓글을 입력하세요." ></textarea>
 								</div>
 							</div>
 						</div>

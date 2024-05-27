@@ -13,10 +13,10 @@ public class BoardService implements BoardServiceI {
 	BoardDAO dao;
 	
 	@Override
-	public List<Board> getBoardBytype(int board_type){
-		return dao.selectAll(board_type);
+	public List<Board> getBoardBytype(int boardType , int currentPage){		
+		return dao.selectAll(  boardType, currentPage  );
 	}
-	
+
 	@Override
 	public Board getBoardBycode(String board_code) {
 		return dao.selectOne(board_code);

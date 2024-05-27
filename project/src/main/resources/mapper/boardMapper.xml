@@ -4,21 +4,30 @@
         
 <mapper namespace="com.acorn.boardMapper">
 
-    <select id="selectAll" resultType="Board" parameterType="int">
-		SELECT u.nickname,b.boardCode, b.boardTitle, b.boardContent, 
-		DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews 
+    <select id="selectTotalCount" resultType="int">
+        SELECT COUNT(*) FROM boardtbl
+    </select>
+    
+
+	  <select id="selectAll" resultType="Board"  parameterType="Map" >
+	    SELECT u.nickname, b.boardCode, b.boardTitle, b.boardContent, 
+	           DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews 
 	    FROM boardtbl b 
 	    JOIN usertbl u ON b.userCode = u.userCode
-	    <where>
-	        <if test="boardType &gt;= 0 and boardType &lt;= 6">
-	            AND boardType = #{boardType}
-	        </if>
-	        <if test="boardType == -1">
-	            AND boardType &gt;= 1 AND boardType &lt;= 5
-	        </if>
-    	</where>
-    	ORDER BY b.boardWritedate desc
-    </select>
+	      <where>
+	            <if test="boardType != null">
+	                <if test="boardType &gt;= 0 and boardType &lt;= 6">
+	                    AND b.boardType = #{boardType}
+	                </if>
+	                <if test="boardType == -1">
+	                    AND b.boardType &gt;= 1 AND b.boardType &lt;= 5
+	                </if>
+	            </if>
+	        </where>
+	        ORDER BY 
+	            b.boardWritedate DESC
+	        LIMIT #{start}, #{end}
+	</select>
    		
    <select id="selectOne" resultType="Board" parameterType="String">
 		SELECT 
