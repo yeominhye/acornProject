@@ -53,6 +53,7 @@ public class UserController {
 	    if(user != null) {
 	        mv.setViewName("redirect:/");
 	    } else {
+	    	session.invalidate();
 	        mv.setViewName("user/login");
 	        mv.addObject("message", "error");
 	    }
