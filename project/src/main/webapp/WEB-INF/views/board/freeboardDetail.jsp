@@ -93,19 +93,21 @@
 
                     <!-- 댓글 보기 -->
                     <div class="freeboard_page_comments">
-                       
+                    
+                       <div id="no-comments-message" style="display: none;">작성된 댓글이 없습니다.</div>
+                          <div class="comment-box"> <!-- test -->
                             <c:forEach var="comment" items="${comments}" varStatus="loop">
                     
-                           	 <div class="comment" id="comment_${loop.index}" data-user-code="${comment.userCode}">
+                               <div class="comment" id="comment_${loop.index}" data-user-code="${comment.userCode}">
                                 <div class="comment_name">${comment.nickname}</div>
                                 <input type="hidden" class="modiCommentCode" value="${comment.commentCode}">
                                 <div class="comment_content">${comment.commentContent}</div>
                                 <div class="comment_date">${comment.commentDate}</div>
                                 <button class="btnModi" onclick="editComment(this)">수정</button>
                                 <button class="btnDel" onclick="delComment(this)">삭제</button>
-                           	 </div>
+                               </div>
                              </c:forEach>    
-                       
+                          </div>
 
                         <!-- 댓글 작성 -->
                            <div>
@@ -130,4 +132,23 @@
                 </div>
             </div>
 </body>
+
+<script>
+    function checkComments() {
+        var comments = document.getElementsByClassName("comment");
+        var noCommentsMessage = document.getElementById("no-comments-message");
+        
+        if (comments.length === 0) {
+            noCommentsMessage.style.display = "block";
+        } else {
+            noCommentsMessage.style.display = "none";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        checkComments();
+    });
+    
+</script>
+
 </html>

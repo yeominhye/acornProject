@@ -32,10 +32,18 @@
     	}else if(lastValue ==="5"){	
     		  header.innerText = "동행구해요";
     	}else{
-    		console.log("오류");
+    		 header.innerText = "전체글";
     	}
 	});
 	
+    function searchCheck() {
+        var condition = document.getElementsByName("condition")[0].value;
+        if (condition === "") {
+            alert("검색 조건을 선택해주세요.");
+            return false; // 폼 전송을 중단합니다.
+        }
+        return true; // 폼을 제출합니다.
+    }
 </script>
 
 <body>
@@ -111,14 +119,14 @@
                 	</div>
             	</div>
                 <div class="search_form">
-                <form action="free/search" method="get">
+                <form action="/project/board/free/search" method="post" onsubmit="return searchCheck()">
 					<select name="condition">
 						<option value="">선택하시오</option>
 						<option value="writer">작성자</option>
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 					</select>
-					<input type="text" name="keyword">
+					<input type="text" name="keyword" >
 					<button>검색</button>
 				</form>
                 </div>
