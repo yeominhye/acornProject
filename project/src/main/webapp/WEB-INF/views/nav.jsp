@@ -80,7 +80,7 @@ nav {
                       <a href="/project/user/logout.do">로그아웃</a>
                       <a href="/project/user/mypage.do">마이페이지</a>
                    </c:if>
-                    </div>
+                </div>
            </div>
        </div>
    </nav>

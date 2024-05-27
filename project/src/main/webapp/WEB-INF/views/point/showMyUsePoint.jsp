@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="pt_categori">
             <form action="/project/point/showMyUsePoint.do" method="GET">
                 <div class="point-wrap">
-                    <div><button class="pt_cont_btn" id="resetButton" type="button" onclick="location.href='/project/point/showMyPoint.do'">날짜 초기화</button></div>
+                    <div><button class="pt_cont_btn" id="resetButton" type="button" onclick="location.href='/project/point/showMyUsePoint.do'">날짜 초기화</button></div>
                     <div><span class="pt_span">검색 기간</span></div>
                     <div class="pt_date1">
                         <input type="text" id="startDate" name="startDate" class="flatpickr" placeholder="시작 날짜">
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					                    <c:when test="${point.pointStatus == 2}">포인트 환전</c:when>
 					                </c:choose>
 					            </td>
-					            <td id="t_list"><c:out value="${point.boardTitle}"/></td>
+					            <td id="t_list"><a href="/project/board/free/${point.boardCode}"><c:out value="${point.boardTitle}"/></a></td>
 					            <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
 					            <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
 					        </tr>
