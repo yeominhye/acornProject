@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../nav-sub.jsp" %>	
+<%@ include file="../nav-sub.jsp" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,31 +11,31 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
 </head>
 <script type="text/javascript">
-	document.addEventListener("DOMContentLoaded", function() {
-	    var currentURL = window.location.href;
-	    
-	    var urlParts = currentURL.split("=");
-	    var lastValue = urlParts[urlParts.length - 1];
-	    
-		var header = document.querySelector("h2");
-	    if (lastValue === "-1") {
-	       header.innerText = "전체글";
-	        
-    	} else if(lastValue ==="1"){	
-    		  header.innerText = "여행후기";
-    	} else if(lastValue ==="2"){	
-    		  header.innerText = "꿀팁공유";
-    	} else if(lastValue ==="3"){	
-    		  header.innerText = "질문있어요!";
-    	}else if(lastValue ==="4"){	
-    		  header.innerText = "수다방";
-    	}else if(lastValue ==="5"){	
-    		  header.innerText = "동행구해요";
-    	}else{
-    		 header.innerText = "전체글";
-    	}
-	});
-	
+   document.addEventListener("DOMContentLoaded", function() {
+       var currentURL = window.location.href;
+       
+       var urlParts = currentURL.split("=");
+       var lastValue = urlParts[urlParts.length - 1];
+       
+      var header = document.querySelector("h2");
+       if (lastValue === "-1") {
+          header.innerText = "전체글";
+           
+       } else if(lastValue ==="1"){   
+            header.innerText = "여행후기";
+       } else if(lastValue ==="2"){   
+            header.innerText = "꿀팁공유";
+       } else if(lastValue ==="3"){   
+            header.innerText = "질문있어요!";
+       }else if(lastValue ==="4"){   
+            header.innerText = "수다방";
+       }else if(lastValue ==="5"){   
+            header.innerText = "동행구해요";
+       }else{
+           header.innerText = "전체글";
+       }
+   });
+   
     function searchCheck() {
         var condition = document.getElementsByName("condition")[0].value;
         if (condition === "") {
@@ -50,17 +50,17 @@
     <div class="wrap">
         <div class="all_menu">
             <div class="side_menu">
-            	<div class="side_menu_set">
-	                <h3><a href="/project/board/free?type=-1" >자유게시판</a></h3>
-	                <ul>
-	                	<li> <a href="/project/board/free?type=-1"> 전체글</a></li>
-	                    <li> <a href="/project/board/free?type=1"> 여행후기</a></li>
-	                    <li> <a href="/project/board/free?type=2">  꿀팁공유</a></li>
-	                    <li> <a href="/project/board/free?type=3" > 질문있어요!</a></li>
-	                    <li> <a href="/project/board/free?type=4" > 수다방</a></li>
-	                    <li> <a href="/project/board/free?type=5" > 동행구해요!</a></li>
-	                </ul>
-	            </div>
+               <div class="side_menu_set">
+                   <h3><a href="/project/board/free?type=-1" >자유게시판</a></h3>
+                   <ul>
+                      <li> <a href="/project/board/free?type=-1"> 전체글</a></li>
+                       <li> <a href="/project/board/free?type=1"> 여행후기</a></li>
+                       <li> <a href="/project/board/free?type=2">  꿀팁공유</a></li>
+                       <li> <a href="/project/board/free?type=3" > 질문있어요!</a></li>
+                       <li> <a href="/project/board/free?type=4" > 수다방</a></li>
+                       <li> <a href="/project/board/free?type=5" > 동행구해요!</a></li>
+                   </ul>
+               </div>
             </div>
             
             
@@ -85,50 +85,50 @@
                             <% int index =0; %>
                             <c:forEach var="list" items="${freeBoardList}" varStatus="loop">
                             <% index++;%>
-                       		 <tr>
+                              <tr>
                                 <td>${freeBoardList.size() - loop.index}</td>
                                 <td class="td22"><a href="/project/board/free/${list.boardCode}">${list.boardTitle}</a></td>
                                 <td>${list.nickname}</td>
                                 <td>${list.boardWritedate}</td>
                                 <td>${list.boardViews}</td>
                             </tr>
-                       		</c:forEach>
+                             </c:forEach>
                             
                         </tbody>
                     </table>
                 </div>
 
                 <div class="page_number">
-					<div class="paging">
-				        <div style="display: flex; align-items: center;">
-				          <!-- Fontawesome Icon -->
-				          <i class="fa-solid fa-angles-left" id="first_page"></i>
-				          <i class="fa-solid fa-angle-left" id="prev_page"></i>
-				          <!--  -->
-				          <div class="pages">
-				            <span class="active">1</span>
-				            <span>2</span>
-				            <span>3</span>
-				            <span>4</span>
-				            <span>5</span>
-				          </div>
-				          <!-- Fontawesome Icon -->
-				          <i class="fa-solid fa-angle-right" id="next_page"></i>
-				          <i class="fa-solid fa-angles-right" id="last_page"></i>
-				        </div>
-                	</div>
-            	</div>
+               <div class="paging">
+                    <div style="display: flex; align-items: center;">
+                      <!-- Fontawesome Icon -->
+                      <i class="fa-solid fa-angles-left" id="first_page"></i>
+                      <i class="fa-solid fa-angle-left" id="prev_page"></i>
+                      <!--  -->
+                      <div class="pages">
+                        <span class="active">1</span>
+                        <span>2</span>
+                        <span>3</span>
+                        <span>4</span>
+                        <span>5</span>
+                      </div>
+                      <!-- Fontawesome Icon -->
+                      <i class="fa-solid fa-angle-right" id="next_page"></i>
+                      <i class="fa-solid fa-angles-right" id="last_page"></i>
+                    </div>
+                   </div>
+               </div>
                 <div class="search_form">
-                <form action="/project/board/free/search" method="post" onsubmit="return searchCheck()">
-					<select name="condition">
-						<option value="">선택하시오</option>
-						<option value="writer">작성자</option>
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-					</select>
-					<input type="text" name="keyword" >
-					<button>검색</button>
-				</form>
+                <form action="/project/board/free/search" method="post" class="search-form-inner" onsubmit="return searchCheck()">
+               <select name="condition">
+                  <option value="">선택하시오</option>
+                  <option value="writer">작성자</option>
+                  <option value="title">제목</option>
+                  <option value="content">내용</option>
+               </select>
+               <input type="text" name="keyword" >
+               <div><button>검색</button></div>
+            </form>
                 </div>
             </div>
         </div>
