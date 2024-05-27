@@ -150,7 +150,7 @@ function delComment(btn) {
                 console.log(data); // 성공적으로 삭제된 경우 로그에 출력합니다.
                 
                 // 삭제된 댓글을 화면에서 숨깁니다.
-                $commentDiv.hide();
+                location.reload(true);
             },
             error: function(xhr, status, error) {
                 console.error(xhr, status, error); // 오류가 발생한 경우 콘솔에 오류를 출력합니다.
@@ -158,3 +158,19 @@ function delComment(btn) {
         });
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+	var userCode = document.querySelector('.userCode').value;   
+	
+    if (userCode === 'null') {
+        // #regComment 요소가 없는 경우 실행됩니다.
+        // .my_comment_sender 요소의 내용을 변경합니다.
+        var commentSender = document.querySelector('.my_comment_sender');
+        commentSender.textContent = "로그인 후 댓글을 입력하세요.";
+        commentSender.style.fontWeight="500";
+        
+        // .my_comment_content 요소의 placeholder를 변경합니다.
+        var commentTextarea = document.querySelector('.my_comment_content');
+        commentTextarea.placeholder = " ";
+    }
+});

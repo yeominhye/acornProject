@@ -107,4 +107,4 @@ clone해서 import할 경우 에러 발생
 
 - pushed to https://github.com/~~ 확인
 
-- 한 번 테스트 해보시고 github에서 잘 올라갔나 확인해주세요~
+- 한 번 테스트 해보시고 github에서 잘 올라갔나 확인해주세요~!!

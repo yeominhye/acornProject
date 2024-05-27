@@ -110,12 +110,7 @@ public class PointController {
                 for (Map<String, Object> point : pointList) {
                     int pointStatus = (int) point.get("pointStatus");
                     int pointAmount = (int) point.get("pointAmount");
-
-                    if (pointStatus == 1 || pointStatus == 3) {
-                        remainingPoints += pointAmount;
-                    } else if (pointStatus == 0 || pointStatus == 2) {
-                        remainingPoints -= pointAmount;
-                    }
+                    remainingPoints += pointAmount;
                     point.put("remainingPoints", remainingPoints);
                 }
 

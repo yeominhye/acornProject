@@ -60,6 +60,44 @@
 .boardType{
     padding-bottom: 5px;
 }
+.report{
+   width: 20px;
+    height: 20px;
+    display: inline-block;
+    float: right; 
+    text-align: center; 
+    /* border: 1px solid black; */
+   position: relative;
+   top: -30px;
+   right: 20px;
+}
+
+.report button {
+    padding: 2px 10px 2px 10px;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-right: 15px;
+}
+.report button .img-red {
+    display: none;
+}
+.report button:hover .img-red{
+    display: inline;
+}
+.report button:hover .img-black{
+    display: none;
+}
+
+.report img{
+    width: 20px;
+    height: 20px;
+    /* margin-right: 5px; */
+    /* border: 1px solid black; */
+}
 .freeboard_page_title{
     /* border: 1px solid black; */
     width: 100%;
@@ -122,14 +160,14 @@
 /* 댓글 보기*/
 
 .count-comment{
-	margin-bottom: 5px;
+   margin-bottom: 5px;
     margin-left: 5px;
 }
 
 .freeboard_page_comments{
     border: 0.1px solid rgba(0, 0, 0, 0);
     width: 100%;
-    background-color: rgba(240, 238, 238, 0.491);
+    background-color: rgb(236, 236, 236);
     padding-bottom: 20px;
 }
 
@@ -163,20 +201,21 @@
 .comment_date{
     color: #7c7c7c;
 }
-/* 댓글작성 */
 
+/* 좋아요, 스크랩 */
 .like-btn:hover{
-	text-decoration: none;
+   text-decoration: none;
 }
 
 .like-btn i{
-	margin-right: 5px;
+   margin-right: 5px;
 }
 
 .scrap-btn i{
-	margin-right: 10px;
+   margin-right: 10px;
 }
 
+/* 댓글작성 */
 .my_comment{
     /* border: 1px solid black; */
     width: 95%;

@@ -87,7 +87,7 @@ tr{height: 35px;}
 }
 
 .search-form-inner{
-	display: flex;
+   display: flex;
 }
 
 .search_form select{
