@@ -119,7 +119,7 @@
                 	</div>
             	</div>
                 <div class="search_form">
-                <form action="/project/board/free/search" method="post" onsubmit="return searchCheck()">
+                <form action="/project/board/free/search" method="post" class="search-form-inner" onsubmit="return searchCheck()">
 					<select name="condition">
 						<option value="">선택하시오</option>
 						<option value="writer">작성자</option>
@@ -127,7 +127,7 @@
 						<option value="content">내용</option>
 					</select>
 					<input type="text" name="keyword" >
-					<button>검색</button>
+					<div><button>검색</button></div>
 				</form>
                 </div>
             </div>
