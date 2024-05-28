@@ -182,6 +182,17 @@ String userCode = (user != null) ? user.getUserCode() : null;
 		checkComments();
 	});
 	
+	$(document).ready(function(){
+	    var boardUserCode = document.querySelector('.boardUsercode').value;
+	    var userCode = document.querySelector('.userCode').value;
+	    var boardModi = document.querySelector('#boardModi');
+	    
+	    if (userCode === boardUserCode){
+	        boardModi.style.display = "inline";
+	    } else {
+	        boardModi.style.display = "none";
+	    }
+	});
 
 	
 	
