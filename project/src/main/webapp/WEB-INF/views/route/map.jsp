@@ -88,7 +88,7 @@
 
 	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7560b5ddb94a9dc91354ef62a6b750ee"></script> -->
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7560b5ddb94a9dc91354ef62a6b750ee&libraries=services,clusterer,drawing"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eeba0b7ba86bffd4de8da49205b76ff7&libraries=services,clusterer,drawing"></script>
 	<script type="text/javascript" src="map_test.js"></script>
 	<!-- map 수정-->
 </body>
