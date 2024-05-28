@@ -53,7 +53,7 @@
 <body>
 
     <h2>루트 제작 페이지</h2>
-    <form:form modelAttribute="route" method="post" action="/routes" enctype="multipart/form-data">
+    <form:form modelAttribute="route" method="post" action="/project/routes/new" enctype="multipart/form-data">
         <div id="dayPlans">
             <c:forEach items="${route.dayPlans}" varStatus="loop">
                 <h2>Day ${loop.index + 1}</h2>
@@ -68,20 +68,22 @@
         </div>
 
         <div>
-            <label for="title">제목:</label>
-            <form:input path="title" id="title" />
-        </div>
-        <div>
-            <label for="date">날짜:</label>
-            <form:input path="date" id="date" />
-        </div>
-        <div>
-            <label for="region">지역:</label>
-            <form:input path="region" id="region" />
-        </div>
-        <div>
-            <label for="category">카테고리:</label>
-            <form:input path="category" id="category" />
+        	<div>
+           	 	<span>제목:<span>
+            	<input type="text" id="title" />
+	        </div>
+    	    <div>
+        	    <label for="date">날짜:</label>
+            	<form:input path="date" id="date" />
+        	</div>
+        	<div>
+            	<label for="region">지역:</label>
+            	<form:input path="region" id="region" />
+        	</div>
+        	<div>
+            	<label for="category">카테고리:</label>
+            	<form:input path="category" id="category" />
+        	</div>
         </div>
 
         <div class="map_wrap" style="">
