@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public class BoardDAO implements BoardDAOI {
 	
@@ -23,7 +24,7 @@ public class BoardDAO implements BoardDAOI {
 		 //현재페이지정보,  전체레코드수      // 1    1:5     // 2   == > 5-10
 		int pageSize=15;
 	 
-		int start  =   (currentPage  -1) *pageSize  +1;
+		int start  =   (currentPage  -1) *pageSize;
 		int  end  =   currentPage * pageSize;
 	 	
 		Map info = new  HashMap();
@@ -38,6 +39,11 @@ public class BoardDAO implements BoardDAOI {
 	@Override
 	public Board selectOne(String board_code) {
 		return session.selectOne(namespace+"selectOne", board_code);
+	}
+	
+	@Override
+	public RouteBoard selectRoute(String boardCode) { 
+		return session.selectOne(namespace+"selectRoute", boardCode);
 	}
 	
 	// 상세조회 시 view증가
@@ -87,7 +93,11 @@ public class BoardDAO implements BoardDAOI {
 	public List<Board> getList(SearchCondition search){
 		return session.selectList(namespace+"selectSearch",search);
 	}
-
+	
+	 @Override
+	 public int insertRoute(RouteBoard routeBoard) throws Exception {
+	    return session.insert(namespace + "insertRoute", routeBoard);
+	}
 	 
 
 }

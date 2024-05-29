@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public class BoardService implements BoardServiceI {
 	
@@ -63,9 +64,13 @@ public class BoardService implements BoardServiceI {
 		return dao.getList(search);
 	}
 
-
-	
-	
-	
-	
+	@Override
+	public RouteBoard selectRoute(String boardCode) throws Exception {
+        return dao.selectRoute(boardCode);
+    }
+    
+	@Override
+	public int insertRoute(RouteBoard routeBoard) throws Exception {
+        return dao.insertRoute(routeBoard);
+    }
 }

@@ -29,6 +29,9 @@
 	        LIMIT #{start}, #{end}
 	</select>
    		
+   <select id="selectRoute" resultType="RouteBoard" parameterType="String">
+   		select * from boardtbl where boardCode = #{boardCode}
+   </select>
    <select id="selectOne" resultType="Board" parameterType="String">
 		SELECT 
 			u.nickname, b.userCode, b.boardCode,b.boardImgReal,b.boardTitle,b.boardContent, b.boardWritedate, 
@@ -126,5 +129,17 @@
 		<include refid="search"/>
 		ORDER BY boardWritedate DESC
 	</select>
+	
+	
+	<insert id="insertRoute" parameterType="RouteBoard">
+		INSERT INTO boardtbl
+			(userCode, boardImgOrigin, boardImgReal, boardTitle, boardContent, boardTheme, boardTourdays, boardWritedate, 
+			boardViews, boardPoint, boardType, boardRegion, days)
+		VALUES 
+		(#{userCode}, #{boardImgOrigin}, #{boardImgReal}, #{boardTitle}, #{boardContent},#{boardTheme},#{boardTourdays},now(),
+		#{boardViews},#{boardPoint}, 0, #{boardRegion}, #{days, typeHandler=com.acorn.project.board.JsonListTypeHandler})
+	</insert>
+	 
+	
 	
 </mapper>

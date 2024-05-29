@@ -34,4 +34,8 @@ public interface BoardDAOI {
 	// 제목, 작성자, 내용으로 검색
 	List<Board> getList(SearchCondition search);
 
+	RouteBoard selectRoute(String boardCode);
+
+	int insertRoute(RouteBoard routeBoard) throws Exception;
+
 }

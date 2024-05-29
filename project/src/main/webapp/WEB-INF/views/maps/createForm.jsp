@@ -14,6 +14,7 @@
                 dayCount++;
                 var dayHtml = '<div class="day-container">' +
                                   '<h2>Day ' + dayCount + '</h2>' +
+                                  '<input type="number" name="days[' + (dayCount-1) + '].day" value='+dayCount+''/>
                                   '<label for="days[' + (dayCount-1) + '].dayInfo">Day ' + dayCount + ' Info:</label>' +
                                   '<input type="text" id="days[' + (dayCount-1) + '].dayInfo" name="days[' + (dayCount-1) + '].dayInfo" required><br>' +
                                   '<div class="marker-container">' +

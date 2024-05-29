@@ -1,4 +1,4 @@
-package com.acorn.project.map;
+package com.acorn.project.board;
 
 import java.util.List;
 
@@ -12,5 +12,7 @@ import lombok.NoArgsConstructor;
 public class Marker {
 	private double latitude;
 	private double longitude;
-	private String markerInfo;
+	private String explain;
+	private String title;
+	private String position;
 }

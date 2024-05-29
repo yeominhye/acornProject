@@ -1,4 +1,4 @@
-package com.acorn.project.map;
+package com.acorn.project.board;
 
 import java.util.List;
 
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Maps {
-    private String boardCode;
-    private List<Day> days;
+public class Day {
+	private int day;
+	private String dayInfo;
+	private List<Marker> markers;
 }

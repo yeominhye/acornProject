@@ -1,4 +1,4 @@
-package com.acorn.project.map;
+package com.acorn.project.board;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;

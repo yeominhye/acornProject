@@ -28,28 +28,15 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-
-    // Initialize map for next day
     function initializeMapForNextDay() {
-        // Assuming you have a function in your map.js to initialize the map
-        // Replace with your actual initialization logic
-        initMap(); // Example function call to initialize map
-    }
-
-    // Add new day plan
     function addDayPlan() {
-        // Perform any necessary operations when adding a new day plan
-        // For example, initializing the map for the next day
         initializeMapForNextDay();
     }
-
-    // Example function for searching places
     function searchPlaces() {
-        // Your search places logic here
     }
     
-    var dayIndex = 1; // 예시로 1로 초기화
-    document.getElementById("day").value = dayIndex;
+    var dayIndex = 1;
+    document.getElementById("tourdays").value = dayIndex;
 </script>
 </head>
 
@@ -57,16 +44,17 @@
 
 
     <h2>루트 제작 페이지</h2>
-    <form action="/showMap" method="post">
+    <form action="/project/maps/create" method="post" id="createMapForm">
         <table>
         	<tr>
         		<td>제목 : </td>
-        		<td><input type="text" id="title" name="title" placeholder="제목"></td>
+        		<td><input type="text" id="boardTitle" name="boardTitle" placeholder="제목"></td>
         	</tr>
         	<tr>
     			<td>날짜 :</td>
-    			<td><input type="text" id="day" name="day" readonly></td>
+    			<td><input type="text" id="tourdays" name="tourdays" readonly></td>
 			</tr>
+			
 
         	 <tr>
             	<td>지역 :</td>
@@ -198,7 +186,7 @@
 
 <script>
     var dayIndex = 1; // 예시로 1로 초기화
-    document.getElementById("day").value = dayIndex;
+    document.getElementById("tourdays").value = dayIndex;
 </script>
 </body>
 </html>
