@@ -123,8 +123,7 @@ public class BoardController {
         
         int count = commentService.count(code);
         model.addAttribute("count", count);
-        return "board/freeboardDetail";
-       
+        return "board/freeboardDetail";   
     }
     
     @PostMapping("/free/{code}")

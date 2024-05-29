@@ -11,6 +11,13 @@
 		<typeAlias alias="Report" type="com.acorn.project.report.Report"/>
 		<typeAlias alias="SearchCondition" type="com.acorn.project.board.SearchCondition"/>
 		<typeAlias alias="User" type="com.acorn.project.user.User"/>	
-		<typeAlias alias="Point" type="com.acorn.project.point.Point"/>		
+		<typeAlias alias="Point" type="com.acorn.project.point.Point"/>
+		<typeAlias alias="Maps" type="com.acorn.project.map.Maps"/>
+		<typeAlias alias="Marker" type="com.acorn.project.map.Marker"/>
+		<typeAlias alias="Day" type="com.acorn.project.map.Day"/>		
 	</typeAliases>
+	<typeHandlers>
+    <typeHandler handler="com.acorn.project.map.JsonListTypeHandler"/>
+</typeHandlers>
+	
 </configuration>

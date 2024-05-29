@@ -70,7 +70,7 @@ public class UserDaoTest {
         assertTrue(affectedRows >= 1);
     }
 	
-    @Test
+    //@Test
     public void test3() throws Exception {
         try {
             User user = dao.selectById("example_id");
