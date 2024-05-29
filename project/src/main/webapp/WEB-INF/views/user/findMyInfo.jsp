@@ -75,7 +75,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-
+<%@ include file="../nav-sub.jsp" %>
 <div class="container">
     <div class="btnContainer">
         <button id="IdBtn" onclick="showIdSearch()">아이디 찾기</button>
@@ -84,9 +84,6 @@ $(document).ready(function() {
     <div class="form-container" id="form1" style="display:none;">
         <div class="form-title">
             <h1>아이디 찾기</h1>
-        </div>
-        <div class="form-title-mypage">
-            <a href="/project/">홈</a>
         </div>
         <form id="idSearch" action="/project/user/findMyId.do" method="post">
             <table class="input-table">
@@ -100,7 +97,7 @@ $(document).ready(function() {
                 </tr>
             </table>
             <c:if test="${not empty IdErrorMessage}">
-                <p style="color: red;">${IdErrorMessage}</p>
+                <p style="color: red; margin-left: 90px;">${IdErrorMessage}</p>
             </c:if>
             <div class="btn-container">
                 <button type="submit" id="submitBtn" class="btn-register">확인</button>
@@ -112,9 +109,6 @@ $(document).ready(function() {
     <div class="form-container" id="form2" style="display:none;">
         <div class="form-title">
             <h1>비밀번호 찾기</h1>
-        </div>
-        <div class="form-title-mypage">
-            <a href="/project/">홈</a>
         </div>
         <form id="pwSearch" action="/project/user/findMyPw.do" method="post">
             <table class="input-table">
@@ -132,7 +126,7 @@ $(document).ready(function() {
                 </tr>
             </table>
             <c:if test="${not empty PwErrorMessage}">
-                <p style="color: red;">${PwErrorMessage}</p>
+                <p style="color: red; margin-left: 90px;">${PwErrorMessage}</p>
             </c:if>
             <div class="btn-container">
                 <button type="submit" id="submitBtn" class="btn-register">확인</button>
@@ -141,5 +135,7 @@ $(document).ready(function() {
         </form>
     </div>
 </div>
+
+<%@ include file="../footer-sub.jsp" %>
 </body>
 </html>

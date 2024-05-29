@@ -109,47 +109,51 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
 
         <table class="pt_table" border="1">
-            <thead>
-                <tr style="background-color: rgb(201, 201, 201);">
-                    <th>날짜</th>
-                    <th>사용구분</th>
-                    <th>내역</th>
-                    <th>사용 포인트</th>
-                    <th>잔여 포인트</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:if test="${not empty pointList}">
-                    <c:forEach var="point" items="${pointList}">
-                        <tr class="pt_table_info">
-                            <td id="t_date"><c:out value="${point.pointDate}"/></td>
-                            <td id="t_division">
-                                <c:choose>
-                                    <c:when test="${point.pointStatus == 0}">게시글 구매</c:when>
-                                    <c:when test="${point.pointStatus == 1}">포인트 충전</c:when>
-                                    <c:when test="${point.pointStatus == 2}">포인트 환전</c:when>
-                                    <c:when test="${point.pointStatus == 3}">게시글 판매</c:when>
-                                </c:choose>
-                            </td>
-                            <td id="t_list">
-                            <a href="/project/board/free/${point.boardCode}"><c:out value="${point.boardTitle}"/></a></td>
-                            <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
-                            <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
-                        </tr>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${empty pointList}">
-                    <tr>
-                        <td colspan="5">No points found.</td>
+        <thead>
+            <tr style="background-color: rgb(201, 201, 201);">
+                <th>날짜</th>
+                <th>사용구분</th>
+                <th>내역</th>
+                <th>사용 포인트</th>
+                <th>잔여 포인트</th>
+            </tr>
+        </thead>
+        <tbody id="pointList">
+            <c:if test="${not empty pointList}">
+                <c:forEach var="point" items="${pointList}">
+                    <tr class="pt_table_info">
+                        <td id="t_date"><c:out value="${point.pointDate}"/></td>
+                        <td id="t_division">
+                            <c:choose>
+                                <c:when test="${point.pointStatus == 0}">게시글 구매</c:when>
+                                <c:when test="${point.pointStatus == 1}">포인트 충전</c:when>
+                                <c:when test="${point.pointStatus == 2}">포인트 환전</c:when>
+                                <c:when test="${point.pointStatus == 3}">게시글 판매</c:when>
+                            </c:choose>
+                        </td>
+                        <td id="t_list">
+                            <a href="/project/board/free/${point.boardCode}"><c:out value="${point.boardTitle}"/></a>
+                        </td>
+                        <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
+                        <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
                     </tr>
-                </c:if>
-            </tbody>
-            <tfoot>
+                </c:forEach>
+            </c:if>
+            <c:if test="${empty pointList}">
                 <tr>
-                    <td colspan="5"><span style="margin-left: 42px;">합계</span> <span style="float: right; color:red; margin-right: 20px;">${user.userPoint}</span></td>
+                    <td colspan="5">No points found.</td>
                 </tr>
-            </tfoot>
-        </table>
+            </c:if>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5"><span style="margin-left: 42px;">합계</span> <span style="float: right; color:red; margin-right: 20px;">${user.userPoint}</span></td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="pagination" id="pagination"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/pagination.js"></script>
     </div>
 </div>
 

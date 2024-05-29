@@ -216,6 +216,6 @@
         </div>
     </div>
     <script src="${path}/resources/js/login.js"></script>
-    
+    <%@ include file="../footer-sub.jsp" %>
 </body>
 </html>

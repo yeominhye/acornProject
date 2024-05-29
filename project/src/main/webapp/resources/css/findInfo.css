@@ -1,8 +1,10 @@
-@charset "UTF-8";
+    @charset "UTF-8";
 .container {
     /*border: 1px solid #000000;*/
-    margin: 0px auto;
-    width: 1100px; 
+    margin: 75px auto;
+    width: 800px; 
+    box-shadow: 2px 10px 20px rgba(22,20,19,0.4);
+    border-radius: 10px;
 }
 
 #IdBtn, #PwBtn {
@@ -22,7 +24,7 @@
 .form-container {
     border: 1px solid #ccc;
     border-top: none;
-    margin-top: 0px;
+    margin-bottom: 25px;
     padding: 50px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -31,9 +33,9 @@
 .form-title{
     margin: 0 auto;
     text-align: center;
-    /* padding-bottom: 80px;
+    padding-bottom: 25px;
     margin-bottom: 50px;
-    border-bottom: 2px solid #000000; */
+    border-bottom: 2px solid #000000;
 }
 
 .form-title-mypage{
@@ -110,10 +112,3 @@ a:visited{color: #000000;}
     color: #fff;
     cursor: pointer;
 }
-
-
-/*
-.btn-register:hover,
-.btn-cancel:hover {
-    background-color: #0056b3;
-}*/
