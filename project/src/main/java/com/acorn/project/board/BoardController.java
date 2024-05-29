@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,9 +62,6 @@ public class BoardController {
 	
 	@Autowired
 	ReportServiceI reportService;
-	
-	@Autowired
-	private HttpServletRequest request;
 
 	
 	
@@ -77,6 +73,11 @@ public class BoardController {
 		int board_type = Integer.parseInt(type);
 		List<Board> freeBoardList = boardService.getBoardBytype(board_type ,page);
 		model.addAttribute("freeBoardList",freeBoardList);
+		
+		int totRecords = boardService.selectTotalCount();
+		int pageSize = 5;
+		PagingHandler handler = new PagingHandler( page , totRecords ,pageSize);
+		model.addAttribute("paging", handler);
 		return "board/freeboardList";
 	}
 	

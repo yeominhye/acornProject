@@ -15,20 +15,26 @@ public class BoardDAO implements BoardDAOI {
 	private SqlSession session;
 	private String namespace = "com.acorn.boardMapper.";
 	
+	@Override
+	// 게시판 수
+	public int selectTotalCount() {
+		return session.selectOne(namespace+"selectTotalCount");
+	}
 	
 	// 전체 목록 조회
 	@Override
 	public List<Board> selectAll( int boardType ,   int currentPage){
 		
 		 //현재페이지정보,  전체레코드수      // 1    1:5     // 2   == > 5-10
-		int pageSize=15;
-	 
-		int start  =   (currentPage  -1) *pageSize  +1;
-		int  end  =   currentPage * pageSize;
+		int pageSize=5;
+		
+		int  start  =   (currentPage  -1) *pageSize;
+	 	int  end  =   pageSize;
+		
 	 	
 		Map info = new  HashMap();
 		info.put("boardType",  boardType);
-		info.put("start",  start);
+		info.put("start",  start);   
 		info.put("end", end);
 		
 		return session.selectList(namespace+"selectAll", info );

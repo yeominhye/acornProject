@@ -4,6 +4,9 @@ import java.util.List;
 
 public interface BoardDAOI {
 
+	// 게시글 수
+	int selectTotalCount();
+	
 	// 목록 전체조회
 	List<Board> selectAll( int boardType,  int currentPage);
 

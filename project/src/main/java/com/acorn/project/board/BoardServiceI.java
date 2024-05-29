@@ -3,7 +3,9 @@ package com.acorn.project.board;
 import java.util.List;
 
 public interface BoardServiceI {
-
+	
+	int selectTotalCount();
+	
 	List<Board> getBoardBytype(int board_type,int Page);
 
 	Board getBoardBycode(String board_code);

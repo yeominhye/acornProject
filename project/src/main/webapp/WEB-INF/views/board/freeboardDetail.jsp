@@ -9,24 +9,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css"
-	rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css"	rel="stylesheet" />
+<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+<link rel="stylesheet"	href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- icon key -->
-<script src="https://kit.fontawesome.com/7fa6781ad2.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7fa6781ad2.js"	crossorigin="anonymous"></script>
 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/freeBoardDetail.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/css/freeBoardDetail.css">
+<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/css/reset.css">
 <style type="text/css">
 .ql-tooltip {
 	display: none;
@@ -72,20 +64,14 @@ String userCode = (user != null) ? user.getUserCode() : null;
 				<div class="boardType">${freeboard.boardType}</div>
 				<div class="report">
 					<button onclick="report()">
-						<img class="img-black"
-							src="${pageContext.request.contextPath}/resources/img/alert-black.png"
-							style="width: 20px; height: 20px;" alt=""> <img
-							class="img-red"
-							src="${pageContext.request.contextPath}/resources/img/alert-red.png"
-							style="width: 20px; height: 20px;" alt="">
+						<img class="img-black"	src="${pageContext.request.contextPath}/resources/img/alert-black.png" style="width: 20px; height: 20px;" alt=""> 
+						<img class="img-red" src="${pageContext.request.contextPath}/resources/img/alert-red.png" style="width: 20px; height: 20px;" alt="">
 					</button>
 				</div>
 				<div class="freeboard_page_title">
 					<div class="title">${freeboard.boardTitle}</div>
 					<div class="nickname">${freeboard.nickname}
-						<img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSirRCxfXvgU4rkE8dmKE6lqewZ4D7wa40h0Q&s"
-							alt="">
+						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSirRCxfXvgU4rkE8dmKE6lqewZ4D7wa40h0Q&s" alt="">
 					</div>
 					<div class="writeDatw">${freeboard.boardWritedate}</div>
 					<div class="boardViews">조회수 ${freeboard.boardViews}</div>
@@ -105,11 +91,11 @@ String userCode = (user != null) ? user.getUserCode() : null;
 					<div class="freeboard_page_img">
 						<div>
 							<!-- 좋아요, 스크랩 부분 -->
-							<a href="#" class="like-btn"> <i
-								class="fa-regular fa-heart fa-xl like-icon"></i> <!-- 좋아요 클릭 변경 아이콘 -->
+							<a href="#" class="like-btn"> 
+								<i class="fa-regular fa-heart fa-xl like-icon"></i> <!-- 좋아요 클릭 변경 아이콘 -->
 								<i class="fa-solid fa-heart fa-xl liked-icon hidden"></i>
-							</a> <a href="#" class="scrap-btn"> <i
-								class="fa-regular fa-bookmark fa-lg scrap-icon"></i> <!-- 글 스크랩 시 변경 아이콘 -->
+							</a> <a href="#" class="scrap-btn"> 
+								<i class="fa-regular fa-bookmark fa-lg scrap-icon"></i> <!-- 글 스크랩 시 변경 아이콘 -->
 								<i class="fa-solid fa-bookmark fa-lg scraped-icon hidden"></i>
 							</a>
 
@@ -129,8 +115,7 @@ String userCode = (user != null) ? user.getUserCode() : null;
 								<div class="comment" id="comment_${loop.index}"
 									data-user-code="${comment.userCode}">
 									<div class="comment_name">${comment.nickname}</div>
-									<input type="hidden" class="modiCommentCode"
-										value="${comment.commentCode}">
+									<input type="hidden" class="modiCommentCode" value="${comment.commentCode}">
 									<div class="comment_content">${comment.commentContent}</div>
 									<div class="comment_date">${comment.commentDate}</div>
 									<button class="btnModi" onclick="editComment(this)">수정</button>
