@@ -56,8 +56,13 @@
     text-align: justify;
 }
 
+.img-wrap{
+   text-align: center;
+}
+
 .upload-img{
    margin-bottom: 30px;
+   width: 300px;
 }
 
 #content-answer{
@@ -88,6 +93,11 @@ button{
 
 button:hover{
    cursor: pointer;
+}
+
+
+.hidden {
+    display: none;
 }
 
 /* 푸터 잠시만~ */

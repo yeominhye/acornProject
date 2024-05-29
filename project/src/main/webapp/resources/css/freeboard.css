@@ -207,9 +207,3 @@ span.active {
 	color: orangered;
 	font-weight: bold;
 }
-
-footer {
-	height: 150px;
-	background-color: rgb(170, 221, 255);
-	text-align: center;
-}

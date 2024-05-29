@@ -151,5 +151,5 @@
     });
 </script>
 
-<footer></footer>
+<%@ include file="../footer-sub.jsp" %>
 </html>

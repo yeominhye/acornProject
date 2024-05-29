@@ -34,10 +34,10 @@
 
                       <tbody>
                       <% int index =0; %>
-                      <c:forEach var="myinquiry" items="${BoardList}">
+                      <c:forEach var="myinquiry" items="${BoardList}" varStatus="loop">
                        <%index++; %>
                         <tr>
-                          <td class="table-number"><%=index%></td>
+                          <td class="table-number">${BoardList.size() - loop.index}</td>
                           <td class="table-title"><a href="inquiry/detail${myinquiry.boardCode}">${myinquiry.boardTitle}</a></td>
                           <td>2024.05.13</td>
                           <td class="table-status">답변대기</td>
@@ -52,9 +52,8 @@
         </div>
         </div>
 
-        <footer>
-            
-        </footer>
+        
+        <%@ include file="../footer-sub.jsp" %>
 </body>
 
 

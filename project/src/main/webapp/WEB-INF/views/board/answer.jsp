@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../nav-sub.jsp" %>	
+<%@ include file="../nav-sub.jsp" %>   
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +14,7 @@
      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/answer.css" >
 
- <style>
-   img{
-   width:100px;
-   height:100px;
-   }
- </style>
+ 
 
 </head>
 
@@ -66,7 +61,15 @@
                             <dt class="inner-title">내용
                             <dd class="inner-content">
                             
-                            <img class="upload-img" alt="문의사진" src="/project/board/images/${myboard.boardImgReal}">            
+                               <div class="img-wrap">
+                               <c:if test="${empty myboard.boardImgReal}">
+                                    <img class="upload-img hidden" alt="문의사진">
+                                </c:if>
+                                <c:if test="${not empty myboard.boardImgReal}">
+                                    <img class="upload-img" alt="문의사진" src="/project/board/images/${myboard.boardImgReal}">
+                                </c:if>
+                                </div>
+                                
                                 <p>${myboard.boardContent}</p>
                             </dd>
                             </dt>

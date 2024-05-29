@@ -6,6 +6,7 @@
 
     <select id="selectTotalCount" resultType="int">
         SELECT COUNT(*) FROM boardtbl
+        WHERE boardType !=6
     </select>
     
 

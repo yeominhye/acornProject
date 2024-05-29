@@ -16,6 +16,12 @@
             display: flex;
             justify-content: space-between;
         }
+        .footer {
+        	width: 100%;
+        	position: absolute;
+        	left: 0;
+        	bottom: 0;
+        }
 
          /***********
         *** side ***
@@ -404,5 +410,6 @@
     
         resetBtn.addEventListener("click", resetBtnEvent);
     </script>
+	<div class="footer"><%@ include file="../footer-sub.jsp" %></div>
 </body>
 </html>

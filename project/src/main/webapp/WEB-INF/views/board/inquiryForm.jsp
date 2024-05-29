@@ -58,7 +58,7 @@
                         <div id="img-container"></div>
                         <input class="imgUploader" type="file"  name="boardImg" accept="image/*" onchange="loadFiles(this)" multiple>
 
-                        <p class="notice"> 첨부된 이미지 미리보기는 최대 3개까지 가능합니다.</p>
+                        <p class="notice"> 이미지는 한 장만 첨부 가능합니다.</p>
                         
                         
                   <input type=hidden name="boardTheme" id="boardTheme" value="0">
@@ -75,12 +75,7 @@
                         <button class="submit-button">문의등록</button>
                     </fieldset>
                     
-                </form>
-                
-                
-                
-                
-                
+                </form>        
             </div>
 
 

@@ -131,5 +131,7 @@
             </div>
         </div>
     </div>
+    
+	<%@ include file="../footer-sub.jsp" %>
 </body>
 </html>

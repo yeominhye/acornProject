@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <th>잔여 포인트</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="pointList">
                 <c:if test="${not empty pointList}">
                     <c:forEach var="point" items="${pointList}">
 					    <c:if test="${point.pointStatus == 1 || point.pointStatus == 3}">
@@ -149,9 +149,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 </tr>
             </tfoot>
         </table>
+        
+<div class="pagination" id="pagination"></div>
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/pagination.js"></script>
 <%@ include file="../footer-sub.jsp" %>
 </body>
 </html>

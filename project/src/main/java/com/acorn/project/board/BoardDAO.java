@@ -28,7 +28,7 @@ public class BoardDAO implements BoardDAOI {
 		 //현재페이지정보,  전체레코드수      // 1    1:5     // 2   == > 5-10
 		int pageSize=5;
 		
-		int  start  =   (currentPage  -1) *pageSize;
+		int  start  =   (currentPage  -1) *pageSize+1;
 	 	int  end  =   pageSize;
 		
 	 	
