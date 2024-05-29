@@ -13,6 +13,11 @@ public class BoardService implements BoardServiceI {
 	BoardDAO dao;
 	
 	@Override
+	public int selectTotalCount() {
+		return dao.selectTotalCount();
+	}
+	
+	@Override
 	public List<Board> getBoardBytype(int boardType , int currentPage){		
 		return dao.selectAll(  boardType, currentPage  );
 	}

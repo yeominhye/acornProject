@@ -14,7 +14,7 @@
    document.addEventListener("DOMContentLoaded", function() {
        var currentURL = window.location.href;
        
-       var urlParts = currentURL.split("=");
+       var urlParts = currentURL.split("type=");
        var lastValue = urlParts[urlParts.length - 1];
        
       var header = document.querySelector("h2");
@@ -35,6 +35,7 @@
            header.innerText = "전체글";
        }
    });
+   
    
     function searchCheck() {
         var condition = document.getElementsByName("condition")[0].value;
@@ -82,42 +83,39 @@
                         </thead>
                         <tbody>
                             <!-- DB 연동해서 불러오기 -->
-                            <% int index =0; %>
-                            <c:forEach var="list" items="${freeBoardList}" varStatus="loop">
-                            <% index++;%>
+                         
+                            <c:forEach var="list" items="${freeBoardList}" varStatus="status" >
+              				
                               <tr>
-                                <td>${freeBoardList.size() - loop.index}</td>
+                             	<td>${paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)}</td>
                                 <td class="td-title"><a href="/project/board/free/${list.boardCode}">${list.boardTitle}</a></td>
                                 <td>${list.nickname}</td>
                                 <td>${list.boardWritedate}</td>
                                 <td>${list.boardViews}</td>
-                            </tr>
+                           	  </tr>
                              </c:forEach>
                             
                         </tbody>
                     </table>
                 </div>
 
-                <div class="page_number">
-               <div class="paging">
-                    <div style="display: flex; align-items: center;">
-                      <!-- Fontawesome Icon -->
-                      <i class="fa-solid fa-angles-left" id="first_page"></i>
-                      <i class="fa-solid fa-angle-left" id="prev_page"></i>
-                      <!--  -->
-                      <div class="pages">
-                        <span class="active">1</span>
-                        <span>2</span>
-                        <span>3</span>
-                        <span>4</span>
-                        <span>5</span>
-                      </div>
-                      <!-- Fontawesome Icon -->
-                      <i class="fa-solid fa-angle-right" id="next_page"></i>
-                      <i class="fa-solid fa-angles-right" id="last_page"></i>
-                    </div>
-                   </div>
-               </div>
+                <div class=""><!--  page_number -->
+               <div class=""> <!-- paging -->
+						<c:if test="${paging.currentGrp > 1}">
+							<a href="/project/board/free?type=-1&page=${paging.grpStartPage - 1}">[ 이전 ]</a>
+						</c:if>
+
+
+						<c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+							<a href="/project/board/free?type=-1&page=${i}">[ ${i} ]</a>
+						</c:forEach>
+
+
+
+						<c:if test="${paging.grpEndPage <  paging.totalPage}">
+							<a href="/project/board/free?type=-1&page=${paging.grpEndPage+1}">[ 다음 ]</a>
+						</c:if>
+				</div>
                 <div class="search_form">
                 <form action="/project/board/free/search" method="post" class="search-form-inner" onsubmit="return searchCheck()">
                <select name="condition">
