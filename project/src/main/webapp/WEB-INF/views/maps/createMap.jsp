@@ -35,8 +35,7 @@
     function searchPlaces() {
     }
     
-    var dayIndex = 1;
-    document.getElementById("tourdays").value = dayIndex;
+    
 </script>
 </head>
 
@@ -44,7 +43,8 @@
 
 
     <h2>루트 제작 페이지</h2>
-    <form action="/project/maps/create" method="post" id="createMapForm">
+    <form action="/project/board/createMap_process.do" method="post" id="createMapForm">
+    <input type="text" id="userCode" name="userCode" value="${user.userCode}"">
         <table>
         	<tr>
         		<td>제목 : </td>
@@ -52,37 +52,41 @@
         	</tr>
         	<tr>
     			<td>날짜 :</td>
-    			<td><input type="text" id="tourdays" name="tourdays" readonly></td>
+    			<td><input type="text" id="boardTourdays" name="boardTourdays" readonly></td>
+			</tr>
+			<tr>
+    			<td>총평 :</td>
+    			<td><input type="text" id="boardContent" name="boardContent"></td>
 			</tr>
 			
 
         	 <tr>
             	<td>지역 :</td>
             	<td>
-                	<select name="region" id="region">
-	                    <option value="서울">서울</option>
-	                    <option value="인천">인천</option>
-	                    <option value="대전">대전</option>
-	                    <option value="대구">대구</option>
-	                    <option value="경기">경기</option>
-	                    <option value="부산">부산</option>
-	                    <option value="울산">울산</option>
-	                    <option value="광주">광주</option>
-	                    <option value="강원">강원</option>
-	                    <option value="충북">충북</option>
-	                    <option value="충남">충남</option>
-	                    <option value="경북">경북</option>
-	                    <option value="경남">경남</option>
-	                    <option value="전북">전북</option>
-	                    <option value="전남">전남</option>
-	                    <option value="제주">제주</option>
+                	<select name="boardRegion" id="boardRegion">
+	                    <option value="0">서울</option>
+	                    <option value="1">인천</option>
+	                    <option value="2">대전</option>
+	                    <option value="3">대구</option>
+	                    <option value="4">경기</option>
+	                    <option value="5">부산</option>
+	                    <option value="6">울산</option>
+	                    <option value="7">광주</option>
+	                    <option value="8">강원</option>
+	                    <option value="9">충북</option>
+	                    <option value="10">충남</option>
+	                    <option value="11">경북</option>
+	                    <option value="12">경남</option>
+	                    <option value="13">전북</option>
+	                    <option value="14">전남</option>
+	                    <option value="15">제주</option>
 	                </select>
 	            </td>
         	</tr>
         	<tr>
         		<td>카테고리 :</td>
             	<td>
-                	<select name="category" id="category">
+                	<select name="boardTheme" id="boardTheme">
 	                    <option value="1">나홀로 힐링</option>
 	                    <option value="2">연인과 함께</option>
 	                    <option value="3">친목 다지기~</option>
@@ -167,12 +171,6 @@
                 <div id="clickLatlng" class="click"></div>
             </div>
         </div>
-
-        <div>
-            <label for="overallComments">총평:</label>
-            
-        </div>
-
         <button type="button" onclick="addDayPlan()">+</button>
 
         <div>
@@ -186,7 +184,7 @@
 
 <script>
     var dayIndex = 1; // 예시로 1로 초기화
-    document.getElementById("tourdays").value = dayIndex;
+    document.getElementById("boardTourdays").value = dayIndex;
 </script>
 </body>
 </html>

@@ -383,11 +383,34 @@ public class BoardController {
    
    
  // -----루트 해보는 중---
- @RequestMapping("/createMap")
- public String showCreateForm(Model model) {
-     model.addAttribute("board", new Board());
-     return "maps/createMap";
- }
+// @RequestMapping("/createMap")
+// public String showCreateForm(Model model) {
+//	 User user = (User)session.getAttribute("user");
+//     model.addAttribute("board", new Board());
+//     return "maps/createMap";
+// }
+ 
+ 
+ 
+ @RequestMapping(value="/createMap", method=RequestMethod.GET)
+	public String createRoute( RouteBoard routeBoard, HttpSession session, Model model) {
+	    User user =(User)session.getAttribute("user");
+	 
+	    if(user != null) {
+         return "maps/createMap";
+	    } 
+	    
+	    return "redirect:/user/login.do";
+	}
+ 
+ 
+ @RequestMapping(value="/createMap_process.do", method=RequestMethod.POST)
+	public String createRoute_process (RouteBoard routeBoard) throws Exception {
+		boardService.insertRoute(routeBoard);
+		System.out.println(routeBoard);
+		return "redirect:/board/showBoard";
+	}
+ 
  
  @RequestMapping("/showBoard")
  public String showBoard(Model model) throws Exception {
