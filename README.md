@@ -111,9 +111,7 @@ clone해서 import할 경우 에러 발생
 
 ## DB 복붙용
 drop table usertbl;
-
 drop table boardtbl;
-
 drop table commenttbl;
 
 drop table archivetbl;
