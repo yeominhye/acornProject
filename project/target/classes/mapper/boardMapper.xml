@@ -128,4 +128,17 @@
 		ORDER BY boardWritedate DESC
 	</select>
 	
+	<insert id="insertRoute" parameterType="RouteBoard">
+		INSERT INTO boardtbl
+			(userCode, boardImgOrigin, boardImgReal, boardTitle, boardContent, boardTheme, boardTourdays, boardWritedate, 
+			boardViews, boardPoint, boardType, boardRegion, days)
+		VALUES 
+		(#{userCode}, #{boardImgOrigin}, #{boardImgReal}, #{boardTitle}, #{boardContent},#{boardTheme},#{boardTourdays},now(),
+		#{boardViews},#{boardPoint}, 0, #{boardRegion}, #{days, typeHandler=com.acorn.project.board.JsonListTypeHandler})
+	</insert>
+	
+	<select id="selectRoute" resultType="RouteBoard" parameterType="String">
+   		select * from boardtbl where boardCode = #{boardCode}
+   </select>
+	
 </mapper>

@@ -380,5 +380,46 @@ public class BoardController {
    public String festivalPost() {
       return "/board/routePost";
    }
+   
+   
+ // -----루트 해보는 중---
+// @RequestMapping("/createMap")
+// public String showCreateForm(Model model) {
+//	 User user = (User)session.getAttribute("user");
+//     model.addAttribute("board", new Board());
+//     return "maps/createMap";
+// }
+ 
+ 
+ 
+ @RequestMapping(value="/createMap", method=RequestMethod.GET)
+	public String createRoute( RouteBoard routeBoard, HttpSession session, Model model) {
+	    User user =(User)session.getAttribute("user");
+	 
+	    if(user != null) {
+         return "maps/createMap";
+	    } 
+	    
+	    return "redirect:/user/login.do";
+	}
+ 
+ 
+ @RequestMapping(value="/createMap_process.do", method=RequestMethod.POST)
+	public String createRoute_process (RouteBoard routeBoard) throws Exception {
+		boardService.insertRoute(routeBoard);
+		System.out.println(routeBoard);
+		return "redirect:/board/showBoard";
+	}
+ 
+ 
+ @RequestMapping("/showBoard")
+ public String showBoard(Model model) throws Exception {
+     String boardCode = "b0007";
+     RouteBoard routeBoard = boardService.selectRoute(boardCode); // boardCode로 해당하는 데이터 가져오는 메소드 호출
+     model.addAttribute("routeBoard", routeBoard);
+     return "maps/showMap"; // 보여줄 JSP 페이지 반환
+ }
+   
+   
 
 }

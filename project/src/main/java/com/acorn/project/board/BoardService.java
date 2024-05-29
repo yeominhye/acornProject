@@ -69,8 +69,13 @@ public class BoardService implements BoardServiceI {
 	}
 
 
-	
-	
-	
-	
+	@Override
+	public RouteBoard selectRoute(String boardCode) throws Exception {
+        return dao.selectRoute(boardCode);
+    }
+    
+	@Override
+	public int insertRoute(RouteBoard routeBoard) throws Exception {
+        return dao.insertRoute(routeBoard);
+    }
 }

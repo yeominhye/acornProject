@@ -108,3 +108,76 @@ clone해서 import할 경우 에러 발생
 - pushed to https://github.com/~~ 확인
 
 - 한 번 테스트 해보시고 github에서 잘 올라갔나 확인해주세요~!!
+
+## DB 복붙용
+drop table usertbl;
+drop table boardtbl;
+drop table commenttbl;
+
+drop table archivetbl;
+
+drop table reporttbl;
+
+drop table liketbl;
+
+drop table pointtbl;
+
+
+CREATE TABLE usertbl(
+
+    userCode VARCHAR(255) PRIMARY KEY,
+    
+    userId VARCHAR(255) NOT NULL,
+    
+    userPw VARCHAR(255) NOT NULL,
+    
+    userName VARCHAR(255) NOT NULL,
+    
+    nickname VARCHAR(255) NOT NULL,
+    
+    userBirth DATE,
+    
+    userTel VARCHAR(20),
+    
+    userPoint INT DEFAULT 0
+    
+);
+
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_usertbl
+
+BEFORE INSERT ON usertbl FOR EACH ROW
+
+BEGIN
+
+    DECLARE next_userCode INT;
+    
+    SELECT COALESCE(MAX(CAST(SUBSTRING(userCode, 2) AS UNSIGNED)), 0) + 1 INTO next_userCode
+    FROM usertbl;
+
+    SET NEW.userCode = CONCAT('u', LPAD(next_userCode, 4, '0'));
+    
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_nickname_usertbl
+
+BEFORE INSERT ON usertbl FOR EACH ROW
+
+BEGIN
+
+    DECLARE next_nickname INT;
+
+    SELECT COALESCE(MAX(CAST(SUBSTRING(nickname, 2) AS UNSIGNED)), 0) + 1 INTO next_nickname
+    FROM usertbl;
+
+    SET NEW.nickname = CONCAT('n', LPAD(next_nickname, 4, '0'));
+    
+END //
+
+DELIMITER ;

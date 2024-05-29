@@ -94,6 +94,15 @@ public class BoardDAO implements BoardDAOI {
 		return session.selectList(namespace+"selectSearch",search);
 	}
 
+	@Override
+	public RouteBoard selectRoute(String boardCode) { 
+		return session.selectOne(namespace+"selectRoute", boardCode);
+	}
 	 
+	
+	@Override
+	 public int insertRoute(RouteBoard routeBoard) throws Exception {
+	    return session.insert(namespace + "insertRoute", routeBoard);
+	}
 
 }

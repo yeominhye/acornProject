@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Board" type="com.acorn.project.board.Board"/>
+		<typeAlias alias="RouteBoard" type="com.acorn.project.board.RouteBoard"/>
 		<typeAlias alias="Comment" type="com.acorn.project.comment.Comment"/>
 		<typeAlias alias="Like" type="com.acorn.project.like.Like"/>
 		<typeAlias alias="Archive" type="com.acorn.project.archive.Archive"/>
@@ -13,4 +14,7 @@
 		<typeAlias alias="User" type="com.acorn.project.user.User"/>	
 		<typeAlias alias="Point" type="com.acorn.project.point.Point"/>		
 	</typeAliases>
+	<typeHandlers>
+    	<typeHandler handler="com.acorn.project.board.JsonListTypeHandler"/>
+	</typeHandlers>
 </configuration>
