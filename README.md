@@ -26,18 +26,18 @@ git clone https://github.com/yeominhye/acornProject.git
 
    -> git clone URL
 
-  ⅰ. 내가 사용할 폴더에 들어가서 우클릭 -> git bash here 로 cmd 켜기.
+  ⅰ. 내가 사용할 폴더에 들어가서 우클릭 -> git bash here 로 cmd 켜기.
    
-  ⅱ. git clone http://포크한 당신의 리포지토리 URL // 민혜 거 X. 직접 포크한 당신의 리포지토리 url
+  ⅱ. git clone http://포크한 당신의 리포지토리 URL // 민혜 거 X. 직접 포크한 당신의 리포지토리 url
    
-  ⅲ. 자신의 로컬 폴더에 복제되었는지 확인하기. 
+  ⅲ. 자신의 로컬 폴더에 복제되었는지 확인하기. 
 
 
 Ⅲ. remote add로 팀 버전 이력도 확인하기 
 
-  -> git remote -v // 리모트중인 리포지토리 확인
+  -> git remote -v // 리모트중인 리포지토리 확인
 
-  -> git remote add upstream(이 부분은 별칭.. 일반적으로 업스트림으로 씀) URL
+  -> git remote add upstream(이 부분은 별칭.. 일반적으로 업스트림으로 씀) URL
 
    $ git remote add upstream https://github.com/yeominhye/acornProject.git    <- 가져다 쓰세요 
 
@@ -111,7 +111,9 @@ clone해서 import할 경우 에러 발생
 
 ## DB 복붙용
 drop table usertbl;
+
 drop table boardtbl;
+
 drop table commenttbl;
 
 drop table archivetbl;
@@ -122,6 +124,8 @@ drop table liketbl;
 
 drop table pointtbl;
 
+------------
+--usertbl--
 
 CREATE TABLE usertbl(
 
@@ -177,6 +181,317 @@ BEGIN
     FROM usertbl;
 
     SET NEW.nickname = CONCAT('n', LPAD(next_nickname, 4, '0'));
+    
+END //
+
+DELIMITER ;
+
+INSERT INTO usertbl (userId, userPw, userName, userTel)
+
+VALUES ('example_id', 'example_pw', 'John Doe','010-1234-5678');
+
+INSERT INTO usertbl (userId, userPw, userName, userTel)
+
+VALUES ('1', '1', 'John 1','1');
+
+
+
+------------
+--boardtbl--
+
+CREATE TABLE boardtbl(
+
+   boardCode VARCHAR(255) PRIMARY KEY,
+    
+	userCode VARCHAR(255) NOT NULL,
+ 
+   FOREIGN KEY (userCode)
+   
+   REFERENCES usertbl(userCode) 
+   
+   ON UPDATE CASCADE
+   
+   ON DELETE  NO ACTION,
+   
+   boardImgOrigin VARCHAR(255),
+   
+   boardImgReal VARCHAR(255),
+   
+   boardTitle VARCHAR(255) NOT NULL,
+   
+   boardContent LONGTEXT NOT NULL,
+
+   boardTheme INT,
+   
+   boardTourdays INT,
+   
+	boardWritedate DATETIME NOT NULL,
+ 
+   boardViews INT,
+   
+   boardPoint INT,
+   
+   boardType INT,
+   
+	boardRegion INT,
+ 
+	days JSON
+ 
+);
+
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_boardtbl
+
+BEFORE INSERT ON boardtbl FOR EACH ROW
+
+BEGIN
+
+    DECLARE next_board_code INT;
+   
+    SELECT COALESCE(MAX(CAST(SUBSTRING(boardCode, 2) AS UNSIGNED)), 0) + 1 INTO next_board_code
+    FROM boardtbl;
+
+    SET NEW.boardCode = CONCAT('b', LPAD(next_board_code, 4, '0'));
+    
+END //
+
+DELIMITER ;
+
+
+
+
+------------
+--commenttbl--
+
+CREATE TABLE commenttbl(
+
+   commentCode VARCHAR(255) PRIMARY KEY,
+    
+   boardCode varchar(255),
+   
+   FOREIGN KEY (boardCode)
+    
+   REFERENCES boardtbl(boardCode) 
+   
+   ON UPDATE CASCADE
+   
+   ON DELETE CASCADE,
+   
+   userCode varchar(255),
+   
+   FOREIGN KEY (userCode)
+   
+   REFERENCES usertbl(userCode) 
+   
+   ON UPDATE CASCADE
+   
+   ON DELETE CASCADE,
+   
+   commentContent varchar(1600) NOT NULL,
+   
+   commentDate datetime
+   
+);
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_commenttbl
+
+BEFORE INSERT ON commenttbl FOR EACH ROW
+
+BEGIN
+
+    DECLARE next_comment_code INT;
+    
+    SELECT COALESCE(MAX(CAST(SUBSTRING(commentCode, 2) AS UNSIGNED)), 0) + 1 INTO next_comment_code
+    FROM commenttbl;
+
+    SET NEW.commentCode = CONCAT('c', LPAD(next_comment_code, 4, '0'));
+    
+END //
+
+DELIMITER ;
+
+
+
+
+
+------------
+--pointtbl--
+
+CREATE TABLE pointtbl(
+
+    pointCode VARCHAR(255) PRIMARY KEY,
+    
+    userCode VARCHAR(255) NOT NULL,
+    
+    boardCode VARCHAR(255),
+    
+    pointStatus INT NOT NULL, -- 0: 사용 1: 포인트_구매 2: 환급
+    
+    pointAmount int NOT NULL,
+    
+    pointDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    
+);
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_pointtbl
+
+BEFORE INSERT ON pointtbl FOR EACH ROW
+BEGIN
+    DECLARE next_pointCode INT;
+
+    SELECT COALESCE(MAX(CAST(SUBSTRING(pointCode, 2) AS UNSIGNED)), 0) + 1 INTO next_pointCode
+    FROM pointtbl;
+
+    SET NEW.pointCode = CONCAT('p', LPAD(next_pointCode, 4, '0'));
+    
+END //
+
+DELIMITER ;
+
+
+
+
+
+------------
+--liketbl--
+
+CREATE TABLE liketbl(
+
+   userCode VARCHAR(255) NOT NULL,
+   
+    FOREIGN KEY (userCode)
+    
+    REFERENCES usertbl(userCode) 
+    
+    ON UPDATE CASCADE
+    
+    ON DELETE CASCADE,
+    
+    boardCode VARCHAR(255) NOT NULL,
+    
+    FOREIGN KEY (boardCode)
+    
+    REFERENCES boardtbl(boardCode) 
+    
+    ON UPDATE CASCADE
+    
+    ON DELETE CASCADE
+    
+);
+
+
+
+------------
+--archivetbl--
+
+CREATE TABLE archivetbl(
+
+   archiveCode varchar(255) primary key,
+   
+    userCode VARCHAR(255) NOT NULL,
+    
+    FOREIGN KEY (userCode)
+    
+    REFERENCES usertbl(userCode) 
+    
+    ON UPDATE CASCADE
+    
+    ON DELETE CASCADE,
+    
+    boardCode VARCHAR(255) NOT NULL,
+    
+    FOREIGN KEY (boardCode)
+    
+    REFERENCES boardtbl(boardCode) 
+    
+    ON UPDATE CASCADE
+    
+    ON DELETE CASCADE
+    
+);
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_archivetbl
+
+BEFORE INSERT ON archivetbl FOR EACH ROW
+BEGIN
+    DECLARE next_archiveCode INT;
+
+    SELECT COALESCE(MAX(CAST(SUBSTRING(archiveCode, 2) AS UNSIGNED)), 0) + 1 INTO next_archiveCode
+    FROM archivetbl;
+
+    SET NEW.archiveCode = CONCAT('a', LPAD(next_archiveCode, 4, '0'));
+    
+END //
+
+DELIMITER ;
+
+
+
+
+------------
+--reporttbl--
+
+CREATE table reporttbl(
+
+   reportCode varchar(255) primary key,
+   
+   boardCode VARCHAR(255) NOT NULL,
+   
+   FOREIGN KEY (boardCode)
+   
+   REFERENCES boardtbl(boardCode) 
+   
+   ON UPDATE CASCADE
+   
+   ON DELETE CASCADE,
+   
+   reportingUserCode VARCHAR(255) NOT NULL,
+   
+   FOREIGN KEY (reportingUserCode)
+   
+   REFERENCES usertbl(userCode) 
+   
+   ON UPDATE CASCADE
+   
+   ON DELETE CASCADE,
+   
+   reportedUserCode VARCHAR(255) NOT NULL,
+   
+   FOREIGN KEY (reportedUserCode)
+   
+   REFERENCES usertbl(userCode) 
+   
+   ON UPDATE CASCADE
+   
+   ON DELETE CASCADE,
+   
+   reportDate datetime,
+   
+   reportContent varchar(255)
+   
+);
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_reporttbl
+
+BEFORE INSERT ON reporttbl FOR EACH ROW
+
+BEGIN
+    DECLARE next_reportCode INT;
+
+    SELECT COALESCE(MAX(CAST(SUBSTRING(reportCode, 2) AS UNSIGNED)), 0) + 1 INTO next_reportCode
+    FROM reporttbl;
+
+    SET NEW.reportCode = CONCAT('r', LPAD(next_reportCode, 4, '0'));
     
 END //
 
