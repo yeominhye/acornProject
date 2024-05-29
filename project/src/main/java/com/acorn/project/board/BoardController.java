@@ -380,5 +380,23 @@ public class BoardController {
    public String festivalPost() {
       return "/board/routePost";
    }
+   
+   
+ // -----루트 해보는 중---
+ @RequestMapping("/createMap")
+ public String showCreateForm(Model model) {
+     model.addAttribute("board", new Board());
+     return "maps/createMap";
+ }
+ 
+ @RequestMapping("/showBoard")
+ public String showBoard(Model model) throws Exception {
+     String boardCode = "b0007";
+     RouteBoard routeBoard = boardService.selectRoute(boardCode); // boardCode로 해당하는 데이터 가져오는 메소드 호출
+     model.addAttribute("routeBoard", routeBoard);
+     return "maps/showMap"; // 보여줄 JSP 페이지 반환
+ }
+   
+   
 
 }

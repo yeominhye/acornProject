@@ -26,4 +26,8 @@ public interface BoardServiceI {
 	
 	List<Board> getList(SearchCondition search);
 
+	RouteBoard selectRoute(String boardCode) throws Exception;
+
+	int insertRoute(RouteBoard routeBoard) throws Exception;
+
 }
