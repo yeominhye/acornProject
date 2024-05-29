@@ -57,39 +57,7 @@
 
 
     <h2>루트 제작 페이지</h2>
-    <form:form modelAttribute="route" method="post" action="/routes" enctype="multipart/form-data">
-        <div id="dayPlans">
-            <c:forEach items="${route.dayPlans}" varStatus="loop">
-                <h2>Day ${loop.index + 1}</h2>
-                <textarea name="dayPlans[${loop.index}].comments" placeholder="Comments"></textarea>
-                <div id="map${loop.index + 1}"></div>
-            </c:forEach>
-        </div>
-        <div>
-            <label for="coverImage">대표 사진:</label>
-            <input type="file" name="coverImageFile" id="coverImageFile" accept="image/*" onchange="previewImage(this);" />
-            <img id="coverImagePreview" src="#" alt="대표 사진 미리보기" style="max-width: 200px; max-height: 200px; display: none;" />
-        </div>
-
-        <div>
-        	<div>
-           	 	<label for="title">제목:</label>
-            	<input type="text" id="title" />
-	        </div>
-    	    <div>
-        	    <label for="date">날짜:</label>
-            	<form:input path="date" id="date" />
-        	</div>
-        	<div>
-            	<label for="region">지역:</label>
-            	<form:input path="region" id="region" />
-        	</div>
-        	<div>
-            	<label for="category">카테고리:</label>
-            	<form:input path="category" id="category" />
-        	</div>
-        </div>
-        
+    <form action="/showMap" method="post">
         <table>
         	<tr>
         		<td>제목 : </td>
@@ -198,10 +166,8 @@
             <div id="searchTab" class="bg_white" class="slide">
                 <div class="option">
                     <div>
-                        <form onsubmit="searchPlaces(); return false;">
                             <input type="text" value="이태원 맛집" id="keyword" size="15">
                             <button type="submit">검색</button>
-                        </form>
                     </div>
                 </div>
                 <hr>
@@ -216,7 +182,7 @@
 
         <div>
             <label for="overallComments">총평:</label>
-            <form:input path="overallComments" id="overallComments" />
+            
         </div>
 
         <button type="button" onclick="addDayPlan()">+</button>
@@ -224,7 +190,7 @@
         <div>
             <button type="submit">저장</button>
         </div>
-    </form:form>
+    </form>
 
     <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7560b5ddb94a9dc91354ef62a6b750ee"></script> -->
     <script type="text/javascript"

@@ -26,17 +26,17 @@ public class MapsController {
         return "maps/showMap";
     }
     
-    @RequestMapping("/createForm")
+    @RequestMapping("/createMap")
     public String showCreateForm(Model model) {
         model.addAttribute("maps", new Maps());
-        return "maps/createForm";
+        return "maps/createMap";
     }
     
     @PostMapping("/create")
     public String createMap(@ModelAttribute("maps") Maps maps, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             // 에러 처리 로직
-            return "/maps/createForm";
+            return "/maps/createMap";
         }
 
         try {
@@ -45,7 +45,7 @@ public class MapsController {
         } catch (Exception e) {
             e.printStackTrace();
             // 에러 처리 로직
-            return "/maps/createForm";
+            return "/maps/createMap";
         }
 
         // 저장 후 지도 페이지로 리다이렉트, boardCode를 경로 변수로 전달
