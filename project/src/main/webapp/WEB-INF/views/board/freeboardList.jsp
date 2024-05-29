@@ -85,14 +85,14 @@
                             <!-- DB 연동해서 불러오기 -->
                          
                             <c:forEach var="list" items="${freeBoardList}" varStatus="status" >
-              				
+                          
                               <tr>
-                             	<td>${paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)}</td>
+                                <td>${paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)}</td>
                                 <td class="td-title"><a href="/project/board/free/${list.boardCode}">${list.boardTitle}</a></td>
                                 <td>${list.nickname}</td>
                                 <td>${list.boardWritedate}</td>
                                 <td>${list.boardViews}</td>
-                           	  </tr>
+                                </tr>
                              </c:forEach>
                             
                         </tbody>
@@ -101,21 +101,21 @@
 
                 <div class=""><!--  page_number -->
                <div class=""> <!-- paging -->
-						<c:if test="${paging.currentGrp > 1}">
-							<a href="/project/board/free?type=-1&page=${paging.grpStartPage - 1}">[ 이전 ]</a>
-						</c:if>
+                  <c:if test="${paging.currentGrp > 1}">
+                     <a href="/project/board/free?type=-1&page=${paging.grpStartPage - 1}">[ 이전 ]</a>
+                  </c:if>
 
 
-						<c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
-							<a href="/project/board/free?type=-1&page=${i}">[ ${i} ]</a>
-						</c:forEach>
+                  <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+                     <a href="/project/board/free?type=-1&page=${i}">[ ${i} ]</a>
+                  </c:forEach>
 
 
 
-						<c:if test="${paging.grpEndPage <  paging.totalPage}">
-							<a href="/project/board/free?type=-1&page=${paging.grpEndPage+1}">[ 다음 ]</a>
-						</c:if>
-				</div>
+                  <c:if test="${paging.grpEndPage <  paging.totalPage}">
+                     <a href="/project/board/free?type=-1&page=${paging.grpEndPage+1}">[ 다음 ]</a>
+                  </c:if>
+            </div>
                 <div class="search_form">
                 <form action="/project/board/free/search" method="post" class="search-form-inner" onsubmit="return searchCheck()">
                <select name="condition">
