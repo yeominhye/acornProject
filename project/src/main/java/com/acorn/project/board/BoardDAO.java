@@ -92,7 +92,7 @@ public class BoardDAO implements BoardDAOI {
 	public List<Board> getList(SearchCondition search, int currentPage){
 		
 		int pageSize=15;	
-		int  start  =   (currentPage  -1) *pageSize+1;
+		int  start  =   (currentPage  -1) *pageSize;
 
 	 	search.setStart(start);
 		
