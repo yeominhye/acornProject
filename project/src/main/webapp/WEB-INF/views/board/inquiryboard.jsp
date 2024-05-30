@@ -34,13 +34,20 @@
 
                       <tbody>
                       <% int index =0; %>
+                      	
+                     
                       <c:forEach var="myinquiry" items="${BoardList}" varStatus="loop">
                        <%index++; %>
                         <tr>
                           <td class="table-number">${BoardList.size() - loop.index}</td>
                           <td class="table-title"><a href="inquiry/detail${myinquiry.boardCode}">${myinquiry.boardTitle}</a></td>
                           <td>2024.05.13</td>
-                          <td class="table-status">답변대기</td>
+                          <td class="table-status">
+                          	 <c:choose>
+				                <c:when test="${myinquiry.inquiry_check eq 0}">답변대기</c:when>
+				                <c:when test="${myinquiry.inquiry_check eq 1}"><span style="font-weight: bold;">답변완료</span> </c:when>
+				            </c:choose>
+                          </td>
                         </tr>
                      </c:forEach>
                       </tbody>

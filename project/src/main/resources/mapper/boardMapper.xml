@@ -78,13 +78,29 @@
    
    <select id="selectMyinqu" resultType="Board" parameterType="String">
 		SELECT 
-			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, 
-			b.boardViews,b.boardType
-		FROM boardtbl b 
-		JOIN usertbl u on b.userCode=u.userCode
-		WHERE u.userId=#{userId}
-		AND b.boardType = 6
-		ORDER BY b.boardWritedate desc
+            b.boardCode, 
+            b.boardTitle, 
+            b.boardContent, 
+            b.boardWritedate, 
+            b.boardViews, 
+            b.boardType,
+            u.nickname, 
+            u.userId,
+            CASE 
+                WHEN c.boardCode IS NOT NULL THEN 1
+                ELSE 0
+            END AS inquiry_check
+        FROM 
+            boardtbl b
+        LEFT JOIN 
+            usertbl u ON b.userCode = u.userCode
+        LEFT JOIN 
+            commenttbl c ON b.boardCode = c.boardCode
+        WHERE 
+        	u.userId=#{userId}
+        AND
+            b.boardType = 6
+   		ORDER BY b.boardWritedate DESC
     </select>
 	
 	<insert id="insert" parameterType="Board">

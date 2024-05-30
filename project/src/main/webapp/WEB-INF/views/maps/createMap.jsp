@@ -16,7 +16,6 @@
     src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
-    // Preview uploaded image
     function previewImage(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -24,18 +23,9 @@
             reader.onload = function(e) {
                 $('#coverImagePreview').attr('src', e.target.result).show();
             };
-
             reader.readAsDataURL(input.files[0]);
         }
     }
-    function initializeMapForNextDay() {
-    function addDayPlan() {
-        initializeMapForNextDay();
-    }
-    function searchPlaces() {
-    }
-    
-    
 </script>
 </head>
 
@@ -44,7 +34,7 @@
 
     <h2>루트 제작 페이지</h2>
     <form action="/project/board/createMap_process.do" method="post" id="createMapForm">
-    <input type="text" id="userCode" name="userCode" value="${user.userCode}"">
+    <input type="hidden" id="userCode" name="userCode" value="${user.userCode}">
         <table>
         	<tr>
         		<td>제목 : </td>
@@ -97,11 +87,17 @@
         	</tr>
         	<tr>
         		<td>포인트 : </td>
-        		<td><input type="number" name="boardPoint"></td>
+        		<td><input type="number" id ="boardPoint" name="boardPoint"></td>
         	</tr>
         </table>
 
-        <div class="map_wrap" style="">
+        
+        <div>
+            <button type="submit">저장</button>
+        </div>
+        
+    </form>
+    <div class="map_wrap">
             <div id="map"></div>
             <div class="myTab">
                 <div class="myTab_title">Register Page</div>
@@ -159,32 +155,77 @@
                 <div class="option">
                     <div>
                             <input type="text" value="이태원 맛집" id="keyword" size="15">
-                            <button type="submit">검색</button>
+                            <button type="button">검색</button>
                     </div>
                 </div>
                 <hr>
                 <ul id="placesList"></ul>
                 <div id="pagination"></div>
             </div>
-
-            <div class="click_wrap">
-                <div id="clickLatlng" class="click"></div>
-            </div>
         </div>
-        <button type="button" onclick="addDayPlan()">+</button>
-
-        <div>
-            <button type="submit">저장</button>
-        </div>
-    </form>
-
-    <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7560b5ddb94a9dc91354ef62a6b750ee"></script> -->
-    <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e4e2ed92d2d2bdb6c1837e8f4e3094f&libraries=services,clusterer,drawing"></script>
+        
+		<form action="/project/board/dayPlans.do" method="post" id="dayPlanForm">
+		    <input type="number" name="days[${dayIndex - 1}].day" id="dayIndex" placeholder="dayIndex">
+		    <div><input type="text" name="days[${dayIndex - 1}].dayInfo" id="dayInfo" placeholder="간단한 설명을 작성해주세요."></div>
+		    <div class="click_wrap">
+		        <div id="clickLatlng" class="click"></div>
+		    </div>
+		    <button type="button" id="dayBtn">+</button>
+		</form>
+    	
+    	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7560b5ddb94a9dc91354ef62a6b750ee"></script> -->
+    	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e4e2ed92d2d2bdb6c1837e8f4e3094f&libraries=services,clusterer,drawing"></script>
 
 <script>
-    var dayIndex = 1; // 예시로 1로 초기화
-    document.getElementById("boardTourdays").value = dayIndex;
+$(document).ready(function() {
+
+	var dayIndex = 1; // 예시로 1로 초기화
+	document.getElementById("boardTourdays").value = dayIndex;
+	document.getElementById("dayIndex").value = dayIndex;
+	
+    $("#dayBtn").on('click', function() {
+        var dayIndex = $("#day").val();
+        var dayInfo = $("#dayInfo").val();
+        var clickLatlngDiv = document.getElementById("clickLatlng");
+        var positionInfos = clickLatlngDiv.getElementsByClassName("positionInfo");
+
+        var jsonData = {
+            day: document.getElementById("dayIndex").value,
+            dayInfo: dayInfo,
+            markers: []
+        };
+
+        for (var i = 0; i < positionInfos.length; i++) {
+            var positionInfo = positionInfos[i];
+            var markerIndex = i; // 현재 반복의 인덱스를 가져옵니다
+            var markerData = {
+                title: positionInfo.querySelector("#markerTitle_" + markerIndex).value,
+                latitude: positionInfo.querySelector("#latitude_" + markerIndex).value,
+                longitude: positionInfo.querySelector("#longitude_" + markerIndex).value,
+                position: positionInfo.querySelector("#position_" + markerIndex).value,
+                explain: positionInfo.querySelector("#explain_" + markerIndex).value
+            };
+            jsonData.markers.push(markerData);
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/board/dayPlans.do",
+            contentType: "application/json",
+            data: JSON.stringify(jsonData),
+            success: function(data) {
+                console.log("Success:", data);
+                dayIndex++;
+                document.getElementById("dayIndex").value = dayIndex; // 변경된 dayIndex 업데이트
+                document.getElementById("boardTourdays").value = dayIndex;
+            },
+            error: function(error) {
+                console.error("Error:", error);
+            }
+        });
+    });
+});
 </script>
 </body>
 </html>
