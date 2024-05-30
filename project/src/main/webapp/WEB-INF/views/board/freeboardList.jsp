@@ -83,7 +83,7 @@
                             <!-- DB 연동해서 불러오기 -->
                             <c:forEach var="list" items="${freeBoardList}" varStatus="status">
                                 <tr>
-                                    <td>${paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)}</td>
+                                    <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize))+1}</td>
                                     <td class="td-title"><a href="/project/board/free/${list.boardCode}">${list.boardTitle}</a></td>
                                     <td>${list.nickname}</td>
                                     <td>${list.boardWritedate}</td>

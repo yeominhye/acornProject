@@ -324,7 +324,7 @@ public class BoardController {
 
 	            Board board = new Board(vo.getBoardCode(), vo.getUserCode(), vo.getNickname(), originalName, realName, 
 	                    vo.getBoardTitle(), vo.getBoardContent(), vo.getBoardTheme(), vo.getBoardTourdays(),
-	                    vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType());
+	                    vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType(),0);
 	            System.out.println(board);
 	            String fullPath = fileDir + realName;
 	            file.transferTo(new File(fullPath));
@@ -338,7 +338,7 @@ public class BoardController {
 	    	 System.out.println("파일이 업로드되지 않았습니다.");
 	        Board board = new Board(vo.getBoardCode(), vo.getUserCode(), vo.getNickname(), null, null, 
 	                vo.getBoardTitle(), vo.getBoardContent(), vo.getBoardTheme(), vo.getBoardTourdays(),
-	                vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType());
+	                vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType(),0);
 	        boardService.regBoard(board);
 	    }
 

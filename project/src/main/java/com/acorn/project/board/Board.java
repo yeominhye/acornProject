@@ -22,4 +22,5 @@ public class Board {
 	private int boardViews;
 	private int boardPoint;
 	private int boardType;
+	private int inquiry_check;
 }
