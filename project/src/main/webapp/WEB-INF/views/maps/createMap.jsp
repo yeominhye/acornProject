@@ -113,9 +113,7 @@
                 <div class="toolBtn">
                     <button id="myButton">
                         <div class="btnImg">
-                            <img
-                                src="${pageContext.request.contextPath}/resources/img/search.png"
-                                alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/search.png" alt="">
                         </div>
                         Search
                     </button>
@@ -123,9 +121,7 @@
                 <div class="toolBtn">
                     <button id="test">
                         <div class="btnImg">
-                            <img
-                                src="${pageContext.request.contextPath}/resources/img/checkmark.png"
-                                alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/checkmark.png" alt="">
                         </div>
                         Test
                     </button>
@@ -133,9 +129,7 @@
                 <div class="toolBtn">
                     <button id="line">
                         <div class="btnImg">
-                            <img
-                                src="${pageContext.request.contextPath}/resources/img/gps-route.png"
-                                alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/gps-route.png" alt="">
                         </div>
                         Line
                     </button>
@@ -143,9 +137,7 @@
                 <div class="toolBtn">
                     <button id="linedelete">
                         <div class="btnImg">
-                            <img
-                                src="${pageContext.request.contextPath}/resources/img/eraser.png"
-                                alt="">
+                            <img src="${pageContext.request.contextPath}/resources/img/eraser.png" alt="">
                         </div>
                         Delete
                     </button>

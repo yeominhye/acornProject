@@ -15,8 +15,9 @@ line.addEventListener('click',function(){
 
 var linedelete = document.getElementById('linedelete');
 linedelete.addEventListener('click',function(){
-
+    deleteAll();
 });
+
 
 // 검색 버튼 애니메이션
 // DOM 요소를 가져옵니다.
@@ -45,6 +46,9 @@ myButton.addEventListener('click', () => {
 });
 
 
+
+
+
 // 카카오 맵 API
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
@@ -59,6 +63,7 @@ var linePath = [];
 var polylines = [];
 var polyline;
 
+var newMarkers=[];
 var markers = [];       //마커 객체 배열 생성
 var selectedMarkers = []; //이전에 선택한 마커들을 저장할 배열
 var listmarkers = [];   // 검색 목록 배열
@@ -111,6 +116,7 @@ function addMarkerArr(position){
         }
     }
 }
+
 function addInfoWindowArr(position) {
     // 이미 존재하는지 확인
     var alreadyExists = infowindows.some(info => info.latitude === position.getLat() && info.longitude === position.getLng());
@@ -172,6 +178,7 @@ function addMarker(position) {
 
     displayPositionInfo(position,marker);
     marker.setMap(map); // 지도 위에 마커를 표출합니다
+    newMarkers.push(marker);
     //positionInfo(index);
 
     // 마커에 마우스 이벤트 추가
@@ -315,9 +322,11 @@ function displayPlaces(places) {
 
             itemEl.onmouseover =  function () {
                 displayInfowindow(marker, title);
+                marker.setMap(map);
             };
 
             itemEl.onmouseout =  function () {
+                marker.setMap(null);
                 infowindow.close();
             };
 
@@ -517,6 +526,20 @@ function clearLines() {
         polylines[i].setMap(null);
     }
     polylines = [];
+}
+
+function deleteAll(){
+    for(var i =0; i<newMarkers.length;i++){
+        newMarkers[i].setMap(null);
+    }
+    markers=[]
+    infowindows=[]
+
+    for (var i = 0; i < polylines.length; i++) {
+        polylines[i].setMap(null);
+    }
+    polylines = [];
+    linePath=[];
 }
 
 
