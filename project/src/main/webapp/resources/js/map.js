@@ -209,6 +209,7 @@ function addMarker(position) {
             marker.setMap(null); // 지도에서 숨기기
             delete markers[index]; // 해당 인덱스의 요소를 삭제
             delete infowindows[index];
+            positionInfoDel(index);
             console.log("제거 후:"+markers)
             clearLines();
         }
@@ -524,13 +525,15 @@ function clearLines() {
     
     for (var i = 0; i < polylines.length; i++) {
         polylines[i].setMap(null);
-    }
+    }   
     polylines = [];
 }
 
 function deleteAll(){
     for(var i =0; i<newMarkers.length;i++){
         newMarkers[i].setMap(null);
+        positionInfoDel(i);
+
     }
     markers=[]
     infowindows=[]
@@ -542,6 +545,28 @@ function deleteAll(){
     linePath=[];
 }
 
+function positionInfoDel(markerIndex) {
+    var clickLatlngDiv = document.getElementById("clickLatlng");
+    
+    // 해당 위치 정보를 표시하는 div 요소가 있는지 확인
+    var existingDiv = document.getElementById("positionInfo_" + markerIndex);
+    if (existingDiv) {
+        // 이미 해당 위치 정보를 표시하는 div가 있으면 내용을 업데이트
+            existingDiv.innerHTML = `
+                <span class="number">${markerIndex+1}.</span>
+                <div class="inputs">
+                    <input type="text" class="map-input" name="title" value="없음" placeholder="명소의 이름을 작성해주세요.">
+                    <input type="hidden" name="latitude" value="없음">
+                    <input type="hidden" name="longitude" value="없음">
+                    <input type="text" class="map-input" name="position" value="없음" readonly>
+                    <input type="text"class="map-input" name="explain" placeholder="간단한 설명을 작성해주세요.">
+                </div>
+            `;
+    
+    } else {
+        console.log("해당 인덱스가 없습니다.")
+    }
+}
 
 
 function positionInfo(markerIndex) {
