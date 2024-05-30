@@ -432,6 +432,12 @@ public class BoardController {
      return "maps/showMap"; // 
  }
  
+ @RequestMapping("/faq2")
+	public String faq2() {
+		return "/board/routePost";
+	}
+ 
+ 
  @PostMapping("/dayPlans.do")
  @ResponseBody
  public ResponseEntity<String> handleDayPlans(@RequestBody Day day, HttpSession session) {
@@ -459,6 +465,15 @@ public class BoardController {
      return ResponseEntity.ok("Successfully added or updated a day plan.");
  }
 
+ 
+ @GetMapping("/route/{boardCode}")
+ public String showRouteBoard(@PathVariable String boardCode, Model model) throws Exception {
+     RouteBoard routeBoard = boardService.selectRoute(boardCode);
+     model.addAttribute("routeBoard", routeBoard);
+     System.out.println(routeBoard);
+     return "board/routePost";
+    
+ }
    
    
 
