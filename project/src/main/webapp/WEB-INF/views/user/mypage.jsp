@@ -184,7 +184,7 @@ hr {
 </head>
 <body>
 
-   <%@ include file="../nav-sub.jsp"%>
+   <%@ include file="../nav.jsp"%>
    <div class="wrap">
       <div class="page-name">
          마이페이지

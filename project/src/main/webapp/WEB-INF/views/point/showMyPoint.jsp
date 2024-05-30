@@ -3,7 +3,6 @@
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="../nav-sub.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </head>
 <body>
-<div class="pt_wrap">
+<div class="wrap">
+<%@ include file="../nav.jsp" %>
+	<div class="container">
     <!-- 왼쪽 네비 위-->
     <div class="pt_nav">
         <div class="pt_nav_up">
@@ -73,13 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="pt_nav_down">
             <div class="pt_nav_char">
-            <h1><a href="/project/point/showMyPoint.do">전체내역</a></h1>
-             <a href="/project/point/showMyUsePoint.do"> <p>사용내역</p> </a>
-             <a href="/project/point/showMyEarnedPoint.do"> <p>획득내역</p> </a>
-            </div>
-            <div class="pt_nav_all"><h1>충전/환전</h1>
-            <a href="/project/point/pointCharge.do"> <p>충전하기</p></a>
-            <a href="/project/point/pointExchange.do""> <p>환전하기</p></a>
+	            <h1><a href="/project/point/showMyPoint.do">전체내역</a></h1>
+	             <a href="/project/point/showMyUsePoint.do"> <p>사용내역</p> </a>
+	             <a href="/project/point/showMyEarnedPoint.do"> <p>획득내역</p> </a>
             </div>
         </div>
     </div>
@@ -152,11 +149,12 @@ document.addEventListener('DOMContentLoaded', function() {
         </tfoot>
     </table>
     <div class="pagination" id="pagination"></div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/pagination.js"></script>
+	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	    <script src="${pageContext.request.contextPath}/resources/js/pagination.js"></script>
     </div>
 </div>
 
 <%@ include file="../footer-sub.jsp" %>
+</div>
 </body>
 </html>

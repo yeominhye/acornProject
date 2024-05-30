@@ -1,60 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../nav-sub.jsp" %>   
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>route</title>
+    
+    <!-- reset.css -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
+    
+    <!-- freeboard.css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/freeboard.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css">
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            typeTitle();
-        });
-
-        function searchCheck() {
-            var condition = document.getElementsByName("condition")[0].value;
-            if (condition === "") {
-                alert("검색 조건을 선택해주세요.");
-                return false; // 폼 전송을 중단합니다.
-            }
-            return true; // 폼을 제출합니다.
-        }
-        
-        function typeTitle() {
-            var currentURL = window.location.href;
-            var urlParts = currentURL.split("type=");
-            var lastPart = urlParts[urlParts.length - 1]; // type= 뒤의 값만 가져오기
-            var lastValue = lastPart.split("&")[0]; // '&' 문자 이후의 값은 무시
-
-            var header = document.querySelector("h2");
-
-            // 헤더 텍스트 설정
-            if (lastValue === "-1") {
-                header.innerText = "전체글";
-            } else if (lastValue === "1") {
-                header.innerText = "여행후기";
-            } else if (lastValue === "2") {
-                header.innerText = "꿀팁공유";
-            } else if (lastValue === "3") {
-                header.innerText = "질문있어요!";
-            } else if (lastValue === "4") {
-                header.innerText = "수다방";
-            } else if (lastValue === "5") {
-                header.innerText = "동행구해요";
-            } else {
-                header.innerText = "전체글";
-            }
-        }
-    </script>
+    
+    <!-- style -->
+    <style>
+    	
+    </style>
+    
 </head>
 <body>
     <div class="wrap">
-        <div class="all_menu">
-            <div class="side_menu">
+    
+        <!-- nav -->
+        <%@ include file="../nav.jsp" %>
+        
+        <!-- container -->
+        <div class="container">
+        
+        	<!-- 사이드 메뉴 -->
+           	<div class="side_menu">
                 <div class="side_menu_set">
-                    <h3><a href="/project/board/free?type=-1">자유게시판</a></h3>
+                    <h3>자유게시판</h3>
                     <ul>
                         <li><a href="/project/board/free?type=-1">전체글</a></li>
                         <li><a href="/project/board/free?type=1">여행후기</a></li>
@@ -65,7 +42,9 @@
                     </ul>
                 </div>
             </div>
-            <div class="notice">
+            
+            <!-- 본문내용 -->
+			<div class="notice">
                 <h2 id="changeTitle">0</h2>
                 <a class="write-link" href="/project/board/free/reg">글쓰기</a>
                 <div class="notice_list">
@@ -136,9 +115,73 @@
                         <div><button>검색</button></div>
                     </form>
                 </div>
-            </div>
-        </div>
+            </div>            
+        </div> <!-- container 끝 -->
+        
+		<!-- footer -->
+		<%@ include file="../footer-sub.jsp" %>
     </div>
-    <%@ include file="../footer-sub.jsp" %>
+    
+    <!-- script -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        typeTitle();
+    });
+
+    function searchCheck() {
+        var condition = document.getElementsByName("condition")[0].value;
+        if (condition === "") {
+            alert("검색 조건을 선택해주세요.");
+            return false; // 폼 전송을 중단합니다.
+        }
+        return true; // 폼을 제출합니다.
+    }
+    
+    function typeTitle() {
+        var currentURL = window.location.href;
+        var urlParts = currentURL.split("type=");
+        var lastPart = urlParts[urlParts.length - 1]; // type= 뒤의 값만 가져오기
+        var lastValue = lastPart.split("&")[0]; // '&' 문자 이후의 값은 무시
+
+        var header = document.querySelector("h2");
+
+        // 헤더 텍스트 설정
+        if (lastValue === "-1") {
+            header.innerText = "전체글";
+        } else if (lastValue === "1") {
+            header.innerText = "여행후기";
+        } else if (lastValue === "2") {
+            header.innerText = "꿀팁공유";
+        } else if (lastValue === "3") {
+            header.innerText = "질문있어요!";
+        } else if (lastValue === "4") {
+            header.innerText = "수다방";
+        } else if (lastValue === "5") {
+            header.innerText = "동행구해요";
+        } else {
+            header.innerText = "전체글";
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuItems = document.querySelectorAll('.side_menu_set ul li');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', function(event) {
+                event.preventDefault();
+                menuItems.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+                window.location.href = this.querySelector('a').href;
+            });
+        });
+
+        const currentUrl = window.location.href;
+        menuItems.forEach(item => {
+            if (item.querySelector('a').href === currentUrl) {
+                item.classList.add('active');
+            }
+        });
+    });
+    </script>
 </body>
 </html>

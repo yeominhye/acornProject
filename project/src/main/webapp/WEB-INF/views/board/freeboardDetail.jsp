@@ -2,8 +2,6 @@
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="com.acorn.project.user.User"%>
-<%@ include file="../nav-sub.jsp"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,9 +18,11 @@
 <link rel="stylesheet" type="text/css"   href="${pageContext.request.contextPath}/resources/css/freeBoardDetail.css">
 <link rel="stylesheet" type="text/css"   href="${pageContext.request.contextPath}/resources/css/reset.css">
 <style type="text/css">
+
 .ql-tooltip {
    display: none;
 }
+
 </style>
 <script defer
    src="${pageContext.request.contextPath}/resources/js/changeType.js"></script>
@@ -40,8 +40,8 @@ String userCode = (user != null) ? user.getUserCode() : null;
 
 </head>
 <body>
-   <div class="wrap">
-
+	<div class="wrap">
+		<%@ include file="../nav.jsp" %>
       <!-- 게시판 -->
       <div class="container">
          <div class="side_menu">
@@ -148,7 +148,7 @@ String userCode = (user != null) ? user.getUserCode() : null;
          </div>
       </div>
    </div>
-
+<div class="footer"><%@ include file="../footer-sub.jsp" %></div>
 </body>
 
 <script>

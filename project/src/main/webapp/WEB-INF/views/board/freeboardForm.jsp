@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../nav-sub.jsp" %>	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,8 +61,9 @@
 <body>
 	<div class="wrap">
 
+		<%@ include file="../nav.jsp" %>	
 	
-	    <div class="freeBoardForm-container">
+	    <div class="container">
 		    <div class="freeBoardForm-section">
 		        <h2>글쓰기</h2>
 		    </div>
@@ -149,24 +149,25 @@
         	</div>
 	  </form>    
 	
-	     <!-- Include the Quill library -->
-	     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
-	
-	     <!-- Initialize Quill editor -->
-	     <script>
-	        const quill = new Quill('#editor', {
-	          modules: {
-	            syntax: true,
-	            toolbar: '#toolbar-container',
-	          },
-	          placeholder: 'Compose an epic...',
-	          theme: 'snow',
-	        });
-	       
-	      </script>
+	     
 	    </div>
-     </div>
+	</div> <!-- wrap 끝 -->
 
+	<div class="footer"><%@ include file="../footer-sub.jsp" %></div>
       
+	<!-- Include the Quill library -->
+	<script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
+	
+	<!-- Initialize Quill editor -->
+	<script>
+	const quill = new Quill('#editor', {
+	  modules: {
+	    syntax: true,
+	    toolbar: '#toolbar-container',
+	  },
+	  placeholder: 'Compose an epic...',
+	  theme: 'snow',
+	});
+	</script>
 </body>
 </html>

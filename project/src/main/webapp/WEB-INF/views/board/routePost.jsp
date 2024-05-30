@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,9 +16,9 @@
 </head>
 
 <body>
-    <div class="wrap">
         <!-- nav -->
-        <%@ include file="../nav-sub.jsp" %>
+       <%@ include file="../nav.jsp" %>
+    <div class="wrap">
         
         <!-- header -->
 
@@ -283,8 +284,8 @@
         </div>
 
     </div>
-
-    <footer></footer>
+	<%@ include file="../footer-sub.jsp" %>
+    
 </body>
 
 <script>

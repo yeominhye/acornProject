@@ -75,7 +75,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<%@ include file="../nav-sub.jsp" %>
+<%@ include file="../nav.jsp" %>
 <div class="container">
     <div class="btnContainer">
         <button id="IdBtn" onclick="showIdSearch()">아이디 찾기</button>
@@ -136,6 +136,7 @@ $(document).ready(function() {
     </div>
 </div>
 
-<%@ include file="../footer-sub.jsp" %>
+
+<div class="footer"><%@ include file="../footer-sub.jsp" %></div>
 </body>
 </html>

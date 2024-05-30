@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
-<%@ include file="../nav-sub.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,14 +18,14 @@
 <body>
 
     <div class="wrap">
-
+  
+		<%@ include file="../nav.jsp" %>
+		
         <!-- 시작 -->
-        <div class="inquiry-container">
-
+        <div class="container">
             <div class="inquiry-header">
                 <h1>1:1 문의</h1>
                 <p>문의사항을 아래 박스에 입력해주시면 답변 드리겠습니다.</p>
-
             </div>
 
             <span class="notice-required" id="notice-star">*</span><span class="notice-required">필수입력사항입니다</span>
@@ -35,9 +34,8 @@
             
             
                 <form action="inquiry" method="post"  enctype="multipart/form-data">
-                     
                       <input type="hidden" name="userCode" value="${user.userCode}">
-                    <fieldset>
+                    	<fieldset>
                         <div>
                             <label for="title">제목</label>
                             <input type="text" name="boardTitle" id="boardTitle" required>
@@ -61,7 +59,7 @@
                         <p class="notice"> 이미지는 한 장만 첨부 가능합니다.</p>
                         
                         
-                  <input type=hidden name="boardTheme" id="boardTheme" value="0">
+                  	<input type=hidden name="boardTheme" id="boardTheme" value="0">
                     <input type=hidden name="boardTourdays" id="boardTourdays" value="0">
                     <input type=hidden name="boardViews" id="boardViews" value="0" >
                     <input type=hidden name="boardLikes" id="boardLikes"value="0" >
@@ -80,8 +78,7 @@
 
 
         </div>
-
-
+		<%@ include file="../footer-sub.jsp" %>
     </div>
 </body>
 <script>

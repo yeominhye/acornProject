@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../nav-sub.jsp" %>   
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +27,7 @@
     </script>
 
     <div class="wrap">
+    <%@ include file="../nav.jsp" %>
         <div class="container">
             <!-- 시작 -->
             <div class="inquiry-container">
@@ -106,10 +107,10 @@
             </div>
         </div> <!-- container -->
         <div id="btn-wrapper"><button onclick="history.back()">목록 돌아가기</button></div>
-
+<%@ include file="../footer-sub.jsp" %>
 
     </div>
+    
 </body>
-<footer></footer>
 
 </html>

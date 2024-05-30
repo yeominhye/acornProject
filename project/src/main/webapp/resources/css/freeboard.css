@@ -1,61 +1,55 @@
-.all_menu {
-	/* border: 1px solid black; */
+.container {
+	position: relative;
 	width: 1100px;
 	margin: 0 auto;
-	display: flex;
-	margin-top: 75px;
-	margin-bottom: 5%;
+    padding-bottom: 150px;
 }
 
 .side_menu {
-	/* border: 1px solid black; */
-	/* background-color: rgb(189, 189, 189); */
-	width: 20%;
-	box-sizing: border-box;
-	padding: 2%;
-	line-height: 200%;
+	position: relative;
+    /*height: 페이징 한 후 결정 */ 
 }
 
 .side_menu_set {
-	/* border: 1px solid black; */
-	background-color: rgb(241, 241, 241);
-	box-shadow: 2px 2px 2px 2px #eeeded;
-	box-sizing: border-box;
-	padding-top: 5%;
-	padding-bottom: 5%;
-	border-radius: 10px;
-	margin-top: 63px;
-}
+	position: fixed;
+    width: 210px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
 
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.25);
+}
 .side_menu_set h3 {
-	padding-left: 10px;
+	font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1.5px solid black;
+    padding-bottom: 3px;
 }
 
-.side_menu li {
-	s list-style-type: none;
-	padding-left: 30px;
-	/* font-weight: bold; */
+.side_menu li {	
+	font-size: 14px;
+	font-weight: 600;
+	
+	margin-bottom: 10px;
+	
+	cursor: pointer;
+}
+.side_menu_set ul {
+	margin: 15px 0 10px 10px;
 }
 
-.side_menu_li_point a {
-	font-weight: bold;
-}
 
-.side_menu_set a {
-	text-decoration: none;
-	color: black;
-}
-
-.side_menu_set a:visited {
-	color: black;
-}
 
 .notice {
 	/* border: 1px solid black; */
-	width: 80%;
-	box-sizing: border-box;
-	padding: 2%;
+	
+    position: relative;
+    width: 850px;
+    margin-left: 250px;
+    margin-top: 75px;
 }
+
+
 
 .write-link {
 	float: right;
@@ -207,3 +201,12 @@ span.active {
 	color: orangered;
 	font-weight: bold;
 }
+
+.side_menu_set a {
+    color: #999999;
+}
+
+.side_menu_set .active a {
+    color: #000000;
+}
+

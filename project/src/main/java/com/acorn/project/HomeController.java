@@ -13,8 +13,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/whdqja", method = RequestMethod.GET)
-	public String whdqja() {
-		return "nav-sub";
+	public String footer() {
+		return "/footer-sub";
 	}
 }
 

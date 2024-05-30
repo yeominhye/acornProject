@@ -1,6 +1,6 @@
 /*전체*/
-.pt_wrap {
-    margin: 75px auto;
+.container {
+    margin: 75px auto 150px auto;
     width: 1100px;
     height: 100%;
     display: flex;

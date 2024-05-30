@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
 
     <!-- index.css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css" >
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css?after" >
 
     <!-- index.js -->
     <script defer src="${pageContext.request.contextPath}/resources/js/home.js"></script>
@@ -31,13 +31,13 @@
                 <div class="header-text-box">
                     <div class="header-text01">경로를 공유하는 당신</div>
                     <div class="header-text02">경로당</div>
+                	<img class="header-img4" src="${pageContext.request.contextPath}/resources/img/header-img04.png" alt="">
                 </div>
             </div>
             <div class="header-img-box">
                 <img class="header-img2" src="${pageContext.request.contextPath}/resources/img/header-map.png" alt="">
                 <img class="header-img0" src="${pageContext.request.contextPath}/resources/img/header-img.png" alt="">
                 <img class="header-img1" src="${pageContext.request.contextPath}/resources/img/header-img01.png" alt="">
-                <img class="header-img4" src="${pageContext.request.contextPath}/resources/img/header-img04.png" alt="">
             </div>
         </header>
 
