@@ -404,6 +404,7 @@ public class BoardController {
 	    User user =(User)session.getAttribute("user");
 	 
 	    if(user != null) {
+	     session.setAttribute("dayPlans", null);
          return "maps/createMap";
 	    } 
 	    
@@ -423,7 +424,7 @@ public class BoardController {
  
  @RequestMapping("/showBoard")
  public String showBoard(Model model) throws Exception {
-     String boardCode = "b0007";
+     String boardCode = "b0031";
      RouteBoard routeBoard = boardService.selectRoute(boardCode); //  
      model.addAttribute("routeBoard", routeBoard);
      return "maps/showMap"; // 
@@ -436,13 +437,26 @@ public class BoardController {
      if (dayPlans == null) {
          dayPlans = new ArrayList<>();
      }
-     dayPlans.add(day);
+
+     boolean found = false;
+     for (int i = 0; i < dayPlans.size(); i++) {
+         if (dayPlans.get(i).getDay() == day.getDay()) {
+             dayPlans.set(i, day);
+             found = true;
+             break;
+         }
+     }
+
+     if (!found) {
+         dayPlans.add(day);
+     }
+
      session.setAttribute("dayPlans", dayPlans);
-     // 세션에 저장된 데이터 확인 (디버깅용)
      System.out.println("Session dayPlans: " + dayPlans);
-     
-     return ResponseEntity.ok("Successfully added a day plan.");
+
+     return ResponseEntity.ok("Successfully added or updated a day plan.");
  }
+
    
    
 

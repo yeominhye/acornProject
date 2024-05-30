@@ -38,22 +38,22 @@
         <table>
         	<tr>
         		<td>제목 : </td>
-        		<td><input type="text" id="boardTitle" name="boardTitle" placeholder="제목"></td>
+        		<td><input type="text" id="boardTitle" name="boardTitle" placeholder="제목" required></td>
         	</tr>
         	<tr>
     			<td>날짜 :</td>
-    			<td><input type="text" id="boardTourdays" name="boardTourdays" readonly></td>
+    			<td><input type="text" id="boardTourdays" name="boardTourdays" readonly required></td>
 			</tr>
 			<tr>
     			<td>총평 :</td>
-    			<td><input type="text" id="boardContent" name="boardContent"></td>
+    			<td><input type="text" id="boardContent" name="boardContent" required></td>
 			</tr>
 			
 
         	 <tr>
             	<td>지역 :</td>
             	<td>
-                	<select name="boardRegion" id="boardRegion">
+                	<select name="boardRegion" id="boardRegion" required>
 	                    <option value="0">서울</option>
 	                    <option value="1">인천</option>
 	                    <option value="2">대전</option>
@@ -76,7 +76,7 @@
         	<tr>
         		<td>카테고리 :</td>
             	<td>
-                	<select name="boardTheme" id="boardTheme">
+                	<select name="boardTheme" id="boardTheme" required>
 	                    <option value="1">나홀로 힐링</option>
 	                    <option value="2">연인과 함께</option>
 	                    <option value="3">친목 다지기~</option>
@@ -87,7 +87,7 @@
         	</tr>
         	<tr>
         		<td>포인트 : </td>
-        		<td><input type="number" id ="boardPoint" name="boardPoint"></td>
+        		<td><input type="number" id ="boardPoint" min="0" value="0" step="100" name="boardPoint" required></td>
         	</tr>
         </table>
 
@@ -165,39 +165,52 @@
         </div>
         
 		<form action="/project/board/dayPlans.do" method="post" id="dayPlanForm">
-		    <input type="number" name="days[${dayIndex - 1}].day" id="dayIndex" placeholder="dayIndex">
+		    <input type="hidden" name="days[${dayIndex - 1}].day" id="dayIndex" placeholder="dayIndex" required>
 		    <div><input type="text" name="days[${dayIndex - 1}].dayInfo" id="dayInfo" placeholder="간단한 설명을 작성해주세요."></div>
 		    <div class="click_wrap">
 		        <div id="clickLatlng" class="click"></div>
 		    </div>
-		    <button type="button" id="dayBtn">+</button>
+		    <button type="button" id="dayBtn">저장</button>
 		</form>
+		<button type="button" id="addDayBtn" function="addDay()">일정 추가</button>
     	
     	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7560b5ddb94a9dc91354ef62a6b750ee"></script> -->
     	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e4e2ed92d2d2bdb6c1837e8f4e3094f&libraries=services,clusterer,drawing"></script>
 
 <script>
 $(document).ready(function() {
+	
 
-	var dayIndex = 1; // 예시로 1로 초기화
+    // dayIndex를 제대로 설정하고, 이를 이용하여 올바르게 증가시킵니다.
+	var dayIndex = 1; 
 	document.getElementById("boardTourdays").value = dayIndex;
 	document.getElementById("dayIndex").value = dayIndex;
 	
+	
+	$("#addDayBtn").on('click', function() {
+        dayIndex++;
+        alert(dayIndex); // 디버깅용 알림
+        document.getElementById("dayIndex").value = dayIndex;
+        document.getElementById("boardTourdays").value = dayIndex;    
+        document.getElementById("dayInfo").value = '';
+        document.getElementById("clickLatlng").innerHTML = '';
+    });
+	
     $("#dayBtn").on('click', function() {
-        var dayIndex = $("#day").val();
+    	alert(dayIndex); // 디버깅용 알림
         var dayInfo = $("#dayInfo").val();
         var clickLatlngDiv = document.getElementById("clickLatlng");
         var positionInfos = clickLatlngDiv.getElementsByClassName("positionInfo");
 
         var jsonData = {
-            day: document.getElementById("dayIndex").value,
+            day: dayIndex,
             dayInfo: dayInfo,
             markers: []
         };
-
+        
         for (var i = 0; i < positionInfos.length; i++) {
             var positionInfo = positionInfos[i];
-            var markerIndex = i; // 현재 반복의 인덱스를 가져옵니다
+            var markerIndex = i;
             var markerData = {
                 title: positionInfo.querySelector("#markerTitle_" + markerIndex).value,
                 latitude: positionInfo.querySelector("#latitude_" + markerIndex).value,
@@ -216,9 +229,6 @@ $(document).ready(function() {
             data: JSON.stringify(jsonData),
             success: function(data) {
                 console.log("Success:", data);
-                dayIndex++;
-                document.getElementById("dayIndex").value = dayIndex; // 변경된 dayIndex 업데이트
-                document.getElementById("boardTourdays").value = dayIndex;
             },
             error: function(error) {
                 console.error("Error:", error);
