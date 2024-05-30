@@ -30,4 +30,6 @@ public interface BoardServiceI {
 
 	int insertRoute(RouteBoard routeBoard) throws Exception;
 
+	int insertRoute2(RouteBoard routeBoard) throws Exception;
+
 }

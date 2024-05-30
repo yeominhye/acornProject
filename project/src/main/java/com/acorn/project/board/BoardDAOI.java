@@ -40,5 +40,6 @@ public interface BoardDAOI {
 	RouteBoard selectRoute(String boardCode);
 
 	int insertRoute(RouteBoard routeBoard) throws Exception;
+	int insertRoute2(RouteBoard routeBoard) throws Exception;
 
 }

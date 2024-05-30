@@ -141,4 +141,12 @@
    		select * from boardtbl where boardCode = #{boardCode}
    </select>
 	
+	
+	
+	<insert id="insertRoute2" parameterType="RouteBoard">
+		INSERT INTO boardtbl
+			(userCode, boardTitle, boardContent, boardWritedate, days)
+		VALUES 
+		(#{userCode}, #{boardTitle}, #{boardContent}, now(),#{dayString, typeHandler=com.acorn.project.board.JsonListTypeHandler})
+	</insert>
 </mapper>

@@ -21,7 +21,7 @@
     <h2>Day ${day.day}: ${day.dayInfo}</h2>
     <ul>
         <c:forEach items="${day.markers}" var="marker">
-            <li>Latitude: ${marker.latitude}, Longitude: ${marker.longitude}, explain: ${marker.markerExplain}</li>
+            <li>markerTitle : ${marker.title}, markerPosition : ${marker.position}, Latitude: ${marker.latitude}, Longitude: ${marker.longitude}, explain: ${marker.explain}</li>
         </c:forEach>
     </ul>
 </c:forEach>

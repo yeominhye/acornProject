@@ -3,6 +3,7 @@ package com.acorn.project.board;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -381,16 +382,6 @@ public class BoardController {
       return "/board/routePost";
    }
    
-   
- // -----루트 해보는 중---
-// @RequestMapping("/createMap")
-// public String showCreateForm(Model model) {
-//	 User user = (User)session.getAttribute("user");
-//     model.addAttribute("board", new Board());
-//     return "maps/createMap";
-// }
- 
- 
  
  @RequestMapping(value="/createMap", method=RequestMethod.GET)
 	public String createRoute( RouteBoard routeBoard, HttpSession session, Model model) {
@@ -405,21 +396,38 @@ public class BoardController {
  
  
  @RequestMapping(value="/createMap_process.do", method=RequestMethod.POST)
-	public String createRoute_process (RouteBoard routeBoard) throws Exception {
-		boardService.insertRoute(routeBoard);
+	public String createRoute_process (RouteBoard routeBoard, HttpSession session) throws Exception {
+	 List<Day> dayPlans = (List<Day>) session.getAttribute("dayPlans");
+	 routeBoard.setDays(dayPlans);
+	 	boardService.insertRoute(routeBoard);
 		System.out.println(routeBoard);
 		return "redirect:/board/showBoard";
 	}
  
  
+ 
  @RequestMapping("/showBoard")
  public String showBoard(Model model) throws Exception {
-     String boardCode = "b0007";
+     String boardCode = "b0024";
      RouteBoard routeBoard = boardService.selectRoute(boardCode); // boardCode로 해당하는 데이터 가져오는 메소드 호출
      model.addAttribute("routeBoard", routeBoard);
      return "maps/showMap"; // 보여줄 JSP 페이지 반환
  }
    
-   
+ @PostMapping("/board/dayPlans.do")
+ @ResponseBody
+ public ResponseEntity<String> handleDayPlans(@RequestBody Day day, HttpSession session) {
+     List<Day> dayPlans = (List<Day>) session.getAttribute("dayPlans");
+     if (dayPlans == null) {
+         dayPlans = new ArrayList<>();
+     }
+     dayPlans.add(day);
+     session.setAttribute("dayPlans", dayPlans);
+     // 세션에 저장된 데이터 확인 (디버깅용)
+     System.out.println("Session dayPlans: " + dayPlans);
+     
+     return ResponseEntity.ok("Successfully added a day plan.");
+ }
 
 }
+

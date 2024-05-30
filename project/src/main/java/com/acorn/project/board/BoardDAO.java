@@ -105,4 +105,10 @@ public class BoardDAO implements BoardDAOI {
 	    return session.insert(namespace + "insertRoute", routeBoard);
 	}
 
+	@Override
+	public int insertRoute2(RouteBoard routeBoard) throws Exception {
+		// TODO Auto-generated method stub
+		 return session.insert(namespace + "insertRoute2", routeBoard);
+	}
+
 }

@@ -78,4 +78,10 @@ public class BoardService implements BoardServiceI {
 	public int insertRoute(RouteBoard routeBoard) throws Exception {
         return dao.insertRoute(routeBoard);
     }
+	
+ 
+	@Override
+	public int insertRoute2(RouteBoard routeBoard) throws Exception {
+        return dao.insertRoute2(routeBoard);
+    }
 }
