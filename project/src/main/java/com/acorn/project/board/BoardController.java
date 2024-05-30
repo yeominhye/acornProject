@@ -39,10 +39,8 @@ import com.acorn.project.user.User;
 import com.acorn.project.user.UserServiceI;
 
 
-
-
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/board")
 public class BoardController {
 	
 	@Autowired
@@ -73,21 +71,31 @@ public class BoardController {
 		int board_type = Integer.parseInt(type);
 		List<Board> freeBoardList = boardService.getBoardBytype(board_type ,page);
 		model.addAttribute("freeBoardList",freeBoardList);
+		model.addAttribute("type",board_type);
 		
-		int totRecords = boardService.selectTotalCount();
-		int pageSize = 5;
+		SearchCondition search = new SearchCondition(null,null,0);
+		model.addAttribute("search", search);
+
+		int totRecords = boardService.selectTotalCount(board_type);
+		int pageSize = 15;
 		PagingHandler handler = new PagingHandler( page , totRecords ,pageSize);
 		model.addAttribute("paging", handler);
 		return "board/freeboardList";
 	}
 	
-	@RequestMapping(value="/free/search", method = RequestMethod.POST)
-	public String Searchboard (SearchCondition search, Model model, HttpSession session) {
+	@RequestMapping(value="/free/search", method = RequestMethod.GET)
+	public String Searchboard (SearchCondition search, @RequestParam(defaultValue = "1") int page, Model model) {
 		
-		List<Board> freeBoardList = boardService.getList(search);
-		System.out.println(freeBoardList);
-		System.out.println(session.getAttribute("user"));
+		List<Board> freeBoardList = boardService.getList(search,page);
 		model.addAttribute("freeBoardList",freeBoardList);
+		model.addAttribute("search",search);
+		
+		int pageSize=15;	
+		int  start  =   (page  -1) *pageSize+1;
+		int totRecords = boardService.getListCount(search);
+		search.setStart(start);
+		PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
+		model.addAttribute("paging",handler);
 		return "board/freeboardList";
 	}
 
@@ -95,11 +103,9 @@ public class BoardController {
 	@RequestMapping(value="/free/reg", method=RequestMethod.GET)
 	public String regBoard( Board board, HttpSession session, Model model) {
 	    User user =(User)session.getAttribute("user");
-	 
 	    if(user != null) {
             return "board/freeboardForm";
 	    } 
-	    
 	    return "redirect:/user/login.do";
 	}
 	
@@ -115,7 +121,7 @@ public class BoardController {
     @GetMapping("/free/{code}")
     public String Board(@PathVariable String code, Model model) {
         Board freeboard = boardService.getBoardBycode(code);
-        boardService.updateViews(freeboard); // views 증가
+        boardService.updateViews(freeboard); //  views 증가
         model.addAttribute("freeboard", freeboard);
         System.out.println(freeboard);
         
@@ -130,7 +136,7 @@ public class BoardController {
     
     @PostMapping("/free/{code}")
     public ResponseEntity<Map<String, Object>> comment(@PathVariable String code, @RequestBody Comment comment, HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    	User user = (User) session.getAttribute("user");
         Map<String, Object> response = new HashMap<>();
         
         if (user != null) {
@@ -181,7 +187,7 @@ public class BoardController {
     @RequestMapping(value = "/free/{code}/likes", method = RequestMethod.POST)
     public void incrLike(@PathVariable String code, @RequestBody Like like) {
     	likeService.incrLike(like);
-    	System.out.println("추가"+like);
+    	  System.out.println("추가"+like);	
     }
     
     @ResponseBody
@@ -208,14 +214,14 @@ public class BoardController {
     @RequestMapping(value = "/free/{code}/arch", method = RequestMethod.POST)
     public void regArch(@PathVariable String code, @RequestBody Archive archive) {
     	archiveService.insert(archive);
-    	System.out.println("추가"+archive);
+    	  System.out.println("삭제"+archive);
     }
     
     @ResponseBody
     @RequestMapping(value = "/free/{code}/arch", method = RequestMethod.DELETE)
     public void deleteArch(@PathVariable String code, @RequestBody Archive archive) {
     	archiveService.delete(archive);
-    	System.out.println("삭제"+archive);
+    	System.out.println("�궘�젣"+archive);
     }
     
 
@@ -324,11 +330,11 @@ public class BoardController {
 
 	            boardService.regBoard(board);
 	        } else {
-	            System.out.println("파일이 유효하지 않거나 확장자가 없습니다.");
+	        	System.out.println("파일이 유효하지 않거나 확장자가 없습니다.");
 	           
 	        }
 	    } else {
-	        System.out.println("파일이 업로드되지 않았습니다.");
+	    	 System.out.println("파일이 업로드되지 않았습니다.");
 	        Board board = new Board(vo.getBoardCode(), vo.getUserCode(), vo.getNickname(), null, null, 
 	                vo.getBoardTitle(), vo.getBoardContent(), vo.getBoardTheme(), vo.getBoardTourdays(),
 	                vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType());
@@ -382,7 +388,7 @@ public class BoardController {
    }
    
    
- // -----루트 해보는 중---
+ // -----猷⑦듃 �빐蹂대뒗 以�---
 // @RequestMapping("/createMap")
 // public String showCreateForm(Model model) {
 //	 User user = (User)session.getAttribute("user");
@@ -415,9 +421,9 @@ public class BoardController {
  @RequestMapping("/showBoard")
  public String showBoard(Model model) throws Exception {
      String boardCode = "b0007";
-     RouteBoard routeBoard = boardService.selectRoute(boardCode); // boardCode로 해당하는 데이터 가져오는 메소드 호출
+     RouteBoard routeBoard = boardService.selectRoute(boardCode); //  
      model.addAttribute("routeBoard", routeBoard);
-     return "maps/showMap"; // 보여줄 JSP 페이지 반환
+     return "maps/showMap"; // 
  }
    
    

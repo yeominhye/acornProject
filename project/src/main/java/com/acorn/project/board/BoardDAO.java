@@ -17,25 +17,24 @@ public class BoardDAO implements BoardDAOI {
 	
 	@Override
 	// 게시판 수
-	public int selectTotalCount() {
-		return session.selectOne(namespace+"selectTotalCount");
+	public int selectTotalCount(int boardType) {
+		return session.selectOne(namespace+"selectTotalCount",boardType);
 	}
 	
 	// 전체 목록 조회
 	@Override
 	public List<Board> selectAll( int boardType ,   int currentPage){
 		
-		 //현재페이지정보,  전체레코드수      // 1    1:5     // 2   == > 5-10
-		int pageSize=5;
-		
-		int  start  =   (currentPage  -1) *pageSize+1;
-	 	int  end  =   pageSize;
+		 //현재페이지정보,  전체레코드수      
+	  	int  pageSize  =   15;		
+		 int offset = (currentPage - 1) * pageSize+1;  
+	 	
 		
 	 	
 		Map info = new  HashMap();
 		info.put("boardType",  boardType);
-		info.put("start",  start);   
-		info.put("end", end);
+		info.put("offset",  offset);   
+		info.put("pageSize", pageSize);
 		
 		return session.selectList(namespace+"selectAll", info );
 	}
@@ -90,8 +89,20 @@ public class BoardDAO implements BoardDAOI {
 	
 	// 제목, 작성자, 내용으로 검색
 	@Override
-	public List<Board> getList(SearchCondition search){
+	public List<Board> getList(SearchCondition search, int currentPage){
+		
+		int pageSize=15;	
+		int  start  =   (currentPage  -1) *pageSize+1;
+
+	 	search.setStart(start);
+		
 		return session.selectList(namespace+"selectSearch",search);
+	}
+	
+	// 검색 내용 수
+	@Override
+	public int getListCount(SearchCondition search) {
+		return session.selectOne(namespace+"selectSearchCount", search);
 	}
 
 	@Override

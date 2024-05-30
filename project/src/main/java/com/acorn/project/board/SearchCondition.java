@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class SearchCondition {
 	String condition;
 	String keyword;
+	int start;
 }

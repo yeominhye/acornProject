@@ -13,8 +13,8 @@ public class BoardService implements BoardServiceI {
 	BoardDAO dao;
 	
 	@Override
-	public int selectTotalCount() {
-		return dao.selectTotalCount();
+	public int selectTotalCount(int boardType) {
+		return dao.selectTotalCount(boardType);
 	}
 	
 	@Override
@@ -64,8 +64,13 @@ public class BoardService implements BoardServiceI {
 	}
 
 	@Override
-	public List<Board> getList(SearchCondition search) {
-		return dao.getList(search);
+	public List<Board> getList(SearchCondition search, int currentPage) {
+		return dao.getList(search, currentPage);
+	}
+	
+	@Override
+	public int getListCount(SearchCondition search) {
+		return dao.getListCount(search);
 	}
 
 

@@ -5,7 +5,7 @@ import java.util.List;
 public interface BoardDAOI {
 
 	// 게시글 수
-	int selectTotalCount();
+	int selectTotalCount(int boardType);
 	
 	// 목록 전체조회
 	List<Board> selectAll( int boardType,  int currentPage);
@@ -35,7 +35,10 @@ public interface BoardDAOI {
 	int deleteBoard(String board_code);
 
 	// 제목, 작성자, 내용으로 검색
-	List<Board> getList(SearchCondition search);
+	List<Board> getList(SearchCondition search, int cuurentPage);
+	
+	// 검색 내용 수
+	int getListCount(SearchCondition search);
 
 	RouteBoard selectRoute(String boardCode);
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface BoardServiceI {
 	
-	int selectTotalCount();
+	int selectTotalCount(int boardType);
 	
 	List<Board> getBoardBytype(int board_type,int Page);
 
@@ -24,7 +24,9 @@ public interface BoardServiceI {
 
 	int delBoard(String board_code);
 	
-	List<Board> getList(SearchCondition search);
+	List<Board> getList(SearchCondition search, int page);
+	
+	int getListCount(SearchCondition search);
 
 	RouteBoard selectRoute(String boardCode) throws Exception;
 

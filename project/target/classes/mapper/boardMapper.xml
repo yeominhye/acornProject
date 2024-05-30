@@ -4,13 +4,22 @@
         
 <mapper namespace="com.acorn.boardMapper">
 
-    <select id="selectTotalCount" resultType="int">
+    <select id="selectTotalCount" resultType="int" parameterType="int">
         SELECT COUNT(*) FROM boardtbl
-        WHERE boardType !=6
+        <where>
+	            <if test="boardType != null">
+	                <if test="boardType &gt;= 0 and boardType &lt;= 6">
+	                    AND boardType = #{boardType}  AND boardType!=6
+	                </if>
+	                <if test="boardType == -1">
+	                    AND boardType &gt;= 1 AND boardType &lt;= 5  AND boardType!=6
+	                </if>
+	            </if>
+       </where>
     </select>
     
 
-	  <select id="selectAll" resultType="Board"  parameterType="Map" >
+    <select id="selectAll" resultType="Board"  parameterType="Map" >
 	    SELECT u.nickname, b.boardCode, b.boardTitle, b.boardContent, 
 	           DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews 
 	    FROM boardtbl b 
@@ -27,7 +36,7 @@
 	        </where>
 	        ORDER BY 
 	            b.boardWritedate DESC
-	        LIMIT #{start}, #{end}
+	        LIMIT #{pageSize} OFFSET #{offset}
 	</select>
    		
    <select id="selectOne" resultType="Board" parameterType="String">
@@ -126,7 +135,19 @@
 		ON b.userCode = u.userCode
 		<include refid="search"/>
 		ORDER BY boardWritedate DESC
+		 LIMIT 15 OFFSET #{start}
 	</select>
+	
+	<select id="selectSearchCount" resultType="int" parameterType="SearchCondition">
+		SELECT count(*)
+		FROM boardtbl b
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		<include refid="search"/>
+		ORDER BY boardWritedate DESC
+	</select>
+	
+	
 	
 	<insert id="insertRoute" parameterType="RouteBoard">
 		INSERT INTO boardtbl
