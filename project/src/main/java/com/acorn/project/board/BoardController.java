@@ -351,6 +351,8 @@ public class BoardController {
 		User user = (User)session.getAttribute("user");
 		String userId =user.getUserId();
 		List<Board> BoardList = boardService.getInquByuser(userId);
+		System.out.println(BoardList);
+		
 		model.addAttribute("BoardList",BoardList);
 		return "/board/inquiryboard";
 	}
