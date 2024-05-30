@@ -81,7 +81,7 @@
     </style>
 </head>
 <body>
-	<%@ include file="../nav-sub.jsp" %>
+	<%@ include file="../nav.jsp" %>
 	
 	<div class="wrap">
 
@@ -109,9 +109,10 @@
         
         <div class="img"></div>
         
+	
     </div>
     
-	<%@ include file="../footer-sub.jsp" %>
+	
     <script>
         document.querySelectorAll('p').forEach(function(paragraph) {
             paragraph.addEventListener('click', function() {
@@ -128,6 +129,7 @@
             });
         });
     </script>
-    
+    <%@ include file="../footer-sub.jsp" %>
 </body>
+
 </html>

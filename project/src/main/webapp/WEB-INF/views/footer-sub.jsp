@@ -9,15 +9,13 @@
 
 <!-- reset.css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
+
 <style>
     footer {
         position: relative;
         width: 100%;
-		height: 250px;
+        heigth: 350px;
         padding: 50px;
-        
-    	margin: 0;
-        margin-top: 150px;
         background-color: rgb(236, 236, 236);
     }
     .footer-container > * {

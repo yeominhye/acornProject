@@ -12,21 +12,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style>
-	.wrap {
-	    width: 750px;
-	    margin: 0 auto;
+	.container{
+		position: relative;
+		width: 1100px;
+		margin: 0 auto;
+	    padding-bottom: 150px;
+		
 	}
-	.nav {
-	    background-color: red;
-	    width: 100%;
-	    height: 75px;
-	}
-	.footer {
-	    background-color: blue;
-	    width: 100%;
-	    height: 250px;
-	}
-	
 	.page-name {
 	    margin-top: 75px;
 	    font-size: 26px;
@@ -38,8 +30,10 @@
 	}
 	
 	.my_top {
-	    margin-top: 30px;
-	
+		position: relative;
+		background-color: red;
+		width: 700px;
+		margin: 30px auto 30px auto;
 	    display: flex;
 	    justify-content: space-between;
 	}
@@ -154,8 +148,10 @@
 </head>
 <body>
 
-	<%@ include file="../nav-sub.jsp" %>
+	
     <div class="wrap">
+   		<%@ include file="../nav.jsp" %>
+        <div class="container">
         <div class="page-name">마이페이지 <hr> </div>
         <!-- my_top -->
         <div class="my_top"> 
@@ -298,10 +294,9 @@
                 </form>
             </div>
         </div>
-	    
     </div>
-        
-<%@ include file="../footer-sub.jsp" %>
+	<%@ include file="../footer-sub.jsp" %>
+</div>
 
 <script>
 $(document).ready(function(){

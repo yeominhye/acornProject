@@ -1,14 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../nav-sub.jsp" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>로그인 및 회원가입</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             $("#btnLogin").click(function(){
@@ -139,6 +140,10 @@
     </script>
 </head>
 <body>
+<div class="wrap">
+
+	<%@ include file="../nav.jsp" %>
+	
     <div class="container">
         <div class="overlay" id="overlay">
             <div class="sign-in" id="sign-in">
@@ -215,7 +220,8 @@
             </div>
         </div>
     </div>
-    <script src="${path}/resources/js/login.js"></script>
     <%@ include file="../footer-sub.jsp" %>
+</div> <!-- wrap 끝 -->
+    <script src="${path}/resources/js/login.js"></script>
 </body>
 </html>

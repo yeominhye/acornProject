@@ -79,12 +79,16 @@ function init() {  //초기 화면 상태
 init();
 
 
+document.addEventListener('DOMContentLoaded', function () {
+        const slideItems = document.querySelectorAll('.slide-item img');
 
-document.addEventListener('DOMContentLoaded', function() {
-    var tabletIcon = document.querySelector('.tablet-icon');
-    var tabletNavBox = document.querySelector('.tablet-nav-box');
-
-    tabletIcon.addEventListener('click', function() {
-        tabletNavBox.style.display = (tabletNavBox.style.display === 'none' || tabletNavBox.style.display === '') ? 'block' : 'none';
+        slideItems.forEach(item => {
+            item.addEventListener('click', function () {
+                document.querySelectorAll('.slide-item img.clicked').forEach(img => img.classList.remove('clicked'));
+                this.classList.add('clicked');
+            });
+        });
+        
+        // Set the first image as clicked by default
+        slideItems[0].classList.add('clicked');
     });
-});
