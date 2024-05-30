@@ -3,7 +3,6 @@
     margin: 0 auto;
 }
 
-
 /*  */
 .modal {
     position: absolute;
@@ -44,9 +43,24 @@
     font-weight: bold;
     font-size: 18px;
 }
+.tab2 {
+    padding: 15px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    color: #888;
+    font-weight: bold;
+    font-size: 18px;
+}
 
 .selected {
     background-color: #87ceeb;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+.selected2 {
+    background-color: #F9D0DF;
     color: white;
     border-radius: 10px 10px 0 0;
 }
@@ -95,6 +109,11 @@ input[type="radio"]:checked + label {
     background-color: #87ceeb;
     color: white;
 }
+#form3 input[type="radio"]:checked + label {
+    background-color: #F9D0DF;
+    color: white;
+}
+
 
 
 /* 입력 필드 스타일  -모달 2*/
@@ -154,4 +173,23 @@ input[type="radio"]:checked + label {
 
 .btn:hover {
     background-color: #70b8d1;
+}
+/* 모달 2버튼  */
+.buttons .btn2 {
+    margin: 0 10px;
+}
+
+.btn2 {
+    background-color: #F9D0DF;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover2 {
+    background-color: #F9D0DF;
 }

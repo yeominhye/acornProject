@@ -333,34 +333,34 @@ hr {
       <div class="modal" id="modal2">
          <div class="modal-content">
             <div class="tab-container">
-               <div id="tab3" class="tab selected2">환전 포인트 선택</div>
-               <div id="tab4" class="tab">은행 송금 연결</div>
+               <div id="tab3" class="tab2 selected2">환전 포인트 선택</div>
+               <div id="tab4" class="tab2">은행 송금 연결</div>
             </div>
             <form id="form3" class="form">
                <div class="point-selection">
                   <!-- <label for="points" class="points-label">보유 포인트: ${user.userPoint}p</label> -->
                   <div class="points">
-                     <input type="radio" id="5000p2" name="pointAmount" value="5000">
-                     <label for="5000p" class="point-btn">5000p</label> <input
-                        type="radio" id="10000p2" name="pointAmount" value="10000">
-                     <label for="10000p" class="point-btn">10,000p</label> <input
-                        type="radio" id="20000p" name="pointAmount" value="20000">
-                     <label for="20000p" class="point-btn">20,000p</label> <input
-                        type="radio" id="30000p" name="pointAmount" value="30000">
-                     <label for="30000p" class="point-btn">30,000p</label> <input
-                        type="radio" id="50000p2" name="pointAmount" value="50000">
-                     <label for="500000p" class="point-btn">50,000p</label> <input
-                        type="radio" id="100000p2" name="pointAmount" value="100000">
-                     <label for="100000p" class="point-btn">100,000p</label>
+                     <input type="radio" id="5000p2" name="extend" value="5000">
+                     <label for="5000p2" class="point-btn">5000p</label> 
+                     <input type="radio" id="10000p2" name="extend" value="10000">
+                     <label for="10000p2" class="point-btn">10,000p</label> <input
+                        type="radio" id="20000p2" name="extend" value="20000">
+                     <label for="20000p2" class="point-btn">20,000p</label> <input
+                        type="radio" id="30000p2" name="extend" value="30000">
+                     <label for="30000p2" class="point-btn">30,000p</label> <input
+                        type="radio" id="50000p2" name="extend" value="50000">
+                     <label for="50000p2" class="point-btn">50,000p</label> <input
+                        type="radio" id="100000p2" name="extend" value="100000">
+                     <label for="100000p2" class="point-btn">100,000p</label>
                   </div>
                   <div class="buttons">
-                     <button type="button" class="btn" id="cancel2">취소</button>
-                     <button type="button" class="btn" id="next2">다음</button>
+                     <button type="button" class="btn2" id="cancel2">취소</button>
+                     <button type="button" class="btn2" id="next2">다음</button>
                   </div>
                </div>
             </form>
 
-            <form id="form4" class="form" style="display: none;">
+            <form id="form4" class="form" >
                <div class="payment-method">
 
                   <div class="payment-options">
@@ -389,9 +389,9 @@ hr {
 
                   </div>
                   <div class="buttons">
-                     <button type="button" class="btn" id="cancel2">취소</button>
-                     <button type="button" class="btn" id="back2">이전</button>
-                     <button type="button" class="btn" id="chargeBtn2">완료</button>
+                     <button type="button" class="btn2" id="cancel2">취소</button>
+                     <button type="button" class="btn2" id="back2">이전</button>
+                     <button type="button" class="btn2" id="chargeBtn2">완료</button>
                   </div>
                </div>
 
@@ -426,31 +426,31 @@ $(document).ready(function(){
             
         });
     });
-});
-
-//모달 2
-$(document).ready(function(){
-    $("#chargeBtn2").click(function(){
-        var amount = $("input[name='pointAmount']:checked").val();
     
+    $("#chargeBtn2").click(function(){
+        
+        var amount2 = $("input[name='extend']:checked").val();
+        
         $.ajax({
             type: "POST",
-            url: "/project/point/charge_process.do",
-            data: { pointAmount: amount },
+            url: "/project/point/exchange_process.do",
+            data: { exchangeAmount: amount2 },
             success: function(response){
                alert( response);
-                alert("환전되었습니다.");
-                var currentPoints = parseInt($(".my_point_text").text().replace("P", "")); 
-                var newPoints = currentPoints - parseInt(response);
-                $(".my_point_text").html(newPoints + "P"); 
+                alert("환전 성공 !!!!");
+                 $(".my_point_text").html(response +"P"); 
             
             },
             error: function(){
                 alert("오류 발생");
             }
+          
+            
         });
     });
 });
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
     // 페이지 로드 시 모달이 자동으로 열리지 않도록 설정
@@ -499,7 +499,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
   
     document.getElementById('chargeBtn').onclick = function() {
-        
+        const selectedpay = document.querySelector('input[name="payment"]:checked');
+         if (!selectedpay) {
+             alert("결제 방식을 선택하세요.");
+             return;
+         }
    
         document.getElementById('modal').style.display = 'none';
     
@@ -560,18 +564,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 다음 버튼에 클릭 이벤트 핸들러 등록
     document.getElementById('next2').onclick = function() {
+       
+        const selectedPoint = document.querySelector('input[name="extend"]:checked');
+         if (!selectedPoint) {
+             alert("환전할 금액을 선택하세요.");
+             return;
+         }
+  
         document.getElementById('form3').style.display = 'none';
         document.getElementById('form4').style.display = 'block';
-        document.getElementById('tab3').classList.remove('selected');
-        document.getElementById('tab4').classList.add('selected');
+        document.getElementById('tab3').classList.remove('selected2');
+        document.getElementById('tab4').classList.add('selected2');
     };
 
     // 뒤로 가기 버튼에 클릭 이벤트 핸들러 등록
     document.getElementById('back2').onclick = function() {
         document.getElementById('form4').style.display = 'none';
         document.getElementById('form3').style.display = 'block';
-        document.getElementById('tab4').classList.remove('selected');
-        document.getElementById('tab3').classList.add('selected');
+        document.getElementById('tab4').classList.remove('selected2');
+        document.getElementById('tab3').classList.add('selected2');
     };
 
     // 취소 버튼에 클릭 이벤트 핸들러 등록
@@ -585,6 +596,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
     document.getElementById('chargeBtn2').onclick = function() {
+       
+       
         document.getElementById('modal2').style.display = 'none';
     };
     
@@ -592,7 +605,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 폼 전환
     function switchToForm4() {
        
-       const selectedPoint = document.querySelector('input[name="pointAmount"]:checked');
+       const selectedPoint = document.querySelector('input[name="extend"]:checked');
         if (!selectedPoint) {
             alert("환전할 금액을 선택하세요.");
             return;
@@ -600,16 +613,16 @@ document.addEventListener("DOMContentLoaded", function() {
  
         form3.style.display = "none";
         form4.style.display = "block";
-        tab3.classList.remove("selected");
-        tab4.classList.add("selected");
+        tab3.classList.remove("selected2");
+        tab4.classList.add("selected2");
        
     }
 
     function switchToForm3() {
         form3.style.display = "block";
         form4.style.display = "none";
-        tab3.classList.add("selected");
-        tab4.classList.remove("selected");
+        tab3.classList.add("selected2");
+        tab4.classList.remove("selected2");
         
     }
 
@@ -624,8 +637,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function resetForms() {
     document.getElementById('form3').style.display = 'block';
     document.getElementById('form4').style.display = 'none';
-    document.getElementById('tab3').classList.add('selected');
-    document.getElementById('tab4').classList.remove('selected');
+    document.getElementById('tab3').classList.add('selected2');
+    document.getElementById('tab4').classList.remove('selected2');
 
 }
 
