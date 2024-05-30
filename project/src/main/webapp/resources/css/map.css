@@ -51,7 +51,7 @@ body{margin: 0; padding: 0;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
-.click_wrap{border: 1px solid black; width: 40%; padding-bottom: 10px; background-color: #fff; position: absolute; float: right; top: 0; right: -600px; z-index: 2; text-align: center; border-radius: 15px;}
+.click_wrap{border: 1px solid black; width: 40%; padding-bottom: 10px; background-color: #fff; position: absolute; float: right; top: 0;z-index: 2;right:-50px; text-align: center; border-radius: 15px;}
 
 .positionInfo {
     display: flex;

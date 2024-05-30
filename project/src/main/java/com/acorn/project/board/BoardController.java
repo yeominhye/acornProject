@@ -3,6 +3,7 @@ package com.acorn.project.board;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -411,11 +412,13 @@ public class BoardController {
  
  
  @RequestMapping(value="/createMap_process.do", method=RequestMethod.POST)
-	public String createRoute_process (RouteBoard routeBoard) throws Exception {
-		boardService.insertRoute(routeBoard);
+	public String createRoute_process (RouteBoard routeBoard, HttpSession session) throws Exception {
+	 List<Day> dayPlans = (List<Day>) session.getAttribute("dayPlans");
+	 routeBoard.setDays(dayPlans);
+	 	boardService.insertRoute(routeBoard);
 		System.out.println(routeBoard);
 		return "redirect:/board/showBoard";
-	}
+}
  
  
  @RequestMapping("/showBoard")
@@ -424,6 +427,21 @@ public class BoardController {
      RouteBoard routeBoard = boardService.selectRoute(boardCode); //  
      model.addAttribute("routeBoard", routeBoard);
      return "maps/showMap"; // 
+ }
+ 
+ @PostMapping("/dayPlans.do")
+ @ResponseBody
+ public ResponseEntity<String> handleDayPlans(@RequestBody Day day, HttpSession session) {
+     List<Day> dayPlans = (List<Day>) session.getAttribute("dayPlans");
+     if (dayPlans == null) {
+         dayPlans = new ArrayList<>();
+     }
+     dayPlans.add(day);
+     session.setAttribute("dayPlans", dayPlans);
+     // 세션에 저장된 데이터 확인 (디버깅용)
+     System.out.println("Session dayPlans: " + dayPlans);
+     
+     return ResponseEntity.ok("Successfully added a day plan.");
  }
    
    
