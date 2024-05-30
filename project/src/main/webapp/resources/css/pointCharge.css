@@ -1,11 +1,17 @@
-/* 모달 */
+.payment-options2{
+   display: flex;
+    margin: 0 auto;
+}
+
+
+/*  */
 .modal {
     position: absolute;
     z-index: 1;
-    left: 0;
-    top: 0;
-    width: 500px;
-    height: 500px;
+    left:0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
     justify-content: center;
@@ -17,7 +23,7 @@
     border-radius: 10px;
     padding: 30px;
     border: 1px solid #888;
-    width: 90%;
+    width: 100%;
     max-width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -57,7 +63,7 @@
     color: #555;
 }
 
-.points, .payment-options {
+.points {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -90,8 +96,30 @@ input[type="radio"]:checked + label {
     color: white;
 }
 
-.payment-row {
+
+/* 입력 필드 스타일  -모달 2*/
+.payment-method {
     display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.payment-method label {
+    margin-top: 10px;
+}
+
+.payment-method input,
+.payment-method select {
+   width:100px;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#account-number{margin-left:15px; width:350px;}
+
+.payment-row {
+    /* display: flex; */
     justify-content: center;
     margin-bottom: 10px;
 }
