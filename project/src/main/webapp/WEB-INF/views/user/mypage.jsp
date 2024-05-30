@@ -1,36 +1,22 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css"
-   href="${pageContext.request.contextPath}/resources/css/reset.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
 
 <!-- 모달용 css, js -->
-<link rel="stylesheet" type="text/css"
-   href="${pageContext.request.contextPath}/resources/css/pointCharge.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/pointCharge.css" >
 
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style>
-.wrap {
+.container{
+   position: relative;
    width: 750px;
    margin: 0 auto;
-}
-
-.nav {
-   background-color: red;
-   width: 100%;
-   height: 75px;
-}
-
-.footer {
-   background-color: blue;
-   width: 100%;
-   height: 250px;
+    padding-bottom: 150px;
 }
 
 .page-name {
@@ -181,63 +167,66 @@ hr {
 }
 
 </style>
+
 </head>
 <body>
 
-   <%@ include file="../nav.jsp"%>
-   <div class="wrap">
-      <div class="page-name">
-         마이페이지
-         <hr>
-      </div>
-      <!-- my_top -->
-      <div class="my_top">
-         <div class="my_side">
-            <ul>
-               <a href="/project/board/my/inquiry6"><li>1:1문의내역</li></a>
-               <a href="/project/point/showMyPoint.do"><li>포인트 내역</li></a>
-               <a href="/project/user/modifyInfo.do"><li>정보수정</li></a>
-               <a href="" onclick="deleteAccount()" style="cursor: pointer;"><li>회원탈퇴</li></a>
-            </ul>
-         </div>
+	
+<div class="wrap">
+	<%@ include file="../nav.jsp" %>
+	<div class="container">
+        <div class="page-name">
+			마이페이지
+        	<hr>
+      	</div>
+		<!-- my_top -->
+		<div class="my_top">
+        	<div class="my_side">
+	            <ul>
+	            	<a href="/project/board/my/inquiry6"><li>1:1문의내역</li></a>
+	                <a href="/project/point/showMyPoint.do"><li>포인트 내역</li></a>
+	                <a href="/project/user/modifyInfo.do"><li>정보수정</li></a>
+	                <a href="" onclick="deleteAccount()" style="cursor: pointer;"><li>회원탈퇴</li></a>
+	        	</ul>
+			</div>
 
-         <div class="my-content">
-            <div class="my-info">
-               <div class="my_name">
-                  <span>${user.nickname}</span> 님 반갑습니다😘
-               </div>
-            </div>
+         	<div class="my-content">
+            	<div class="my-info">
+	               <div class="my_name">
+	                  <span>${user.nickname}</span> 님 반갑습니다😘
+	               </div>
+            	</div>
 
 
-            <div class="my_point">
-               <div class="my_point_text">${user.userPoint}P</div>
-               <div class="my_point_btn">
-                  <button class="open" id="openModal">충전</button>
-                  <button class="open" id="openModal2">환전</button>
-               </div>
-            </div>
-         </div>
-      </div>
+            	<div class="my_point">
+                	<div class="my_point_text">${user.userPoint}P</div>
+					<div class="my_point_btn">
+					   <button class="open" id="openModal">충전</button>
+					   <button class="open" id="openModal2">환전</button>
+					</div>
+            	</div>
+			</div>
+		</div>
 
-      <!-- my_list -->
-      <div class="my-list">
-         <div class="my-list-ul">
-            <ul>
-               <li><a href="#">작성한 글</a></li>
-               <li><a href="#">스크랩</a></li>
-               <li><a href="#">추천한 글</a></li>
-               <li><a href="#">구매한 글</a></li>
-               <li><a href="#">내 댓글</a></li>
-            </ul>
-         </div>
+		<!-- my_list -->
+		<div class="my-list">
+		  	<div class="my-list-ul">
+		      <ul>
+		         <li><a href="#">작성한 글</a></li>
+		         <li><a href="#">스크랩</a></li>
+		         <li><a href="#">추천한 글</a></li>
+		         <li><a href="#">구매한 글</a></li>
+		         <li><a href="#">내 댓글</a></li>
+		      </ul>
+		  </div>
 
-         <table class="list-tbl">
-            <tr class="list-head">
-               <td>No.</td>
-               <td>제목</td>
-               <td>카테고리</td>
-               <td>작성일</td>
-            </tr>
+		<table class="list-tbl">
+			<tr class="list-head">
+			   <td>No.</td>
+			   <td>제목</td>
+			   <td>카테고리</td>
+			   <td>작성일</td>
+			</tr>
 
             <c:forEach var="board" items="${list}" varStatus="status">
                <tr class="list-data">
@@ -396,14 +385,14 @@ hr {
                </div>
 
             </form>
-         </div>
-      </div>
+        
+            </div>
+        </div>
+    </div>
+	<%@ include file="../footer-sub.jsp" %>
+</div>
 
-   </div>
-
-   <%@ include file="../footer-sub.jsp"%>
-
-   <script>
+<script>
 $(document).ready(function(){
     $("#chargeBtn").click(function(){
        
@@ -681,7 +670,6 @@ function resetForms() {
      var v = this.value;
      this.value = v.replace(/[^가-힣a-zA-Z\s]/gi, '');
    }
-
 </script>
 
 
