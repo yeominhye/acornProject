@@ -174,8 +174,14 @@
 		#{boardViews},#{boardPoint}, 0, #{boardRegion}, #{days, typeHandler=com.acorn.project.board.JsonListTypeHandler})
 	</insert>
 	
-	<select id="selectRoute" resultType="RouteBoard" parameterType="String">
-   		select * from boardtbl where boardCode = #{boardCode}
+   <select id="selectRoute" resultType="RouteBoard" parameterType="String">
+   		SELECT 
+			b.userCode, b.boardCode, u.nickname, b.boardImgReal, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, b.boardWritedate, 
+			b.boardViews, b.boardPoint, b.boardType, b.boardRegion, b.days
+		FROM boardtbl b 
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		WHERE b.boardCode = #{boardCode}
+		ORDER BY b.boardWritedate desc
    </select>
-	
 </mapper>

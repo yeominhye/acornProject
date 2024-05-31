@@ -3,7 +3,6 @@ package com.acorn.project.board;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -83,4 +82,5 @@ public class BoardService implements BoardServiceI {
 	public int insertRoute(RouteBoard routeBoard) throws Exception {
         return dao.insertRoute(routeBoard);
     }
+	
 }

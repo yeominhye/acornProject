@@ -70,6 +70,7 @@
 	                    <option value="13">전북</option>
 	                    <option value="14">전남</option>
 	                    <option value="15">제주</option>
+	                    <option value="16">세종</option>
 	                </select>
 	            </td>
         	</tr>

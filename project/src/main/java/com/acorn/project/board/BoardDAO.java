@@ -115,5 +115,4 @@ public class BoardDAO implements BoardDAOI {
 	 public int insertRoute(RouteBoard routeBoard) throws Exception {
 	    return session.insert(namespace + "insertRoute", routeBoard);
 	}
-
 }
