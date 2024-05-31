@@ -1,3 +1,6 @@
+.wrap {
+   width: 100%;
+}
 
 .myInquiry {
    font-size: 11pt;
@@ -15,15 +18,18 @@
 */
 
 /* 문의폼_상단부 */
-.container {
-	position: relative;
-	width: 1100px;
-	margin: 0 auto;
-    padding-bottom: 150px;
+.inquiry-container {
+   /* border: 1px solid rgb(255, 183, 183); */
+   margin: 20px auto;
+   margin-top: 30px;
+   width: 1000px;
+   text-align: center;
 }
 
 .inquiry-header {
-   padding-top: 75px;
+   /* border: 1px solid rgb(119, 203, 248); */
+   margin: 15px;
+   margin-bottom: 80px;
 }
 
 .inquiry-header h1, p {
@@ -51,7 +57,7 @@
 .inquiry-content {
    border-top: 2px solid black;
    margin-top: 5px;
-   padding-bottom: 150px;
+   margin-bottom: 200px;
 }
 
 fieldset {

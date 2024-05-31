@@ -16,9 +16,10 @@
 </head>
 
 <body>
-        <!-- nav -->
-       <%@ include file="../nav.jsp" %>
+       
     <div class="wrap">
+     <!-- nav -->
+       <%@ include file="../nav.jsp" %>
         
         <!-- header -->
 
@@ -282,9 +283,9 @@
             </div><!-- 댓글 영역 끝-->
             <div class="return-to-list-button"><button>목록보기</button></div>
         </div>
-
+		<%@ include file="../footer-sub.jsp" %>
     </div>
-	<%@ include file="../footer-sub.jsp" %>
+	
     
 </body>
 
