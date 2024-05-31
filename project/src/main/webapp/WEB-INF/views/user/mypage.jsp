@@ -231,7 +231,7 @@ hr {
 
             <c:forEach var="board" items="${list}" varStatus="status">
                <tr class="list-data">
-                  <td><c:out value="${status.index + 1}" /></td>
+                  <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize))+1}</td>
                   <td><a><c:out value="${board.boardTitle}" /></a></td>
                   <td><c:choose>
                         <c:when test="${board.boardType == 0}">루트게시판</c:when>
@@ -245,8 +245,20 @@ hr {
                      </c:choose></td>
                   <td><c:out value="${board.boardWritedate}" /></td>
                </tr>
-            </c:forEach>
+            </c:forEach> 
          </table>
+         
+          <c:if test="${ empty search.condition}">
+        	 <c:if test="${paging.currentGrp > 1}">
+                 <a href="/project/user/mypage.do?page=${paging.grpStartPage - 1}">[ 이전 ]</a>
+             </c:if>
+             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+                 <a href="/project/user/mypage.do?page=${i}" onclick="typeTitle()" >[ ${i} ]</a>
+             </c:forEach>
+             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+                 <a href="/project/user/mypage.do?page=${paging.grpEndPage + 1}">[ 다음 ]</a>
+             </c:if>
+          </c:if>
       </div>
 
       <!-- 모달 -->

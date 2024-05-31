@@ -19,8 +19,17 @@ public interface BoardDAOI {
 	// theme로 조회
 	List<Board> selectTheme(String board_theme);
 	
+	// user_id 게시물 수
+	int selectUserCount(String user_id);
+	
 	// user_id로 조회
 	List<Board> selectUser(String user_id, int currentPage);
+	
+	// 스크랩 게시물 수
+	int MyArchCount(String user_id);
+	
+	//userId로 스크랩조회
+	List<Board> selectUserArch(String user_id, int cuurentPage);
 	
 	// user_id+문의 조회
 	List<Board> selectMyinqu(String user_id);

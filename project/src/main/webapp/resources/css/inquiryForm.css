@@ -111,6 +111,7 @@ textarea {
    font-size: 12pt;
    padding: 20px;
    resize: none;
+   width: 627px;    
 }
 
 .content {

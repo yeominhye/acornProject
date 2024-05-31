@@ -14,7 +14,13 @@ public interface BoardServiceI {
 	
 	List<Board> getBoardBytheme(String board_theme);
 	
+	int selectUserCount(String user_id);
+	
 	List<Board> getBoardByuser(String user_id, int currentPage);
+	
+	int MyArchCount(String user_id);
+	
+	List<Board> selectUserArch(String user_id, int cuurentPage);
 	
 	List<Board> getInquByuser(String user_id);
 

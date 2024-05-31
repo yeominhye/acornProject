@@ -27,8 +27,12 @@
         margin: 0 auto;
     }
     .footer-text01 {
-        width: 150px;
-        height: 50px;
+	    width: 180px;
+	    height: 70px;
+    }
+    .footer-text01 img {
+	    width: 180px;
+	    height: 70px;
     }
     .footer-text02 {
         margin: 25px 0 50px 0;
@@ -63,6 +67,10 @@
         filter: grayscale(0);
         opacity: 1;
     }
+    .footer-text01 a img {
+       width: 150px;
+       height: 50px;
+    }
 </style>
 </head>
 <body>
@@ -70,7 +78,7 @@
         <div class="footer-container">
             <div class="footer-text01">
                 <a href="index.html">
-                    <img src="https://via.placeholder.com/150x50.jpg" alt="logo-icon">  
+                    <img src="${pageContext.request.contextPath}/resources/img/logo2.png" alt="logo-icon">  
                 </a>
             </div>
             <div class="footer-text02">

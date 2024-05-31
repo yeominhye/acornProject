@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 .wrap {width: 100%;}
 
 /***************
@@ -26,13 +27,14 @@ header {
     right: 0;
     
     font-size: 82px;
-    font-family: "Nanum Myeongjo", serif;
+    
     color: #191919;
     font-weight: bold;
 }
 .header-text01 {
     font-size: 32px;
     position: absolute;
+    font-family: "Nanum Myeongjo", serif !important;
     width: 350px;
     top: 185px;
     color: rgba(0, 0, 0, 0.6);
@@ -41,6 +43,7 @@ header {
 .header-text02 {
     position: absolute;
     width: 250px;
+    font-family: "Nanum Myeongjo", serif !important;
     top: 235px;
     right: 0px;
 }
@@ -408,16 +411,21 @@ footer {
 .footer-text > * {
     color: rgb(154, 154, 154);
 }
-
 .footer-text01 {
-    width: 150px;
-    height: 50px;
+   	width: 180px;
+    height: 70px;
+    padding: 0px;
+}
+.footer-text01 img {
+    width: 180px;
+    height: 70px;
+    margin-left: -10px;
 }
 .footer-text02 {
-    margin: 25px 0;
+    margin-top: 20px;
 }
 .footer-text03 {
-    margin-top: 75px;
+    margin-top: 50px;
 }
 .footer-text03 > div > span > img {
     height: 30px;

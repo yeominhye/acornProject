@@ -38,7 +38,7 @@ nav {
     height: 50px;
 }
 .nav-icon img {
-	width: 150px;
+   width: 150px;
     height: 50px;
 }
 .nav-menu ul {
@@ -53,13 +53,13 @@ nav {
     font-weight: bold;
 }
 .nav-proflie-text {
-    width: 150px;
+    width: 180px;
     height: 50px;
     text-align: center; 
     line-height: 50px;  
 }
 .nav-proflie-text a {
-    font-size: 70%;
+    font-size: 14px;
     margin: 0px 10px;
 }
 </style>

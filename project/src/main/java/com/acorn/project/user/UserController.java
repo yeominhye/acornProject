@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.project.board.Board;
 import com.acorn.project.board.BoardServiceI;
+import com.acorn.project.board.PagingHandler;
 
 
 @Controller
@@ -145,10 +146,15 @@ public class UserController {
 	        if (user != null) {
 	            mv.setViewName("user/mypage");
 	            mv.addObject("user", user);
-	            List<Board> myboard = boardService.getBoardByuser(user.getUserId(),page);
-	            
-	            
+	            String userId = user.getUserId();
+	            List<Board> myboard = boardService.getBoardByuser(userId,page); 
 	            mv.addObject("list",myboard);
+	            
+	            int pageSize= 10;
+	            int totRecords = boardService.selectUserCount(userId);
+	            PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
+	            mv.addObject("paging",handler);
+	            
 	        } else {
 	            mv.setViewName("errorPage");
 	            mv.addObject("message", "User information not found");
@@ -160,6 +166,40 @@ public class UserController {
 	    }
 	    return mv;
 	}
+	
+	@RequestMapping("mypage.do/arch")
+	public ModelAndView myPageArch(HttpSession session,  @RequestParam(defaultValue = "1") int page) {
+	    ModelAndView mv = new ModelAndView();
+	    try {
+	        User user = (User) session.getAttribute("user");
+	        if (user != null) {
+	            mv.setViewName("user/mypage");
+	            mv.addObject("user", user);
+	            String userId = user.getUserId();
+	            List<Board> myboard = boardService.selectUserArch(userId,page); 
+	            mv.addObject("list",myboard);
+	            
+	            int pageSize= 10;
+	            int totRecords = boardService.MyArchCount(userId);
+	            PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
+	            mv.addObject("paging",handler);
+	            
+	        } else {
+	            mv.setViewName("errorPage");
+	            mv.addObject("message", "User information not found");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        mv.setViewName("errorPage");
+	        mv.addObject("message", "Error");
+	    }
+	    return mv;
+	}
+	
+	
+	
+	
+	
 
 	
 	@RequestMapping("modifyInfo.do")

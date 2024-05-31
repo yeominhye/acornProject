@@ -15,7 +15,7 @@
     
     <!-- style -->
     <style>
-    	
+       
     </style>
     
 </head>
@@ -28,8 +28,8 @@
         <!-- container -->
         <div class="container">
         
-        	<!-- 사이드 메뉴 -->
-           	<div class="side_menu">
+           <!-- 사이드 메뉴 -->
+              <div class="side_menu">
                 <div class="side_menu_set">
                     <h3>자유게시판</h3>
                     <ul>
@@ -44,7 +44,7 @@
             </div>
             
             <!-- 본문내용 -->
-			<div class="notice">
+         <div class="notice">
                 <h2 id="changeTitle">0</h2>
                 <a class="write-link" href="/project/board/free/reg">글쓰기</a>
                 <div class="notice_list">
@@ -72,36 +72,35 @@
                         </tbody>
                     </table>
                 </div>
-                <div class=""> <!-- page_number -->
-                    <div class=""> <!-- paging -->
+                              <div class="page_number"> <!-- page_number -->
+                    <div class="paging"> <!-- paging -->
                     
                     <c:if test="${ empty search.condition}">
-                    	<c:if test="${paging.currentGrp > 1}">
-                            <a href="/project/board/free?type=${type}&page=${paging.grpStartPage - 1}">[ 이전 ]</a>
+                       <c:if test="${paging.currentGrp > 1}">
+                            <a href="/project/board/free?type=${type}&page=${paging.grpStartPage - 1}">이전</a>
                         </c:if>
                         <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
-                            <a href="/project/board/free?type=${type}&page=${i}" onclick="typeTitle()" >[ ${i} ]</a>
+                            <a class="paging_i" href="/project/board/free?type=${type}&page=${i}">${i}</a>
                         </c:forEach>
                         <c:if test="${paging.grpEndPage <  paging.totalPage}">
-                            <a href="/project/board/free?type=${type}&page=${paging.grpEndPage + 1}">[ 다음 ]</a>
+                            <a href="/project/board/free?type=${type}&page=${paging.grpEndPage + 1}">다음</a>
                         </c:if>
                     </c:if>
                     
                    <c:if test="${ not empty search.condition}">
-                    	<c:if test="${paging.currentGrp > 1}">
-                            <a href="/project/board/free/search?page=${paging.grpStartPage - 1}" >[ 이전 ]</a>
+                       <c:if test="${paging.currentGrp > 1}">
+                            <a href="/project/board/free/search?page=${paging.grpStartPage - 1}" >이전</a>
                         </c:if>
                         <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
-                            <a href="/project/board/free/search?condition=${search.condition}&keyword=${search.keyword}&start=${search.start}&page=${i}">[ ${i} ]</a>
+                            <a class="paging_i" href="/project/board/free/search?condition=${search.condition}&keyword=${search.keyword}&start=${search.start}&page=${i}">${i}</a>
                         </c:forEach>
                         <c:if test="${paging.grpEndPage <  paging.totalPage}">
-                            <a href="/project/board/free/search?page=${paging.grpEndPage + 1}">[ 다음 ]</a>
+                            <a href="/project/board/free/search?page=${paging.grpEndPage + 1}">다음</a>
                         </c:if>
                     </c:if> 
-                    
-                       
                     </div>
                 </div>
+
                 <div class="search_form">
                     <form action="/project/board/free/search" method="get" class="search-form-inner" onsubmit="return searchCheck()">
                         <select name="condition">
@@ -118,14 +117,39 @@
             </div>            
         </div> <!-- container 끝 -->
         
-		<!-- footer -->
-		<%@ include file="../footer-sub.jsp" %>
+      <!-- footer -->
+      <%@ include file="../footer-sub.jsp" %>
     </div>
     
     <!-- script -->
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         typeTitle();
+        
+        // 현재 URL 가져오기
+        var currentURL = window.location.href;
+
+        // 페이지 번호 클릭 시 bold 스타일 적용
+        var pagingLinks = document.querySelectorAll(".paging_i");
+        pagingLinks.forEach(function(link) {
+            link.addEventListener("click", function() {
+                pagingLinks.forEach(function(link) {
+                    link.classList.remove("active");
+                });
+                this.classList.add("active");
+            });
+        });
+
+        // 현재 URL에서 페이지 번호를 추출하여 해당 링크에 active 클래스 추가
+        var pageParts = currentURL.split("page=");
+        if (pageParts.length > 1) {
+            var currentPage = pageParts[1].split("&")[0];
+            pagingLinks.forEach(function(link) {
+                if (link.href.includes("page=" + currentPage)) {
+                    link.classList.add("active");
+                }
+            });
+        }
     });
 
     function searchCheck() {

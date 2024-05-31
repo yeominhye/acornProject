@@ -57,6 +57,11 @@ public class BoardDAO implements BoardDAOI {
 		return session.selectList(namespace+"selectTheme",board_theme);
 	}
 	
+	@Override
+	public int selectUserCount(String user_id) {
+		return session.selectOne(namespace+"selectMyCount", user_id);
+	}
+	
 	// user_id로 조회
 	@Override
 	public List<Board> selectUser(String user_id, int currentPage) {
@@ -71,6 +76,26 @@ public class BoardDAO implements BoardDAOI {
 		info.put("pageSize", pageSize);
 		
 		return session.selectList(namespace+"selectMy",info);
+	}
+	
+	@Override
+	public int MyArchCount(String user_id) {
+		return session.selectOne(namespace+"MyArchCount",user_id);
+	}
+	
+	// userId로 스크랩조회
+	@Override
+	public List<Board> selectUserArch(String user_id, int currentPage){
+		//현재페이지정보,  전체레코드수      
+	  	int  pageSize  =   10;		
+		 int offset = (currentPage - 1) * pageSize;  
+
+		Map<String, Object> info = new  HashMap();
+		info.put("userId", user_id);
+		info.put("offset",  offset);   
+		info.put("pageSize", pageSize);
+		
+		return session.selectList(namespace+"selectMyarchive",info);
 	}
 	
 	// user_id+문의 조회

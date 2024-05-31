@@ -62,6 +62,14 @@
 		WHERE b.boardTheme=#{boardTheme}
 		ORDER BY b.boardWritedate desc
    </select>
+ 
+    <select id="selectMyCount" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		WHERE u.userId=#{userId}
+		AND b.boardType IN (0,1,2,3,4,5)
+    </select>
    
    <select id="selectMy" resultType="Board" parameterType="map">
 		SELECT 
@@ -71,21 +79,41 @@
 		FROM boardtbl b 
 		JOIN usertbl u on b.userCode=u.userCode
 		WHERE u.userId=#{userId}
-		AND b.boardType IN (1,2,3,4,5)
+		AND b.boardType IN (0,1,2,3,4,5)
 		ORDER BY b.boardWritedate desc
 		LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+	
+	
+	<select id="MyArchCount" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		JOIN archivetbl a
+		ON b.boardCode = a.boardCode
+		WHERE u.userId=#{userId}
+		AND b.boardType IN (0,1,2,3,4,5)
+    </select>
+
+   <select id="selectMyarchive" resultType="Board" parameterType="map">
+		SELECT 
+			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
+			b.boardViews,b.boardType
+		FROM boardtbl b 
+		JOIN usertbl u 
+		ON b.userCode=u.userCode
+		JOIN archivetbl a
+		ON b.boardCode = a.boardCode
+		WHERE u.userId=#{userId}
+		ORDER BY b.boardWritedate DESC
+		LIMIT #{pageSize} OFFSET #{offset};
     </select>
    
    <select id="selectMyinqu" resultType="Board" parameterType="String">
 		SELECT 
-            b.boardCode, 
-            b.boardTitle, 
-            b.boardContent, 
-            b.boardWritedate, 
-            b.boardViews, 
-            b.boardType,
-            u.nickname, 
-            u.userId,
+            b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, 
+            b.boardViews,b.boardType, u.nickname, u.userId,
             CASE 
                 WHEN c.boardCode IS NOT NULL THEN 1
                 ELSE 0

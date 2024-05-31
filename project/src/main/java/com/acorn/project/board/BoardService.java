@@ -38,8 +38,23 @@ public class BoardService implements BoardServiceI {
 	}
 	
 	@Override
+	public int selectUserCount(String user_id) {
+		return dao.selectUserCount(user_id);
+	}
+	
+	@Override
 	public List<Board> getBoardByuser(String user_id, int currentPage) {
 		return dao.selectUser(user_id, currentPage);
+	}
+	
+	@Override
+	public int MyArchCount(String user_id) {
+		return dao.MyArchCount(user_id);
+	}
+	
+	@Override
+	public List<Board> selectUserArch(String user_id, int currentPage){
+		return dao.selectUserArch(user_id, currentPage);
 	}
 	
 	@Override

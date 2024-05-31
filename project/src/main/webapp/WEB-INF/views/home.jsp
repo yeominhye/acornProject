@@ -17,7 +17,7 @@
     <!-- index.js -->
     <script defer src="${pageContext.request.contextPath}/resources/js/home.js"></script>
     
-	<!-- google-font -->
+   <!-- google-font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
                 <div class="header-text-box">
                     <div class="header-text01">경로를 공유하는 당신</div>
                     <div class="header-text02">경로당</div>
-                	<img class="header-img4" src="${pageContext.request.contextPath}/resources/img/header-img04.png" alt="">
+                   <img class="header-img4" src="${pageContext.request.contextPath}/resources/img/header-img04.png" alt="">
                 </div>
             </div>
             <div class="header-img-box">
@@ -227,7 +227,7 @@
                     <hr class="section-hr">
                 </div>
                 <div class="tour-box">
-                    <div class="title-text"><span class="local-name">전체,</span> 인기루트</div>
+                    <div class="title-text"><span class="local-name">전체,</span> 인기관광지</div>
                     <div class="see-text tour-text"><a href="#">더보기</a></div>
                     <div class="tour-container">
                         <div class="tour-item">
@@ -311,7 +311,7 @@
                 <div class="footer-text-box">
                     <div class="footer-text">
                         <div class="footer-text01">
-                            <img src="https://via.placeholder.com/150x50.jpg" alt="logo-icon">  
+                            <img src="${pageContext.request.contextPath}/resources/img/logo2.png" alt="logo-icon">  
                         </div>
                         <div class="footer-text02">
                             <div class="page-info">

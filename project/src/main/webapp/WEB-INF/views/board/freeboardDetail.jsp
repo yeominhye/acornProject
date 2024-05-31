@@ -24,10 +24,14 @@
 }
 
 </style>
-<script defer src="${pageContext.request.contextPath}/resources/js/changeType.js"></script>
-<script defer src="${pageContext.request.contextPath}/resources/js/LikeArch.js"></script>
-<script defer src="${pageContext.request.contextPath}/resources/js/report.js"></script>
-<script defer src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
+<script defer
+   src="${pageContext.request.contextPath}/resources/js/changeType.js"></script>
+<script defer
+   src="${pageContext.request.contextPath}/resources/js/LikeArch.js"></script>
+<script defer
+   src="${pageContext.request.contextPath}/resources/js/report.js"></script>
+<script defer
+   src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
 
 <%
 User user = (User) session.getAttribute("user");
@@ -36,8 +40,8 @@ String userCode = (user != null) ? user.getUserCode() : null;
 
 </head>
 <body>
-	<div class="wrap">
-		<%@ include file="../nav.jsp" %>
+   <div class="wrap">
+      <%@ include file="../nav.jsp" %>
       <!-- 게시판 -->
       <div class="container">
          <div class="side_menu">
@@ -82,7 +86,7 @@ String userCode = (user != null) ? user.getUserCode() : null;
                <!-- 내용 -->
                <div class="content">${freeboard.boardContent}</div>
             </div>
-	
+
             <div class="freeboard_page">
                <div class="freeboard_page_img">
                   <div>
@@ -124,7 +128,7 @@ String userCode = (user != null) ? user.getUserCode() : null;
                   <div>
                      <div class="my_comment">
                         <div class="my_comment_sender">${user.nickname}
-                           <button class="my_comment_sender_btn" onclick="regComment()">전송</button>
+                           <button class="my_comment_sender_btn" onclick="regComment()">등록</button>
                         </div>
                         <input type="hidden" id="regBoardCode"value="${freeboard.boardCode}"> 
                         <input type="hidden" id="regUserCode" value="${user.userCode}"> 
