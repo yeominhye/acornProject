@@ -378,28 +378,6 @@ public class BoardController {
 		
 	}
 	
-   /* 종범 추가*/
-   @RequestMapping(value = "/route", method = RequestMethod.GET)
-   public String festival() {
-      return "/board/route";
-   }
-   
-  
-   @RequestMapping(value = "/route/post", method = RequestMethod.GET)
-   public String festivalPost() {
-      return "/board/routePost";
-   }
-   
-   
- // -----猷⑦듃 �빐蹂대뒗 以�---
-// @RequestMapping("/createMap")
-// public String showCreateForm(Model model) {
-//	 User user = (User)session.getAttribute("user");
-//     model.addAttribute("board", new Board());
-//     return "maps/createMap";
-// }
- 
- 
  
  @RequestMapping(value="/createMap", method=RequestMethod.GET)
 	public String createRoute( RouteBoard routeBoard, HttpSession session, Model model) {
@@ -407,7 +385,7 @@ public class BoardController {
 	 
 	    if(user != null) {
 	     session.setAttribute("dayPlans", null);
-         return "maps/createMap";
+         return "board/createMap";
 	    } 
 	    
 	    return "redirect:/user/login.do";
@@ -420,23 +398,10 @@ public class BoardController {
 	 routeBoard.setDays(dayPlans);
 	 	boardService.insertRoute(routeBoard);
 		System.out.println(routeBoard);
-		return "redirect:/board/showBoard";
+		return "redirect:/";
 }
  
- 
- @RequestMapping("/showBoard")
- public String showBoard(Model model) throws Exception {
-     String boardCode = "b0031";
-     RouteBoard routeBoard = boardService.selectRoute(boardCode); //  
-     model.addAttribute("routeBoard", routeBoard);
-     return "maps/showMap"; // 
- }
- 
- @RequestMapping("/faq2")
-	public String faq2() {
-		return "/board/routePost";
-	}
- 
+
  
  @PostMapping("/dayPlans.do")
  @ResponseBody
