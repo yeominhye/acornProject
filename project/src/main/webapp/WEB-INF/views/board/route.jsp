@@ -340,7 +340,7 @@
 		            경로 게시판
 		            <hr>
 		        </div>
-				<a class="write-link" href="/project/board/free/reg">글쓰기</a>
+				<a class="write-link" href="/project/board/createMap">글쓰기</a>
 				<table class="route-table">
 				    <tr>
                         <td class="route-info">

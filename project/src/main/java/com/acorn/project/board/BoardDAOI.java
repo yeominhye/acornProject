@@ -20,7 +20,7 @@ public interface BoardDAOI {
 	List<Board> selectTheme(String board_theme);
 	
 	// user_id로 조회
-	List<Board> selectUser(String user_id);
+	List<Board> selectUser(String user_id, int currentPage);
 	
 	// user_id+문의 조회
 	List<Board> selectMyinqu(String user_id);

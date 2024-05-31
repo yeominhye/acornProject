@@ -138,14 +138,16 @@ public class UserController {
 	
 	
 	@RequestMapping("mypage.do")
-	public ModelAndView myPage(HttpSession session) {
+	public ModelAndView myPage(HttpSession session,  @RequestParam(defaultValue = "1") int page) {
 	    ModelAndView mv = new ModelAndView();
 	    try {
 	        User user = (User) session.getAttribute("user");
 	        if (user != null) {
 	            mv.setViewName("user/mypage");
 	            mv.addObject("user", user);
-	            List<Board> myboard = boardService.getBoardByuser(user.getUserId());
+	            List<Board> myboard = boardService.getBoardByuser(user.getUserId(),page);
+	            
+	            
 	            mv.addObject("list",myboard);
 	        } else {
 	            mv.setViewName("errorPage");

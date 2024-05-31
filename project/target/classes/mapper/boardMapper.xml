@@ -47,7 +47,6 @@
 		JOIN usertbl u
 		ON b.userCode = u.userCode
 		WHERE b.boardCode = #{boardCode}
-		ORDER BY b.boardWritedate desc
    </select>
    
    <update id="updateView" parameterType="Board">
@@ -64,7 +63,7 @@
 		ORDER BY b.boardWritedate desc
    </select>
    
-   <select id="selectMy" resultType="Board" parameterType="String">
+   <select id="selectMy" resultType="Board" parameterType="map">
 		SELECT 
 			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
 			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
@@ -72,8 +71,9 @@
 		FROM boardtbl b 
 		JOIN usertbl u on b.userCode=u.userCode
 		WHERE u.userId=#{userId}
-		AND b.boardType IN (1,2,3,4,5) 
+		AND b.boardType IN (1,2,3,4,5)
 		ORDER BY b.boardWritedate desc
+		LIMIT #{pageSize} OFFSET #{offset}
     </select>
    
    <select id="selectMyinqu" resultType="Board" parameterType="String">

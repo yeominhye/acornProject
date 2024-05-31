@@ -14,7 +14,7 @@ public interface BoardServiceI {
 	
 	List<Board> getBoardBytheme(String board_theme);
 	
-	List<Board> getBoardByuser(String user_id);
+	List<Board> getBoardByuser(String user_id, int currentPage);
 	
 	List<Board> getInquByuser(String user_id);
 

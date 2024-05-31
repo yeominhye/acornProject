@@ -24,14 +24,10 @@
 }
 
 </style>
-<script defer
-   src="${pageContext.request.contextPath}/resources/js/changeType.js"></script>
-<script defer
-   src="${pageContext.request.contextPath}/resources/js/LikeArch.js"></script>
-<script defer
-   src="${pageContext.request.contextPath}/resources/js/report.js"></script>
-<script defer
-   src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
+<script defer src="${pageContext.request.contextPath}/resources/js/changeType.js"></script>
+<script defer src="${pageContext.request.contextPath}/resources/js/LikeArch.js"></script>
+<script defer src="${pageContext.request.contextPath}/resources/js/report.js"></script>
+<script defer src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
 
 <%
 User user = (User) session.getAttribute("user");
@@ -86,7 +82,7 @@ String userCode = (user != null) ? user.getUserCode() : null;
                <!-- 내용 -->
                <div class="content">${freeboard.boardContent}</div>
             </div>
-
+	
             <div class="freeboard_page">
                <div class="freeboard_page_img">
                   <div>

@@ -59,8 +59,18 @@ public class BoardDAO implements BoardDAOI {
 	
 	// user_id로 조회
 	@Override
-	public List<Board> selectUser(String user_id) {
-		return session.selectList(namespace+"selectMy",user_id);
+	public List<Board> selectUser(String user_id, int currentPage) {
+		
+		 //현재페이지정보,  전체레코드수      
+	  	int  pageSize  =   10;		
+		 int offset = (currentPage - 1) * pageSize;  
+
+		Map<String, Object> info = new  HashMap();
+		info.put("userId", user_id);
+		info.put("offset",  offset);   
+		info.put("pageSize", pageSize);
+		
+		return session.selectList(namespace+"selectMy",info);
 	}
 	
 	// user_id+문의 조회
@@ -89,13 +99,12 @@ public class BoardDAO implements BoardDAOI {
 	
 	// 제목, 작성자, 내용으로 검색
 	@Override
-	public List<Board> getList(SearchCondition search, int currentPage){
+	public List<Board> getList(SearchCondition search, int currentPage){		
 		
 		int pageSize=15;	
 		int  start  =   (currentPage  -1) *pageSize;
-
 	 	search.setStart(start);
-		
+
 		return session.selectList(namespace+"selectSearch",search);
 	}
 	

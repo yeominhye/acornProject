@@ -18,7 +18,7 @@ public class BoardService implements BoardServiceI {
 	}
 	
 	@Override
-	public List<Board> getBoardBytype(int boardType , int currentPage){		
+	public List<Board> getBoardBytype(int boardType, int currentPage){		
 		return dao.selectAll(  boardType, currentPage  );
 	}
 
@@ -38,8 +38,8 @@ public class BoardService implements BoardServiceI {
 	}
 	
 	@Override
-	public List<Board> getBoardByuser(String user_id) {
-		return dao.selectUser(user_id);
+	public List<Board> getBoardByuser(String user_id, int currentPage) {
+		return dao.selectUser(user_id, currentPage);
 	}
 	
 	@Override
