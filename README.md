@@ -211,7 +211,7 @@ CREATE TABLE boardtbl(
    
    ON UPDATE CASCADE
    
-   ON DELETE  NO ACTION,
+   ON DELETE CASCADE,
    
    boardImgOrigin VARCHAR(255),
    
