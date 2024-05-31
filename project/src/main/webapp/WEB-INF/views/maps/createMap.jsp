@@ -146,19 +146,22 @@
             <div id="searchTab" class="bg_white" class="slide">
                 <div class="option">
                     <div>
-                            <input type="text" value="이태원 맛집" id="keyword" size="15">
-                            <button type="button">검색</button>
+                    <form onsubmit="searchPlaces(); return false;">
+                    <input type="text" class="searchInput" value="이태원 맛집" id="keyword" size="5"> 
+                    <button type="submit">검색하기</button> 
+                </form>
                     </div>
                 </div>
                 <hr>
                 <ul id="placesList"></ul>
                 <div id="pagination"></div>
             </div>
+           </form>
         </div>
         
 		<form action="/project/board/dayPlans.do" method="post" id="dayPlanForm">
 		    <input type="hidden" name="days[${dayIndex - 1}].day" id="dayIndex" placeholder="dayIndex" required>
-		    <div><input type="text" name="days[${dayIndex - 1}].dayInfo" id="dayInfo" placeholder="간단한 설명을 작성해주세요."></div>
+		    <div><input type="text" name="days[${dayIndex - 1}].dayInfo" id="dayInfo" placeholder="간단한 설명을 작성해주세요." required></div>
 		    <div class="click_wrap">
 		        <div id="clickLatlng" class="click"></div>
 		    </div>
@@ -171,48 +174,72 @@
 
 <script>
 $(document).ready(function() {
-	
+    var dayIndex = 1; 
+    var toggle = 0;
 
-    // dayIndex를 제대로 설정하고, 이를 이용하여 올바르게 증가시킵니다.
-	var dayIndex = 1; 
-	document.getElementById("boardTourdays").value = dayIndex;
-	document.getElementById("dayIndex").value = dayIndex;
-	
-	
-	$("#addDayBtn").on('click', function() {
-        dayIndex++;
-        alert(dayIndex); // 디버깅용 알림
-        document.getElementById("dayIndex").value = dayIndex;
-        document.getElementById("boardTourdays").value = dayIndex;    
-        document.getElementById("dayInfo").value = '';
-        document.getElementById("clickLatlng").innerHTML = '';
+    document.getElementById("boardTourdays").value = dayIndex;
+    document.getElementById("dayIndex").value = dayIndex;
+
+    $("#addDayBtn").on('click', function() {
+        if (toggle === 1) {
+            dayIndex++;
+            document.getElementById("dayIndex").value = dayIndex;
+            document.getElementById("boardTourdays").value = dayIndex;    
+            document.getElementById("dayInfo").value = '';
+            document.getElementById("clickLatlng").innerHTML = '';
+            deleteAll();
+            toggle = 0;
+        } else {
+            alert("저장한 후에 일정을 추가해주세요.");
+        }
     });
-	
+
     $("#dayBtn").on('click', function() {
-    	alert(dayIndex); // 디버깅용 알림
         var dayInfo = $("#dayInfo").val();
         var clickLatlngDiv = document.getElementById("clickLatlng");
         var positionInfos = clickLatlngDiv.getElementsByClassName("positionInfo");
-
+        
+        if (positionInfos.length === 0) {
+            alert("명소를 추가해주세요.");
+            return;
+        }
+        
         var jsonData = {
             day: dayIndex,
             dayInfo: dayInfo,
             markers: []
         };
         
+        var valid = true;
+        
         for (var i = 0; i < positionInfos.length; i++) {
             var positionInfo = positionInfos[i];
             var markerIndex = i;
+            var title = positionInfo.querySelector("#markerTitle_" + markerIndex).value;
+            var latitude = positionInfo.querySelector("#latitude_" + markerIndex).value;
+            var longitude = positionInfo.querySelector("#longitude_" + markerIndex).value;
+            var position = positionInfo.querySelector("#position_" + markerIndex).value;
+            var explain = positionInfo.querySelector("#explain_" + markerIndex).value;
+            
+            if (!title || !latitude || !longitude || !position || !explain) {
+                valid = false;
+                break;
+            }
+            
             var markerData = {
-                title: positionInfo.querySelector("#markerTitle_" + markerIndex).value,
-                latitude: positionInfo.querySelector("#latitude_" + markerIndex).value,
-                longitude: positionInfo.querySelector("#longitude_" + markerIndex).value,
-                position: positionInfo.querySelector("#position_" + markerIndex).value,
-                explain: positionInfo.querySelector("#explain_" + markerIndex).value
+                title: title,
+                latitude: latitude,
+                longitude: longitude,
+                position: position,
+                explain: explain
             };
             jsonData.markers.push(markerData);
         }
 
+        if (!valid) {
+            alert("모든 필드를 채워주세요.");
+            return;
+        }
 
         $.ajax({
             type: "POST",
@@ -221,6 +248,8 @@ $(document).ready(function() {
             data: JSON.stringify(jsonData),
             success: function(data) {
                 console.log("Success:", data);
+                alert('저장 성공!');
+                toggle = 1;
             },
             error: function(error) {
                 console.error("Error:", error);
@@ -228,6 +257,8 @@ $(document).ready(function() {
         });
     });
 });
+
+
 </script>
 </body>
 </html>

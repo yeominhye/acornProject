@@ -543,6 +543,7 @@ function deleteAll(){
     }
     polylines = [];
     linePath=[];
+    document.getElementById("clickLatlng").innerHTML = '';
 }
 
 function positionInfoDel(markerIndex) {
@@ -580,11 +581,11 @@ function positionInfo(markerIndex) {
 		existingDiv.innerHTML = `
 		    <span class="number">${markerIndex + 1}.</span>
 		    <div class="inputs">
-		        <input type="text" class="map-input" name="days[${dayIndex - 1}].markers[${markerIndex}].title" id="markerTitle_${markerIndex}" value="${infowindows[markerIndex].title}" placeholder="명소의 이름을 작성해주세요.">
-		        <input type="hidden" name="days[${dayIndex - 1}].markers[${markerIndex}].latitude" id="latitude_${markerIndex}" value="${infowindows[markerIndex].latitude}">
-		        <input type="hidden" name="days[${dayIndex - 1}].markers[${markerIndex}].longitude" id="longitude_${markerIndex}" value="${infowindows[markerIndex].longitude}">
+		        <input type="text" class="map-input" name="days[${dayIndex - 1}].markers[${markerIndex}].title" id="markerTitle_${markerIndex}" value="${infowindows[markerIndex].title}" placeholder="명소의 이름을 작성해주세요." required>
+		        <input type="hidden" name="days[${dayIndex - 1}].markers[${markerIndex}].latitude" id="latitude_${markerIndex}" value="${infowindows[markerIndex].latitude}" required>
+		        <input type="hidden" name="days[${dayIndex - 1}].markers[${markerIndex}].longitude" id="longitude_${markerIndex}" value="${infowindows[markerIndex].longitude}" required>
 		        <input type="text" class="map-input" name="days[${dayIndex - 1}].markers[${markerIndex}].position" id="position_${markerIndex}" value="${address}" readonly>
-		        <input type="text" class="map-input" name="days[${dayIndex - 1}].markers[${markerIndex}].explain" id="explain_${markerIndex}" placeholder="간단한 설명을 작성해주세요.">
+		        <input type="text" class="map-input" name="days[${dayIndex - 1}].markers[${markerIndex}].explain" id="explain_${markerIndex}" placeholder="간단한 설명을 작성해주세요." required>
 		    </div>
 		`;
 
@@ -602,11 +603,11 @@ function positionInfo(markerIndex) {
 			div.innerHTML = `
 			    <span class="number">${infowindows.length}.</span>
 			    <div class="inputs">
-			        <input type="text" class="map-input" name="days[${dayIndex - 1}].markers[${markerIndex}].title" id="markerTitle_${markerIndex}" value="${infowindows[infowindows.length - 1].title}" placeholder="명소의 이름을 작성해주세요.">
-			        <input type="hidden" name="days[${dayIndex - 1}].markers[${markerIndex}].latitude" id="latitude_${markerIndex}" value="${infowindows[infowindows.length - 1].latitude}">
-			        <input type="hidden" name="days[${dayIndex - 1}].markers[${markerIndex}].longitude"id="longitude_${markerIndex}" value="${infowindows[infowindows.length - 1].longitude}">
+			        <input type="text" class="map-input" name="days[${dayIndex - 1}].markers[${markerIndex}].title" id="markerTitle_${markerIndex}" value="${infowindows[infowindows.length - 1].title}" placeholder="명소의 이름을 작성해주세요." required>
+			        <input type="hidden" name="days[${dayIndex - 1}].markers[${markerIndex}].latitude" id="latitude_${markerIndex}" value="${infowindows[infowindows.length - 1].latitude}" required>
+			        <input type="hidden" name="days[${dayIndex - 1}].markers[${markerIndex}].longitude"id="longitude_${markerIndex}" value="${infowindows[infowindows.length - 1].longitude}" required>
 			        <input type="text" class="map-input" name="days[${dayIndex - 1}].markers[${markerIndex}].position" id="position_${markerIndex}"value="${address}" readonly>
-			        <input type="text" class="map-input" name="days[${dayIndex - 1}].markers[${markerIndex}].explain" id="explain_${markerIndex}"placeholder="간단한 설명을 작성해주세요.">
+			        <input type="text" class="map-input" name="days[${dayIndex - 1}].markers[${markerIndex}].explain" id="explain_${markerIndex}"placeholder="간단한 설명을 작성해주세요." required>
 			    </div>
 			`;
 
