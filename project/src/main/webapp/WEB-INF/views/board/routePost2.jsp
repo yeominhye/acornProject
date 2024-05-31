@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost.css" >
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost2.css" >
 
     <!-- icon key -->
     <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
@@ -90,21 +90,21 @@
                 </div>
 
                 <div class="route-box">
-
                     <div class="route-upperside">
-                        <div class="map" id="map" style="width: 60%; height:350px;">map 들어갈 영역 가로 60%</div>
-                        <div class="map-place-list-section">
+                        <div class="map" id="map" style="width:1100px; height:400px;"></div>
+                        </div>
+                        <div class="route-underside">
+                        <div class="map-place-list-section" style= "float:left; width:400px; margin-left:30px;">
                             <h2>#상세코스</h2>
-                            <div class="place-list">
-                            	
+                            <div class="place-list" >
 
                             </div>
                         </div>
-                    </div>
+                    
 
-                    <div class="route-lowerside">
+                    <div class="route-lowerside" style="float:right; width:550px; margin:0 0 40px 70px; padding-right:120px;" >
                         <h2># 코멘트</h2>
-                        <div class="day-comment">
+                        <div class="day-comment" >
                             <!-- test -->
                             <p>
 
@@ -283,9 +283,9 @@
             </div><!-- 댓글 영역 끝-->
             <div class="return-to-list-button"><button>목록보기</button></div>
         </div>
-		<%@ include file="../footer-sub.jsp" %>
+      <%@ include file="../footer-sub.jsp" %>
     </div>
-	
+   
     
 </body>
 
@@ -347,7 +347,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-	
+   
 // 마커를 표시할 위치와 title 객체 배열입니다 
 var positions = [
     {

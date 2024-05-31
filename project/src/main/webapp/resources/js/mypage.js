@@ -1,7 +1,3 @@
-/**
- * mypage 
- */
-
 $(document).ready(function(){
     $("#chargeBtn").click(function(){
        
@@ -149,7 +145,7 @@ function resetForms() {
 
 }
 
-// 모달2 
+//<!-- 모달2 -->
 document.addEventListener("DOMContentLoaded", function() {
     // 페이지 로드 시 모달이 자동으로 열리지 않도록 설정
     document.getElementById('modal2').style.display = 'none';
@@ -240,7 +236,7 @@ function resetForms() {
 
 }
 
-//  탈퇴 팝업 
+//<!-- 탈퇴 팝업 -->
 
    function deleteAccount() {
 
@@ -262,13 +258,13 @@ function resetForms() {
    }
 
 
-//    계좌번호
    function handleOnInput(el, maxlength) {
         if(el.value.length > maxlength)  {
           el.value 
             = el.value.substr(0, maxlength);
         }
    }
+
 
    document.getElementById("account-holder").onkeyup = function(e){
      var v = this.value;

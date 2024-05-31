@@ -199,7 +199,7 @@ public class PointController {
 	    return user.getUserPoint();
 	}
 
-	
+	@ResponseBody
 	@RequestMapping("exchange_process.do")
 	public int exchangeProcess(@RequestParam int exchangeAmount, HttpSession session) throws Exception {
 		User user = (User) session.getAttribute("user");

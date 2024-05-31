@@ -172,62 +172,62 @@ hr {
 </head>
 <body>
 
-	
+   
 <div class="wrap">
-	<%@ include file="../nav.jsp" %>
-	<div class="container">
+   <%@ include file="../nav.jsp" %>
+   <div class="container">
         <div class="page-name">
-			마이페이지
-        	<hr>
-      	</div>
-		<!-- my_top -->
-		<div class="my_top">
-        	<div class="my_side">
-	            <ul>
-	            	<a href="/project/board/my/inquiry6"><li>1:1문의내역</li></a>
-	                <a href="/project/point/showMyPoint.do"><li>포인트 내역</li></a>
-	                <a href="/project/user/modifyInfo.do"><li>정보수정</li></a>
-	                <a href="" onclick="deleteAccount()" style="cursor: pointer;"><li>회원탈퇴</li></a>
-	        	</ul>
-			</div>
+         마이페이지
+           <hr>
+         </div>
+      <!-- my_top -->
+      <div class="my_top">
+           <div class="my_side">
+               <ul>
+                  <a href="/project/board/my/inquiry6"><li>1:1문의내역</li></a>
+                   <a href="/project/point/showMyPoint.do"><li>포인트 내역</li></a>
+                   <a href="/project/user/modifyInfo.do"><li>정보수정</li></a>
+                   <a href="" onclick="deleteAccount()" style="cursor: pointer;"><li>회원탈퇴</li></a>
+              </ul>
+         </div>
 
-         	<div class="my-content">
-            	<div class="my-info">
-	               <div class="my_name">
-	                  <span>${user.nickname}</span> 님 반갑습니다😘
-	               </div>
-            	</div>
+            <div class="my-content">
+               <div class="my-info">
+                  <div class="my_name">
+                     <span>${user.nickname}</span> 님 반갑습니다😘
+                  </div>
+               </div>
 
 
-            	<div class="my_point">
-                	<div class="my_point_text">${user.userPoint}P</div>
-					<div class="my_point_btn">
-					   <button class="open" id="openModal">충전</button>
-					   <button class="open" id="openModal2">환전</button>
-					</div>
-            	</div>
-			</div>
-		</div>
+               <div class="my_point">
+                   <div class="my_point_text">${user.userPoint}P</div>
+               <div class="my_point_btn">
+                  <button class="open" id="openModal">충전</button>
+                  <button class="open" id="openModal2">환전</button>
+               </div>
+               </div>
+         </div>
+      </div>
 
-		<!-- my_list -->
-		<div class="my-list">
-		  	<div class="my-list-ul">
-		      <ul>
-		         <li><a href="#">작성한 글</a></li>
-		         <li><a href="#">스크랩</a></li>
-		         <li><a href="#">추천한 글</a></li>
-		         <li><a href="#">구매한 글</a></li>
-		         <li><a href="#">내 댓글</a></li>
-		      </ul>
-		  </div>
+      <!-- my_list -->
+      <div class="my-list">
+           <div class="my-list-ul">
+            <ul>
+               <li><a href="#">작성한 글</a></li>
+               <li><a href="#">스크랩</a></li>
+               <li><a href="#">추천한 글</a></li>
+               <li><a href="#">구매한 글</a></li>
+               <li><a href="#">내 댓글</a></li>
+            </ul>
+        </div>
 
-		<table class="list-tbl">
-			<tr class="list-head">
-			   <td>No.</td>
-			   <td>제목</td>
-			   <td>카테고리</td>
-			   <td>작성일</td>
-			</tr>
+      <table class="list-tbl">
+         <tr class="list-head">
+            <td>No.</td>
+            <td>제목</td>
+            <td>카테고리</td>
+            <td>작성일</td>
+         </tr>
 
             <c:forEach var="board" items="${list}" varStatus="status">
                <tr class="list-data">
@@ -249,7 +249,7 @@ hr {
          </table>
          
           <c:if test="${ empty search.condition}">
-        	 <c:if test="${paging.currentGrp > 1}">
+            <c:if test="${paging.currentGrp > 1}">
                  <a href="/project/user/mypage.do?page=${paging.grpStartPage - 1}">[ 이전 ]</a>
              </c:if>
              <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
@@ -273,16 +273,16 @@ hr {
                   <!-- <label for="points" class="points-label">보유 포인트: ${user.userPoint}p</label> -->
                   <div class="points">
                      <input type="radio" id="1000p" name="pointAmount" value="1000">
-                     <label for="1000p" class="point-btn">1000p</label> 
-                     <input type="radio" id="5000p" name="pointAmount" value="5000">
-                     <label for="5000p" class="point-btn">5000p</label> 
-                     <input type="radio" id="10000p" name="pointAmount" value="10000">
-                     <label for="10000p" class="point-btn">10,000p</label> 
-                     <input type="radio" id="50000p" name="pointAmount" value="50000">
-                     <label for="50000p" class="point-btn">50,000p</label> 
-                     <input type="radio" id="100000p" name="pointAmount" value="100000">
-                     <label for="100000p" class="point-btn">100,000p</label> 
-                     <input type="radio" id="300000p" name="pointAmount" value="300000">
+                     <label for="1000p" class="point-btn">1000p</label> <input
+                        type="radio" id="5000p" name="pointAmount" value="5000">
+                     <label for="5000p" class="point-btn">5000p</label> <input
+                        type="radio" id="10000p" name="pointAmount" value="10000">
+                     <label for="10000p" class="point-btn">10,000p</label> <input
+                        type="radio" id="50000p" name="pointAmount" value="50000">
+                     <label for="50000p" class="point-btn">50,000p</label> <input
+                        type="radio" id="100000p" name="pointAmount" value="100000">
+                     <label for="100000p" class="point-btn">100,000p</label> <input
+                        type="radio" id="300000p" name="pointAmount" value="300000">
                      <label for="300000p" class="point-btn">300,000p</label>
                   </div>
                   <div class="buttons">
@@ -345,15 +345,14 @@ hr {
                      <input type="radio" id="5000p2" name="extend" value="5000">
                      <label for="5000p2" class="point-btn">5000p</label> 
                      <input type="radio" id="10000p2" name="extend" value="10000">
-                     <label for="10000p2" class="point-btn">10,000p</label> 
-                     <input type="radio" id="20000p2" name="extend" value="20000">
-                     <label for="20000p2" class="point-btn">20,000p</label> 
-                     <input
+                     <label for="10000p2" class="point-btn">10,000p</label> <input
+                        type="radio" id="20000p2" name="extend" value="20000">
+                     <label for="20000p2" class="point-btn">20,000p</label> <input
                         type="radio" id="30000p2" name="extend" value="30000">
-                     <label for="30000p2" class="point-btn">30,000p</label> 
-                     <input type="radio" id="50000p2" name="extend" value="50000">
-                     <label for="50000p2" class="point-btn">50,000p</label> 
-                     <input type="radio" id="100000p2" name="extend" value="100000">
+                     <label for="30000p2" class="point-btn">30,000p</label> <input
+                        type="radio" id="50000p2" name="extend" value="50000">
+                     <label for="50000p2" class="point-btn">50,000p</label> <input
+                        type="radio" id="100000p2" name="extend" value="100000">
                      <label for="100000p2" class="point-btn">100,000p</label>
                   </div>
                   <div class="buttons">
@@ -385,11 +384,10 @@ hr {
                         <input type="number" oninput='handleOnInput(this, 15)' id="account-number" placeholder="계좌번호 입력" name="account-number" pattern="\d*"  maxlength="10" required>
 
                      </div>
-                     <br> 
-                     <label for="account-holder">예금주명: </label> 
-                     <input type="text" id="account-holder" name="account-holder" maxlength="5" required>
+                     <br> <label for="account-holder">예금주명: </label> <input
+                        type="text" id="account-holder" name="account-holder" maxlength="5" required>
+
                   </div>
-                  
                   <div class="buttons">
                      <button type="button" class="btn2" id="cancel2">취소</button>
                      <button type="button" class="btn2" id="back2">이전</button>
@@ -398,11 +396,12 @@ hr {
                </div>
 
             </form>
-        
-            </div>
-        </div>
+         </div>
+      </div>
+
+
     </div>
-	<%@ include file="../footer-sub.jsp" %>
+   <%@ include file="../footer-sub.jsp" %>
 </div>
 </body>
 </html>

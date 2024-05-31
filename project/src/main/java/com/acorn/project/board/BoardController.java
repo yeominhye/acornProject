@@ -387,7 +387,7 @@ public class BoardController {
   
    @RequestMapping(value = "/route/post", method = RequestMethod.GET)
    public String festivalPost() {
-      return "/board/routePost";
+      return "/board/routePost2";
    }
    
    
