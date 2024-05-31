@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class RouteBoard {
 	private String boardCode;
 	private String userCode;
+	private String nickname;
 	private String boardImgOrigin;
 	private String boardImgReal;
 	private String boardTitle;

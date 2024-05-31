@@ -38,14 +38,38 @@
                 <!-- 타이틀 영역 -->
                 <div class="title-box">
                     <div class="icon-region">
-                        <p>지역</p>
+                        <p><c:choose>
+                                <c:when test="${routeBoard.boardRegion == 0}">서울</c:when>
+                                <c:when test="${routeBoard.boardRegion == 1}">인천</c:when>
+                                <c:when test="${routeBoard.boardRegion == 2}">대전</c:when>
+                                <c:when test="${routeBoard.boardRegion == 3}">대구</c:when>
+                                <c:when test="${routeBoard.boardRegion == 4}">경기</c:when>
+                                <c:when test="${routeBoard.boardRegion == 5}">부산</c:when>
+                                <c:when test="${routeBoard.boardRegion == 6}">울산</c:when>
+                                <c:when test="${routeBoard.boardRegion == 7}">광주</c:when>
+                                <c:when test="${routeBoard.boardRegion == 8}">강원</c:when>
+                                <c:when test="${routeBoard.boardRegion == 9}">충북</c:when>
+                                <c:when test="${routeBoard.boardRegion == 10}">충남</c:when>
+                                <c:when test="${routeBoard.boardRegion == 11}">경북</c:when>
+                                <c:when test="${routeBoard.boardRegion == 12}">경남</c:when>
+                                <c:when test="${routeBoard.boardRegion == 13}">전북</c:when>
+                                <c:when test="${routeBoard.boardRegion == 14}">전남</c:when>
+                                <c:when test="${routeBoard.boardRegion == 15}">제주</c:when>
+                                <c:when test="${routeBoard.boardRegion == 16}">세종</c:when>
+                            </c:choose></p>
                     </div>
-                    <div class="title-section">글제목나올 영역</div>
+                    <div class="title-section">${routeBoard.boardTitle}</div>
                     <div class="writer-section">
-                        <p>글쓴이</p><img src="check.png" alt="">
+                        <p>${routeBoard.nickname}</p><img src="check.png" alt="">
                     </div>
-                    <div class="date-section">3~5일 영역</div>
-                    <div class="theme-section">#친구</div>
+                    <div class="date-section">${routeBoard.boardTourdays}일</div>
+                    <div class="theme-section"><c:choose>
+                                <c:when test="${routeBoard.boardTheme == 1}">#나홀로 힐링</c:when>
+                                <c:when test="${routeBoard.boardTheme == 2}">#연인과 데이트</c:when>
+                                <c:when test="${routeBoard.boardTheme == 3}">#친구들과</c:when>
+                                <c:when test="${routeBoard.boardTheme == 4}">#가족 나들이</c:when>
+                                <c:when test="${routeBoard.boardTheme == 5}">#모임 단체 여행</c:when>
+                            </c:choose></div>
                     <div class="mark-section">
                         <div class="likes">
                             <i class="fa-regular fa-heart"></i>
@@ -58,7 +82,7 @@
                             <!-- 글 스크랩 시 변경 아이콘 -->
                             <!-- <i class="fa-solid fa-bookmark"></i>  -->
                         </div>
-                        <div class="views"><span>views</span><span>1,232</span></div>
+                        <div class="views"><span>views</span><span> ${routeBoard.boardViews }</span></div>
                     </div>
 
                     <div class="point-section">
@@ -66,7 +90,7 @@
                         <i class="fa-brands fa-product-hunt fa-2x"></i>
                         <i class="fa-solid fa-coins fa-2x"></i>
                         <i class="fa-solid fa-sack-dollar fa-2x"></i>
-                        <span class="price">3,456</span>
+                        <span class="price">${routeBoard.boardPoint }</span>
                     </div>
                 </div>
 
@@ -349,17 +373,14 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 
 	
 // 마커를 표시할 위치와 title 객체 배열입니다 
-var positions = [
-    {
-        title: ${routeBoard.days[0].markers[0].title}, 
+var positions = [];
+<c:forEach var="marker" items="${routeBoard.days[0].markers}" varStatus="innerLoop">
+    positions.push({
+        title: '<c:out value="${marker.title}" />', 
         /* latlng: new kakao.maps.LatLng(33.450705, 126.570677) */
-        latlng: new kakao.maps.LatLng(${routeBoard.days[0].markers[0].latitude}, ${routeBoard.days[0].markers[0].longitude})
-    },
-    {
-        title: ${routeBoard.days[0].markers[1].title}, 
-        latlng: new kakao.maps.LatLng(${routeBoard.days[0].markers[1].latitude}, ${routeBoard.days[0].markers[1].longitude})
-    }
-];
+        latlng: new kakao.maps.LatLng(<c:out value="${marker.latitude}" />, <c:out value="${marker.longitude}" />)
+    });
+ </c:forEach>
 
 // 마커 이미지의 이미지 주소입니다
 var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 

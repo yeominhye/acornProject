@@ -24,13 +24,13 @@ import com.acorn.project.user.UserServiceI;
 @Controller
 @RequestMapping("/point/*")
 public class PointController {
-	@Inject
-	PointServiceI service;
-	
-	@Inject
-	UserServiceI userService;
-	
-	@RequestMapping("showMyPoint.do")
+   @Inject
+   PointServiceI service;
+   
+   @Inject
+   UserServiceI userService;
+   
+   @RequestMapping("showMyPoint.do")
     public ModelAndView showMyPoint(HttpSession session, 
                                     @RequestParam(value = "startDate", required = false) String startDate,
                                     @RequestParam(value = "endDate", required = false) String endDate) {
@@ -83,10 +83,10 @@ public class PointController {
         return mv;
     }
 
-	@RequestMapping("showMyEarnedPoint.do")
-	public ModelAndView showMyEarnedPoint(HttpSession session, 
-	                                      @RequestParam(value = "startDate", required = false) String startDate,
-	                                      @RequestParam(value = "endDate", required = false) String endDate) {
+   @RequestMapping("showMyEarnedPoint.do")
+   public ModelAndView showMyEarnedPoint(HttpSession session, 
+                                         @RequestParam(value = "startDate", required = false) String startDate,
+                                         @RequestParam(value = "endDate", required = false) String endDate) {
         ModelAndView mv = new ModelAndView();
         User user = (User) session.getAttribute("user");
 
@@ -127,9 +127,9 @@ public class PointController {
         }
         return mv;
     }
-	
-	
-	@RequestMapping("showMyUsePoint.do")
+   
+   
+   @RequestMapping("showMyUsePoint.do")
     public ModelAndView showMyUsePoint(HttpSession session, 
                                     @RequestParam(value = "startDate", required = false) String startDate,
                                     @RequestParam(value = "endDate", required = false) String endDate) {
@@ -177,44 +177,43 @@ public class PointController {
             mv.addObject("message", "Login");
         }
         return mv;
-    }	
-	
-	@ResponseBody
-	@RequestMapping("charge_process.do")
-	public int chargeProcess(@RequestParam int pointAmount, HttpSession session) throws Exception { 
-	    User user = (User) session.getAttribute("user");
-	    System.out.println(user);
-	    
-	    //
-	    if (user == null) {
-	        throw new IllegalStateException("User not logged in.");
-	    }
+    }   
+   
+   @ResponseBody
+   @RequestMapping("charge_process.do")
+   public int chargeProcess(@RequestParam int pointAmount, HttpSession session) throws Exception { 
+       User user = (User) session.getAttribute("user");
+       System.out.println(user);
+       
+       //
+       if (user == null) {
+           throw new IllegalStateException("User not logged in.");
+       }
 
-	    int result = service.buyPoint(pointAmount, user.getUserCode());
-	    if(result > 0) {
-	    	userService.updatePoint(pointAmount, user);
-	    	user = userService.getUserById(user.getUserId());
-	    	session.setAttribute("user", user);
-	    }
-	    return user.getUserPoint();
-	}
+       int result = service.buyPoint(pointAmount, user.getUserCode());
+       if(result > 0) {
+          userService.updatePoint(pointAmount, user);
+          user = userService.getUserById(user.getUserId());
+          session.setAttribute("user", user);
+       }
+       return user.getUserPoint();
+   }
 
-	@ResponseBody
-	@RequestMapping("exchange_process.do")
-	public int exchangeProcess(@RequestParam int exchangeAmount, HttpSession session) throws Exception {
-		User user = (User) session.getAttribute("user");
-	        if (user != null) {
-	            if (user.getUserPoint() >= exchangeAmount) {
-	                int result = service.pointExchange(-exchangeAmount, user.getUserCode());
-	                if (result > 0) {
-	                    userService.updatePoint(-exchangeAmount, user);
-
-	                    user = userService.getUserById(user.getUserId());
-	                    session.setAttribute("user", user);
-	                }
-	            }
-	        }
-	        return user.getUserPoint();
-	}
+   @ResponseBody
+   @RequestMapping("exchange_process.do")
+   public int exchangeProcess(@RequestParam int exchangeAmount, HttpSession session) throws Exception {
+      User user = (User) session.getAttribute("user");
+           if (user != null) {
+               if (user.getUserPoint() >= exchangeAmount) {
+                   int result = service.pointExchange(-exchangeAmount, user.getUserCode());
+                   if (result > 0) {
+                       userService.updatePoint(-exchangeAmount, user);
+                       user = userService.getUserById(user.getUserId());
+                       session.setAttribute("user", user);
+                   }
+               }
+           }
+           return user.getUserPoint();
+   }
 
 }

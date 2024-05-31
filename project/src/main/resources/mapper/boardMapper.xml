@@ -203,7 +203,14 @@
 	</insert>
 	
 	<select id="selectRoute" resultType="RouteBoard" parameterType="String">
-   		select * from boardtbl where boardCode = #{boardCode}
+   		SELECT 
+			b.userCode, b.boardCode, u.nickname, b.boardImgReal, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, b.boardWritedate, 
+			b.boardViews, b.boardPoint, b.boardType, b.boardRegion, b.days
+		FROM boardtbl b 
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		WHERE b.boardCode = #{boardCode}
+		ORDER BY b.boardWritedate desc
    </select>
 	
 </mapper>

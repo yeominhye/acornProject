@@ -377,7 +377,7 @@ public class BoardController {
 		return new  UrlResource("file:c:\\test\\upload\\"+ fileName);
 		
 	}
-	
+
    /* 종범 추가*/
    @RequestMapping(value = "/route", method = RequestMethod.GET)
    public String festival() {
@@ -398,8 +398,7 @@ public class BoardController {
 //     model.addAttribute("board", new Board());
 //     return "maps/createMap";
 // }
- 
- 
+
  
  @RequestMapping(value="/createMap", method=RequestMethod.GET)
 	public String createRoute( RouteBoard routeBoard, HttpSession session, Model model) {
@@ -407,7 +406,7 @@ public class BoardController {
 	 
 	    if(user != null) {
 	     session.setAttribute("dayPlans", null);
-         return "maps/createMap";
+         return "board/createMap";
 	    } 
 	    
 	    return "redirect:/user/login.do";
@@ -420,23 +419,10 @@ public class BoardController {
 	 routeBoard.setDays(dayPlans);
 	 	boardService.insertRoute(routeBoard);
 		System.out.println(routeBoard);
-		return "redirect:/board/showBoard";
+		return "redirect:/";
 }
  
- 
- @RequestMapping("/showBoard")
- public String showBoard(Model model) throws Exception {
-     String boardCode = "b0031";
-     RouteBoard routeBoard = boardService.selectRoute(boardCode); //  
-     model.addAttribute("routeBoard", routeBoard);
-     return "maps/showMap"; // 
- }
- 
- @RequestMapping("/faq2")
-	public String faq2() {
-		return "/board/routePost";
-	}
- 
+
  
  @PostMapping("/dayPlans.do")
  @ResponseBody
