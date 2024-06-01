@@ -13,7 +13,7 @@
 <link rel="stylesheet"
     href="${pageContext.request.contextPath}/resources/css/reset.css" />
 <script defer
-    src="${pageContext.request.contextPath}/resources/js/map.js"></script>
+src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
     function previewImage(input) {

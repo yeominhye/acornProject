@@ -10,10 +10,25 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost2.css" >
+<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/map.css" /> --%>
+	<script defer src="${pageContext.request.contextPath}/resources/js/map.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
     <!-- icon key -->
     <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
 </head>
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#coverImagePreview').attr('src', e.target.result).show();
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 
 <body>
        
@@ -29,49 +44,72 @@
                 <button class="post-btn">수정</button>
                 <button class="post-btn right">삭제</button>
             </div>
-
+			
+			 <form action="/project/board/createMap_process.do" method="post" id="createMapForm">
             <div class="title-container">
                 <!-- 이미지 영역 -->
                 <div class="image-box">
                     <img src="https://via.placeholder.com/300x400.jpg" alt="">
                 </div>
                 <!-- 타이틀 영역 -->
+               
                 <div class="title-box">
+         		    <input type="hidden" id="userCode" name="userCode" value="${user.userCode}">
                     <div class="icon-region">
-                        <p>지역</p>
+                        <select name="boardRegion" id="boardRegion" required>
+		                    <option value="0">서울</option>
+		                    <option value="1">인천</option>
+		                    <option value="2">대전</option>
+		                    <option value="3">대구</option>
+		                    <option value="4">경기</option>
+		                    <option value="5">부산</option>
+		                    <option value="6">울산</option>
+		                    <option value="7">광주</option>
+		                    <option value="8">강원</option>
+		                    <option value="9">충북</option>
+		                    <option value="10">충남</option>
+		                    <option value="11">경북</option>
+		                    <option value="12">경남</option>
+		                    <option value="13">전북</option>
+		                    <option value="14">전남</option>
+		                    <option value="15">제주</option>
+		                    <option value="16">세종</option>
+	                	</select>
                     </div>
-                    <div class="title-section">글제목나올 영역</div>
+                    <div class="title-section">제목: <input type="text" id="boardTitle" name="boardTitle" placeholder="제목" required></div>
                     <div class="writer-section">
-                        <p>글쓴이</p><img src="check.png" alt="">
+                        <p>${routeBoard.nickname}</p><img src="check.png" alt="">
                     </div>
-                    <div class="date-section">3~5일 영역</div>
-                    <div class="theme-section">#친구</div>
-                    <div class="mark-section">
-                        <div class="likes">
-                            <i class="fa-regular fa-heart"></i>
-                            <!-- 클릭 변경 아이콘 -->
-                            <!-- <i class="fa-solid fa-heart"></i> -->
-                            <span>123</span>
-                        </div>
-                        <div class="bookmark">
-                            <i class="fa-regular fa-bookmark"></i>
-                            <!-- 글 스크랩 시 변경 아이콘 -->
-                            <!-- <i class="fa-solid fa-bookmark"></i>  -->
-                        </div>
-                        <div class="views"><span>views</span><span>1,232</span></div>
+                    <div class="date-section"> 날짜: <input type="text" id="boardTourdays" name="boardTourdays" readonly required></div>
+                    <div class="theme-section"> 카테고리: 
+                    	<select name="boardTheme" id="boardTheme" required>
+		                    <option value="1">나홀로 힐링</option>
+		                    <option value="2">연인과 함께</option>
+		                    <option value="3">친목 다지기~</option>
+		                    <option value="4">가족 나들이</option>
+		                    <option value="5">모임 여행</option>
+	                	</select>
                     </div>
-
+                    
                     <div class="point-section">
                         <!-- 아이콘 못 고르겠어.. -->
                         <i class="fa-brands fa-product-hunt fa-2x"></i>
-                        <i class="fa-solid fa-coins fa-2x"></i>
-                        <i class="fa-solid fa-sack-dollar fa-2x"></i>
-                        <span class="price">3,456</span>
+                       <input type="number" id ="boardPoint" min="0" value="0" step="100" name="boardPoint" class="price" required>
                     </div>
+                    
+                    <div class="boardContent">
+                    	총평
+                    	<textarea rows="" cols="" id="boardContent" name="boardContent" required class="boardTextarea"></textarea> 
+                    </div>
+                    
+                     <div>
+			            <button type="submit">저장</button>
+			        </div>
                 </div>
-
             </div>
-
+			</form>
+			
+			
             <hr class="divider first">
 
             <!-- 경로 영역 -->
@@ -82,308 +120,182 @@
                         <h1>1</h1>
                     </div>
                     <div class="index-button">
-                        <h1>2</h1>
-                    </div>
-                    <div class="index-button">
-                        <h1>3</h1>
+                        <h1><button type="button" id="addDayBtn" function="addDay()">일정 추가</button></h1>
                     </div>
                 </div>
 
                 <div class="route-box">
+
                     <div class="route-upperside">
-                        <div class="map" id="map" style="width:1100px; height:400px;"></div>
-                        </div>
-                        <div class="route-underside">
-                        <div class="map-place-list-section" style= "float:left; width:400px; margin-left:30px;">
-                            <h2>#상세코스</h2>
-                            <div class="place-list" >
-
-                            </div>
-                        </div>
-                    
-
-                    <div class="route-lowerside" style="float:right; width:550px; margin:0 0 40px 70px; padding-right:120px;" >
-                        <h2># 코멘트</h2>
-                        <div class="day-comment" >
-                            <!-- test -->
-                            <p>
-
-                                각급 선거관리위원회는 선거인명부의 작성등 선거사무와 국민투표사무에 관하여 관계 행정기관에 필요한 지시를 할 수 있다. 누구든지 체포 또는 구속을 당한 때에는
-                                적부의
-                                심사를 법원에 청구할 권리를 가진다. 대통령은 국민의 보통·평등·직접·비밀선거에 의하여 선출한다. 국가는 농수산물의 수급균형과 유통구조의 개선에 노력하여
-                                가격안정을
-                                도모함으로써 농·어민의 이익을 보호한다.
-                                국회의원은 그 지위를 남용하여 국가·공공단체 또는 기업체와의 계약이나 그 처분에 의하여 재산상의 권리·이익 또는 직위를 취득하거나 타인을 위하여 그 취득을
-                                알선할 수
-                                없다. 국회의원이 회기전에 체포 또는 구금된 때에는 현행범인이 아닌 한 국회의 요구가 있으면 회기중 석방된다. 대통령은 제1항과 제2항의 처분 또는 명령을 한
-                                때에는
-                                지체없이 국회에 보고하여 그 승인을 얻어야 한다.
-
-
-                                There are many variations of passages of Lorem Ipsum available, but the majority have
-                                suffered alteration in some form, by injected humour, or randomised words which don't
-                                look
-                                even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to
-                                be
-                                sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum
-                                generators on the Internet tend to repeat predefined chunks as necessary, making this
-                                the
-                                first true generator on the Internet. It uses a dictionary of over 200 Latin words,
-                                combined
-                                with a handful of model sentence structures, to generate Lorem Ipsum which looks
-                                reasonable.
-                                The generated Lorem Ipsum is therefore always free from repetition, injected humour, or
-                                non-characteristic words etc.
-                                There are many variations of passages of Lorem Ipsum available, but the majority have
-                                suffered alteration in some form, by injected humour, or randomised words which don't
-                                look
-                                even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to
-                                be
-                                sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum
-                                generators on the Internet tend to repeat predefined chunks as necessary, making this
-                                the
-                                first true generator on the Internet. It uses a dictionary of over 200 Latin words,
-                                combined
-                                with a handful of model sentence structures, to generate Lorem Ipsum which looks
-                                reasonable.
-                                The generated Lorem Ipsum is therefore always free from repetition, injected humour, or
-                                non-characteristic words etc.
-
-                            </p>
-
-                        </div>
+                        <div class="map" id="map" ></div>
+                        <div class="toolTab">
+			                <div class="toolBtn">
+			                    <button id="myButton">
+			                        <div class="btnImg">
+			                            <img src="${pageContext.request.contextPath}/resources/img/search.png" alt="">
+			                        </div>
+			                        Search
+			                    </button>
+			                </div>
+			                <div class="toolBtn">
+			                    <button id="test">
+			                        <div class="btnImg">
+			                            <img src="${pageContext.request.contextPath}/resources/img/checkmark.png" alt="">
+			                        </div>
+			                        Test
+			                    </button>
+			                </div>
+			                <div class="toolBtn">
+			                    <button id="line">
+			                        <div class="btnImg">
+			                            <img src="${pageContext.request.contextPath}/resources/img/gps-route.png" alt="">
+			                        </div>
+			                        Line
+			                    </button>
+			                </div>
+			                <div class="toolBtn">
+			                    <button id="linedelete">
+			                        <div class="btnImg">
+			                            <img src="${pageContext.request.contextPath}/resources/img/eraser.png" alt="">
+			                        </div>
+			                        Delete
+			                    </button>
+			                </div>
+			            </div>
+                        
+                        <div id="searchTab" class="bg_white" class="slide">
+			                <div class="option">
+			                    <div>
+			                    <form onsubmit="searchPlaces(); return false;">
+			                    <input type="text" class="searchInput" value="이태원 맛집" id="keyword" size="5"> 
+			                    <button type="submit">검색하기</button> 
+			                	</form>
+			                    </div>
+			               </div>
+			                <hr>
+			                <ul id="placesList"></ul>
+			                <div id="pagination"></div>
+			            </div>
                     </div>
 
+					<form action="/project/board/dayPlans.do" method="post" id="dayPlanForm">
+	                    <div class="route-lowerside">
+	                    	<div class="map-place-list-section">
+	                            <h2>#상세코스</h2>
+	                            <div class="place-list">
+								    <input type="hidden" name="days[${dayIndex - 1}].day" id="dayIndex" placeholder="dayIndex" required> 
+								    <div id="clickLatlng" class="click"></div>
+		                        </div>
+	                        </div>
+	                    	<div class="day-comment-list">
+		                        <h2># 코멘트</h2>
+		                        <div class="day-comment">
+		                        <textarea rows="" cols="" name="days[${dayIndex - 1}].dayInfo" id="dayInfo" placeholder="간단한 설명을 작성해주세요." required class="commentTextarea"></textarea>	                        </div>
+	                        </div>
+	                       
+	                    </div>
+	                    <button type="button" id="dayBtn">저장</button>
+					</form>
                 </div>
 
 
             </div>
 
-            <hr class="divider second">
-
-            <!-- 총평 영역 -->
-            <div class="review-container">
-                <h2># 총평</h2>
-                <div class="review-section">
-                    <p>
-                        대한민국의 국민이 되는 요건은 법률로 정한다. 연소자의 근로는 특별한 보호를 받는다. 국무총리는 국회의 동의를 얻어 대통령이 임명한다. 대법원은 법률에 저촉되지 아니하는
-                        범위안에서 소송에 관한 절차, 법원의 내부규율과 사무처리에 관한 규칙을 제정할 수 있다. 국가는 균형있는 국민경제의 성장 및 안정과 적정한 소득의 분배를 유지하고, 시장의
-                        지배와 경제력의 남용을 방지하며, 경제주체간의 조화를 통한 경제의 민주화를 위하여 경제에 관한 규제와 조정을 할 수 있다. 통신·방송의 시설기준과 신문의 기능을 보장하기
-                        위하여 필요한 사항은 법률로 정한다. 국가안전보장에 관련되는 대외정책·군사정책과 국내정책의 수립에 관하여 국무회의의 심의에 앞서 대통령의 자문에 응하기 위하여
-                        국가안전보장회의를 둔다.
-
-                        대통령의 임기는 5년으로 하며, 중임할 수 없다. 모든 국민은 자기의 행위가 아닌 친족의 행위로 인하여 불이익한 처우를 받지 아니한다. 정당은 법률이 정하는 바에 의하여
-                        국가의 보호를 받으며, 국가는 법률이 정하는 바에 의하여 정당운영에 필요한 자금을 보조할 수 있다. 국가는 사회보장·사회복지의 증진에 노력할 의무를 진다. 사회적 특수계급의
-                        제도는 인정되지 아니하며, 어떠한 형태로도 이를 창설할 수 없다. 감사위원은 원장의 제청으로 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다.
-                        모든 국민은 헌법과 법률이 정한 법관에 의하여 법률에 의한 재판을 받을 권리를 가진다.
-
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                        classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a
-                        Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin
-                        words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in
-                        classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32
-                        and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
-                        written in 45 BC. This book is a treatise on the theory of ethics, very popular during the
-                        Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in
-                        section 1.10.32.
-
-                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-                        Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
-                        in their exact original form, accompanied by English versions from the 1914 translation by H.
-                        Rackham.
-                    </p>
-                </div>
-            </div>
-
-            <!-- 댓글영역 -->
-            <div class="comment-container">
-                <h2>댓글</h2>
-                <div class="comment-section">
-               <div id="no-comments-message" style="display: none;">작성된 댓글이 없습니다.</div>
-                    <div class="comment-box">
-                         
-                        <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>예원의 뽀대왕쟈님</p>
-                            </div>
-                            <div class="comment-content">
-                                김예원님 한글 공백포함 400글자로 제한하겠습니다. 감사합니다. 수정 / 삭제 버튼은 css 안 넣어두겠습니다.
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                            <div class="edit-section">
-                                <button class="edit-button">수정</button>
-                                <button class="delete-button">삭제</button>
-                            </div>
-                        </div>
-
-                        <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>김예원</p>
-                            </div>
-                            <div class="comment-content">
-                                왜냐하면 위치 잡는중이걸랑요 꾸벅~ 다른 댓글들은 남이 썼을 때~~ 테스트~~
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                        </div>
-
-                        <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>테스트중</p>
-                            </div>
-                            <div class="comment-content">
-                                css 완성 아닙니다. 세부 수정 해야 해요~~! 
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                        </div>
-
-                        <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>4th글쓴이</p>
-                            </div>
-                            <div class="comment-content">
-                                김예원님 한글 공백포함 400글자로 제한하겠습니다. 감사합니다. 연소자의 근로는 특별한 보호를 받는다. 국무총리는 국회의 동의를 얻어 대통령이 임명한다.
-                                대법원은
-                                법률에 저촉되지 아니하는 범위안에서 소송에 관한 절차, 법원의 내부규율과 사무처리에 관한 규칙을 제정할 수 있다. 국가는 균형있는 국민경제의 성장 및 안정과
-                                적정한
-                                소득의 분배를 유지하고, 시장의 지배와 경제력의 남용을 방지하며, 경제주체간의 조화를 통한 경제의 민주화를 위하여 경제에 관한 규제와 조정을 할 수 있다.
-                                통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. 국가안전보장에 관련되는 대외정책·군사정책과 국내정책의 수립에 관하여
-                                국무회의의
-                                심의에 앞서 대통령의 자문에 응하기 위하여 국가안전보장회의를 둔다.
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                        </div>
-
-                        <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>5th글쓴이</p>
-                            </div>
-                            <div class="comment-content">
-                                김예원님 한글 공백포함 400글자로 제한하겠습니다. 감사합니다. 연소자의 근로는 특별한 보호를 받는다. 국무총리는 국회의 동의를 얻어 대통령이 임명한다.
-                                대법원은
-                                법률에 저촉되지 아니하는 범위안에서 소송에 관한 절차, 법원의 내부규율과 사무처리에 관한 규칙을 제정할 수 있다. 국가는 균형있는 국민경제의 성장 및 안정과
-                                적정한
-                                소득의 분배를 유지하고, 시장의 지배와 경제력의 남용을 방지하며, 경제주체간의 조화를 통한 경제의 민주화를 위하여 경제에 관한 규제와 조정을 할 수 있다.
-                                통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. 국가안전보장에 관련되는 대외정책·군사정책과 국내정책의 수립에 관하여
-                                국무회의의
-                                심의에 앞서 대통령의 자문에 응하기 위하여 국가안전보장회의를 둔다.
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                        </div>
-                    </div>
-                    <form action="#">
-                        <div class="write-comment-section">
-
-                            <textarea class="write-comment-form" name="" id="" placeholder="불쾌감을 주는 댓글은 무통보 삭제됩니다."></textarea>
-                            <!-- <button class="add-comment-button">등록</button> -->
-                            <button class="add-comment-button arrow"><i class="fa-solid fa-arrow-up"></i></button>
-                        </div>
-                    </form>
-
-                </div>
-            </div><!-- 댓글 영역 끝-->
+     
             <div class="return-to-list-button"><button>목록보기</button></div>
         </div>
-      <%@ include file="../footer-sub.jsp" %>
+		<%@ include file="../footer-sub.jsp" %>
     </div>
-   
-    
+	
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e4e2ed92d2d2bdb6c1837e8f4e3094f&libraries=services,clusterer,drawing"></script>
+	<script>
+		$(document).ready(function() {
+		    var dayIndex = 1; 
+		    var toggle = 0;
+		
+		    document.getElementById("boardTourdays").value = dayIndex;
+		    document.getElementById("dayIndex").value = dayIndex;
+		
+		    $("#addDayBtn").on('click', function() {
+		        if (toggle === 1) {
+		            dayIndex++;
+		            document.getElementById("dayIndex").value = dayIndex;
+		            document.getElementById("boardTourdays").value = dayIndex;    
+		            document.getElementById("dayInfo").value = '';
+		            document.getElementById("clickLatlng").innerHTML = '';
+		            deleteAll();
+		            toggle = 0;
+		        } else {
+		            alert("저장한 후에 일정을 추가해주세요.");
+		        }
+		    });
+		
+		    $("#dayBtn").on('click', function() {
+		        var dayInfo = $("#dayInfo").val();
+		        var clickLatlngDiv = document.getElementById("clickLatlng");
+		        var positionInfos = clickLatlngDiv.getElementsByClassName("positionInfo");
+		        
+		        if (positionInfos.length === 0) {
+		            alert("명소를 추가해주세요.");
+		            return;
+		        }
+		        
+		        var jsonData = {
+		            day: dayIndex,
+		            dayInfo: dayInfo,
+		            markers: []
+		        };
+		        
+		        var valid = true;
+		        
+		        for (var i = 0; i < positionInfos.length; i++) {
+		            var positionInfo = positionInfos[i];
+		            var markerIndex = i;
+		            var title = positionInfo.querySelector("#markerTitle_" + markerIndex).value;
+		            var latitude = positionInfo.querySelector("#latitude_" + markerIndex).value;
+		            var longitude = positionInfo.querySelector("#longitude_" + markerIndex).value;
+		            var position = positionInfo.querySelector("#position_" + markerIndex).value;
+		            var explain = positionInfo.querySelector("#explain_" + markerIndex).value;
+		            
+		            if (!title || !latitude || !longitude || !position || !explain) {
+		                valid = false;
+		                break;
+		            }
+		            
+		            var markerData = {
+		                title: title,
+		                latitude: latitude,
+		                longitude: longitude,
+		                position: position,
+		                explain: explain
+		            };
+		            jsonData.markers.push(markerData);
+		        }
+		
+		        if (!valid) {
+		            alert("모든 필드를 채워주세요.");
+		            return;
+		        }
+		
+		        $.ajax({
+		            type: "POST",
+		            url: "${pageContext.request.contextPath}/board/dayPlans.do",
+		            contentType: "application/json",
+		            data: JSON.stringify(jsonData),
+		            success: function(data) {
+		                console.log("Success:", data);
+		                alert('저장 성공!');
+		                toggle = 1;
+		            },
+		            error: function(error) {
+		                console.error("Error:", error);
+		            }
+		        });
+		    });
+		});
+		
+		
+	</script>
+
 </body>
-
-<script>
-
-    var indexBtn = document.getElementsByClassName("index-button");
-
-    function handleClick(event) {
-
-        if (event.currentTarget.classList.contains("clicked")) {
-
-            event.currentTarget.classList.remove("clicked");
-        } else {
-            for (var i = 0; i < indexBtn.length; i++) {
-                indexBtn[i].classList.remove("clicked");
-            }
-            event.currentTarget.classList.add("clicked");
-        }
-    }
-
-    function init() {
-
-        if (indexBtn.length > 0) {
-            indexBtn[0].classList.add("clicked");
-        }
-
-        for (var i = 0; i < indexBtn.length; i++) {
-            indexBtn[i].addEventListener("click", handleClick);
-        }
-    }
-
-    init();
-</script>
-
-<script>
-    function checkComments() {
-        var comments = document.getElementsByClassName("each-comment");
-        var noCommentsMessage = document.getElementById("no-comments-message");
-        
-        if (comments.length === 0) {
-            noCommentsMessage.style.display = "block";
-        } else {
-            noCommentsMessage.style.display = "none";
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        checkComments();
-    });
-</script>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b9e8d47e0abc983759ff27255e96150"></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-    mapOption = { 
-        center: new kakao.maps.LatLng(${routeBoard.days[0].markers[0].latitude}, ${routeBoard.days[0].markers[0].longitude}), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
-    };
-
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-   
-// 마커를 표시할 위치와 title 객체 배열입니다 
-var positions = [
-    {
-        title: ${routeBoard.days[0].markers[0].title}, 
-        /* latlng: new kakao.maps.LatLng(33.450705, 126.570677) */
-        latlng: new kakao.maps.LatLng(${routeBoard.days[0].markers[0].latitude}, ${routeBoard.days[0].markers[0].longitude})
-    },
-    {
-        title: ${routeBoard.days[0].markers[1].title}, 
-        latlng: new kakao.maps.LatLng(${routeBoard.days[0].markers[1].latitude}, ${routeBoard.days[0].markers[1].longitude})
-    }
-];
-
-// 마커 이미지의 이미지 주소입니다
-var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-    
-for (var i = 0; i < positions.length; i ++) {
-    
-    // 마커 이미지의 이미지 크기 입니다
-    var imageSize = new kakao.maps.Size(24, 35); 
-    
-    // 마커 이미지를 생성합니다    
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-    
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng, // 마커를 표시할 위치
-        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image : markerImage // 마커 이미지 
-    });
-}
-
-var dayIndex = 1;
-</script>
-
-
-
 </html>
