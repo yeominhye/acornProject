@@ -597,6 +597,7 @@ function positionInfo(markerIndex) {
      		   	alert("최대 15개까지만 추가할 수 있습니다.");
         		return;
     		}
+    		
 			var div = document.createElement("div");
 			div.className = "positionInfo";
 			div.id = "positionInfo_" + markerIndex;
