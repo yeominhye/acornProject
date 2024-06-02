@@ -70,9 +70,7 @@ String userCode = (user != null) ? user.getUserCode() : null;
             </div>
             <div class="freeboard_page_title">
                <div class="title">${freeboard.boardTitle}</div>
-               <div class="nickname">${freeboard.nickname}
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSirRCxfXvgU4rkE8dmKE6lqewZ4D7wa40h0Q&s" alt="">
-               </div>
+               <div class="nickname">${freeboard.nickname}</div>
                <div class="writeDatw">${freeboard.boardWritedate}</div>
                <div class="boardViews">조회수 ${freeboard.boardViews}</div>
 
@@ -141,9 +139,9 @@ String userCode = (user != null) ? user.getUserCode() : null;
                </div>
             </div>
             <div class="freeBoardForm-btn">
+               <button onclick="history.back()">목록보기</button>
                <button id="boardModi"
                   onclick="window.location.href='${pageContext.request.contextPath}/board/my/${freeboard.boardCode}'">수정</button>
-               <button onclick="history.back()">뒤로가기</button>
             </div>
          </div>
       </div>

@@ -63,7 +63,7 @@
                             <c:forEach var="list" items="${freeBoardList}" varStatus="status">
                                 <tr>
                                     <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize))+1}</td>
-                                    <td class="td-title"><a href="/project/board/free/${list.boardCode}">${list.boardTitle}</a></td>
+                                    <td class="td-title" title="${list.boardTitle}"><a href="/project/board/free/${list.boardCode}">${list.boardTitle}</a></td>
                                     <td>${list.nickname}</td>
                                     <td>${list.boardWritedate}</td>
                                     <td>${list.boardViews}</td>
@@ -72,7 +72,7 @@
                         </tbody>
                     </table>
                 </div>
-                              <div class="page_number"> <!-- page_number -->
+                     <div class="page_number"> <!-- page_number -->
                     <div class="paging"> <!-- paging -->
                     
                     <c:if test="${ empty search.condition}">

@@ -122,7 +122,7 @@ public class BoardController {
     @GetMapping("/free/{code}")
     public String Board(@PathVariable String code, Model model) {
         Board freeboard = boardService.getBoardBycode(code);
-        boardService.updateViews(freeboard); //  views 증가
+        boardService.updateViews(code); //  views 증가
         model.addAttribute("freeboard", freeboard);
         System.out.println(freeboard);
         
@@ -131,8 +131,7 @@ public class BoardController {
         
         int count = commentService.count(code);
         model.addAttribute("count", count);
-        return "board/freeboardDetail";
-       
+        return "board/freeboardDetail";  
     }
     
     @PostMapping("/free/{code}")
@@ -414,15 +413,48 @@ public class BoardController {
  
  
  @RequestMapping(value="/createMap_process.do", method=RequestMethod.POST)
-	public String createRoute_process (RouteBoard routeBoard, HttpSession session) throws Exception {
-	 List<Day> dayPlans = (List<Day>) session.getAttribute("dayPlans");
-	 routeBoard.setDays(dayPlans);
-	 	boardService.insertRoute(routeBoard);
-		System.out.println(routeBoard);
-		return "redirect:/";
+	public String createRoute_process (RouteBoardVO vo, HttpSession session) throws Exception {
+	 	System.out.println("촥인"+vo);
+	   List<Day> dayPlans = (List<Day>) session.getAttribute("dayPlans");
+	   MultipartFile file = vo.getBoardImg();
+	    System.out.println(vo);
+
+	    if (file != null && !file.isEmpty()) {
+	        String originalName = file.getOriginalFilename();
+	        if (originalName != null && originalName.contains(".")) {
+	            String ext = originalName.substring(originalName.lastIndexOf("."));
+	            System.out.println(ext);
+	            UUID uuid = UUID.randomUUID();
+	            String realName = uuid + ext;
+
+	            RouteBoard routeBoard = new RouteBoard(vo.getBoardCode(), vo.getUserCode(), vo.getNickname(), originalName, realName, 
+	                    vo.getBoardTitle(), vo.getBoardContent(), vo.getBoardTheme(), vo.getBoardTourdays(),
+	                    vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType(),vo.getBoardRegion(),dayPlans);
+	            System.out.println(routeBoard);
+	            String fullPath = fileDir + realName;
+	            file.transferTo(new File(fullPath));
+
+	            boardService.insertRoute(routeBoard);
+	        } else {
+	        	System.out.println("파일이 유효하지 않거나 확장자가 없습니다.");
+	           
+	        }
+	    } else {
+	    	 System.out.println("파일이 업로드되지 않았습니다.");
+	    	 RouteBoard routeBoard = new RouteBoard(vo.getBoardCode(), vo.getUserCode(), vo.getNickname(), null, null, 
+	                vo.getBoardTitle(), vo.getBoardContent(), vo.getBoardTheme(), vo.getBoardTourdays(),
+                    vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType(),vo.getBoardRegion(),dayPlans);
+	        boardService.insertRoute(routeBoard);
+	    }
+
+	    return "redirect:/board/route";
 }
  
 
+ 
+ 
+ 
+ 
  
  @PostMapping("/dayPlans.do")
  @ResponseBody
@@ -453,12 +485,38 @@ public class BoardController {
 
  
  @GetMapping("/route/{boardCode}")
- public String showRouteBoard(@PathVariable String boardCode, Model model) throws Exception {
+ public String showRouteBoard(@PathVariable String boardCode, Model model, HttpSession session) throws Exception {
+	 User user =(User)session.getAttribute("user");
      RouteBoard routeBoard = boardService.selectRoute(boardCode);
+     boardService.updateViews(boardCode);
      model.addAttribute("routeBoard", routeBoard);
-     System.out.println(routeBoard);
-     return "board/routePost";
-    
+     
+     List<Comment> comments = commentService.getCommentByCode(boardCode);
+     model.addAttribute("comments", comments);
+     
+     int count = commentService.count(boardCode);
+     model.addAttribute("count", count);
+     return "board/routePost";   
+ }
+
+ @PostMapping("/route/{boardCode}")
+ public ResponseEntity<Map<String, Object>> routeComment(@PathVariable String boardCode, @RequestBody Comment comment, HttpSession session) {
+ 	User user = (User) session.getAttribute("user");
+     Map<String, Object> response = new HashMap<>();
+     
+     if (user != null) {
+         commentService.register(comment);
+         System.out.println(comment);
+         response.put("status", "success");
+         response.put("message", "Comment posted successfully");
+         response.put("redirect", "/project/board/route/"+boardCode);
+         return ResponseEntity.ok(response);
+     } else {
+         response.put("status", "error");
+         response.put("message", "User not logged in");
+         response.put("redirect", "/project/user/login.do");
+         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+     }
  }
    
    

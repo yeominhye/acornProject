@@ -269,7 +269,7 @@
                   <tr class="form-table-tr1">
                      <td class="form-label">아이디</td>
                      <td class="form-input"><input type="text" name="userId"
-                        class="input-box" value="${user.userId}" readonly><br>*아이디는
+                        class="input-box blank" value="${user.userId}" readonly><br>* 아이디는
                         변경하실 수 없습니다.</td>
                   </tr>
                   <tr class="form-table-tr1">
@@ -285,7 +285,7 @@
                      <td class="form-input"><input type="text" name="nickname"
                         id="nickname" class="input-box" value="${user.nickname}"
                         maxlength="7" required><br> <span
-                        id="nicknameCheckMsg" style="color: red;"></span><br>*닉네임은
+                        id="nicknameCheckMsg" style="color: red;"></span><br>* 닉네임은
                         최대 7글자까지 가능합니다.</td>
                   </tr>
                   <tr class="form-table-tr2">

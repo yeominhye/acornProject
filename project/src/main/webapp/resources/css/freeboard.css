@@ -209,3 +209,13 @@ span.active {
     color: #000000;
 }
 
+
+.td-title a {
+    color: black;
+    display: block;
+    width: 430px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

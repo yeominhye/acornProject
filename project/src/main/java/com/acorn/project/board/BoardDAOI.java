@@ -14,7 +14,7 @@ public interface BoardDAOI {
 	Board selectOne(String board_code);
 	
 	// 상세조회 시 view증가
-	int updateViews(Board board);
+	int updateViews(String boardCode);
 	
 	// theme로 조회
 	List<Board> selectTheme(String board_theme);
@@ -52,5 +52,7 @@ public interface BoardDAOI {
 	RouteBoard selectRoute(String boardCode);
 
 	int insertRoute(RouteBoard routeBoard) throws Exception;
+
+	
 
 }

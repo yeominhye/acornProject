@@ -270,3 +270,39 @@ function resetForms() {
      var v = this.value;
      this.value = v.replace(/[^가-힣a-zA-Z\s]/gi, '');
    }
+   
+   
+      /* 페이징 */
+      document.addEventListener("DOMContentLoaded", function() {
+       
+       // 현재 URL 가져오기
+       var currentURL = window.location.href;
+   
+       // 페이지 번호 클릭 시 bold 스타일 적용
+       var pagingLinks = document.querySelectorAll(".paging_i");
+       
+       function activateLink(link) {
+           pagingLinks.forEach(function(link) {
+               link.classList.remove("active");
+           });
+           link.classList.add("active");
+       }
+   
+       pagingLinks.forEach(function(link) {
+           link.addEventListener("click", function() {
+               activateLink(this);
+           });
+       });
+   
+       // 현재 URL에서 페이지 번호를 추출하여 해당 링크에 active 클래스 추가
+       var pageParts = currentURL.split("page=");
+       if (pageParts.length > 1) {
+           var currentPage = pageParts[1].split("&")[0];
+           pagingLinks.forEach(function(link) {
+               if (link.href.includes("page=" + currentPage)) {
+                   link.classList.add("active");
+               }
+           });
+       }
+   });
+   

@@ -85,8 +85,8 @@ nav {
                 </div> 
           <div class="nav-proflie">
                <div class="nav-proflie-text">
-                       <c:if test="${empty sessionScope.user}">
-                            <a href="/project/user/login.do">로그인/회원가입</a>
+                   <c:if test="${empty sessionScope.user}">
+                      <a href="/project/user/login.do">로그인 / 회원가입</a>
                    </c:if>
                    <c:if test="${not empty sessionScope.user}">
                       <a href="/project/user/logout.do">로그아웃</a>
