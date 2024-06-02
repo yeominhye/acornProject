@@ -1,19 +1,31 @@
 package com.acorn.project.event;
 
-import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 import java.util.List;
 
-@Service
 public class EventService implements EventServiceInterface {
-    @Override
-    public List<EventDTO1> getEventList(String numOfRows, String pageNo, String year, String month) throws IOException {
-        // Implement logic to fetch event list data
+    private EventDAOInterface eventDAO;
+
+    public EventService(EventDAOInterface eventDAO) {
+        this.eventDAO = eventDAO;
     }
 
     @Override
-    public EventDTO2 getEventInfo(String contentId, String contentTypeId) throws IOException {
-        // Implement logic to fetch detailed event info
+    public List<EventDTO1> getAllEvents() {
+        return eventDAO.getAllEvents();
+    }
+
+    @Override
+    public EventDTO1 getEventById(int id) {
+        return eventDAO.getEventById(id);
+    }
+
+    @Override
+    public void saveEvent(EventDTO1 event) {
+        eventDAO.saveEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(int id) {
+        eventDAO.deleteEvent(id);
     }
 }

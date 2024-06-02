@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css?after" >
 
     <!-- index.js -->
-    <script defer src="${pageContext.request.contextPath}/resources/js/home.js"></script>
+<%--     <script defer src="${pageContext.request.contextPath}/resources/js/home.js"></script> --%>
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     
@@ -164,7 +164,7 @@
 
 				<div class="route-box">
                     <div class="title-text"><span class="local-name">전체,</span> 인기루트</div>
-                    <div class="see-text route-text"><a href="#">더보기</a></div>
+                    <div class="route-text"><a href="#">더보기</a></div>
                     <div class="route-items">                        
                         <div class="route-item route-item01">
                             <a href="#"> <!-- 루트 상세 페이지 -->
@@ -182,9 +182,9 @@
                                     </div>
                                 <!-- 잠금 아이콘도 여기 넣기 -->
                                 </div>
-                                <div class="route-title">
+                         <div class="route-title">
                                     <div class="local-box">경기</div>
-                                    <div class="route-name-box">
+                                           <div class="route-name-box">
                                         <div class="route-name">가평 유럽마을 당일치기 일정</div>
                                     </div>
                                 </div>
@@ -300,11 +300,11 @@
 					<div class="month month-12" data-month="12">12월</div>
 				</div>
 			</div>
+			<div class="event-text">
+				<a href="#" class="load-more-btn" data-type="event">더보기</a>
+			</div> 	
 			<div class="event-container" id="eventContainer">
 				<!-- 행사 정보 -->
-			</div>
-			<div class="see-text tour-text">
-				<a href="#" class="load-more-btn" data-type="event">더보기</a>
 			</div>
 		</div>
 		

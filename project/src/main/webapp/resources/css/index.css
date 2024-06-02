@@ -146,16 +146,19 @@ section {
 .route-box {
     padding-top: 105px;
 }
-.see-text {
-    position: absolute;
+
+.title-text {
+    font-weight: 600;
+}
+
+.route-text {
+	position: absolute;
     top: 105px;
     right: 0;
     font-size: 14px;
     color: #777777;
 }
-.title-text {
-    font-weight: 600;
-}
+
 .route-items {
     display: flex;
     justify-content: space-between;
@@ -276,7 +279,11 @@ section {
     justify-content: space-between;
 }
 .tour-text {
-    top: 510px;
+	position: absolute;
+    top: 515px;
+    right: 0;
+    font-size: 14px;
+    color: #777777;
 }
 .tour-img img {
     width: 350px;
@@ -351,7 +358,11 @@ section {
 }
 
 .event-text {
-    top: 510px;
+	position: absolute;
+    bottom: 515px;
+    right: 0;
+    font-size: 14px;
+    color: #777777;
 }
 .event-info {
     display: flex;
@@ -420,11 +431,14 @@ footer {
 .footer-text > * {
     color: rgb(154, 154, 154);
 }
-
 .footer-text01 {
     width: 150px;
     height: 50px;
 }
+/* .footer-text01 > img { */
+/*     width: 150px; */
+/*     height: 50px; */
+/* } */
 .footer-text02 {
     margin: 25px 0;
 }
