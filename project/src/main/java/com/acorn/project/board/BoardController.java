@@ -452,6 +452,10 @@ public class BoardController {
  
 
  
+ 
+ 
+ 
+ 
  @PostMapping("/dayPlans.do")
  @ResponseBody
  public ResponseEntity<String> handleDayPlans(@RequestBody Day day, HttpSession session) {
