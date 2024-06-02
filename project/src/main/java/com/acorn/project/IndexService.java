@@ -1,4 +1,4 @@
-package com.acorn.project.index;
+package com.acorn.project;
 
 import org.springframework.stereotype.Component;
 
