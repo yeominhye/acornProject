@@ -294,71 +294,30 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b9e8d47e0abc983759ff27255e96150"></script>
     <script>
-        var markersData = {};
-       	var dayInfo = [];
-        <c:forEach var="day" items="${routeBoard.days}" varStatus="loop">
-        	dayInfo[${loop.index}] = ['<c:out value="${day.dayInfo}" />'],
-            markersData[${loop.index}] = [
-                <c:forEach var="marker" items="${day.markers}" varStatus="innerLoop">
-                {
-                    title: '<c:out value="${marker.title}" />',
-                    position : '<c:out value="${marker.position}" />',
-                	explain : '<c:out value="${marker.explain}" />',
-                    latlng: {lat: <c:out value="${marker.latitude}" />, lng: <c:out value="${marker.longitude}" />}
-                }<c:if test="${not innerLoop.last}">,</c:if>
-                </c:forEach>
-            ];
-        </c:forEach>
-    </script>
+    var markersData = {};
+    var dayInfo = [];
+    <c:forEach var="day" items="${routeBoard.days}" varStatus="loop">
+        dayInfo[${loop.index}] = ['<c:out value="${day.dayInfo}" />'],
+        markersData[${loop.index}] = [
+            <c:forEach var="marker" items="${day.markers}" varStatus="innerLoop">
+            {
+                title: '<c:out value="${marker.title}" />',
+                position : '<c:out value="${marker.position}" />',
+                explain : '<c:out value="${marker.explain}" />',
+                latlng: {lat: <c:out value="${marker.latitude}" />, lng: <c:out value="${marker.longitude}" />}
+            }<c:if test="${not innerLoop.last}">,</c:if>
+            </c:forEach>
+        ];
+    </c:forEach>
 
-    <script>
-    var indexBtn = document.getElementsByClassName("index-button");
-
-    function handleClick(event) {
-        var index = Array.prototype.indexOf.call(indexBtn, event.currentTarget);
-        updateMapMarkers(index);
-
-        if (!event.currentTarget.classList.contains("clicked")) {
-            // 클릭된 요소에 clicked 클래스 추가
-            event.currentTarget.classList.add("clicked");
-        }
-
-        // 다른 요소들은 클릭된 상태 제거
-        for (var i = 0; i < indexBtn.length; i++) {
-            if (i !== index) {
-                indexBtn[i].classList.remove("clicked");
-            }
-        }
-    }
-
-    
-    function init() {
-        if (indexBtn.length > 0) {
-            indexBtn[0].classList.add("clicked");
-            updateMapMarkers(0);
-        }
-
-        for (var i = 0; i < indexBtn.length; i++) {
-            indexBtn[i].addEventListener("click", handleClick);
-        }
-    }
-
-    var mapContainer = document.getElementById('map'),
-        mapOption = { 
-            center: new kakao.maps.LatLng(${routeBoard.days[0].markers[0].latitude}, ${routeBoard.days[0].markers[0].longitude}),
-            level: 5
-        };
-    var map = new kakao.maps.Map(mapContainer, mapOption);
+    var map;
     var markers = [];
-
     var infowindows = [];
 
     function clearMarkers() {
         for (var i = 0; i < markers.length; i++) {
             markers[i].setMap(null);
-            if (infowindows[i]) {
-                infowindows[i].close();
-            }
+            infowindows[i].close();
         }
         markers = [];
         infowindows = [];
@@ -366,33 +325,45 @@
 
     function updateMapMarkers(dayIndex) {
         clearMarkers();
+
         var positions = markersData[dayIndex];
         var dayInfoElement = document.querySelector(".dayCommentP");
-        dayInfoElement.textContent = dayInfo[dayIndex];   
-        
-        
+        dayInfoElement.textContent = dayInfo[dayIndex];
+
         if (positions.length > 0) {
             map.setCenter(new kakao.maps.LatLng(positions[0].latlng.lat, positions[0].latlng.lng));
         }
+
         for (var i = 0; i < positions.length; i++) {
+            var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png';
+            var imageSize = new kakao.maps.Size(36, 37);
+            var imgOptions = {
+                spriteSize: new kakao.maps.Size(36, 691),
+                spriteOrigin: new kakao.maps.Point(0, (i * 46) + 10),
+                offset: new kakao.maps.Point(13, 37)
+            };
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions);
+
             var marker = new kakao.maps.Marker({
                 map: map,
                 position: new kakao.maps.LatLng(positions[i].latlng.lat, positions[i].latlng.lng),
                 title: positions[i].title,
-                image: new kakao.maps.MarkerImage("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", new kakao.maps.Size(24, 35))
+                image: markerImage
             });
+
             markers.push(marker);
+            
 
-            var iwContent = '<div style="padding:5px;">' + '<strong>' + positions[i].title + '</strong><br>' + '<a href="https://map.kakao.com/link/map/' + encodeURIComponent(positions[i].title) + ',' + positions[i].latlng.lat + ',' + positions[i].latlng.lng + ' target="_blank">큰지도보기</a> ' +
-            '<a href="https://map.kakao.com/link/to/' + encodeURIComponent(positions[i].title) + ',' + positions[i].latlng.lat + ',' + positions[i].latlng.lng + '"target="_blank">길찾기</a>' +'</div>';
+            var iwContent = '<div style="padding:5px;">' + '<strong>' + positions[i].title + '</strong><br>' +
+                '<a href="https://map.kakao.com/link/map/' + encodeURIComponent(positions[i].title) + ',' + positions[i].latlng.lat + ',' + positions[i].latlng.lng + '" target="_blank">큰지도보기</a> ' +
+                '<a href="https://map.kakao.com/link/to/' + encodeURIComponent(positions[i].title) + ',' + positions[i].latlng.lat + ',' + positions[i].latlng.lng + '" target="_blank">길찾기</a>' + '</div>';
 
-            var iwPosition = new kakao.maps.LatLng(positions[i].latlng.lat, positions[i].latlng.lng);
             var infowindow = new kakao.maps.InfoWindow({
-                position: iwPosition,
                 content: iwContent
             });
+
             infowindows.push(infowindow);
-            infowindow.open(map, marker);
+			infowindow.open(map, marker);
             
             kakao.maps.event.addListener(marker, 'click', (function (marker, infowindow) {
                 return function () {
@@ -403,8 +374,8 @@
                     }
                 };
             })(marker, infowindow));
-
         }
+
         var placeList = document.querySelector(".place-list");
         placeList.innerHTML = "";
 
@@ -445,15 +416,47 @@
             inputs.appendChild(explain);
         }
     }
-    
-
 
     document.addEventListener("DOMContentLoaded", function() {
-        init();
+        var mapContainer = document.getElementById('map');
+        var mapOption = {
+            center: new kakao.maps.LatLng(${routeBoard.days[0].markers[0].latitude}, ${routeBoard.days[0].markers[0].longitude}),
+            level: 5
+        };
+        map = new kakao.maps.Map(mapContainer, mapOption);
+        updateMapMarkers(0);
     });
 
+    var indexBtn = document.getElementsByClassName("index-button");
 
-    </script>
+    function handleClick(event) {
+        var index = Array.prototype.indexOf.call(indexBtn, event.currentTarget);
+        updateMapMarkers(index);
+
+        if (!event.currentTarget.classList.contains("clicked")) {
+            event.currentTarget.classList.add("clicked");
+        }
+
+        for (var i = 0; i < indexBtn.length; i++) {
+            if (i !== index) {
+                indexBtn[i].classList.remove("clicked");
+            }
+        }
+    }
+
+    function init() {
+        if (indexBtn.length > 0) {
+            indexBtn[0].classList.add("clicked");
+        }
+
+        for (var i = 0; i < indexBtn.length; i++) {
+            indexBtn[i].addEventListener("click", handleClick);
+        }
+    }
+
+    init();
+</script>
+
 
 
 
