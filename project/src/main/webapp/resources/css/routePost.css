@@ -228,7 +228,6 @@ button{
     background-color: var(--point-3rd-darken-color);
     border: 3px solid black;
     border-bottom: none;
-
 }
 
 /* 루트 - 컨텐츠 */
@@ -261,12 +260,37 @@ button{
     width: 40%;
 }
 
+
 .place-list{
     border: 1.5px solid rgb(169, 168, 168);
     border-radius: 5px;
     margin-top: 10px;
     height: 330px;
     overflow-y: auto;
+}
+
+.markerDetail {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.markerInputs {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.markerInputs>input {
+	width: 100%;
+	outline: 0;
+  border-width: 0 0 2px;
+  border-color: rgb(169, 168, 168);
+}
+
+.number {
+    width: 20px;
+    margin: 0 20px;
 }
 
 /* 루트 - 아랫층 - 코멘트부분 */

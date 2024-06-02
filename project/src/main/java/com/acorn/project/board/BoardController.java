@@ -453,10 +453,10 @@ public class BoardController {
 
  
  @GetMapping("/route/{boardCode}")
- public String showRouteBoard(@PathVariable String boardCode, Model model) throws Exception {
+ public String showRouteBoard(@PathVariable String boardCode, Model model, HttpSession session) throws Exception {
+	 User user =(User)session.getAttribute("user");
      RouteBoard routeBoard = boardService.selectRoute(boardCode);
      model.addAttribute("routeBoard", routeBoard);
-     System.out.println(routeBoard);
      return "board/routePost";
     
  }
