@@ -145,14 +145,14 @@
                 <h2># 총평</h2>
                 <div class="review-section">
                     <p>
-                        ${routeBoard.boardContent}
+                    	${routeBoard.boardContent}
                     </p>
                 </div>
             </div>
 
             <!-- 댓글영역 -->
             <div class="comment-container">
-                <h2>댓글</h2>
+                <h2>댓글 ${count}</h2>
                 <div class="comment-section">
                <div id="no-comments-message" style="display: none;">작성된 댓글이 없습니다.</div>
                     <div class="comment-box">

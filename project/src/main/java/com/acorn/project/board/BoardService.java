@@ -28,8 +28,8 @@ public class BoardService implements BoardServiceI {
 	}
 	
 	@Override
-	public int updateViews(Board board) {
-		return dao.updateViews(board);
+	public int updateViews(String boardCode) {
+		return dao.updateViews(boardCode);
 	}
 	
 	@Override

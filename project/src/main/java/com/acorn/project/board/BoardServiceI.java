@@ -10,7 +10,7 @@ public interface BoardServiceI {
 
 	Board getBoardBycode(String board_code);
 	
-	int updateViews(Board board);
+	int updateViews(String boardCode);
 	
 	List<Board> getBoardBytheme(String board_theme);
 	
@@ -37,5 +37,7 @@ public interface BoardServiceI {
 	RouteBoard selectRoute(String boardCode) throws Exception;
 
 	int insertRoute(RouteBoard routeBoard) throws Exception;
+
+
 
 }
