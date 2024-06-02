@@ -62,11 +62,12 @@
         <!-- header -->
 
         <div class="container">
-			<form action="/project/board/createMap_process.do" method="post" id="createMapForm" name="frm">	
+			<form action="/project/board/createMap_process.do" method="post" id="createMapForm" name="frm" enctype="multipart/form-data">	
             <div class="title-container">
                 <!-- 이미지 영역 -->
                 <div class="image-box">
-                    <img src="https://via.placeholder.com/300x400.jpg" alt="">
+                    <div id="img-container"></div>
+                    <input class="imgUploader" type="file"  name="boardImg" accept="image/*" onchange="loadFiles(this)" >
                 </div>
                 <!-- 타이틀 영역 -->
                
@@ -378,6 +379,33 @@
 		});
 		
 		
+	</script>
+	
+	<script>
+
+    function loadFiles(input) {
+        const files = input.files;
+        const container = document.getElementById('img-container');
+
+        container.innerHTML = '';
+
+        const maxPreviews = 3;
+        for (let i = 0; i < Math.min(files.length, maxPreviews); i++) {
+            const file = files[i];
+            const newImage = document.createElement("img");
+
+            newImage.src = URL.createObjectURL(file);
+            newImage.style.width = "100%";
+            newImage.style.height = "100%";
+            newImage.style.objectFit = "cover";
+
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'uploadImg';
+            imgContainer.appendChild(newImage);
+            container.appendChild(imgContainer);
+        }
+    }
+
 	</script>
 
 </body>

@@ -40,7 +40,7 @@
                     <fieldset>
                         <div>
                             <label for="title">제목</label>
-                            <input type="text" name="boardTitle" id="boardTitle" required>
+                            <input type="text" name="boardTitle" id="boardTitle" maxlength="20" required>
                             <span class="form-input-required">*</span>
                         </div>
 
@@ -56,7 +56,7 @@
                         </div>
 
                         <div id="img-container"></div>
-                        <input class="imgUploader" type="file"  name="boardImg" accept="image/*" onchange="loadFiles(this)" multiple>
+                        <input class="imgUploader" type="file"  name="boardImg" accept="image/*" onchange="loadFiles(this)">
 
                         <p class="notice"> 이미지는 한 장만 첨부 가능합니다.</p>
                         

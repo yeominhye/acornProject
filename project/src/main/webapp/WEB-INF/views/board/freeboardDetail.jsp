@@ -70,9 +70,7 @@ String userCode = (user != null) ? user.getUserCode() : null;
             </div>
             <div class="freeboard_page_title">
                <div class="title">${freeboard.boardTitle}</div>
-               <div class="nickname">${freeboard.nickname}
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSirRCxfXvgU4rkE8dmKE6lqewZ4D7wa40h0Q&s" alt="">
-               </div>
+               <div class="nickname">${freeboard.nickname}</div>
                <div class="writeDatw">${freeboard.boardWritedate}</div>
                <div class="boardViews">조회수 ${freeboard.boardViews}</div>
 

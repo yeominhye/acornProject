@@ -76,7 +76,7 @@
                      <option value="4">수다방</option>
                        <option value="5">동행구해요!</option>
                    </select>
-                   <input type="text" placeholder="제목을 입력하세요." name="boardTitle" id="boardTitle" value="${myboard.boardTitle}" maxlength="50" required>
+                   <input type="text" placeholder="제목을 입력하세요." name="boardTitle" id="boardTitle" value="${myboard.boardTitle}" maxlength="40" required>
                  <div id="titleMessage" style="display:none; color:red;"></div>
                  <input type="hidden" name="userCode" id="userCode" value="${user.userCode}">
                  <input type="hidden" name="boardImgOrigin" id="boardImgOrigin" value="null">

@@ -342,6 +342,27 @@ button{
 	margin: 0 auto;
 }
 
+
+.uploadImg {
+	width: 400px;
+	height: 300px;
+	display: inline-block;
+	/* border: 2px dotted rgb(254, 189, 232); */
+	background-color: rgb(238, 248, 251);
+	border-radius: 10px;
+	overflow: hidden;
+	text-align: center;
+	
+
+}
+
+
+.imgUploader {
+	font-size: 10pt;
+	height: 30px;
+	padding-top: 2.5px;
+	margin-left: 0px;
+}
 /* 
 	-----------------
 	     map css 

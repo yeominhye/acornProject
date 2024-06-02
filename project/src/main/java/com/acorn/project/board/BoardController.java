@@ -413,12 +413,41 @@ public class BoardController {
  
  
  @RequestMapping(value="/createMap_process.do", method=RequestMethod.POST)
-	public String createRoute_process (RouteBoard routeBoard, HttpSession session) throws Exception {
-	 List<Day> dayPlans = (List<Day>) session.getAttribute("dayPlans");
-	 routeBoard.setDays(dayPlans);
-	 	boardService.insertRoute(routeBoard);
-		System.out.println(routeBoard);
-		return "redirect:/";
+	public String createRoute_process (RouteBoardVO vo, HttpSession session) throws Exception {
+	 	System.out.println("촥인"+vo);
+	   List<Day> dayPlans = (List<Day>) session.getAttribute("dayPlans");
+	   MultipartFile file = vo.getBoardImg();
+	    System.out.println(vo);
+
+	    if (file != null && !file.isEmpty()) {
+	        String originalName = file.getOriginalFilename();
+	        if (originalName != null && originalName.contains(".")) {
+	            String ext = originalName.substring(originalName.lastIndexOf("."));
+	            System.out.println(ext);
+	            UUID uuid = UUID.randomUUID();
+	            String realName = uuid + ext;
+
+	            RouteBoard routeBoard = new RouteBoard(vo.getBoardCode(), vo.getUserCode(), vo.getNickname(), originalName, realName, 
+	                    vo.getBoardTitle(), vo.getBoardContent(), vo.getBoardTheme(), vo.getBoardTourdays(),
+	                    vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType(),vo.getBoardRegion(),dayPlans);
+	            System.out.println(routeBoard);
+	            String fullPath = fileDir + realName;
+	            file.transferTo(new File(fullPath));
+
+	            boardService.insertRoute(routeBoard);
+	        } else {
+	        	System.out.println("파일이 유효하지 않거나 확장자가 없습니다.");
+	           
+	        }
+	    } else {
+	    	 System.out.println("파일이 업로드되지 않았습니다.");
+	    	 RouteBoard routeBoard = new RouteBoard(vo.getBoardCode(), vo.getUserCode(), vo.getNickname(), null, null, 
+	                vo.getBoardTitle(), vo.getBoardContent(), vo.getBoardTheme(), vo.getBoardTourdays(),
+                    vo.getBoardWritedate(), vo.getBoardViews(), vo.getBoardPoint(), vo.getBoardType(),vo.getBoardRegion(),dayPlans);
+	        boardService.insertRoute(routeBoard);
+	    }
+
+	    return "redirect:/board/route";
 }
  
 
