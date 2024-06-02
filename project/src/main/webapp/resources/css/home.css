@@ -152,7 +152,7 @@ section {
 }
 
 .route-text {
-	position: absolute;
+   position: absolute;
     top: 105px;
     right: 0;
     font-size: 14px;
@@ -279,7 +279,7 @@ section {
     justify-content: space-between;
 }
 .tour-text {
-	position: absolute;
+   position: absolute;
     top: 515px;
     right: 0;
     font-size: 14px;
@@ -358,7 +358,7 @@ section {
 }
 
 .event-text {
-	position: absolute;
+   position: absolute;
     bottom: 515px;
     right: 0;
     font-size: 14px;
@@ -368,7 +368,7 @@ section {
     display: flex;
 }
 .event-info > .local-box {
-	
+   
 }
 .event-name {
     margin-top: 3.2px;

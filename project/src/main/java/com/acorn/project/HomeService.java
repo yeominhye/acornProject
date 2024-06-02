@@ -19,7 +19,7 @@ import com.acorn.project.event.*;
 
 
 @Component
-public class IndexService {
+public class HomeService {
 	private static final String SERVICE_KEY = "8Y1lUgVaQUxTkl%2BZ9d9MIR8S6HXYTseLCTOPhC8BvvtBN47Izx%2B4oaaS1o6TsXPkjv1ktUfEjhExH3JSmP7nJg%3D%3D";
 
 	private String buildUrl(String baseUrl, String... queryParams) throws IOException {
