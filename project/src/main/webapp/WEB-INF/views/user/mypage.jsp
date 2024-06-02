@@ -198,6 +198,21 @@ hr {
    width: 200px;
 }
 
+.post-title {
+   display: block;
+   width: 330px;
+   text-align: left !important;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   cursor: pointer;
+}
+
+.head-title, .post-title {
+   padding-left: 5px !important;
+}
+
+
 </style>
 
 </head>
@@ -253,31 +268,35 @@ hr {
         </div>
 
       <table class="list-tbl">
-         <tr class="list-head">
-            <td>No.</td>
-            <td>제목</td>
-            <td>카테고리</td>
-            <td>작성일</td>
-         </tr>
-
-            <c:forEach var="board" items="${list}" varStatus="status">
-               <tr class="list-data">
-                  <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize))+1}</td>
-                  <td class="list-data-boardTitle"><a><c:out value="${board.boardTitle}" /></a></td>
-                  <td><c:choose>
-                        <c:when test="${board.boardType == 0}">루트게시판</c:when>
-                        <c:when test="${board.boardType == 1}">여행후기</c:when>
-                        <c:when test="${board.boardType == 2}">꿀팁공유</c:when>
-                        <c:when test="${board.boardType == 3}">질문있어요</c:when>
-                        <c:when test="${board.boardType == 4}">수방</c:when>
-                        <c:when test="${board.boardType == 5}">동행 구해요!</c:when>
-                        <c:when test="${board.boardType == 6}">문의</c:when>
-                        <c:otherwise>알 수 없음</c:otherwise>
-                     </c:choose></td>
-                  <td><c:out value="${board.boardWritedate}" /></td>
+               <tr class="list-head">
+                  <td>No.</td>
+                  <td class="head-title">제목</td>
+                  <td>카테고리</td>
+                  <td>작성일</td>
                </tr>
-            </c:forEach> 
-         </table>
+
+               <c:forEach var="board" items="${list}" varStatus="status">
+                  <tr class="list-data">
+                     <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize))+1}</td>
+                     <td class="post-title"><a
+                        title="<c:out value='${board.boardTitle}' />"> <c:out
+                              value="${board.boardTitle}" />
+                     </a></td>
+                     <td><c:choose>
+                           <c:when test="${board.boardType == 0}">루트게시판</c:when>
+                           <c:when test="${board.boardType == 1}">여행후기</c:when>
+                           <c:when test="${board.boardType == 2}">꿀팁공유</c:when>
+                           <c:when test="${board.boardType == 3}">질문있어요</c:when>
+                           <c:when test="${board.boardType == 4}">수방</c:when>
+                           <c:when test="${board.boardType == 5}">동행 구해요!</c:when>
+                           <c:when test="${board.boardType == 6}">문의</c:when>
+                           <c:otherwise>알 수 없음</c:otherwise>
+                        </c:choose></td>
+                     <td><c:out value="${board.boardWritedate}" /></td>
+                  </tr>
+               </c:forEach>
+            </table>
+
          <div class="paging">
           <c:if test="${ empty search.condition}">
             <c:if test="${paging.currentGrp > 1}">
