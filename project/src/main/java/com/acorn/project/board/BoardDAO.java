@@ -47,8 +47,8 @@ public class BoardDAO implements BoardDAOI {
 	
 	// 상세조회 시 view증가
 	@Override
-	public int updateViews(Board board) {
-		return session.update(namespace+"updateView", board);
+	public int updateViews(String boardCode) {
+		return session.update(namespace+"updateView", boardCode);
 	}
 	
 	// theme 조회

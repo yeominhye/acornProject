@@ -122,7 +122,7 @@ public class BoardController {
     @GetMapping("/free/{code}")
     public String Board(@PathVariable String code, Model model) {
         Board freeboard = boardService.getBoardBycode(code);
-        boardService.updateViews(freeboard); //  views 증가
+        boardService.updateViews(code); //  views 증가
         model.addAttribute("freeboard", freeboard);
         System.out.println(freeboard);
         
@@ -131,8 +131,7 @@ public class BoardController {
         
         int count = commentService.count(code);
         model.addAttribute("count", count);
-        return "board/freeboardDetail";
-       
+        return "board/freeboardDetail";  
     }
     
     @PostMapping("/free/{code}")
@@ -456,9 +455,35 @@ public class BoardController {
  public String showRouteBoard(@PathVariable String boardCode, Model model, HttpSession session) throws Exception {
 	 User user =(User)session.getAttribute("user");
      RouteBoard routeBoard = boardService.selectRoute(boardCode);
+     boardService.updateViews(boardCode);
      model.addAttribute("routeBoard", routeBoard);
-     return "board/routePost";
-    
+     
+     List<Comment> comments = commentService.getCommentByCode(boardCode);
+     model.addAttribute("comments", comments);
+     
+     int count = commentService.count(boardCode);
+     model.addAttribute("count", count);
+     return "board/routePost";   
+ }
+
+ @PostMapping("/route/{boardCode}")
+ public ResponseEntity<Map<String, Object>> routeComment(@PathVariable String boardCode, @RequestBody Comment comment, HttpSession session) {
+ 	User user = (User) session.getAttribute("user");
+     Map<String, Object> response = new HashMap<>();
+     
+     if (user != null) {
+         commentService.register(comment);
+         System.out.println(comment);
+         response.put("status", "success");
+         response.put("message", "Comment posted successfully");
+         response.put("redirect", "/project/board/route/"+boardCode);
+         return ResponseEntity.ok(response);
+     } else {
+         response.put("status", "error");
+         response.put("message", "User not logged in");
+         response.put("redirect", "/project/user/login.do");
+         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+     }
  }
    
    

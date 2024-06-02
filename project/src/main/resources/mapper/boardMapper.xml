@@ -49,7 +49,7 @@
 		WHERE b.boardCode = #{boardCode}
    </select>
    
-   <update id="updateView" parameterType="Board">
+   <update id="updateView" parameterType="String">
 	   	UPDATE boardtbl
 		SET boardViews= boardViews+1
 		WHERE boardCode=#{boardCode}
