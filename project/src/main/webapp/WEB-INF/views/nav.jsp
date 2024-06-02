@@ -70,14 +70,14 @@ nav {
    <nav>
        <div class="nav-container">
            <div class="nav-icon">
-              <a href="/project/">
+              <a href="/project/index">
                   <img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="logo-icon">  
                </a>
            </div>
            <div class="nav-menu">
                     <ul>
-                        <li><a href="/project/event/tour">관광지</a></li>
-                        <li><a href="/project/event/festival">축제/행사</a></li>
+                        <li><a href="/project/tourlist">관광지</a></li>
+                        <li><a href="/project/eventlist">축제/행사</a></li>
                         <li><a href="/project/board/route">경로게시판</a></li>
                         <li><a href="/project/board/free?type=-1">자유게시판</a></li>
                         <li><a href="/project/board/faq">고객센터</a></li>

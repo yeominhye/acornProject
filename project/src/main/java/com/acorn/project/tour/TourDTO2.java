@@ -1,4 +1,4 @@
-package com.acorn.project.index;
+package com.acorn.project.tour;
 
 import org.json.JSONObject;
 
@@ -11,12 +11,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class TourDTO3 {
+public class TourDTO2 {
 	
-	Object expguide;
-	Object infocenter;
-	Object restdate;
-	Object parking;
+	Object title;
+	Object tel;
+	Object firstimage;
+	Object homepage;
+	Object addr1;
+	Object addr2;
+	Object overview;
+	Object mapx;
+	Object mapy;
 	
-
+	
 }
