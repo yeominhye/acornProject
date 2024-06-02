@@ -152,7 +152,7 @@ section {
 }
 
 .route-text {
-	position: absolute;
+   position: absolute;
     top: 105px;
     right: 0;
     font-size: 14px;
@@ -279,7 +279,7 @@ section {
     justify-content: space-between;
 }
 .tour-text {
-	position: absolute;
+   position: absolute;
     top: 515px;
     right: 0;
     font-size: 14px;
@@ -358,7 +358,7 @@ section {
 }
 
 .event-text {
-	position: absolute;
+   position: absolute;
     bottom: 515px;
     right: 0;
     font-size: 14px;
@@ -368,7 +368,7 @@ section {
     display: flex;
 }
 .event-info > .local-box {
-	
+   
 }
 .event-name {
     margin-top: 3.2px;
@@ -419,7 +419,7 @@ footer {
     margin: 0 auto;
     width: 100%;
     height: 255px;
-    bottom: -248px;
+    bottom: -246px;
     background-color: #cfe0e4;
 }
 .footer-text {
@@ -432,18 +432,20 @@ footer {
     color: rgb(154, 154, 154);
 }
 .footer-text01 {
-    width: 150px;
-    height: 50px;
+      width: 180px;
+    height: 70px;
+    padding: 0px;
 }
-/* .footer-text01 > img { */
-/*     width: 150px; */
-/*     height: 50px; */
-/* } */
+.footer-text01 img {
+    width: 180px;
+    height: 70px;
+    margin-left: -10px;
+}
 .footer-text02 {
-    margin: 25px 0;
+    margin-top: 20px;
 }
 .footer-text03 {
-    margin-top: 75px;
+    margin-top: 50px;
 }
 .footer-text03 > div > span > img {
     height: 30px;
@@ -477,8 +479,4 @@ footer {
 }
 .page-info span {
     margin-right: 10px;
-}
-
-.area{
-	z-index:999;
 }

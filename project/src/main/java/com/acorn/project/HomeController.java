@@ -25,9 +25,9 @@ import com.acorn.project.event.*;
 public class HomeController {
 
 	@Autowired
-	private IndexService indexService;
+	private HomeService homeService;
 	
-	@GetMapping(value = "/index", produces = "application/json;charset=utf-8")
+	@GetMapping(value = "/", produces = "application/json;charset=utf-8")
 	public String main(@RequestParam(value = "year", defaultValue = "") String year,
 			@RequestParam(value = "month", defaultValue = "") String month,
 			@RequestParam(value = "area", defaultValue = "") String area,
@@ -58,7 +58,7 @@ public class HomeController {
 			@RequestParam(value = "pageNo", defaultValue = "1") String pageNo) {
 		try {
 			String numOfRows = "3";
-			return indexService.extractTours(indexService.getDataTour(numOfRows, pageNo, area));
+			return homeService.extractTours(homeService.getDataTour(numOfRows, pageNo, area));
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
 			return Collections.emptyList();
@@ -72,7 +72,7 @@ public class HomeController {
 			@RequestParam(value = "pageNo", defaultValue = "1") String pageNo) {
 		try {
 			String numOfRows = "3";
-			return indexService.extractEvents(indexService.getDataEvent(numOfRows, pageNo, year, month));
+			return homeService.extractEvents(homeService.getDataEvent(numOfRows, pageNo, year, month));
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
 			return Collections.emptyList();
@@ -126,14 +126,14 @@ public class HomeController {
 		return "tourlist";
 	}
 
-	@GetMapping(value = { "/index/tourInfo", "/tourlist/tourInfo" })
+	@GetMapping(value = { "//tourInfo", "/tourlist/tourInfo" })
 	public String getTourInfo(@RequestParam("contentId") String contentId,
 			@RequestParam("contentTypeId") String contentTypeId, Model model) throws IOException {
 		addTourInfoToModel(contentId, contentTypeId, model);
 		return "tourDetail";
 	}
 
-	@GetMapping(value = { "/index/eventInfo", "/eventlist/eventInfo" })
+	@GetMapping(value = { "//eventInfo", "/eventlist/eventInfo" })
 	public String getEventInfo(@RequestParam("contentId") String contentId,
 			@RequestParam("contentTypeId") String contentTypeId, Model model) throws IOException {
 		addEventInfoToModel(contentId, contentTypeId, model);
@@ -155,7 +155,7 @@ public class HomeController {
 	private void addTourListToModel(String numOfRows, String pageNo, String area, Model model) throws IOException {
 		try {
 			model.addAttribute("tourList",
-					indexService.extractTours(indexService.getDataTour(numOfRows, pageNo, area)));
+					homeService.extractTours(homeService.getDataTour(numOfRows, pageNo, area)));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -166,10 +166,10 @@ public class HomeController {
 		try {
 			if (arrange.equals("S")) {
 				model.addAttribute("tourList",
-						indexService.extractTours2(indexService.getDataTour2(numOfRows, pageNo, arrange, mapX, mapY)));
+						homeService.extractTours2(homeService.getDataTour2(numOfRows, pageNo, arrange, mapX, mapY)));
 			} else {
 				model.addAttribute("tourList",
-						indexService.extractTours(indexService.getDataTour(numOfRows, pageNo, area)));
+						homeService.extractTours(homeService.getDataTour(numOfRows, pageNo, area)));
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -180,7 +180,7 @@ public class HomeController {
 			throws IOException {
 		try {
 			model.addAttribute("eventList",
-					indexService.extractEvents(indexService.getDataEvent(numOfRows, pageNo, year, month)));
+					homeService.extractEvents(homeService.getDataEvent(numOfRows, pageNo, year, month)));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -189,9 +189,9 @@ public class HomeController {
 	private void addTourInfoToModel(String contentId, String contentTypeId, Model model) throws IOException {
 		try {
 			model.addAttribute("tourInfo",
-					indexService.extractTourInfo(indexService.getTourInfo(contentId, contentTypeId)));
+					homeService.extractTourInfo(homeService.getTourInfo(contentId, contentTypeId)));
 			model.addAttribute("tourInfo2",
-					indexService.extractTourInfo2(indexService.getTourInfo3(contentId, contentTypeId)));
+					homeService.extractTourInfo2(homeService.getTourInfo3(contentId, contentTypeId)));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -200,9 +200,9 @@ public class HomeController {
 	private void addEventInfoToModel(String contentId, String contentTypeId, Model model) throws IOException {
 		try {
 			model.addAttribute("eventInfo",
-					indexService.extractEventInfo(indexService.getEventInfo(contentId, contentTypeId)));
+					homeService.extractEventInfo(homeService.getEventInfo(contentId, contentTypeId)));
 			model.addAttribute("eventInfo2",
-					indexService.extractEventInfo2(indexService.getEventInfo3(contentId, contentTypeId)));
+					homeService.extractEventInfo2(homeService.getEventInfo3(contentId, contentTypeId)));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
