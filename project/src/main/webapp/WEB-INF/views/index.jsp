@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
 
     <!-- index.css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css?after" >
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/index.css?after" >
 
     <!-- index.js -->
 <%--     <script defer src="${pageContext.request.contextPath}/resources/js/home.js"></script> --%>
