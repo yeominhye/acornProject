@@ -14,8 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/freeBoardForm.css" >
+    
    	<script type="text/javascript">    
 	   // editor의 내용 input으로 전달
    		function send(){

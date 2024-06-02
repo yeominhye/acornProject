@@ -8,16 +8,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
+     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
+    <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost2.css" >
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/map.css" /> --%>
 	<script defer src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	
 
     <!-- icon key -->
     <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
+    
 </head>
-<script>
+<script type="text/javascript">    
     function previewImage(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -28,8 +38,21 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-</script>
+ // editor의 내용 input으로 전달
+		function send(){
+  	
+			document.getElementById("contentMessage").style.display = "none";
+  
+		  	let editor  = document.querySelector(".ql-container");
+		  	let content =  editor.innerHTML;
+		  	let  boardContent  = document.querySelector("#boardContent");
+		  	boardContent.value= content;
+		  	
+		    document.frm.submit();
 
+  }
+  
+</script>
 <body>
        
     <div class="wrap">
@@ -39,13 +62,7 @@
         <!-- header -->
 
         <div class="container">
-
-            <div class="btn-container">
-                <button class="post-btn">수정</button>
-                <button class="post-btn right">삭제</button>
-            </div>
-			
-			 <form action="/project/board/createMap_process.do" method="post" id="createMapForm">
+			<form action="/project/board/createMap_process.do" method="post" id="createMapForm" name="frm">	
             <div class="title-container">
                 <!-- 이미지 영역 -->
                 <div class="image-box">
@@ -92,20 +109,67 @@
                     </div>
                     
                     <div class="point-section">
-                        <!-- 아이콘 못 고르겠어.. -->
                         <i class="fa-brands fa-product-hunt fa-2x"></i>
                        <input type="number" id ="boardPoint" min="0" value="0" step="100" name="boardPoint" class="price" required>
                     </div>
                     
-                    <div class="boardContent">
-                    	총평
-                    	<textarea rows="" cols="" id="boardContent" name="boardContent" required class="boardTextarea"></textarea> 
-                    </div>
-                    
-                     <div>
-			            <button type="submit">저장</button>
-			        </div>
+                  
                 </div>
+                
+                 <div class="review-container">
+	                <h2># 총평</h2>
+	                 <!-- Create the editor container -->
+				    <div id="contentMessage" style="display:none; color:red;"></div>
+				    <div id="toolbar-container">
+						
+				        <span class="ql-formats">
+				          <select class="ql-font"></select>
+				          <select class="ql-size"></select>
+				        </span>
+				        <span class="ql-formats">
+				          <button class="ql-bold"></button>
+				          <button class="ql-italic"></button>
+				          <button class="ql-underline"></button>
+				          <button class="ql-strike"></button>
+				        </span>
+				        <span class="ql-formats">
+				          <select class="ql-color"></select>
+				          <select class="ql-background"></select>
+				        </span>
+				        <span class="ql-formats">
+				          <button class="ql-script" value="sub"></button>
+				          <button class="ql-script" value="super"></button>
+				        </span>
+				        <span class="ql-formats">
+				          <button class="ql-header" value="1"></button>
+				          <button class="ql-header" value="2"></button>
+				          <button class="ql-blockquote"></button>
+				          <button class="ql-code-block"></button>
+				        </span>
+				        <span class="ql-formats">
+				          <button class="ql-list" value="ordered"></button>
+				          <button class="ql-list" value="bullet"></button>
+				          <button class="ql-indent" value="-1"></button>
+				          <button class="ql-indent" value="+1"></button>
+				        </span>
+				        <span class="ql-formats">
+				          <button class="ql-direction" value="rtl"></button>
+				          <select class="ql-align"></select>
+				        </span>
+				        <span class="ql-formats">
+				          <button class="ql-link"></button>
+				          <button class="ql-image"></button>
+				          <button class="ql-video"></button>
+				          <button class="ql-formula"></button>
+				        </span>
+				        <span class="ql-formats">
+				          <button class="ql-clean"></button>
+				        </span>
+				      </div>
+				    
+				      <div id="editor"></div>
+				      <input type="hidden" id="boardContent" name="boardContent" required>
+	            </div>
             </div>
 			</form>
 			
@@ -120,7 +184,7 @@
                         <h1>1</h1>
                     </div>
                     <div class="index-button">
-                        <h1><button type="button" id="addDayBtn" function="addDay()">일정 추가</button></h1>
+                        <button type="button" id="addDayBtn">일정 추가</button>
                     </div>
                 </div>
 
@@ -176,6 +240,11 @@
 			                <ul id="placesList"></ul>
 			                <div id="pagination"></div>
 			            </div>
+			            
+			               <div class="btn-container">
+							   <button class="cancle-button" onclick="history.back()">목록보기</button>
+							   <button type="button" onclick="send()" class="submit-button" > 전체 저장</button>
+				            </div>
                     </div>
 
 					<form action="/project/board/dayPlans.do" method="post" id="dayPlanForm">
@@ -194,7 +263,7 @@
 	                        </div>
 	                       
 	                    </div>
-	                    <button type="button" id="dayBtn">저장</button>
+	                    <button type="button" id="dayBtn">임시 저장</button>
 					</form>
                 </div>
 
@@ -202,10 +271,25 @@
             </div>
 
      
-            <div class="return-to-list-button"><button>목록보기</button></div>
+            <div class="return-to-list-button"></div>
         </div>
 		<%@ include file="../footer-sub.jsp" %>
     </div>
+	
+	<!-- Include the Quill library -->
+	<script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
+	
+	<!-- Initialize Quill editor -->
+	<script>
+	const quill = new Quill('#editor', {
+	  modules: {
+	    syntax: true,
+	    toolbar: '#toolbar-container',
+	  },
+	  placeholder: 'Compose an epic...',
+	  theme: 'snow',
+	});
+	</script>
 	
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e4e2ed92d2d2bdb6c1837e8f4e3094f&libraries=services,clusterer,drawing"></script>
 	<script>
@@ -276,7 +360,6 @@
 		            alert("모든 필드를 채워주세요.");
 		            return;
 		        }
-		
 		        $.ajax({
 		            type: "POST",
 		            url: "${pageContext.request.contextPath}/board/dayPlans.do",

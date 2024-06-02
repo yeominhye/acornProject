@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../nav.jsp" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,49 +20,49 @@
       <script type="text/javascript">
       
       // editor의 내용 input으로 전달
- 		function send(){
-	    	
- 			document.getElementById("titleMessage").style.display = "none";
- 			document.getElementById("contentMessage").style.display = "none";
-		   
-	    	let editor  = document.querySelector(".ql-container");
-	    	let content =  editor.innerHTML;
-	    	let  boardContent  = document.querySelector("#boardContent");
-	    	boardContent.value= content;
-			
-	    }
-	    
- 	    // 모든 입력란이 유효한지 확인 후 페이지 전환 함수
- 	    function validate() {
- 	    	send();
- 	        var title = $("#boardTitle").val().trim();
- 	        var content = $(".ql-editor").html();
- 	        var boardType = $("#boardType").val();
-			
- 	        
- 	        // 제목 입력 여부 확인
- 	        if (title === "") {
- 	            $("#titleMessage").html("제목을 입력하세요").show();
- 	            $("#boardTitle").focus();
- 	            return;
- 	        } 
- 	     // 내용 입력 여부 확인
- 	    	if (content === "<p><br></p>") {
- 	            $("#contentMessage").html("내용을 입력하세요").show();
- 	            $(".ql-editor").focus();
- 	            return;
- 	        }
+       function send(){
+          
+          document.getElementById("titleMessage").style.display = "none";
+          document.getElementById("contentMessage").style.display = "none";
+         
+          let editor  = document.querySelector(".ql-container");
+          let content =  editor.innerHTML;
+          let  boardContent  = document.querySelector("#boardContent");
+          boardContent.value= content;
+         
+       }
+       
+        // 모든 입력란이 유효한지 확인 후 페이지 전환 함수
+        function validate() {
+           send();
+            var title = $("#boardTitle").val().trim();
+            var content = $(".ql-editor").html();
+            var boardType = $("#boardType").val();
+         
+            
+            // 제목 입력 여부 확인
+            if (title === "") {
+                $("#titleMessage").html("제목을 입력하세요").show();
+                $("#boardTitle").focus();
+                return;
+            } 
+         // 내용 입력 여부 확인
+           if (content === "<p><br></p>") {
+                $("#contentMessage").html("내용을 입력하세요").show();
+                $(".ql-editor").focus();
+                return;
+            }
 
- 	        // 모든 입력이 유효할 경우 폼 전송
- 	        document.frm.submit();
- 	    }
- 	</script>
+            // 모든 입력이 유효할 경우 폼 전송
+            document.frm.submit();
+        }
+    </script>
  
 </head>
 <body>
     <div class="wrap">
-   
-       <div class="freeBoardForm-container">
+         <%@ include file="../nav.jsp" %>
+       <div class="container">
           <div class="freeBoardForm-section">
               <h2>수정하기</h2>
           </div>
@@ -144,8 +144,8 @@
          
          
           <div class="freeBoardForm-btn">
-	         <button type="button" onclick="validate()"> 수정</button>
-	           <button type="button" onclick="location.href='/project/board/my/del/${myboard.boardCode}'">삭제</button>
+            <button type="button" onclick="validate()"> 수정</button>
+              <button type="button" onclick="location.href='/project/board/my/del/${myboard.boardCode}'">삭제</button>
            </div>
      </form>    
    
@@ -165,6 +165,7 @@
           
          </script>
        </div>
+       <%@ include file="../footer-sub.jsp" %>
       </div>
 </body>
 </html>

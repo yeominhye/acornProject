@@ -141,9 +141,9 @@ String userCode = (user != null) ? user.getUserCode() : null;
                </div>
             </div>
             <div class="freeBoardForm-btn">
+               <button onclick="history.back()">목록보기</button>
                <button id="boardModi"
                   onclick="window.location.href='${pageContext.request.contextPath}/board/my/${freeboard.boardCode}'">수정</button>
-               <button onclick="history.back()">뒤로가기</button>
             </div>
          </div>
       </div>
