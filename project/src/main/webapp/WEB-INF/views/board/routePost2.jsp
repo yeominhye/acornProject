@@ -203,14 +203,6 @@
 			                    </button>
 			                </div>
 			                <div class="toolBtn">
-			                    <button id="test">
-			                        <div class="btnImg">
-			                            <img src="${pageContext.request.contextPath}/resources/img/checkmark.png" alt="">
-			                        </div>
-			                        Test
-			                    </button>
-			                </div>
-			                <div class="toolBtn">
 			                    <button id="line">
 			                        <div class="btnImg">
 			                            <img src="${pageContext.request.contextPath}/resources/img/gps-route.png" alt="">
