@@ -24,12 +24,7 @@
         <!-- header -->
 
         <div class="container">
-        	<div class="btn-container">
-        		<c:if test="${user.userCode eq routeBoard.userCode}">
-        			<button class="post-btn">수정</button>
-        			<button class="post-btn right">삭제</button>
-        		</c:if>
-			</div>
+        	<div class="btn-container"></div>
            
 
             <div class="title-container">
@@ -155,9 +150,24 @@
                 <h2>댓글 ${count}</h2>
                 <div class="comment-section">
                <div id="no-comments-message" style="display: none;">작성된 댓글이 없습니다.</div>
+                    
                     <div class="comment-box">
+                     <!-- test -->
+                     <c:forEach var="comment" items="${comments}" varStatus="loop">
+
+                        <div class="comment" id="comment_${loop.index}"
+                           data-user-code="${comment.userCode}">
+                           <div class="comment_name">${comment.nickname}</div>
+                           <input type="hidden" class="modiCommentCode" value="${comment.commentCode}">
+                           <div class="comment_content">${comment.commentContent}</div>
+                           <div class="comment_date">${comment.commentDate}</div>
+                           <button class="btnModi" onclick="editComment(this)">수정</button>
+                           <button class="btnDel" onclick="delComment(this)">삭제</button>
+                        </div>
+                     </c:forEach>
+                  </div>
                          
-                        <div class="each-comment">
+                        <!-- <div class="each-comment">
                             <div class="comment-nickname">
                                 <p>예원의 뽀대왕쟈님</p>
                             </div>
@@ -169,62 +179,8 @@
                                 <button class="edit-button">수정</button>
                                 <button class="delete-button">삭제</button>
                             </div>
-                        </div>
-
-                        <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>김예원</p>
-                            </div>
-                            <div class="comment-content">
-                                왜냐하면 위치 잡는중이걸랑요 꾸벅~ 다른 댓글들은 남이 썼을 때~~ 테스트~~
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                        </div>
-
-                        <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>테스트중</p>
-                            </div>
-                            <div class="comment-content">
-                                css 완성 아닙니다. 세부 수정 해야 해요~~! 
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                        </div>
-
-                        <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>4th글쓴이</p>
-                            </div>
-                            <div class="comment-content">
-                                김예원님 한글 공백포함 400글자로 제한하겠습니다. 감사합니다. 연소자의 근로는 특별한 보호를 받는다. 국무총리는 국회의 동의를 얻어 대통령이 임명한다.
-                                대법원은
-                                법률에 저촉되지 아니하는 범위안에서 소송에 관한 절차, 법원의 내부규율과 사무처리에 관한 규칙을 제정할 수 있다. 국가는 균형있는 국민경제의 성장 및 안정과
-                                적정한
-                                소득의 분배를 유지하고, 시장의 지배와 경제력의 남용을 방지하며, 경제주체간의 조화를 통한 경제의 민주화를 위하여 경제에 관한 규제와 조정을 할 수 있다.
-                                통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. 국가안전보장에 관련되는 대외정책·군사정책과 국내정책의 수립에 관하여
-                                국무회의의
-                                심의에 앞서 대통령의 자문에 응하기 위하여 국가안전보장회의를 둔다.
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                        </div>
-
-                        <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>5th글쓴이</p>
-                            </div>
-                            <div class="comment-content">
-                                김예원님 한글 공백포함 400글자로 제한하겠습니다. 감사합니다. 연소자의 근로는 특별한 보호를 받는다. 국무총리는 국회의 동의를 얻어 대통령이 임명한다.
-                                대법원은
-                                법률에 저촉되지 아니하는 범위안에서 소송에 관한 절차, 법원의 내부규율과 사무처리에 관한 규칙을 제정할 수 있다. 국가는 균형있는 국민경제의 성장 및 안정과
-                                적정한
-                                소득의 분배를 유지하고, 시장의 지배와 경제력의 남용을 방지하며, 경제주체간의 조화를 통한 경제의 민주화를 위하여 경제에 관한 규제와 조정을 할 수 있다.
-                                통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. 국가안전보장에 관련되는 대외정책·군사정책과 국내정책의 수립에 관하여
-                                국무회의의
-                                심의에 앞서 대통령의 자문에 응하기 위하여 국가안전보장회의를 둔다.
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                        </div>
-                    </div>
+                        </div> -->
+                    
                     <form action="#">
                         <div class="write-comment-section">
 
@@ -363,7 +319,9 @@
             });
 
             infowindows.push(infowindow);
-			infowindow.open(map, marker);
+            if (i === 0) {
+                infowindow.open(map, marker);
+            }
             
             kakao.maps.event.addListener(marker, 'click', (function (marker, infowindow) {
                 return function () {
@@ -456,8 +414,4 @@
 
     init();
 </script>
-
-
-
-
 </html>
