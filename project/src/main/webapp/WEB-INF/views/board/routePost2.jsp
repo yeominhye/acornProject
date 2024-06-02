@@ -382,7 +382,6 @@
 	</script>
 	
 	<script>
-
     function loadFiles(input) {
         const files = input.files;
         const container = document.getElementById('img-container');
@@ -405,7 +404,6 @@
             container.appendChild(imgContainer);
         }
     }
-
 	</script>
 
 </body>

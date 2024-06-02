@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+s<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="nav.jsp" %>
 <!DOCTYPE html>
@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <title>Document</title>
     <!-- reset.css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
@@ -226,6 +226,7 @@
                     </div>
                     <hr class="section-hr">
                 </div>
+                
                 <div class="tour-box">
                     <div class="title-text"><span class="local-name">전체,</span> 인기관광지</div>
                     <div class="see-text tour-text"><a href="#">더보기</a></div>
