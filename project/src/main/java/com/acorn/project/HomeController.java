@@ -49,7 +49,7 @@ public class HomeController {
 		model.addAttribute("selectedMonth", month);
 		model.addAttribute("selectedArea", area);
 
-		return "index";
+		return "home";
 	}
 
 	@GetMapping("/ajax/tourlist")

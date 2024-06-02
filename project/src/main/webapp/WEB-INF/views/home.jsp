@@ -25,7 +25,6 @@
 </head>
 <body>
 	<div class="wrap">
-
         <!-- header --> 
         <header>
             <div class="header-container">
