@@ -18,7 +18,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost2.css" >
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/createRouteForm.css" >
 	<script defer src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	
@@ -181,11 +181,14 @@
             <div class="route-container">
 
                 <div class="route-index">
-                    <div class="index-button">
-                        <h1>1</h1>
-                    </div>
-                    <div class="index-button">
-                        <button type="button" id="addDayBtn">일정 추가</button>
+                	<div class="newIndex-button">
+	                    <div class="index-button">
+	                        <h1>1</h1>
+	                    </div>
+                   	
+                   	</div>
+                    <div class="add-button">
+                        <button type="button" id="addDayBtn">+</button>
                     </div>
                 </div>
 
@@ -258,13 +261,13 @@
 		                        </div>
 	                        </div>
 	                    	<div class="day-comment-list">
-		                        <h2># 코멘트</h2>
+		                        <h2 id="dayCommentH2"># 코멘트</h2>
 		                        <div class="day-comment">
 		                        <textarea rows="" cols="" name="days[${dayIndex - 1}].dayInfo" id="dayInfo" placeholder="간단한 설명을 작성해주세요." required class="commentTextarea"></textarea>	                        </div>
 	                        </div>
 	                       
 	                    </div>
-	                    <button type="button" id="dayBtn">임시 저장</button>
+	                    <button type="button" id="dayBtn">일정 저장</button>
 					</form>
                 </div>
 
@@ -300,6 +303,7 @@
 		
 		    document.getElementById("boardTourdays").value = dayIndex;
 		    document.getElementById("dayIndex").value = dayIndex;
+		    document.getElementById("dayCommentH2").innerHTML = '#'+dayIndex+'일차 후기';
 		
 		    $("#addDayBtn").on('click', function() {
 		        if (toggle === 1) {
@@ -308,8 +312,18 @@
 		            document.getElementById("boardTourdays").value = dayIndex;    
 		            document.getElementById("dayInfo").value = '';
 		            document.getElementById("clickLatlng").innerHTML = '';
+		            document.getElementById("dayCommentH2").innerHTML = '#'+dayIndex+'일차 후기';
+		            
 		            deleteAll();
 		            toggle = 0;
+		            
+		            var newIndexBtn = document.getElementsByClassName("newIndex-button")[0];
+	                var newDiv = document.createElement("div");
+	                newDiv.className="index-button";
+	                var newH1 = document.createElement("h1");
+	                newH1.innerText = dayIndex;
+	                newDiv.appendChild(newH1);
+	                newIndexBtn.appendChild(newDiv);
 		        } else {
 		            alert("저장한 후에 일정을 추가해주세요.");
 		        }
