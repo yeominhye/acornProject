@@ -73,9 +73,20 @@
     </div>
     
     <div class="freeBoardForm-btn">
-       <button onclick="history.back()">목록보기</button>
-       <button id="boardModi"
-          onclick="window.location.href='${pageContext.request.contextPath}/board/my/${freeboard.boardCode}'">수정</button>
+    	<%
+		    String currentURL = request.getRequestURL().toString();
+    		pageContext.setAttribute("currentURL", currentURL);
+		%>
+		
+		<c:if test="${currentURL eq 'http://localhost:8080/project/WEB-INF/views/board/freeboardDetail.jsp'}"> 
+		    <button onclick="window.location.href='${pageContext.request.contextPath}/board/free?type=-1'">목록보기</button> 
+		</c:if>
+		
+		<c:if test="${currentURL eq 'http://localhost:8080/project/WEB-INF/views/board/routePost.jsp'}"> 
+		    <button onclick="window.location.href='${pageContext.request.contextPath}/board/route'">목록보기</button> 
+		</c:if>
+      	
+       <button id="boardModi" onclick="window.location.href='${pageContext.request.contextPath}/board/my/${freeboard.boardCode}'">수정</button>
     </div>
 </body>
 </html>
