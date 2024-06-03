@@ -62,7 +62,7 @@
 <body>
     <div class="wrap">
          <%@ include file="../nav.jsp" %>
-       <div class="freeBoardForm-container">
+       <div class="container">
           <div class="freeBoardForm-section">
               <h2>수정하기</h2>
           </div>

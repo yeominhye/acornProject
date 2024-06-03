@@ -121,7 +121,9 @@ public class BoardController {
 	
 	
     @GetMapping("/free/{code}")
-    public String Board(@PathVariable String code, Model model) {
+    public String Board(@PathVariable String code, Model model,HttpSession session, HttpServletRequest request) {
+    	String currentUrl = request.getRequestURL().toString();
+    	session.setAttribute("url", currentUrl);
         Board freeboard = boardService.getBoardBycode(code);
         boardService.updateViews(code); //  views 증가
         model.addAttribute("freeboard", freeboard);
@@ -136,10 +138,10 @@ public class BoardController {
     }
     
     @PostMapping("/{code}")
-    public ResponseEntity<Map<String, Object>> comment(@PathVariable String code, @RequestBody Comment comment, HttpSession session, HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> comment(@PathVariable String code, @RequestBody Comment comment, HttpSession session) {
     	User user = (User) session.getAttribute("user");
         Map<String, Object> response = new HashMap<>();
-        String currentUrl = request.getRequestURL().toString();
+        String currentUrl = (String)session.getAttribute("url");
         System.out.println("Current URL: " + currentUrl);
         
         if (user != null) {
@@ -147,7 +149,7 @@ public class BoardController {
             System.out.println(comment);
             response.put("status", "success");
             response.put("message", "Comment posted successfully");
-            if (currentUrl.equals("/project/board/free/"+code)) {
+            if (currentUrl.equals("http://localhost:8080/project/board/free/"+code)) {
             	response.put("redirect", "/project/board/free/"+code);
             } else {
             	response.put("redirect", "/project/board/route/"+code);

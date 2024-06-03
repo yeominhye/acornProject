@@ -197,7 +197,9 @@ hr {
 #account-holder{
    width: 200px;
 }
-
+td{
+	text-align: center;
+}
 .post-title {
    display: block;
    width: 330px;
@@ -211,8 +213,6 @@ hr {
 .head-title, .post-title {
    padding-left: 5px !important;
 }
-
-
 </style>
 
 </head>
@@ -297,6 +297,7 @@ hr {
                </c:forEach>
             </table>
 
+
          <div class="paging">
           <c:if test="${ empty search.condition}">
             <c:if test="${paging.currentGrp > 1}">
@@ -310,149 +311,9 @@ hr {
              </c:if>
           </c:if>
          </div>
-
-      <!-- 모달 -->
-      <div class="modal" id="modal">
-         <div class="modal-content">
-            <div class="tab-container">
-               <div id="tab1" class="tab selected">충전 포인트 선택</div>
-               <div id="tab2" class="tab">결제 수단 선택</div>
-            </div>
-            <form id="form1" class="form">
-               <div class="point-selection">
-                  <!-- <label for="points" class="points-label">보유 포인트: ${user.userPoint}p</label> -->
-                  <div class="points">
-                     <input type="radio" id="1000p" name="pointAmount" value="1000">
-                     <label for="1000p" class="point-btn">1000p</label> 
-                     <input type="radio" id="5000p" name="pointAmount" value="5000">
-                     <label for="5000p" class="point-btn">5000p</label> 
-                     <input type="radio" id="10000p" name="pointAmount" value="10000">
-                     <label for="10000p" class="point-btn">10,000p</label> 
-                     <input type="radio" id="50000p" name="pointAmount" value="50000">
-                     <label for="50000p" class="point-btn">50,000p</label> 
-                     <input type="radio" id="100000p" name="pointAmount" value="100000">
-                     <label for="100000p" class="point-btn">100,000p</label> 
-                     <input type="radio" id="300000p" name="pointAmount" value="300000">
-                     <label for="300000p" class="point-btn">300,000p</label>
-                  </div>
-                  <div class="buttons">
-                     <button type="button" class="btn" id="cancel">취소</button>
-                     <button type="button" class="btn" id="next">다음</button>
-                  </div>
-               </div>
-            </form>
-
-            <form id="form2" class="form" style="display: none;">
-               <div class="payment-method">
-                  <label for="payment">결제 수단을 선택하세요:</label>
-                  <div class="payment-options2">
-                     <div class="payment-row">
-                        <input type="radio" id="credit" name="payment" value="credit">
-                        <label for="credit" class="payment-btn"> <img
-                           src="${pageContext.request.contextPath}/resources/img/credit-card.png"
-                           alt="Credit Card"> 신용카드 결제
-                        </label> <input type="radio" id="bank" name="payment" value="bank">
-                        <label for="bank" class="payment-btn"> <img
-                           src="${pageContext.request.contextPath}/resources/img/bank-transfer.png"
-                           alt="Bank Transfer"> 무통장입금
-                        </label>
-                     </div>
-                     <div class="payment-row">
-                        <input type="radio" id="phone" name="payment" value="phone">
-                        <label for="phone" class="payment-btn"> <img
-                           src="${pageContext.request.contextPath}/resources/img/mobile-payment.png"
-                           alt="Mobile Payment"> 휴대폰 결제
-                        </label> <input type="radio" id="simple" name="payment" value="simple">
-                        <label for="simple" class="payment-btn"> <img
-                           src="${pageContext.request.contextPath}/resources/img/simple-payment.png"
-                           alt="Simple Payment"> 간편결제
-                        </label>
-                     </div>
-                  </div>
-                  <div class="buttons">
-                     <button type="button" class="btn" id="cancel">취소</button>
-                     <button type="button" class="btn" id="back">이전</button>
-                     <button type="button" class="btn" id="chargeBtn">완료</button>
-                  </div>
-               </div>
-
-            </form>
-         </div>
-      </div>
-
-
-      <!-- 모달2 -->
-      <div class="modal" id="modal2">
-         <div class="modal-content">
-            <div class="tab-container">
-               <div id="tab3" class="tab2 selected2">환전 포인트 선택</div>
-               <div id="tab4" class="tab2">은행 송금 연결</div>
-            </div>
-            <form id="form3" class="form">
-               <div class="point-selection">
-                  <!-- <label for="points" class="points-label">보유 포인트: ${user.userPoint}p</label> -->
-                  <div class="points">
-                     <input type="radio" id="5000p2" name="extend" value="5000">
-                     <label for="5000p2" class="point-btn">5000p</label> 
-                     <input type="radio" id="10000p2" name="extend" value="10000">
-                     <label for="10000p2" class="point-btn">10,000p</label> 
-                     <input type="radio" id="20000p2" name="extend" value="20000">
-                     <label for="20000p2" class="point-btn">20,000p</label> 
-                     <input
-                        type="radio" id="30000p2" name="extend" value="30000">
-                     <label for="30000p2" class="point-btn">30,000p</label> 
-                     <input type="radio" id="50000p2" name="extend" value="50000">
-                     <label for="50000p2" class="point-btn">50,000p</label> 
-                     <input type="radio" id="100000p2" name="extend" value="100000">
-                     <label for="100000p2" class="point-btn">100,000p</label>
-                  </div>
-                  <div class="buttons">
-                     <button type="button" class="btn2" id="cancel2">취소</button>
-                     <button type="button" class="btn2" id="next2">다음</button>
-                  </div>
-               </div>
-            </form>
-
-            <form id="form4" class="form" >
-               <div class="payment-method">
-
-                  <div class="payment-options">
-
-                     <div class="payment-row">
-
-                        <select id="bank-name" name="bank-name" required>
-                           <option value="은행 선택">은행 선택</option>
-                           <option value="케이뱅크">케이뱅크</option>
-                           <option value="카카오뱅크">카카오뱅크</option>
-                           <option value="kb국민은행">KB국민은행</option>
-                           <option value="우리은행">우리은행</option>
-                           <option value="신한은행">신한은행</option>
-                           <option value="농협">농협</option>
-                           <option value="하나은행">하나은행</option>
-                           <option value="기업은행">기업은행</option>
-                        </select>
-                        
-                        <input type="number" oninput='handleOnInput(this, 15)' id="account-number" placeholder="계좌번호 입력" name="account-number" pattern="\d*"  maxlength="10" required>
-
-                     </div>
-                     <br> 
-                     <label for="account-holder">예금주명: </label> 
-                     <input type="text" id="account-holder" name="account-holder" maxlength="5" required>
-                  </div>
-                  
-                  <div class="buttons">
-                     <button type="button" class="btn2" id="cancel2">취소</button>
-                     <button type="button" class="btn2" id="back2">이전</button>
-                     <button type="button" class="btn2" id="chargeBtn2">완료</button>
-                  </div>
-               </div>
-
-            </form>
-        
-            </div>
-        </div>
     </div>
 </div>
+
    <%@ include file="../footer-sub.jsp" %>
 </div>
 </body>

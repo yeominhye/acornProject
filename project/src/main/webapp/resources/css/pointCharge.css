@@ -25,6 +25,7 @@
     width: 100%;
     max-width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: -350px;
 }
 
 .tab-container {
