@@ -17,6 +17,12 @@
     	FROM usertbl
     	WHERE userId = #{userId};
 	</select>
+	
+	<select id="selectByCode" parameterType="String" resultType="User">
+    	SELECT *
+    	FROM usertbl
+    	WHERE userCode = #{userCode};
+	</select>
 
 	<select id="checkNickname" parameterType="String" resultType="int">
     	select count(*) from usertbl where nickname = #{nickname}

@@ -36,8 +36,12 @@ public class PointDAO implements PointDAOI {
     }
 
     @Override
-    public int buyBoard(Point point, User user) throws Exception {
-        return session.insert(namespace + "buyBoard", point);
+    public int buyBoard(String userCode, String boardCode, int pointAmount) throws Exception {
+    	Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userCode", userCode);
+        paramMap.put("boardCode", boardCode);
+        paramMap.put("pointAmount", pointAmount);
+        return session.insert(namespace + "buyBoard", paramMap);
     }
 
     @Override
@@ -46,6 +50,15 @@ public class PointDAO implements PointDAOI {
         paramMap.put("pointAmount", pointAmount);
         paramMap.put("userCode", userCode);
         return session.insert(namespace + "buyPoint", paramMap);
+    }
+    
+	@Override
+    public int sellBoard(String userCode, String boardCode, int pointAmount) throws Exception {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userCode", userCode);
+        paramMap.put("boardCode", boardCode);
+        paramMap.put("pointAmount", pointAmount);
+        return session.insert(namespace + "sellBoard", paramMap);
     }
 
     @Override

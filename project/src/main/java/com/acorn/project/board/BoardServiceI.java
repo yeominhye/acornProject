@@ -38,6 +38,8 @@ public interface BoardServiceI {
 
 	int insertRoute(RouteBoard routeBoard) throws Exception;
 
+	List<String> selectMyBuyBoard(String userCode);
+
 
 
 }

@@ -31,4 +31,8 @@ public interface UserServiceI {
 	int updateUserPw(String userId, String newPw);
 	
 	int updatePoint(int pointAmount, User user);
+
+	User getUserByCode(String userCode) throws Exception;
+	
+	
 }

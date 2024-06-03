@@ -98,4 +98,9 @@ public class BoardService implements BoardServiceI {
 	public int insertRoute(RouteBoard routeBoard) throws Exception {
         return dao.insertRoute(routeBoard);
     }
+	
+	@Override
+	public List<String> selectMyBuyBoard(String userCode) {
+		return dao.selectMyBuyBoard(userCode);
+	}
 }

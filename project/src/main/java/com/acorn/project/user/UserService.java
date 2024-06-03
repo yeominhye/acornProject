@@ -18,6 +18,11 @@ public class UserService implements UserServiceI {
 	    }
 		
 		@Override
+		public User getUserByCode(String userCode) throws Exception {
+	        return dao.selectByCode(userCode);
+	    }
+		
+		@Override
 		public List<User> getUserList() throws Exception {
 	        return dao.selectAll();
 	    }

@@ -15,9 +15,13 @@ public interface PointDAOI {
 	
 	int buyPoint(int pointAmount, String userCode) throws Exception;
 
-	int buyBoard(Point point, User user) throws Exception;
+	int buyBoard(String userCode, String boardCode, int pointAmount) throws Exception;
 
 	int pointExchange(int pointAmount, String userCode) throws Exception;
 
 	List<Map<String, Object>> selectPointsWithinDateRange(String userCode, String startDate, String endDate) throws Exception;
+
+	int sellBoard(String userCode, String boardCode, int pointAmount) throws Exception;
+
+	
 }
