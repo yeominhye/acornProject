@@ -253,15 +253,6 @@ public class BoardController {
 		return "board/freeboardList";
 	}
 	
-//	@RequestMapping(value="/my", method = RequestMethod.GET)
-//	public String myBoardList(HttpSession session, Model model){
-//		User user = (User)session.getAttribute("user");
-//		String userId =user.getUserId();
-//		List<Board> BoardList = boardService.getBoardByuser(userId);
-//		model.addAttribute("BoardList",BoardList);
-//		return "/board/myboard";
-//	}
-	
 	
 	@ResponseBody
 	@RequestMapping(value="/my/scrap", method = RequestMethod.POST)
@@ -385,33 +376,17 @@ public class BoardController {
    
   
    @RequestMapping(value = "/route/post", method = RequestMethod.GET)
-   public String festivalPost() {
-      return "/board/routePost2";
-   }
-   
-   
- // -----猷⑦듃 �빐蹂대뒗 以�---
-// @RequestMapping("/createMap")
-// public String showCreateForm(Model model) {
-//	 User user = (User)session.getAttribute("user");
-//     model.addAttribute("board", new Board());
-//     return "maps/createMap";
-// }
-
- 
- @RequestMapping(value="/createMap", method=RequestMethod.GET)
-	public String createRoute( RouteBoard routeBoard, HttpSession session, Model model) {
-	    User user =(User)session.getAttribute("user");
-	 
+   public String createRoute( RouteBoard routeBoard, HttpSession session, Model model) {
+	   User user =(User)session.getAttribute("user");
+		 
 	    if(user != null) {
 	     session.setAttribute("dayPlans", null);
-         return "board/createMap";
+        return "board/createRouteForm";
 	    } 
 	    
 	    return "redirect:/user/login.do";
-	}
- 
- 
+   }
+
  @RequestMapping(value="/createMap_process.do", method=RequestMethod.POST)
 	public String createRoute_process (RouteBoardVO vo, HttpSession session) throws Exception {
 	 	System.out.println("촥인"+vo);
