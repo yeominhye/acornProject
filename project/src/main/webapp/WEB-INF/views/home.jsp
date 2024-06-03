@@ -458,6 +458,7 @@
                                            processedAddr +
                                        '</div>' +
                                        '<div class="event-name">' + item.title + '</div>' +
+                                       '<div class="event-name">' + item.eventstartdate + '~' + item.eventenddate + '</div>' +
                                    '</div>' +
                                '</div>';
                 $("#eventContainer").append(eventItem);

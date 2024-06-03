@@ -70,7 +70,7 @@ nav {
    <nav>
        <div class="nav-container">
            <div class="nav-icon">
-              <a href="/project/index">
+              <a href="/project/">
                   <img src="${pageContext.request.contextPath}/resources/img/logo.png" alt="logo-icon">  
                </a>
            </div>

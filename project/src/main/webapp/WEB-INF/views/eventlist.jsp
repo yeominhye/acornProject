@@ -11,138 +11,14 @@
 <!-- reset.css -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/reset.css">
-
-<style>
-.container {
-	width: 1100px;
-	padding-top: 75px;
-	margin: 0 auto;
-	display: flex;
-	justify-content: space-between;
-}
-
-.side-container {
-	position: relative;
-	width: 210px;
-}
-
-.side {
-	position: fixed;
-	width: 210px;
-	background-color: #f5f5f5;
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.side-name {
-	font-size: 18px;
-	font-weight: bold;
-	text-decoration: underline;
-}
-
-.local-box, .month-box {
-	margin: 10px auto;
-	width: 98%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-
-.area, .month {
-	display: flex;
-	justify-content: center;
-	align-self: center;
-	width: 40px;
-	height: 20px;
-	font-size: 14px;
-	font-weight: 600;
-	color: #999999;
-	margin-bottom: 5px;
-	border-radius: 50px;
-	cursor: pointer;
-}
-
-.filter-reset-btn {
-	display: flex;
-	justify-content: center;
-	align-self: center;
-	margin: 0 auto;
-	margin-top: 75px;
-	width: 125px;
-	height: 25px;
-	border-radius: 25px;
-	background-color: #EAEAEA;
-	color: #5c5c5c;
-	font-weight: bolder;
-	cursor: pointer;
-}
-
-.clickEvent {
-	color: white;
-	background-color: #E78181;
-}
-
-.filter-btn-box div:hover {
-	color: white;
-	background-color: #E78181;
-}
-
-.section {
-	position: relative;
-	width: 850px;
-}
-
-.section-name {
-	font-size: 24px;
-	font-weight: bold;
-}
-
-.section-name hr {
-	margin: 10px 0 50px 0;
-	color: black;
-}
-
-.content {
-	width: 250px;
-	height: 315px;
-	margin-bottom: 15px;
-}
-
-.content-img, .content-img img {
-	width: 250px;
-	height: 250px;
-}
-
-.content-info {
-	width: 95%;
-	height: 65px;
-	margin: 0 auto;
-	font-size: 12px;
-	overflow: hidden;
-}
-
-.info-name {
-	font-size: 16px;
-	font-weight: bolder;
-	margin: 5px 0;
-}
-
-.info-local {
-	color: #747474;
-}
-
-.content-box {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-</style>
+<!-- tourlist.css -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/tourlist.css">
 
 </head>
 <body>
 	<!-- nav -->
-<%-- 	<%@ include file="../views/nav-sub.jsp"%> --%>
+	<%@ include file="nav.jsp"%>
 	<div class="container">
 		<div class="side-container">
 			<div class="side">
@@ -183,7 +59,6 @@
 				</div>
 				<div class="filter-btn-box">
 					<div class="filter-reset-btn" id="resetBtn">초기화</div>
-					<!-- 보류 -->
 				</div>
 			</div>
 		</div>
@@ -208,107 +83,77 @@
 					</div>
 				</c:forEach>
 			</div>
+			<!-- more-btn-box 변경 -->
 			<div class="more-btn-box">
-					<div class="more-btn" id="eventMoreBtn">다음페이지</div>
-				</div>
+			    <c:if test="${currentPage > 1}">
+			        <a href="${pageContext.request.contextPath}/eventlist?pageNo=${currentPage - 1}&year=${selectedYear}&month=${selectedMonth}&area=${selectedArea}" class="prev">이전</a>
+			    </c:if>
+			
+			    <c:if test="${currentPage < totalPages}">
+			        <a href="${pageContext.request.contextPath}/eventlist?pageNo=${currentPage + 1}&year=${selectedYear}&month=${selectedMonth}&area=${selectedArea}" class="next">다음</a>
+			    </c:if>
+			</div>
+			
+			<!-- 페이지 번호 표시 -->
+			<div class="page-number-box">
+			    <c:forEach var="i" begin="1" end="${totalPages}">
+			        <c:choose>
+			            <c:when test="${i == currentPage}">
+			                <span class="current-page">${i}</span>
+			            </c:when>
+			            <c:otherwise>
+			                <a href="${pageContext.request.contextPath}/eventlist?pageNo=${i}&year=${selectedYear}&month=${selectedMonth}&area=${selectedArea}" class="page-number">${i}</a>
+			            </c:otherwise>
+			        </c:choose>
+			    </c:forEach>
+			</div>
+
 		</div>
 	</div>
 	<!-- footer -->
 	<%@ include file="../views/footer-sub.jsp"%>
+	
+<script>
+$(document).ready(function() {
+    // 초기화 및 선택한 월/지역 스타일 적용
+    var selectedMonth = "${selectedMonth}";
+    var selectedArea = "${selectedArea}";
 
-	<script>
-	$(document).ready(function() {
-        // 더보기 버튼 클릭 이벤트 핸들러
-        $("#eventMoreBtn").click(function() {
-            // 현재 페이지 번호를 가져오기
-            var currentPage = parseInt("${currentPage}");
-            // 다음 페이지 번호 계산
-            var nextPage = currentPage + 1;
-            // 페이지 이동
-            window.location.href = "${pageContext.request.contextPath}/eventlist?pageNo=" + nextPage;
-        });
+    $(".month, .area").removeClass("selected"); // 모든 선택 해제
+    if (selectedMonth) {
+        $(".month[data-month='" + selectedMonth + "']").addClass("selected"); // 선택한 월 스타일 적용
+    }
+    if (selectedArea) {
+        $(".area[data-area='" + selectedArea + "']").addClass("selected"); // 선택한 지역 스타일 적용
+    }
+    
+    // 클릭 이벤트 핸들러 등록
+    $(".month, .area").click(function() {
+        var selectedYear = new Date().getFullYear();
+        var selectedMonth = $(".month.selected").data("month") || ""; // 선택된 월 가져오기
+        var selectedArea = $(".area.selected").data("area") || ""; // 선택된 지역 가져오기
+
+        // 클릭된 요소가 월인지 지역인지 확인
+        if ($(this).hasClass("month")) {
+            selectedMonth = $(this).data("month");
+        } else if ($(this).hasClass("area")) {
+            selectedArea = $(this).data("area");
+        }
+
+        // 선택한 월과 지역을 포함하여 새 URL로 이동
+        window.location.href = "${pageContext.request.contextPath}/eventlist?year=" + selectedYear + "&month=" + selectedMonth + "&area=" + selectedArea;
     });
     
-    var localBtns = document.querySelectorAll('.local');
-    var monthBtns = document.querySelectorAll('.month');
-    var resetBtn = document.querySelector('.filter-reset-btn');
-
-    var previousLocalBtn = null;
-    var previousMonthBtn = null;
-
-    function localBtnEvent() {
-        this.classList.add('clickEvent');
-        
-        // 중복 클릭 방지
-        if (previousLocalBtn && previousLocalBtn !== this) {
-            previousLocalBtn.classList.remove('clickEvent');
-        }
-
-        previousLocalBtn = this;
-    }
-
-    function monthBtnEvent() {
-        this.classList.add('clickEvent');
-
-        //중복 클릭 방지
-        if (previousMonthBtn && previousMonthBtn !== this) {
-            previousMonthBtn.classList.remove('clickEvent');
-        }
-
-        previousMonthBtn = this;
-
-    }
-
-    function resetBtnEvent() {
-        localBtns.forEach(function(btn) {
-            btn.classList.remove('clickEvent');
-        });
-
-        monthBtns.forEach(function(btn) {
-            btn.classList.remove('clickEvent');
-        });
-
-        previousLocalBtn = null;
-        previousMonthBtn = null;
-    }
-
-    localBtns.forEach(function(btn) {
-        btn.addEventListener("click", localBtnEvent);
+    $(".content").click(function() {
+    var contentId = $(this).data("contentid");
+    var contentTypeId = $(this).data("contenttypeid");
+    window.location.href = "${pageContext.request.contextPath}/eventlist/eventInfo?contentId=" + contentId + "&contentTypeId=" + contentTypeId;
+    
     });
-    monthBtns.forEach(function(btn) {
-        btn.addEventListener("click", monthBtnEvent);
-    });
-
-    resetBtn.addEventListener("click", resetBtnEvent);
-
-    $(document).ready(function() {
-        // 클릭 이벤트 핸들러 등록
-        $(".month, .area").click(function() {
-            // 선택한 월 및 지역 가져오기
-            var selectedYear = new Date().getFullYear();
-            var selectedMonth = $(this).data("month") || "";
-            var selectedArea = $(this).data("area") || "";
-
-            // 선택한 월과 지역을 포함하여 새 URL로 이동
-            window.location.href = "${pageContext.request.contextPath}/eventlist?year=" + selectedYear + "&month=" + selectedMonth + "&area=" + selectedArea;
-        });
-
-        // 초기화 및 선택한 월/지역 스타일 적용
-        var selectedMonth = "${selectedMonth}";
-        var selectedArea = "${selectedArea}";
-        $(".month, .area").removeClass("selected"); // 모든 선택 해제
-        $(".month[data-month= '" + selectedMonth + "']").addClass("selected"); // 선택한 월 스타일 적용
-        $(".area[data-area='" + selectedArea + "']").addClass("selected"); // 선택한 지역 스타일 적용
-        
-        
-        
-        $(".content").click(function() {
-            var contentId = $(this).data("contentid");
-            var contentTypeId = $(this).data("contenttypeid");
-            window.location.href = "${pageContext.request.contextPath}/eventlist/eventInfo?contentId=" + contentId + "&contentTypeId=" + contentTypeId;
-        });
-        
-    });
-	</script>
+    
+  });
+    
+    
+</script>
 </body>
 </html>

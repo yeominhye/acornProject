@@ -79,7 +79,6 @@ public class HomeService {
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, Integer.parseInt(year));
 		cal.set(Calendar.MONTH, Integer.parseInt(month) - 1);
-		int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
 		String url = buildUrl("http://apis.data.go.kr/B551011/KorService1/searchFestival1",
 				URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode(numOfRows, "UTF-8"),
@@ -89,8 +88,6 @@ public class HomeService {
 				URLEncoder.encode("listYN", "UTF-8") + "=Y",
 				URLEncoder.encode("eventStartDate", "UTF-8") + "="
 						+ String.format("%s%02d01", year, Integer.parseInt(month)),
-				URLEncoder.encode("eventEndDate", "UTF-8") + "="
-						+ String.format("%s%02d%02d", year, Integer.parseInt(month), lastDayOfMonth),
 				URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode(area, "UTF-8"));
 
 		return sendHttpRequest(url);
