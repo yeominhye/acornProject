@@ -340,7 +340,7 @@
 		            경로 게시판
 		            <hr>
 		        </div>
-				<a class="write-link" href="/project/board/createMap">글쓰기</a>
+				<a class="write-link" href="/project/board/route/create">글쓰기</a>
 				<table class="route-table">
 				    <tr>
                         <td class="route-info">
@@ -351,7 +351,7 @@
                         		<div class="info-01">
 	                                <div class="local-icon">경기</div>
 	                                <div class="route-name">
-	                                    <a href="${pageContext.request.contextPath}/board/route/post">가평 유럽마을 당일치기 일정</a> 
+	                                    <a href="${pageContext.request.contextPath}/board/route/b0022">가평 유럽마을 당일치기 일정</a> 
 	                                </div>
 	                            </div>
 	                            <div class="info-02">

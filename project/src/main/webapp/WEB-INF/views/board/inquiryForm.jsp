@@ -56,7 +56,7 @@
                         </div>
 
                         <div id="img-container"></div>
-                        <input class="imgUploader" type="file"  name="boardImg" accept="image/*" onchange="loadFiles(this)">
+                        <input class="imgUploader" type="file"  name="boardImg" accept="image/*" onchange="loadFiles(this)" multiple>
 
                         <p class="notice"> 이미지는 한 장만 첨부 가능합니다.</p>
                         

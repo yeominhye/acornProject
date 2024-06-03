@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.acorn.project.user.User"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,52 +148,17 @@
 
             <!-- 댓글영역 -->
             <div class="comment-container">
-                <h2>댓글 ${count}</h2>
-                <div class="comment-section">
-               <div id="no-comments-message" style="display: none;">작성된 댓글이 없습니다.</div>
-                    
-                    <div class="comment-box">
-                     <!-- test -->
-                     <c:forEach var="comment" items="${comments}" varStatus="loop">
-
-                        <div class="comment" id="comment_${loop.index}"
-                           data-user-code="${comment.userCode}">
-                           <div class="comment_name">${comment.nickname}</div>
-                           <input type="hidden" class="modiCommentCode" value="${comment.commentCode}">
-                           <div class="comment_content">${comment.commentContent}</div>
-                           <div class="comment_date">${comment.commentDate}</div>
-                           <button class="btnModi" onclick="editComment(this)">수정</button>
-                           <button class="btnDel" onclick="delComment(this)">삭제</button>
-                        </div>
-                     </c:forEach>
-                  </div>
-                         
-                        <!-- <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>예원의 뽀대왕쟈님</p>
-                            </div>
-                            <div class="comment-content">
-                                김예원님 한글 공백포함 400글자로 제한하겠습니다. 감사합니다. 수정 / 삭제 버튼은 css 안 넣어두겠습니다.
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                            <div class="edit-section">
-                                <button class="edit-button">수정</button>
-                                <button class="delete-button">삭제</button>
-                            </div>
-                        </div> -->
-                    
-                    <form action="#">
-                        <div class="write-comment-section">
-
-                            <textarea class="write-comment-form" name="" id="" placeholder="불쾌감을 주는 댓글은 무통보 삭제됩니다."></textarea>
-                            <!-- <button class="add-comment-button">등록</button> -->
-                            <button class="add-comment-button arrow"><i class="fa-solid fa-arrow-up"></i></button>
-                        </div>
-                    </form>
-
-                </div>
-            </div><!-- 댓글 영역 끝-->
-            <div class="return-to-list-button"><button>목록보기</button></div>
+            	<%
+					User user = (User) session.getAttribute("user");
+					String userCode = (user != null) ? user.getUserCode() : null;
+				%>
+           	   <input type="hidden" class="boardUsercode"   value="${routeBoard.userCode}"> 
+               <input type="hidden" class="userCode" value=<%=userCode%>> 
+               <input type="hidden" class="boardCode" value="${routeBoard.boardCode}">
+               <%@ include file="comment.jsp" %>
+            </div>
+            <!-- 댓글 영역 끝-->
+ 
         </div>
 		<%@ include file="../footer-sub.jsp" %>
     </div>
