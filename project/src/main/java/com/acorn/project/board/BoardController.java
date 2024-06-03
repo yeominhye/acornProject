@@ -151,7 +151,7 @@ public class BoardController {
             response.put("message", "Comment posted successfully");
             if (currentUrl.equals("http://localhost:8080/project/board/free/"+code)) {
                response.put("redirect", "/project/board/free/"+code);
-            } else {
+            } else if(currentUrl.equals("http://localhost:8080/project/board/route/"+code)) {
                response.put("redirect", "/project/board/route/"+code);
             }
             

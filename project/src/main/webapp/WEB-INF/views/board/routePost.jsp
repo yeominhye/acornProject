@@ -59,7 +59,7 @@
                     </div>
                     <div class="title-section">${routeBoard.boardTitle}</div>
                     <div class="writer-section">
-                        <p>${routeBoard.nickname}</p><img src="check.png" alt="">
+                        <p>${routeBoard.nickname}</p>
                     </div>
                     <div class="date-section">${routeBoard.boardTourdays}일</div>
                     <div class="theme-section"><c:choose>
@@ -110,7 +110,7 @@
                <div class="route-box">
    
                        <div class="route-upperside">
-                           <div class="map" id="map" style="width: 60%; height:350px;"></div>
+                           <div class="map" id="map" style="width: 60%; height:380px;"></div>
                            <div class="map-place-list-section">
                                <h2>#상세코스</h2>
                                <div class="place-list" id="place-list">
@@ -365,7 +365,7 @@ $(document).ready(function() {
             inputs.className = "markerInputs";
 
             var title = document.createElement("input");
-            title.className = "markerInput";
+            title.className = "markerInput markerTitle";
             title.id = "markerTitle" + i;
             title.value = positions[i].title;
             title.readOnly = true;

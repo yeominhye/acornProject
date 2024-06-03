@@ -293,6 +293,14 @@ button{
     margin: 0 20px;
 }
 
+/* 상세코스 - 리스트 */
+.markerTitle {
+   font-size: 12pt;
+   font-weight: 600;
+   color: #575656;
+   margin-bottom: 5px;
+}
+
 /* 루트 - 아랫층 - 코멘트부분 */
 .route-lowerside{
     /* border: 1px solid black; */
