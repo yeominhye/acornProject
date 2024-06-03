@@ -30,4 +30,7 @@ public interface UserDAOI {
 	int updateUserPw(String userId, String newPw);
 	
 	public int updatePoint(int pointAmount, User user);
+
+
+	User selectByCode(String userCode) throws Exception;
 }

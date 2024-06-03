@@ -13,11 +13,13 @@ public interface PointServiceI {
 
 	List<Map<String, Object>> getPointOne(String userCode) throws Exception;
 
-	int buyBoard(Point point, User user) throws Exception;
+	int buyBoard(String userCode, String boardCode, int pointAmount) throws Exception;
 
 	int buyPoint(int pointAmount, String userCode) throws Exception;
 
 	int pointExchange(int pointAmount, String userCode) throws Exception;
 
 	List<Map<String, Object>> getPointsWithinDateRange(String userCode, String startDate, String endDate) throws Exception;
+
+	int sellBoard(String userCode, String boardCode, int pointAmount) throws Exception;
 }

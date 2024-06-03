@@ -479,6 +479,23 @@ public class BoardController {
      boardService.updateViews(boardCode);
      model.addAttribute("routeBoard", routeBoard);
      
+     String message;
+     if(user != null) {
+    	 List<String> buyBoardCheck = boardService.selectMyBuyBoard(user.getUserCode());
+         if (buyBoardCheck.contains(boardCode) || routeBoard.getUserCode() == user.getUserCode()) {
+             message = "O";
+         } else {
+             message = "X";
+         }
+        
+     } else {
+    	 message = "login";
+     }
+     if(routeBoard.getBoardPoint() == 0) {
+    	 message = "O"; 
+     }
+     model.addAttribute("message", message);
+     
      List<Comment> comments = commentService.getCommentByCode(boardCode);
      model.addAttribute("comments", comments);
      

@@ -215,5 +215,33 @@ public class PointController {
            }
            return user.getUserPoint();
    }
+   
+   @ResponseBody
+   @RequestMapping("buyBoard_process.do")
+   public int buyBoardProcess(@RequestParam int pointAmount,
+                               @RequestParam String boardCode,
+                               @RequestParam String writerCode,
+                               HttpSession session) throws Exception {
+       User user = (User) session.getAttribute("user");
+       String userCode = user.getUserCode();
+       User writer = userService.getUserByCode(writerCode);
+       int result = 0;
+       
+       if (user != null) {
+           if (user.getUserPoint() >= pointAmount) {
+               result = service.buyBoard(userCode, boardCode, pointAmount);
+               if (result > 0) {
+                   userService.updatePoint(-pointAmount, user);
+                   userService.updatePoint(pointAmount, writer);
+                   int result2 = service.sellBoard(writerCode, boardCode, pointAmount);
+                   user = userService.getUserById(user.getUserId());
+                   session.setAttribute("user", user);
+                   System.out.println(user.getUserPoint());
+               }
+           }
+       }
+       
+       return result;
+   }
 
 }

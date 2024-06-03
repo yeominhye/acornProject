@@ -149,5 +149,10 @@ public class BoardDAO implements BoardDAOI {
 	 public int insertRoute(RouteBoard routeBoard) throws Exception {
 	    return session.insert(namespace + "insertRoute", routeBoard);
 	}
+	
+	@Override
+	public List<String> selectMyBuyBoard(String userCode) {
+		return session.selectList(namespace + "selectMyBuyBoard", userCode);
+	}
 
 }
