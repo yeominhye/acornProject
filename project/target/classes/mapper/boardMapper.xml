@@ -212,5 +212,9 @@
 		WHERE b.boardCode = #{boardCode}
 		ORDER BY b.boardWritedate desc
    </select>
+   
+   <select id="selectMyBuyBoard" parameterType="String" resultType="String">
+   		select boardCode from pointtbl where userCode = #{userCode}
+   </select>
 	
 </mapper>

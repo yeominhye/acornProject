@@ -11,6 +11,7 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost.css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- icon key -->
     <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
@@ -106,30 +107,30 @@
                     </c:forEach>
                 </div>
 
-                <div class="route-box">
-
-                    <div class="route-upperside">
-                        <div class="map" id="map" style="width: 60%; height:350px;"></div>
-                        <div class="map-place-list-section">
-                            <h2>#상세코스</h2>
-                            <div class="place-list" id="place-list">
-                            
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="route-lowerside">
-                        <h2># 코멘트</h2>
-                        <div class="day-comment">
-                            <!-- test -->
-                            <p class="dayCommentP">
-                                하루의 코멘트
-                            </p>
-
-                        </div>
-                    </div>
-
-                </div>
+	            <div class="route-box">
+	
+	                    <div class="route-upperside">
+	                        <div class="map" id="map" style="width: 60%; height:350px;"></div>
+	                        <div class="map-place-list-section">
+	                            <h2>#상세코스</h2>
+	                            <div class="place-list" id="place-list">
+	                            
+	                            </div>
+	                        </div>
+	                    </div>
+	
+	                    <div class="route-lowerside">
+	                        <h2># 코멘트</h2>
+	                        <div class="day-comment">
+	                            <!-- test -->
+	                            <p class="dayCommentP">
+	                                하루의 코멘트
+	                            </p>
+	
+	                        </div>
+	                    </div>
+	
+	                </div>
 
 
             </div>
@@ -158,7 +159,26 @@
                <%@ include file="comment.jsp" %>
             </div>
             <!-- 댓글 영역 끝-->
- 
+ 		
+ 		
+ 		<c:if test="${message eq 'X'}">
+ 			<div class="hiddenBox" style="background: red; width:250px; height:250px;">구매하시오.</div>
+ 			<form action="/project/point/buyBoard_process.do" method="post" id="buyBoardForm">
+				    <div class="buybtnWrap">
+				        <input type="hidden" name="userCode" value="<%=userCode %>">
+				        <input type="hidden" name="writerCode" value="${routeBoard.userCode}">
+				        <input type="hidden" name="boardCode" value="${routeBoard.boardCode}">
+				        <input type="hidden" name="pointAmount" value="${routeBoard.boardPoint}">
+				        <button type="button" id="buyBtn">구매하기</button>
+				    </div>
+				</form>
+ 		</c:if>
+ 		<c:if test="${message eq 'login'}">
+ 			<div class="hiddenBox" style="background: red; width:250px; height:250px;">로그인하시오.</div>
+ 			<button type="button" onclick="location.href='/project/user/login.do'">회원가입</button>
+ 		</c:if>
+		
+
         </div>
 		<%@ include file="../footer-sub.jsp" %>
     </div>
@@ -167,6 +187,36 @@
 </body>
 
 <script>
+
+$(document).ready(function() {
+    $('#buyBtn').click(function() {
+        var formData = $('#buyBoardForm').serialize();
+
+        $.ajax({
+            url: '/project/point/buyBoard_process.do',
+            type: 'post',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response > 0) {
+                    alert('구매가 성공적으로 처리되었습니다.');
+                    
+                } else {
+                	alert('포인트를 충전해주세요');
+                    window.location.href = '/project/user/mypage.do';
+                }
+            },
+            error: function(error) {
+                console.error('error:', error);
+                alert('구매 요청 중 오류가 발생하였습니다.');
+            }
+        });
+    });
+});
+
+
+
+
 
     var indexBtn = document.getElementsByClassName("index-button");
 
@@ -349,6 +399,8 @@
         };
         map = new kakao.maps.Map(mapContainer, mapOption);
         updateMapMarkers(0);
+        
+        
     });
 
     var indexBtn = document.getElementsByClassName("index-button");

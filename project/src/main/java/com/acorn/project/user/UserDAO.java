@@ -27,6 +27,11 @@ public class UserDAO implements UserDAOI  {
     }
     
     @Override
+    public User selectByCode(String userCode) throws Exception {
+        return session.selectOne(namespace + "selectByCode", userCode);
+    }
+    
+    @Override
 	public List<User> selectAll() throws Exception {
         return session.selectList(namespace+"selectAll");
     }
