@@ -19,6 +19,8 @@ import java.util.Collections;
 import java.util.List;
 
 import com.acorn.project.tour.*;
+import com.acorn.project.user.User;
+import com.acorn.project.board.Board;
 import com.acorn.project.event.*;
 
 @Controller
@@ -98,7 +100,7 @@ public class HomeController {
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", calculateTotalPages(100, Integer.parseInt(numOfRows)));
 
-		return "eventlist";
+		return "/event/eventlist";
 	}
 
 	@GetMapping(value = "/tourlist", produces = "application/json;charset=utf-8")
@@ -123,21 +125,21 @@ public class HomeController {
 		model.addAttribute("totalPages", calculateTotalPages(100, Integer.parseInt(numOfRows)));
 		model.addAttribute("selectedArea", area);
 
-		return "tourlist";
+		return "/tour/tourlist";
 	}
 
-	@GetMapping(value = { "//tourInfo", "/tourlist/tourInfo" })
+	@GetMapping(value = { "/tourInfo", "/tourlist/tourInfo" })
 	public String getTourInfo(@RequestParam("contentId") String contentId,
 			@RequestParam("contentTypeId") String contentTypeId, Model model) throws IOException {
 		addTourInfoToModel(contentId, contentTypeId, model);
-		return "tourDetail";
+		return "/tour/tourDetail";
 	}
 
-	@GetMapping(value = { "//eventInfo", "/eventlist/eventInfo" })
+	@GetMapping(value = { "/eventInfo", "/eventlist/eventInfo" })
 	public String getEventInfo(@RequestParam("contentId") String contentId,
 			@RequestParam("contentTypeId") String contentTypeId, Model model) throws IOException {
 		addEventInfoToModel(contentId, contentTypeId, model);
-		return "eventDetail";
+		return "/event/eventDetail";
 	}
 
 	private String getOrDefault(String value, String defaultValue, HttpSession session, String sessionKey) {
