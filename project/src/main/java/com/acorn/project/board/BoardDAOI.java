@@ -73,5 +73,9 @@ public interface BoardDAOI {
 
 	List<String> selectMyBuyBoard(String userCode);
 
-	List<RouteBoard> selectRouteAll(int boardType, int currentPage);	
+	List<RouteBoard> selectRouteAll(int boardType, int currentPage);
+
+	List<RouteBoard> getRouteList(SearchCondition search, int currentPage);
+
+	int getRouteListCount(SearchCondition search);	
 }

@@ -213,12 +213,27 @@ public class BoardDAO implements BoardDAOI {
 		return session.selectList(namespace+"selectSearch",search);
 	}
 	
+	@Override
+	public List<RouteBoard> getRouteList(SearchCondition search, int currentPage){		
+		
+		int pageSize=15;	
+		int  start  =   (currentPage  -1) *pageSize;
+	 	search.setStart(start);
+
+		return session.selectList(namespace+"selectRouteSearch",search);
+	}
+	
 	// 검색 내용 수
 	@Override
 	public int getListCount(SearchCondition search) {
 		return session.selectOne(namespace+"selectSearchCount", search);
 	}
 
+	@Override
+	public int getRouteListCount(SearchCondition search) {
+		return session.selectOne(namespace+"selectSearchRouteCount", search);
+	}
+	
 	@Override
 	public RouteBoard selectRoute(String boardCode) { 
 		return session.selectOne(namespace+"selectRoute", boardCode);

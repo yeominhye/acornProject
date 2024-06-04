@@ -265,6 +265,21 @@
 		</if>
 	</sql>
 	
+	<sql id="searchRoute">
+		<if test="condition=='title'">
+			 WHERE boardTitle LIKE CONCAT('%', #{keyword}, '%') 
+			 And boardType = 0 
+		</if>	
+		<if test="condition=='writer'">
+			 WHERE nickname LIKE CONCAT('%', #{keyword}, '%')
+			 And boardType = 0
+		</if>
+		<if test="condition=='content'">
+			 WHERE boardContent LIKE CONCAT('%', #{keyword}, '%')
+			 And boardType = 0
+		</if>
+	</sql>
+	
 	<select id="selectSearch" resultType="Board" parameterType="SearchCondition">
 		SELECT 
 			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
@@ -278,12 +293,36 @@
 		 LIMIT 15 OFFSET #{start}
 	</select>
 	
+	<select id="selectRouteSearch" resultType="RouteBoard" parameterType="SearchCondition">
+		SELECT 
+			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
+			b.boardViews,b.boardType 
+		FROM boardtbl b
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		<include refid="searchRoute"/>
+		ORDER BY boardWritedate DESC
+		 LIMIT 15 OFFSET #{start}
+	</select>
+	
+	
+	
 	<select id="selectSearchCount" resultType="int" parameterType="SearchCondition">
 		SELECT count(*)
 		FROM boardtbl b
 		JOIN usertbl u
 		ON b.userCode = u.userCode
 		<include refid="search"/>
+		ORDER BY boardWritedate DESC
+	</select>
+	
+	<select id="selectSearchRouteCount" resultType="int" parameterType="SearchCondition">
+		SELECT count(*)
+		FROM boardtbl b
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		<include refid="searchRoute"/>
 		ORDER BY boardWritedate DESC
 	</select>
 	

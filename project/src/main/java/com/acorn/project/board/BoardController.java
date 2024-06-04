@@ -100,6 +100,22 @@ public class BoardController {
       model.addAttribute("paging",handler);
       return "board/freeboardList";
    }
+   
+   @RequestMapping(value="/route/search", method = RequestMethod.GET)
+   public String SearchRouteboard (SearchCondition search, @RequestParam(defaultValue = "1") int page, Model model) {
+      
+      List<RouteBoard> routeBoardList = boardService.getRouteList(search,page);
+      model.addAttribute("routeBoardList",routeBoardList);
+      model.addAttribute("search",search);
+      
+      int pageSize=15;   
+      int  start  =   (page  -1) *pageSize+1;
+      int totRecords = boardService.getRouteListCount(search);
+      search.setStart(start);
+      PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
+      model.addAttribute("paging",handler);
+      return "board/route";
+   }
 
    
    @RequestMapping(value="/free/reg", method=RequestMethod.GET)
