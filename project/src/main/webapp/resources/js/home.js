@@ -7,7 +7,7 @@ const localNextBtn = document.querySelector(".local-next");
 const localDivs = document.querySelector(".section-slide-items");
 
 function localBack() {
-    const maxLocalPages = window.innerWidth <= 1200 ? 12 : 9; // 화면 크기에 따라 다른 최대 페이지 수 설정
+    const maxLocalPages = window.innerWidth <= 1200 ? 11 : 8; // 화면 크기에 따라 다른 최대 페이지 수 설정
     if (localPage < maxLocalPages) {
         localBackBtn.removeAttribute('disabled');
         localValue -= localWidth;
@@ -66,7 +66,6 @@ months.forEach(month => {
         
         var monthId = this.id;
         this.classList.add('clickEvent');
-        alert(monthId);
     });
 });
 
@@ -92,3 +91,20 @@ document.addEventListener('DOMContentLoaded', function () {
         // Set the first image as clicked by default
         slideItems[0].classList.add('clicked');
     });
+    
+
+    
+document.addEventListener('DOMContentLoaded', function () {
+    const slideItems = document.querySelectorAll('.slide-item');
+    const localNames = document.querySelectorAll('.local-name');
+
+    slideItems.forEach(item => {
+        item.addEventListener('click', function () {
+            const areaName = item.getAttribute('data-name');
+            localNames.forEach(localName => {
+                localName.textContent = areaName + ',';
+            });
+        });
+    });
+});
+    
