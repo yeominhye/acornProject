@@ -11,10 +11,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
 
     <!-- index.css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css?after" >
-
-    <!-- index.js -->
-<%--     <script defer src="${pageContext.request.contextPath}/resources/js/home.js"></script> --%>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css" >
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     
@@ -46,115 +43,74 @@
 			<div class="section-container">
 				<div class="section-slide">
 					<div class="section-slide-items">
-						<div class="slide-item slide-item01 area" data-area="1">
-							<!-- id는 지역명으로 -->
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon01.png"
-								alt="">
-							<div>전체</div>
-						</div>
-						<div class="slide-item slide-item02 area" data-area="1">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon02.png"
-								alt="">
-							<div>서울</div>
-						</div>
-						<div class="slide-item slide-item03 area" data-area="2">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon03.png"
-								alt="">
-							<div>인천</div>
-						</div>
-						<div class="slide-item slide-item04 area" data-area="3">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon04.png"
-								alt="">
-							<div>대전</div>
-						</div>
-						<div class="slide-item slide-item05 area" data-area="4">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon05.png"
-								alt="">
-							<div>대구</div>
-						</div>
-						<div class="area slide-item slide-item06" data-area="31">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon06.png"
-								alt="">
-							<div>경기</div>
-						</div>
-						<div class="slide-item slide-item07 area" data-area="6">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon07.png"
-								alt="">
-							<div>부산</div>
-						</div>
-						<div class="slide-item slide-item08 area" data-area="7">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon08.png"
-								alt="">
-							<div>울산</div>
-						</div>
-						<div class="slide-item slide-item09 area" data-area="5">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon09.png"
-								alt="">
-							<div>광주</div>
-						</div>
-						<div class="slide-item slide-item10 area" data-area="32">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon10.png"
-								alt="">
-							<div>강원</div>
-						</div>
-						<div class="slide-item slide-item11 area" data-area="33">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon11.png"
-								alt="">
-							<div>충북</div>
-						</div>
-						<div class="slide-item slide-item19 area" data-area="34">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon12.png"
-								alt="">
-							<div>충남</div>
-						</div>
-						<div class="slide-item slide-item13 area" data-area="35">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon13.png"
-								alt="">
-							<div>경북</div>
-						</div>
-						<div class="slide-item slide-item14 area" data-area="36">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon14.png"
-								alt="">
-							<div>경남</div>
-						</div>
-						<div class="slide-item slide-item15 area" data-area="37">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon15.png"
-								alt="">
-							<div>전북</div>
-						</div>
-						<div class="slide-item slide-item16 area" data-area="38">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon16.png"
-								alt="">
-							<div>전남</div>
-						</div>
-						<div class="slide-item slide-item17 area" data-area="39">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon17.png"
-								alt="">
-							<div>제주</div>
-						</div>
-						<div class="slide-item slide-item18 area" data-area="8">
-							<img
-								src="${pageContext.request.contextPath}/resources/img/header-icon18.png"
-								alt="">
-							<div>세종</div>
-						</div>
+						<div class="slide-item slide-item02 area" data-area="1" data-name="서울">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon02.png" alt="">
+					        <div>서울</div>
+					    </div>
+					    <div class="slide-item slide-item03 area" data-area="2" data-name="인천">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon03.png" alt="">
+					        <div>인천</div>
+					    </div>
+					    <div class="slide-item slide-item04 area" data-area="3" data-name="대전">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon04.png" alt="">
+					        <div>대전</div>
+					    </div>
+					    <div class="slide-item slide-item05 area" data-area="4" data-name="대구">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon05.png" alt="">
+					        <div>대구</div>
+					    </div>
+					    <div class="slide-item slide-item06 area" data-area="31" data-name="경기">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon06.png" alt="">
+					        <div>경기</div>
+					    </div>
+					    <div class="slide-item slide-item07 area" data-area="6" data-name="부산">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon07.png" alt="">
+					        <div>부산</div>
+					    </div>
+					    <div class="slide-item slide-item08 area" data-area="7" data-name="울산">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon08.png" alt="">
+					        <div>울산</div>
+					    </div>
+					    <div class="slide-item slide-item09 area" data-area="5" data-name="광주">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon09.png" alt="">
+					        <div>광주</div>
+					    </div>
+					    <div class="slide-item slide-item10 area" data-area="32" data-name="강원">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon10.png" alt="">
+					        <div>강원</div>
+					    </div>
+					    <div class="slide-item slide-item11 area" data-area="33" data-name="충북">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon11.png" alt="">
+					        <div>충북</div>
+					    </div>
+					    <div class="slide-item slide-item12 area" data-area="34" data-name="충남">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon12.png" alt="">
+					        <div>충남</div>
+					    </div>
+					    <div class="slide-item slide-item13 area" data-area="35" data-name="경북">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon13.png" alt="">
+					        <div>경북</div>
+					    </div>
+					    <div class="slide-item slide-item14 area" data-area="36" data-name="경남">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon14.png" alt="">
+					        <div>경남</div>
+					    </div>
+					    <div class="slide-item slide-item15 area" data-area="37" data-name="전북">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon15.png" alt="">
+					        <div>전북</div>
+					    </div>
+					    <div class="slide-item slide-item16 area" data-area="38" data-name="전남">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon16.png" alt="">
+					        <div>전남</div>
+					    </div>
+					    <div class="slide-item slide-item17 area" data-area="39" data-name="제주">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon17.png" alt="">
+					        <div>제주</div>
+					    </div>
+					    <div class="slide-item slide-item18 area" data-area="8" data-name="세종">
+					        <img src="${pageContext.request.contextPath}/resources/img/header-icon18.png" alt="">
+					        <div>세종</div>
+					    </div>
 					</div>
 				</div>
 				
@@ -162,8 +118,8 @@
                 <button class="local-slide-btn local-next"><img src="${pageContext.request.contextPath}/resources/img/slide-next-btn.png" alt=""></button>
 
 				<div class="route-box">
-                    <div class="title-text"><span class="local-name">전체,</span> 인기루트</div>
-                    <div class="route-text"><a href="#">더보기</a></div>
+                    <div class="title-text"><span class="local-name">서울,</span> 인기루트</div>
+                    <div class="route-text"><a href="/project/board/route">더보기</a></div>
                     <div class="route-items">                        
                         <div class="route-item route-item01">
                             <a href="#"> <!-- 루트 상세 페이지 -->
@@ -182,13 +138,15 @@
                                 <!-- 잠금 아이콘도 여기 넣기 -->
                                 </div>
                          <div class="route-title">
-                                    <div class="local-box">경기</div>
-                                           <div class="route-name-box">
-                                        <div class="route-name">가평 유럽마을 당일치기 일정</div>
-                                    </div>
-                                </div>
+                            <div class="local-box">경기</div>
+                                   <div class="route-name-box">
+                                <div class="route-name">가평 유럽마을 당일치기 일정</div>
+                            </div>
+                        </div>
                             </a>
                         </div>
+                        
+                        <!-- 임시 데이터들 -->
                         <div class="route-item route-item02">
                             <a href="#"> <!-- 루트 상세 페이지 -->
                                 <div class="route-img-box">
@@ -261,16 +219,17 @@
                                 </div>
                             </a>
                         </div>
+                    	<!-- 임시 데이터 끝 -->
                     </div>
                     <hr class="section-hr">
                 </div>
                 
 				<div class="tour-box">
 					<div class="title-text">
-						<span class="local-name">전체,</span> 인기 관광지
+						<span class="local-name">서울,</span> 인기 관광지
 					</div>
 					<div class="see-text tour-text">
-						<a href="#" class="load-more-btn" data-type="tour">더보기</a>
+						<a href="/project/tourlist" class="load-more-btn" data-type="tour">더보기</a>
 					</div>
 					<div class="tour-container" id="tourContainer">
 						<!-- 관광 정보 -->
@@ -300,7 +259,7 @@
 				</div>
 			</div>
 			<div class="event-text">
-				<a href="#" class="load-more-btn" data-type="event">더보기</a>
+				<a href="/project/eventlist" class="load-more-btn" data-type="event">더보기</a>
 			</div> 	
 			<div class="event-container" id="eventContainer">
 				<!-- 행사 정보 -->
@@ -458,7 +417,11 @@
                                            processedAddr +
                                        '</div>' +
                                        '<div class="event-name">' + item.title + '</div>' +
+<<<<<<< HEAD
                                        '<div class="event-name">' + item.eventstartdate + '~' + item.eventenddate + '</div>' +
+=======
+                                       '<div class="event-tiem">' + item.eventstartdate + '~' + item.eventenddate + '</div>' +
+>>>>>>> 06a5a790f8c06284cfbf3031528f7861ca7589a1
                                    '</div>' +
                                '</div>';
                 $("#eventContainer").append(eventItem);
@@ -494,6 +457,9 @@
         $(".area[data-area='" + selectedArea + "']").addClass("selected");
     });
 </script>
+
+    <!-- index.js -->
+	<script defer src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 
 
 </body>
