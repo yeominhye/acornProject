@@ -287,18 +287,22 @@
 
                     <div class="side-name">지역</div>
                     <div class="local-box">
-                        <div class="local" id="local01">서울</div>
-                        <div class="local" id="local02">경기</div>
-                        <div class="local" id="local03">인천</div>
-                        <div class="local" id="local04">강원</div>
-                        <div class="local" id="local05">충남</div>
-                        <div class="local" id="local06">충북</div>
-                        <div class="local" id="local07">전라</div>
-                        <div class="local" id="local08">전북</div>
-                        <div class="local" id="local09">경상</div>
-                        <div class="local" id="local10">경북</div>
-                        <div class="local" id="local11">제주</div>
-                        <div class="local" id="local12">부산</div>
+                    	<div class="local" id="local01">서울</div>
+                        <div class="local" id="local02">인천</div>
+                        <div class="local" id="local03">대전</div>
+                        <div class="local" id="local04">대구</div>
+                        <div class="local" id="local05">경기</div>
+                        <div class="local" id="local06">부산</div>
+                        <div class="local" id="local07">울산</div>
+                        <div class="local" id="local08">광주</div>
+                        <div class="local" id="local09">강원</div>
+                        <div class="local" id="local10">충북</div>
+                        <div class="local" id="local11">충남</div>
+                        <div class="local" id="local12">경북</div>
+                        <div class="local" id="local13">전북</div>
+                        <div class="local" id="local14">전남</div>
+                        <div class="local" id="local15">제주</div>
+                        <div class="local" id="local16">세종</div>
                     </div>
 
                     <div class="side-name">월</div>
@@ -344,119 +348,109 @@
               </div>
             <a class="write-link" href="/project/board/route/create">글쓰기</a>
             <table class="route-table">
-                <tr>
-                        <td class="route-info">
-                           <div class="route-img">
-                              <img src="https://via.placeholder.com/330x220.jpg" alt="">
-                           </div>
-                           <div>
-                              <div class="info-01">
-                                   <div class="local-icon">경기</div>
-                                   <div class="route-name">
-                                       <a href="${pageContext.request.contextPath}/board/route/b0022">가평 유럽마을 당일치기 일정</a> 
-                                   </div>
-                               </div>
-                               <div class="info-02">
-                                   <div class="route-tag">
-                                       <span>#당일치기</span>
-                                       <span>#나홀로</span>
-                                   </div>
-                                   <div class="route-content">
-                                       2박 3일 가족여행을 떠나보며 적은 소개글입니다.
-                                       가평 유럽여행의 사진 명소들을 소개합니다.
-                                   </div>
-                               </div>
-                               <div class="info-03">
-                                   <div class="likes-info">
-                                       <div class="like-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                       <span class="like-int">3,180</span>
-                                       <div class="views-icon">views</div>
-                                       <span class="views-int">6,200</span>
-                                   </div>
-                                   <div class="user-info">
-                                       <div class="user-name">뽀대왕자님</div>
-                                       <div class="check-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                   </div>
-                               </div>
-                           </div>
-                        </td>
-                </tr>
-                <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
-                
-                <tr>
-                        <td class="route-info">
-                           <div class="route-img">
-                              <img src="https://via.placeholder.com/330x220.jpg" alt="">
-                           </div>
-                            <div class="info-01">
-                                <div class="local-icon">경기</div>
-                                <div class="route-name">
-                                    <a href="${pageContext.request.contextPath}/board/route/post">가평 유럽마을 당일치기 일정</a> 
-                                </div>
-                            </div>
-                            <div class="info-02">
-                                <div class="route-tag">
-                                    <span>#당일치기</span>
-                                    <span>#나홀로</span>
-                                </div>
-                                <div class="route-content">
-                                    2박 3일 가족여행을 떠나보며 적은 소개글입니다.
-                                    가평 유럽여행의 사진 명소들을 소개합니다.
-                                </div>
-                            </div>
-                            <div class="info-03">
-                                <div class="likes-info">
-                                    <div class="like-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                    <span class="like-int">3,180</span>
-                                    <div class="views-icon">views</div>
-                                    <span class="views-int">6,200</span>
-                                </div>
-                                <div class="user-info">
-                                    <div class="user-name">뽀대왕자님</div>
-                                    <div class="check-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                </div>
-                            </div>
-                        </td>
-                </tr>
-                <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
-                
-                <tr>
-                        <td class="route-info">
-                           <div class="route-img">
-                              <img src="https://via.placeholder.com/330x220.jpg" alt="">
-                           </div>
-                            <div class="info-01">
-                                <div class="local-icon">경기</div>
-                                <div class="route-name">
-                                    <a href="${pageContext.request.contextPath}/board/route/post">가평 유럽마을 당일치기 일정</a> 
-                                </div>
-                            </div>
-                            <div class="info-02">
-                                <div class="route-tag">
-                                    <span>#당일치기</span>
-                                    <span>#나홀로</span>
-                                </div>
-                                <div class="route-content">
-                                    2박 3일 가족여행을 떠나보며 적은 소개글입니다.
-                                    가평 유럽여행의 사진 명소들을 소개합니다.
-                                </div>
-                            </div>
-                            <div class="info-03">
-                                <div class="likes-info">
-                                    <div class="like-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                    <span class="like-int">3,180</span>
-                                    <div class="views-icon">views</div>
-                                    <span class="views-int">6,200</span>
-                                </div>
-                                <div class="user-info">
-                                    <div class="user-name">뽀대왕자님</div>
-                                    <div class="check-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                </div>
-                            </div>
-                        </td>
-                </tr>
-                <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
+                <c:forEach var="list" items="${routeBoardList}" varStatus="status">
+					<tr>
+						<td class="route-info">
+							<div class="route-img">
+								<img src="https://via.placeholder.com/330x220.jpg" alt="">
+							</div>
+			                <div>
+			                	<div class="info-01">
+			                		<div class="local-icon">
+			                			<c:choose>
+			                				<c:when test="${list.boardRegion == 0}">서울</c:when>
+			                				<c:when test="${list.boardRegion == 1}">인천</c:when>
+			                				<c:when test="${list.boardRegion == 2}">대전</c:when>
+			                				<c:when test="${list.boardRegion == 3}">대구</c:when>
+			                				<c:when test="${list.boardRegion == 4}">경기</c:when>
+			                				<c:when test="${list.boardRegion == 5}">부산</c:when>
+			                				<c:when test="${list.boardRegion == 6}">울산</c:when>
+			                				<c:when test="${list.boardRegion == 7}">광주</c:when>
+			                				<c:when test="${list.boardRegion == 8}">강원</c:when>
+			                				<c:when test="${list.boardRegion == 9}">충북</c:when>
+			                				<c:when test="${list.boardRegion == 10}">충남</c:when>
+			                				<c:when test="${list.boardRegion == 11}">경북</c:when>
+			                				<c:when test="${list.boardRegion == 12}">경남</c:when>
+			                				<c:when test="${list.boardRegion == 13}">전북</c:when>
+			                				<c:when test="${list.boardRegion == 14}">전남</c:when>
+			                				<c:when test="${list.boardRegion == 15}">제주</c:when>
+			                				<c:when test="${list.boardRegion == 16}">세종</c:when>
+			                			</c:choose>
+			                		</div>
+			                		<div class="route-name">
+			                			<a href="${pageContext.request.contextPath}/board/route/${list.boardCode}">${list.boardTitle}</a>
+			                		</div>
+			                	</div>
+				                <div class="info-02">
+				                	<div class="route-tag">
+				                		<span>${list.boardTourdays}일 여행</span>
+				                		<span>
+				                			<c:choose>
+				                				<c:when test="${list.boardTheme == 1}">#나홀로 힐링</c:when>
+				                				<c:when test="${list.boardTheme == 2}">#연인과 데이트</c:when>
+				                				<c:when test="${list.boardTheme == 3}">#친구들과</c:when>
+				                				<c:when test="${list.boardTheme == 4}">#가족 나들이</c:when>
+				                				<c:when test="${list.boardTheme == 5}">#모임 단체 여행</c:when>
+				                			</c:choose>
+				                		</span>
+				                	</div>
+				                	<div class="route-content">
+				                		${list.boardTitle} 
+				                	</div>
+				                	
+				                	<!-- 날짜 임의 작성 -->
+				                	<div class="route-writeDate">
+				                		${list.boardWritedate} 
+				                	</div>
+				                </div>
+				                <div class="info-03">
+				                	<div class="likes-info">
+				                		<div class="like-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
+				                		<!-- <span class="like-int">3,180</span> -->
+				                		<div class="views-icon">views</div>
+				                		<span class="views-int">${list.boardViews}</span>
+				                	</div>
+				                	<div class="user-info">
+				                		<div class="user-name">${list.nickname}</div>
+				                		<div class="check-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
+				                	</div>
+				                </div>
+				            </div>
+				        </td>
+				    </tr>
+                </c:forEach>
+            <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
             </table>
+            
+            
+            		<div class="page_number"> <!-- page_number -->
+                    <div class="paging"> <!-- paging -->
+                    
+                    <c:if test="${ empty search.condition}">
+                       <c:if test="${paging.currentGrp > 1}">
+                            <a href="/project/board/route?type=0&page=${paging.grpStartPage - 1}">이전</a>
+                        </c:if>
+                        <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+                            <a class="paging_i" href="/project/board/route?type=0&page=${i}">${i}</a>
+                        </c:forEach>
+                        <c:if test="${paging.grpEndPage <  paging.totalPage}">
+                            <a href="/project/board/route?type=0&page=${paging.grpEndPage + 1}">다음</a>
+                        </c:if>
+                    </c:if>
+                    
+                   <c:if test="${ not empty search.condition}">
+                       <c:if test="${paging.currentGrp > 1}">
+                            <a href="/project/board/free/search?page=${paging.grpStartPage - 1}" >이전</a>
+                        </c:if>
+                        <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+                            <a class="paging_i" href="/project/board/free/search?condition=${search.condition}&keyword=${search.keyword}&start=${search.start}&page=${i}">${i}</a>
+                        </c:forEach>
+                        <c:if test="${paging.grpEndPage <  paging.totalPage}">
+                            <a href="/project/board/free/search?page=${paging.grpEndPage + 1}">다음</a>
+                        </c:if>
+                    </c:if> 
+                    </div>
+                </div>
                <div class="search_form">
                <form action="/project/board/free/search" method="post" class="search-form-inner" onsubmit="return searchCheck()">
                   <select name="condition">

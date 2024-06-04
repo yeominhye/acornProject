@@ -52,6 +52,8 @@ public interface BoardServiceI {
 
 	List<String> selectMyBuyBoard(String userCode);
 
+	List<RouteBoard> getRouteBoard(int boardType, int currentPage);
+
 
 
 }

@@ -71,5 +71,7 @@ public interface BoardDAOI {
 
 	int insertRoute(RouteBoard routeBoard) throws Exception;
 
-	List<String> selectMyBuyBoard(String userCode);	
+	List<String> selectMyBuyBoard(String userCode);
+
+	List<RouteBoard> selectRouteAll(int boardType, int currentPage);	
 }

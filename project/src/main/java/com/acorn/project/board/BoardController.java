@@ -435,9 +435,28 @@ public class BoardController {
    }
 
    /* 종범 추가*/
-   @RequestMapping(value = "/route", method = RequestMethod.GET)
-   public String festival(HttpServletRequest request) {
-	  
+//   @RequestMapping(value = "/route", method = RequestMethod.GET)
+//   public String festival(HttpServletRequest request) {
+//	  
+//      return "/board/route";
+//   }
+   
+   
+   @RequestMapping(value = "/route", method=RequestMethod.GET)
+   public String routeBoardListType(String type, Model model, @RequestParam(defaultValue = "1") int page) {
+
+      int board_type = Integer.parseInt(type);
+      List<RouteBoard> routeBoardList = boardService.getRouteBoard(board_type ,page);
+      model.addAttribute("routeBoardList",routeBoardList);
+      model.addAttribute("type",board_type);
+      
+      SearchCondition search = new SearchCondition(null,null,0);
+      model.addAttribute("search", search);
+
+      int totRecords = boardService.selectTotalCount(board_type);
+      int pageSize = 15;
+      PagingHandler handler = new PagingHandler( page , totRecords ,pageSize);
+      model.addAttribute("paging", handler);
       return "/board/route";
    }
    
@@ -492,7 +511,7 @@ public class BoardController {
            boardService.insertRoute(routeBoard);
        }
 
-       return "redirect:/board/route";
+       return "redirect:/board/route?type=0";
 }
  
 

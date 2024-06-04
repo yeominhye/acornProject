@@ -38,6 +38,26 @@
 	            b.boardWritedate DESC
 	        LIMIT #{pageSize} OFFSET #{offset}
 	</select>
+	
+	<select id="selectRouteAll" resultType="RouteBoard"  parameterType="Map" >
+	    SELECT u.nickname, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
+	           DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion 
+	    FROM boardtbl b 
+	    JOIN usertbl u ON b.userCode = u.userCode
+	      <where>
+	            <if test="boardType != null">
+	                <if test="boardType &gt;= 0 and boardType &lt;= 6">
+	                    AND b.boardType = #{boardType}
+	                </if>
+	                <if test="boardType == -1">
+	                    AND b.boardType &gt;= 1 AND b.boardType &lt;= 5
+	                </if>
+	            </if>
+	        </where>
+	        ORDER BY 
+	            b.boardWritedate DESC
+	        LIMIT #{pageSize} OFFSET #{offset}
+	   </select>
    		
    <select id="selectOne" resultType="Board" parameterType="String">
 		SELECT 

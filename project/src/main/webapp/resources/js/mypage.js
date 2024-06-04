@@ -194,17 +194,17 @@ function resetForms() {
       open(
             url,
             "confirm",
-            "menubar=no, statusbar=no, scrollbar=no, width=500, height=250, left=600, top=350 ");
+            "menubar=no, statusbar=no, scrollbar=no, width=450, height=500, left=600, top=350");
    }
 
    function reload() {
       setTimeout(function() {
          location.reload();
-      }, 300);
+      }, 3000);
    }
 
    function goHome() {
-      window.location.href = "/project/"
+         window.location.href = "/project/"
    }
 
 

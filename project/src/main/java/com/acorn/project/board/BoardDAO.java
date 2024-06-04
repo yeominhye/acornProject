@@ -39,6 +39,23 @@ public class BoardDAO implements BoardDAOI {
 		return session.selectList(namespace+"selectAll", info );
 	}
 	
+	@Override
+	public List<RouteBoard> selectRouteAll( int boardType ,   int currentPage){
+		
+		 //현재페이지정보,  전체레코드수      
+	  	int  pageSize  =   15;		
+		 int offset = (currentPage - 1) * pageSize;  
+	 	
+		
+	 	
+		Map info = new  HashMap();
+		info.put("boardType",  boardType);
+		info.put("offset",  offset);   
+		info.put("pageSize", pageSize);
+		
+		return session.selectList(namespace+"selectRouteAll", info );
+	}
+	
 	// 1개 상세조회
 	@Override
 	public Board selectOne(String board_code) {
