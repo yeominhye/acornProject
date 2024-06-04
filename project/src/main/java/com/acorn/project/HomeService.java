@@ -20,7 +20,7 @@ import com.acorn.project.event.*;
 
 @Component
 public class HomeService {
-	private static final String SERVICE_KEY = "ZJz3l00lzxL5fcH%2B64NGa7DBcoWTq7o0pj0dUJCnaU4zD%2FpIXVg4fjr8SDSzOVJWEwsQ4mmNeH2vxwDeO8CI6g%3D%3D";
+	private static final String SERVICE_KEY = "Mtsr7%2Fz9fZNbpd18JZN6Hn5ajAgA5Xe%2BfTLdZsdjvva%2B%2BSCjy6dsRzvwgaGh0YanVpHvzedGbifxr%2BUIkJcOnA%3D%3D";
 
 	private String buildUrl(String baseUrl, String... queryParams) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(baseUrl);
@@ -72,6 +72,38 @@ public class HomeService {
 
 		return sendHttpRequest(url);
 	}
+	
+	// 행사정보 리스트
+		public ArrayList<EventDTO1> extractEvents(String jsonData) {
+			try {
+				JSONObject response = new JSONObject(jsonData).optJSONObject("response");
+				if (response != null) {
+					JSONObject body = response.optJSONObject("body");
+					if (body != null) {
+						JSONObject items = body.optJSONObject("items");
+						if (items != null) {
+							JSONArray eventArr = items.optJSONArray("item");
+							if (eventArr != null) {
+								ArrayList<EventDTO1> eventList = new ArrayList<>();
+								for (int i = 0; i < eventArr.length(); i++) {
+									JSONObject item = eventArr.getJSONObject(i);
+									EventDTO1 event = new EventDTO1(item.getString("title"), item.getString("firstimage"),
+											item.getString("addr1"), item.getString("addr2"),
+											item.getString("eventstartdate"), item.getString("eventenddate"),
+											item.getString("contentid"), item.getString("contenttypeid"));
+									eventList.add(event);
+								}
+								System.out.println(eventList);
+								return eventList;
+							}
+						}
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return new ArrayList<>();
+		}
 
 	// 행사페이지 행사정보
 	public String getDataEvent1(String numOfRows, String pageNo, String year, String month, String area)
@@ -94,7 +126,7 @@ public class HomeService {
 	}
 
 	// 행사정보 리스트
-	public ArrayList<EventDTO1> extractEvents(String jsonData) {
+	public ArrayList<EventDTO1> extractEvents2(String jsonData) {
 		try {
 			JSONObject response = new JSONObject(jsonData).optJSONObject("response");
 			if (response != null) {

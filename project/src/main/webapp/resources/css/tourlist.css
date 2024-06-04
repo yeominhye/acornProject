@@ -1,9 +1,7 @@
-@charset "UTF-8";
-
 .container {
 	width: 1100px;
-	padding-top: 75px;
-	margin: 0 auto;
+	height: 1440px;
+	margin: 75px auto;
 	display: flex;
 	justify-content: space-between;
 }
@@ -11,10 +9,13 @@
 .side-container {
 	position: relative;
 	width: 210px;
+	margin-top: 90px;
 }
 
 .side {
-	position: fixed;
+	position: -webkit-sticky; /* 사파리를 위한 코드 */
+	position: sticky;
+	top: 100px;
 	width: 210px;
 	background-color: #f5f5f5;
 	padding: 20px;
@@ -54,8 +55,7 @@
 	display: flex;
 	justify-content: center;
 	align-self: center;
-	margin: 0 auto;
-	margin-top: 75px;
+	margin: 15px auto;
 	width: 125px;
 	height: 25px;
 	border-radius: 25px;
@@ -70,7 +70,16 @@
 	background-color: #E78181;
 }
 
-.filter-btn-box div:hover {
+.filter-btn-box {
+	margin-top: 25px;
+}
+
+.filter-keep-btn:hover {
+	color: white;
+	background-color: #E78181;
+}
+
+.filter-keep-btn:hover {
 	color: white;
 	background-color: #E78181;
 }
