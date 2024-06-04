@@ -24,6 +24,13 @@ button{
     cursor: pointer;
 }
 
+/* tool-tip */
+.ql-tooltip{
+   display: none;
+}
+
+
+
 /* 
 ----------------------
         헤더
@@ -162,10 +169,6 @@ button{
     margin-right: 20px;
 }
 
-.fa-solid.fa-bookmark{
-    color: var(--point-3rd-color);
-}
-
 /* 포인트 */
 .point-section{
     /* border: 1px solid pink; */
@@ -265,7 +268,7 @@ button{
     border: 1.5px solid rgb(169, 168, 168);
     border-radius: 5px;
     margin-top: 10px;
-    height: 330px;
+    height: 340px;
     overflow-y: auto;
 }
 
@@ -278,19 +281,16 @@ button{
 .markerInputs {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 75%;
+    border-bottom: 1px dotted gray;
+    padding-bottom: 5px;
 }
 
 .markerInputs>input {
-	width: 100%;
-	outline: 0;
-  border-width: 0 0 2px;
+  width: 100%;
+  outline: 0;
+  border-width: 0 0 0px;
   border-color: rgb(169, 168, 168);
-}
-
-.number {
-    width: 20px;
-    margin: 0 20px;
 }
 
 /* 상세코스 - 리스트 */
@@ -299,6 +299,15 @@ button{
    font-weight: 600;
    color: #575656;
    margin-bottom: 5px;
+}
+
+.markerExplain{
+   color: gray;
+}
+
+.number {
+    width: 20px;
+    margin: 0 20px;
 }
 
 /* 루트 - 아랫층 - 코멘트부분 */

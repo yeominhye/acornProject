@@ -59,7 +59,7 @@
                     </div>
                     <div class="title-section">${routeBoard.boardTitle}</div>
                     <div class="writer-section">
-                        <p>${routeBoard.nickname}</p>
+                        <p>${routeBoard.nickname}</p><img src="check.png" alt="">
                     </div>
                     <div class="date-section">${routeBoard.boardTourdays}일</div>
                     <div class="theme-section"><c:choose>
@@ -371,13 +371,13 @@ $(document).ready(function() {
             title.readOnly = true;
 
             var position = document.createElement("input");
-            position.className = "markerInput";
+            position.className = "markerInput markerPosition";
             position.id = "markerPosition" + i;
             position.value = positions[i].position;
             position.readOnly = true;
 
             var explain = document.createElement("input");
-            explain.className = "markerInput";
+            explain.className = "markerInput markerExplain";
             explain.id = "markerExplain" + i;
             explain.value = positions[i].explain;
             explain.readOnly = true;

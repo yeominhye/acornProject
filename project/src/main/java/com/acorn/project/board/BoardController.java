@@ -124,10 +124,11 @@ public class BoardController {
     public String Board(@PathVariable String code, Model model,HttpSession session, HttpServletRequest request) {
        String currentUrl = request.getRequestURL().toString();
        session.setAttribute("url", currentUrl);
+       
         Board freeboard = boardService.getBoardBycode(code);
         boardService.updateViews(code); //  views 증가
         model.addAttribute("freeboard", freeboard);
-        System.out.println(freeboard);
+        System.out.println("freeboard"+freeboard);
         
         List<Comment> comments = commentService.getCommentByCode(code);
         model.addAttribute("comments", comments);
@@ -151,7 +152,8 @@ public class BoardController {
             response.put("message", "Comment posted successfully");
             if (currentUrl.equals("http://localhost:8080/project/board/free/"+code)) {
                response.put("redirect", "/project/board/free/"+code);
-            } else if(currentUrl.equals("http://localhost:8080/project/board/route/"+code)) {
+               
+            } else {
                response.put("redirect", "/project/board/route/"+code);
             }
             
@@ -195,18 +197,45 @@ public class BoardController {
   
     @ResponseBody
     @RequestMapping(value = "/{code}/likes", method = RequestMethod.POST)
-    public void incrLike(@PathVariable String code, @RequestBody Like like) {
-       likeService.incrLike(like);
-         System.out.println("추가"+like);   
+    public Map<String, Object>  incrLike(@PathVariable String code, @RequestBody Like like, HttpSession session) {
+    	String url = (String)session.getAttribute("url");
+    	Map<String, Object> response = new HashMap<>();
+        likeService.incrLike(like);
+
+        if (url.contains("free")) {
+          response.put("redirect", "/project/board/free/"+code);
+          System.out.println(response);
+       } 
+        if (url.contains("route")) {
+          response.put("redirect", "/project/board/route/"+code);
+          System.out.println(response);
+       }
+         System.out.println("추가"+like);            
+         
+         return  response;
     }
     
+
     @ResponseBody
     @RequestMapping(value = "/{code}/likes", method = RequestMethod.DELETE)
-    public void decrLike(@PathVariable String code, @RequestBody Like like) {
-       likeService.decrLike(like);
-       System.out.println("삭제"+like);
+    public Map<String, Object>  decrLike(@PathVariable String code, @RequestBody Like like, HttpSession session) {
+
+    	String url = (String)session.getAttribute("url");
+    	Map<String, Object> response = new HashMap<>();
+        likeService.decrLike(like);
+
+        if (url.contains("free")) {
+          response.put("redirect", "/project/board/free/"+code);
+          System.out.println(response);
+       } 
+        if (url.contains("route")) {
+          response.put("redirect", "/project/board/route/"+code);
+          System.out.println(response);
+       }
+         System.out.println("추가"+like);            
+         
+         return  response;
     }
-    
     
     
     @ResponseBody
@@ -222,22 +251,49 @@ public class BoardController {
   
     @ResponseBody
     @RequestMapping(value = "/{code}/arch", method = RequestMethod.POST)
-    public void regArch(@PathVariable String code, @RequestBody Archive archive) {
-       archiveService.insert(archive);
-         System.out.println("삭제"+archive);
+    public Map<String, Object> regArch(@PathVariable String code, @RequestBody Archive archive, HttpSession session) {
+    	String url = (String)session.getAttribute("url");
+    	Map<String, Object> response = new HashMap<>();
+        archiveService.insert(archive);
+
+        if (url.contains("free")) {
+          response.put("redirect", "/project/board/free/"+code);
+          System.out.println(response);
+       } 
+        if (url.contains("route")) {
+          response.put("redirect", "/project/board/route/"+code);
+          System.out.println(response);
+       }
+         System.out.println("추가"+archive);            
+         
+         return  response;
     }
     
     @ResponseBody
     @RequestMapping(value = "/{code}/arch", method = RequestMethod.DELETE)
-    public void deleteArch(@PathVariable String code, @RequestBody Archive archive) {
-       archiveService.delete(archive);
-       System.out.println(" 궘 젣"+archive);
-    }
+    public Map<String, Object> deleteArch(@PathVariable String code, @RequestBody Archive archive, HttpSession session) {
+
+	    String url = (String)session.getAttribute("url");
+	   	Map<String, Object> response = new HashMap<>();
+	   	archiveService.delete(archive);
+	
+	       if (url.contains("free")) {
+	         response.put("redirect", "/project/board/free/"+code);
+	         System.out.println(response);
+	      } 
+	       if (url.contains("route")) {
+	         response.put("redirect", "/project/board/route/"+code);
+	         System.out.println(response);
+	      }
+	       System.out.println("삭제"+archive);           
+	        
+	        return  response;
+   }
     
 
    
     @PostMapping("/free/{code}/report")
-    public ResponseEntity<Map<String, Object>> regReport(@PathVariable String code, @RequestBody Report report, HttpSession session) {
+    public Map<String, Object> regReport(@PathVariable String code, @RequestBody Report report, HttpSession session) {
         User user = (User) session.getAttribute("user");
         Map<String, Object> response = new HashMap<>();
         
@@ -247,12 +303,12 @@ public class BoardController {
             response.put("status", "success");
             response.put("message", "Comment posted successfully");
             response.put("redirect", "/project/board/free/"+code);
-            return ResponseEntity.ok(response);
+            return response;
         } else {
             response.put("status", "error");
             response.put("message", "User not logged in");
             response.put("redirect", "/project/user/login.do");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            return response;
         }
     }
     
@@ -380,7 +436,8 @@ public class BoardController {
 
    /* 종범 추가*/
    @RequestMapping(value = "/route", method = RequestMethod.GET)
-   public String festival() {
+   public String festival(HttpServletRequest request) {
+	  
       return "/board/route";
    }
    
@@ -473,8 +530,11 @@ public class BoardController {
 
  
  @GetMapping("/route/{boardCode}")
- public String showRouteBoard(@PathVariable String boardCode, Model model, HttpSession session) throws Exception {
+ public String showRouteBoard(@PathVariable String boardCode, Model model, HttpServletRequest request, HttpSession session) throws Exception {
     User user =(User)session.getAttribute("user");
+    String currentUrl = request.getRequestURL().toString();
+    session.setAttribute("url", currentUrl);
+    System.out.println("Current URL: " + currentUrl);
      RouteBoard routeBoard = boardService.selectRoute(boardCode);
      boardService.updateViews(boardCode);
      model.addAttribute("routeBoard", routeBoard);
@@ -494,6 +554,7 @@ public class BoardController {
      if(routeBoard.getBoardPoint() == 0) {
         message = "O"; 
      }
+     System.out.println(routeBoard.getBoardPoint());
      model.addAttribute("message", message);
      
      List<Comment> comments = commentService.getCommentByCode(boardCode);
