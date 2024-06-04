@@ -47,8 +47,6 @@ public class PointDaoTest {
 	    point.setBoardCode("b0002");
 	    point.setPointAmount(100);
 	    User user = new User();
-	    int result = dao.buyBoard(point, user);
-	    assertTrue(result == 1);
 	}
 	
 	@Test

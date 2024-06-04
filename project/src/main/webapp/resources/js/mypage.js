@@ -8,13 +8,9 @@ $(document).ready(function(){
             url: "/project/point/charge_process.do",
             data: { pointAmount: amount },
             success: function(response){
-               alert( response);
-                alert("충전 성공  !!!!");
                  $(".my_point_text").html(response +"P"); 
-            
             },
             error: function(){
-                alert("오류 발생");
             }
           
             
@@ -30,8 +26,6 @@ $(document).ready(function(){
             url: "/project/point/exchange_process.do",
             data: { exchangeAmount: amount2 },
             success: function(response){
-               alert( response);
-                alert("환전 성공 !!!!");
                  $(".my_point_text").html(response +"P"); 
             
             },
@@ -305,4 +299,8 @@ function resetForms() {
            });
        }
    });
+   
+   
+   
+   
    

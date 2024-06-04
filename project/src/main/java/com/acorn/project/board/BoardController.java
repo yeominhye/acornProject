@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +121,9 @@ public class BoardController {
 	
 	
     @GetMapping("/free/{code}")
-    public String Board(@PathVariable String code, Model model) {
+    public String Board(@PathVariable String code, Model model,HttpSession session, HttpServletRequest request) {
+    	String currentUrl = request.getRequestURL().toString();
+    	session.setAttribute("url", currentUrl);
         Board freeboard = boardService.getBoardBycode(code);
         boardService.updateViews(code); //  views 증가
         model.addAttribute("freeboard", freeboard);
@@ -134,17 +137,24 @@ public class BoardController {
         return "board/freeboardDetail";  
     }
     
-    @PostMapping("/free/{code}")
+    @PostMapping("/{code}")
     public ResponseEntity<Map<String, Object>> comment(@PathVariable String code, @RequestBody Comment comment, HttpSession session) {
     	User user = (User) session.getAttribute("user");
         Map<String, Object> response = new HashMap<>();
+        String currentUrl = (String)session.getAttribute("url");
+        System.out.println("Current URL: " + currentUrl);
         
         if (user != null) {
             commentService.register(comment);
             System.out.println(comment);
             response.put("status", "success");
             response.put("message", "Comment posted successfully");
-            response.put("redirect", "/project/board/free/"+code);
+            if (currentUrl.equals("http://localhost:8080/project/board/free/"+code)) {
+            	response.put("redirect", "/project/board/free/"+code);
+            } else {
+            	response.put("redirect", "/project/board/route/"+code);
+            }
+            
             return ResponseEntity.ok(response);
         } else {
             response.put("status", "error");
@@ -157,14 +167,14 @@ public class BoardController {
     
     
     @ResponseBody
-    @RequestMapping(value = "/free/{code}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{code}", method = RequestMethod.PUT)
 	public void CommentModi(@PathVariable String code, @RequestBody Comment comment, HttpSession session) {
 		commentService.modify(comment);
 		System.out.println(comment);
 	}
 	
     @ResponseBody
-	@RequestMapping(value = "/free/{code}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{code}", method = RequestMethod.DELETE)
 	public void CommentDel(@PathVariable String code, @RequestBody String commentcode, HttpSession session) {
 		commentService.delete(commentcode);
 		System.out.println(commentcode);
@@ -173,7 +183,7 @@ public class BoardController {
 
     
     @ResponseBody
-    @RequestMapping(value = "/free/{code}/likeCheck", method = RequestMethod.POST)
+    @RequestMapping(value = "/{code}/likeCheck", method = RequestMethod.POST)
     public int checkLike(@PathVariable String code, @RequestBody Like like, HttpSession session, Model model) {
     	Like check = likeService.checkLike(like);
     	if (check != null) {
@@ -184,14 +194,14 @@ public class BoardController {
     }
   
     @ResponseBody
-    @RequestMapping(value = "/free/{code}/likes", method = RequestMethod.POST)
+    @RequestMapping(value = "/{code}/likes", method = RequestMethod.POST)
     public void incrLike(@PathVariable String code, @RequestBody Like like) {
     	likeService.incrLike(like);
     	  System.out.println("추가"+like);	
     }
     
     @ResponseBody
-    @RequestMapping(value = "/free/{code}/likes", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{code}/likes", method = RequestMethod.DELETE)
     public void decrLike(@PathVariable String code, @RequestBody Like like) {
     	likeService.decrLike(like);
     	System.out.println("삭제"+like);
@@ -200,7 +210,7 @@ public class BoardController {
     
     
     @ResponseBody
-    @RequestMapping(value = "/free/{code}/archCheck", method = RequestMethod.POST)
+    @RequestMapping(value = "/{code}/archCheck", method = RequestMethod.POST)
     public int checkArch(@PathVariable String code, @RequestBody Archive archive, HttpSession session, Model model) {
     	Archive check = archiveService.checkArch(archive);
     	if (check != null) {
@@ -211,14 +221,14 @@ public class BoardController {
     }
   
     @ResponseBody
-    @RequestMapping(value = "/free/{code}/arch", method = RequestMethod.POST)
+    @RequestMapping(value = "/{code}/arch", method = RequestMethod.POST)
     public void regArch(@PathVariable String code, @RequestBody Archive archive) {
     	archiveService.insert(archive);
     	  System.out.println("삭제"+archive);
     }
     
     @ResponseBody
-    @RequestMapping(value = "/free/{code}/arch", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{code}/arch", method = RequestMethod.DELETE)
     public void deleteArch(@PathVariable String code, @RequestBody Archive archive) {
     	archiveService.delete(archive);
     	System.out.println("�궘�젣"+archive);
@@ -252,15 +262,6 @@ public class BoardController {
 		model.addAttribute("freeBoardList",freeBoardList);
 		return "board/freeboardList";
 	}
-	
-//	@RequestMapping(value="/my", method = RequestMethod.GET)
-//	public String myBoardList(HttpSession session, Model model){
-//		User user = (User)session.getAttribute("user");
-//		String userId =user.getUserId();
-//		List<Board> BoardList = boardService.getBoardByuser(userId);
-//		model.addAttribute("BoardList",BoardList);
-//		return "/board/myboard";
-//	}
 	
 	
 	@ResponseBody
@@ -384,34 +385,21 @@ public class BoardController {
    }
    
   
-   @RequestMapping(value = "/route/post", method = RequestMethod.GET)
-   public String festivalPost() {
-      return "/board/routePost2";
-   }
-   
-   
- // -----猷⑦듃 �빐蹂대뒗 以�---
-// @RequestMapping("/createMap")
-// public String showCreateForm(Model model) {
-//	 User user = (User)session.getAttribute("user");
-//     model.addAttribute("board", new Board());
-//     return "maps/createMap";
-// }
-
- 
- @RequestMapping(value="/createMap", method=RequestMethod.GET)
-	public String createRoute( RouteBoard routeBoard, HttpSession session, Model model) {
-	    User user =(User)session.getAttribute("user");
-	 
+   @RequestMapping(value = "/route/create", method = RequestMethod.GET)
+   public String createRoute( RouteBoard routeBoard, HttpSession session, Model model) {
+	   User user =(User)session.getAttribute("user");
+		 
 	    if(user != null) {
 	     session.setAttribute("dayPlans", null);
-         return "board/createMap";
+        return "board/createRouteForm";
 	    } 
 	    
 	    return "redirect:/user/login.do";
-	}
- 
- 
+   }
+   
+
+   
+
  @RequestMapping(value="/createMap_process.do", method=RequestMethod.POST)
 	public String createRoute_process (RouteBoardVO vo, HttpSession session) throws Exception {
 	 	System.out.println("촥인"+vo);
@@ -490,6 +478,23 @@ public class BoardController {
      RouteBoard routeBoard = boardService.selectRoute(boardCode);
      boardService.updateViews(boardCode);
      model.addAttribute("routeBoard", routeBoard);
+     
+     String message;
+     if(user != null) {
+    	 List<String> buyBoardCheck = boardService.selectMyBuyBoard(user.getUserCode());
+         if (buyBoardCheck.contains(boardCode) || routeBoard.getUserCode() == user.getUserCode()) {
+             message = "O";
+         } else {
+             message = "X";
+         }
+        
+     } else {
+    	 message = "login";
+     }
+     if(routeBoard.getBoardPoint() == 0) {
+    	 message = "O"; 
+     }
+     model.addAttribute("message", message);
      
      List<Comment> comments = commentService.getCommentByCode(boardCode);
      model.addAttribute("comments", comments);

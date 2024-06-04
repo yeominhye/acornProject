@@ -1,13 +1,6 @@
 
 // html button
 
-var test = document.getElementById('test');
-test.addEventListener('click', function() {
-    console.log('');
-    for (var i = 0; i < infowindows.length; i++) {
-        console.log(infowindows[i]);
-    }
-});
 var line = document.getElementById('line');
 line.addEventListener('click',function(){
     lineCheck(markers);

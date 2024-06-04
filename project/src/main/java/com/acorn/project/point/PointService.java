@@ -1,3 +1,4 @@
+
 package com.acorn.project.point;
 
 import java.util.ArrayList;
@@ -32,8 +33,13 @@ public class PointService implements PointServiceI {
     }
     
     @Override
-    public int buyBoard(Point point, User user) throws Exception {
-        return dao.buyBoard(point, user);
+    public int buyBoard(String userCode, String boardCode, int pointAmount) throws Exception {
+        return dao.buyBoard(userCode, boardCode, pointAmount);
+    }
+    
+	@Override
+    public int sellBoard(String userCode, String boardCode, int pointAmount) throws Exception {
+        return dao.sellBoard(userCode, boardCode, pointAmount);
     }
 
     @Override

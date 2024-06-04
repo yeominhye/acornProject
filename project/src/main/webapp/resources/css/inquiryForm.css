@@ -64,7 +64,6 @@ fieldset {
 	border: none;
 	margin: 0 auto;
 	width: 800px;
-	height: 800px;
 	position: relative;
 }
 
@@ -125,14 +124,12 @@ textarea {
 }
 
 .uploadImg {
-	width: 160px;
-	height: 160px;
-	display: inline-block;
-	/* border: 2px dotted rgb(254, 189, 232); */
-	background-color: rgb(238, 248, 251);
-	border-radius: 20px;
-	overflow: hidden;
-	text-align: center;
+   width: 160px;
+   display: inline-block;
+   background-color: rgb(238, 248, 251);
+   border-radius: 20px;
+   overflow: hidden;
+   text-align: center;
 }
 
 .imgUploader {

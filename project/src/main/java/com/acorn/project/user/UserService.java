@@ -18,6 +18,11 @@ public class UserService implements UserServiceI {
 	    }
 		
 		@Override
+		public User getUserByCode(String userCode) throws Exception {
+	        return dao.selectByCode(userCode);
+	    }
+		
+		@Override
 		public List<User> getUserList() throws Exception {
 	        return dao.selectAll();
 	    }
@@ -41,8 +46,6 @@ public class UserService implements UserServiceI {
 		public User loginCheck(User user, HttpSession session) {
 	    	user = dao.loginCheck(user);
 	    	if(user != null) {
-	    		// session.setAttribute("userId", user.getUserId());
-	    		// session.setAttribute("userName", userName);
 	    		session.setAttribute("user", user);
 	    	}
 	        return user;

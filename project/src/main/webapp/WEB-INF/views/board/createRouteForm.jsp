@@ -1,3 +1,4 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,7 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost2.css" >
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/createRouteForm.css" >
 	<script defer src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	
@@ -40,6 +41,12 @@
     }
  // editor의 내용 input으로 전달
 		function send(){
+		
+			let boardTitle = document.getElementById("boardTitle").value.trim();
+		    if (boardTitle === '') {
+		        alert("제목을 입력해주세요.");
+		        return false;
+		    }
   	
 			document.getElementById("contentMessage").style.display = "none";
   
@@ -48,8 +55,17 @@
 		  	let  boardContent  = document.querySelector("#boardContent");
 		  	boardContent.value= content;
 		  	
+		  	
+		  	if (boardContent.value.length < 384) {
+		  		alert("총평을 입력해주세요.");
+		        return false;
+		  	}
+		  	
+		  	if (toggle === 0) {
+		  		alert('일정을 먼저 저장해주세요.');
+		  		return false;
+		  	} 
 		    document.frm.submit();
-
   }
   
 </script>
@@ -111,7 +127,7 @@
                     
                     <div class="point-section">
                         <i class="fa-brands fa-product-hunt fa-2x"></i>
-                       <input type="number" id ="boardPoint" min="0" value="0" step="100" name="boardPoint" class="price" required>
+                       <input type="number" id ="boardPoint" min="0" value="0" step="50" name="boardPoint" class="price" required>
                     </div>
                     
                   
@@ -181,11 +197,14 @@
             <div class="route-container">
 
                 <div class="route-index">
-                    <div class="index-button">
-                        <h1>1</h1>
-                    </div>
-                    <div class="index-button">
-                        <button type="button" id="addDayBtn">일정 추가</button>
+                	<div class="newIndex-button">
+	                    <div class="index-button">
+	                        <h1>1</h1>
+	                    </div>
+                   	
+                   	</div>
+                    <div class="add-button">
+                        <button type="button" id="addDayBtn">+</button>
                     </div>
                 </div>
 
@@ -200,14 +219,6 @@
 			                            <img src="${pageContext.request.contextPath}/resources/img/search.png" alt="">
 			                        </div>
 			                        Search
-			                    </button>
-			                </div>
-			                <div class="toolBtn">
-			                    <button id="test">
-			                        <div class="btnImg">
-			                            <img src="${pageContext.request.contextPath}/resources/img/checkmark.png" alt="">
-			                        </div>
-			                        Test
 			                    </button>
 			                </div>
 			                <div class="toolBtn">
@@ -244,7 +255,7 @@
 			            
 			               <div class="btn-container">
 							   <button class="cancle-button" onclick="history.back()">목록보기</button>
-							   <button type="button" onclick="send()" class="submit-button" > 전체 저장</button>
+							   <button type="button" id="submitBtn" onclick="send()" class="submit-button" > 전체 저장</button>
 				            </div>
                     </div>
 
@@ -258,13 +269,13 @@
 		                        </div>
 	                        </div>
 	                    	<div class="day-comment-list">
-		                        <h2># 코멘트</h2>
+		                        <h2 id="dayCommentH2"># 코멘트</h2>
 		                        <div class="day-comment">
 		                        <textarea rows="" cols="" name="days[${dayIndex - 1}].dayInfo" id="dayInfo" placeholder="간단한 설명을 작성해주세요." required class="commentTextarea"></textarea>	                        </div>
 	                        </div>
 	                       
 	                    </div>
-	                    <button type="button" id="dayBtn">임시 저장</button>
+	                    <button type="button" id="dayBtn">일정 저장</button>
 					</form>
                 </div>
 
@@ -294,22 +305,41 @@
 	
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e4e2ed92d2d2bdb6c1837e8f4e3094f&libraries=services,clusterer,drawing"></script>
 	<script>
+	var toggle = 0;
 		$(document).ready(function() {
 		    var dayIndex = 1; 
-		    var toggle = 0;
+		    
 		
 		    document.getElementById("boardTourdays").value = dayIndex;
 		    document.getElementById("dayIndex").value = dayIndex;
-		
+		    document.getElementById("dayCommentH2").innerHTML = '#'+dayIndex+'일차 후기';
+		    
+		    
+		    
 		    $("#addDayBtn").on('click', function() {
 		        if (toggle === 1) {
-		            dayIndex++;
-		            document.getElementById("dayIndex").value = dayIndex;
-		            document.getElementById("boardTourdays").value = dayIndex;    
-		            document.getElementById("dayInfo").value = '';
-		            document.getElementById("clickLatlng").innerHTML = '';
-		            deleteAll();
-		            toggle = 0;
+		            var confirm_ = window.confirm("다음 일차를 추가하시면 이전 일차로 돌아가실 수 없습니다.");
+		            if (confirm_) {
+		                dayIndex++;
+		                document.getElementById("dayIndex").value = dayIndex;
+		                document.getElementById("boardTourdays").value = dayIndex;    
+		                document.getElementById("dayInfo").value = '';
+		                document.getElementById("clickLatlng").innerHTML = '';
+		                document.getElementById("dayCommentH2").innerHTML = '#' + dayIndex + '일차 후기';
+
+		                deleteAll();
+		                toggle = 0;
+
+		                var newIndexBtn = document.getElementsByClassName("newIndex-button")[0];
+		                var newDiv = document.createElement("div");
+		                newDiv.className = "index-button";
+		                var newH1 = document.createElement("h1");
+		                newH1.innerText = dayIndex;
+		                newDiv.appendChild(newH1);
+		                newIndexBtn.appendChild(newDiv);
+		                document.getElementById("dayBtn").innerHTML = '일정 저장';
+		                document.getElementById('submitBtn').disabled = true;
+		            }
 		        } else {
 		            alert("저장한 후에 일정을 추가해주세요.");
 		        }
@@ -369,6 +399,8 @@
 		            success: function(data) {
 		                console.log("Success:", data);
 		                alert('저장 성공!');
+		                document.getElementById("dayBtn").innerHTML = '수정';
+		                document.getElementById('submitBtn').disabled = false;
 		                toggle = 1;
 		            },
 		            error: function(error) {
@@ -382,7 +414,6 @@
 	</script>
 	
 	<script>
-
     function loadFiles(input) {
         const files = input.files;
         const container = document.getElementById('img-container');
@@ -405,7 +436,6 @@
             container.appendChild(imgContainer);
         }
     }
-
 	</script>
 
 </body>

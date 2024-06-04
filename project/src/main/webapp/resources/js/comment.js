@@ -48,7 +48,7 @@ function regComment() {
        
     $.ajax({
         type: "post",
-        url: boardCode,
+        url: "/project/board/"+boardCode,
         data: commentString,
         contentType: "application/json",
         success: function(response) {
@@ -111,7 +111,7 @@ function saveComment(btn) {
 
     $.ajax({
         type: "PUT", // PUT 요청 사용
-        url: boardCode, // boardCode 변수를 사용하여 URL을 지정
+        url: "/project/board/"+boardCode, // boardCode 변수를 사용하여 URL을 지정
         data: commentString,
         contentType: "application/json",
         success: function(data) {
@@ -144,7 +144,7 @@ function delComment(btn) {
         // AJAX를 사용하여 삭제 요청을 보냅니다.
         $.ajax({
             type: "DELETE",
-            url: boardCode, // 댓글을 삭제하는 URL을 지정합니다. 확인이 필요합니다.
+            url: "/project/board/"+boardCode, // 댓글을 삭제하는 URL을 지정합니다. 확인이 필요합니다.
             data: commentCode,
             success: function(data) {
                 console.log(data); // 성공적으로 삭제된 경우 로그에 출력합니다.
@@ -174,3 +174,31 @@ document.addEventListener("DOMContentLoaded", function() {
         commentTextarea.placeholder = " ";
     }
 });
+
+   function checkComments() {
+      var comments = document.getElementsByClassName("comment");
+      var noCommentsMessage = document.getElementById("no-comments-message");
+
+      if (comments.length === 0) {
+         noCommentsMessage.style.display = "block";
+      } else {
+         noCommentsMessage.style.display = "none";
+      }
+   }
+
+   document.addEventListener("DOMContentLoaded", function() {
+      checkComments();
+   });
+   
+   $(document).ready(function(){
+       var boardUserCode = document.querySelector('.boardUsercode').value;
+       var userCode = document.querySelector('.userCode').value;
+       var boardModi = document.querySelector('#boardModi');
+       
+       if (userCode === boardUserCode){
+           boardModi.style.display = "inline";
+       } else {
+           boardModi.style.display = "none";
+       }
+   });
+

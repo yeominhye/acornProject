@@ -197,7 +197,9 @@ hr {
 #account-holder{
    width: 200px;
 }
-
+td{
+	text-align: center;
+}
 .post-title {
    display: block;
    width: 330px;
@@ -211,8 +213,6 @@ hr {
 .head-title, .post-title {
    padding-left: 5px !important;
 }
-
-
 </style>
 
 </head>
@@ -278,10 +278,18 @@ hr {
                <c:forEach var="board" items="${list}" varStatus="status">
                   <tr class="list-data">
                      <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize))+1}</td>
-                     <td class="post-title"><a
-                        title="<c:out value='${board.boardTitle}' />"> <c:out
-                              value="${board.boardTitle}" />
-                     </a></td>
+                     <td class="post-title">
+                     	<c:if test="${board.boardType != 0}">
+						    <a title="<c:out value='${board.boardTitle}' />" href="/project/board/free/${board.boardCode}"> 
+						        <c:out value="${board.boardTitle}" />
+						    </a>
+						</c:if>
+						
+						<c:if test="${board.boardType == 0}">
+						    <a title="<c:out value='${board.boardTitle}' />" href="/project/board/route/${board.boardCode}"> 
+						        <c:out value="${board.boardTitle}" />
+						    </a>
+						</c:if>
                      <td><c:choose>
                            <c:when test="${board.boardType == 0}">루트게시판</c:when>
                            <c:when test="${board.boardType == 1}">여행후기</c:when>
@@ -297,6 +305,7 @@ hr {
                </c:forEach>
             </table>
 
+
          <div class="paging">
           <c:if test="${ empty search.condition}">
             <c:if test="${paging.currentGrp > 1}">
@@ -310,8 +319,9 @@ hr {
              </c:if>
           </c:if>
          </div>
-
-      <!-- 모달 -->
+    </div>
+</div>
+	<!-- 모달 -->
       <div class="modal" id="modal">
          <div class="modal-content">
             <div class="tab-container">
@@ -451,8 +461,6 @@ hr {
         
             </div>
         </div>
-    </div>
-</div>
    <%@ include file="../footer-sub.jsp" %>
 </div>
 </body>

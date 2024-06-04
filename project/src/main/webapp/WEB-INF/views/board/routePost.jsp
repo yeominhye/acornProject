@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.acorn.project.user.User"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +11,7 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost.css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- icon key -->
     <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
@@ -105,30 +107,30 @@
                     </c:forEach>
                 </div>
 
-                <div class="route-box">
-
-                    <div class="route-upperside">
-                        <div class="map" id="map" style="width: 60%; height:350px;"></div>
-                        <div class="map-place-list-section">
-                            <h2>#상세코스</h2>
-                            <div class="place-list" id="place-list">
-                            
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="route-lowerside">
-                        <h2># 코멘트</h2>
-                        <div class="day-comment">
-                            <!-- test -->
-                            <p class="dayCommentP">
-                                하루의 코멘트
-                            </p>
-
-                        </div>
-                    </div>
-
-                </div>
+	            <div class="route-box">
+	
+	                    <div class="route-upperside">
+	                        <div class="map" id="map" style="width: 60%; height:350px;"></div>
+	                        <div class="map-place-list-section">
+	                            <h2>#상세코스</h2>
+	                            <div class="place-list" id="place-list">
+	                            
+	                            </div>
+	                        </div>
+	                    </div>
+	
+	                    <div class="route-lowerside">
+	                        <h2># 코멘트</h2>
+	                        <div class="day-comment">
+	                            <!-- test -->
+	                            <p class="dayCommentP">
+	                                하루의 코멘트
+	                            </p>
+	
+	                        </div>
+	                    </div>
+	
+	                </div>
 
 
             </div>
@@ -147,52 +149,36 @@
 
             <!-- 댓글영역 -->
             <div class="comment-container">
-                <h2>댓글 ${count}</h2>
-                <div class="comment-section">
-               <div id="no-comments-message" style="display: none;">작성된 댓글이 없습니다.</div>
-                    
-                    <div class="comment-box">
-                     <!-- test -->
-                     <c:forEach var="comment" items="${comments}" varStatus="loop">
+            	<%
+					User user = (User) session.getAttribute("user");
+					String userCode = (user != null) ? user.getUserCode() : null;
+				%>
+           	   <input type="hidden" class="boardUsercode"   value="${routeBoard.userCode}"> 
+               <input type="hidden" class="userCode" value=<%=userCode%>> 
+               <input type="hidden" class="boardCode" value="${routeBoard.boardCode}">
+               <%@ include file="comment.jsp" %>
+            </div>
+            <!-- 댓글 영역 끝-->
+ 		
+ 		
+ 		<c:if test="${message eq 'X'}">
+ 			<div class="hiddenBox" style="background: red; width:250px; height:250px;">구매하시오.</div>
+ 			<form action="/project/point/buyBoard_process.do" method="post" id="buyBoardForm">
+				    <div class="buybtnWrap">
+				        <input type="hidden" name="userCode" value="<%=userCode %>">
+				        <input type="hidden" name="writerCode" value="${routeBoard.userCode}">
+				        <input type="hidden" name="boardCode" value="${routeBoard.boardCode}">
+				        <input type="hidden" name="pointAmount" value="${routeBoard.boardPoint}">
+				        <button type="button" id="buyBtn">구매하기</button>
+				    </div>
+				</form>
+ 		</c:if>
+ 		<c:if test="${message eq 'login'}">
+ 			<div class="hiddenBox" style="background: red; width:250px; height:250px;">로그인하시오.</div>
+ 			<button type="button" onclick="location.href='/project/user/login.do'">회원가입</button>
+ 		</c:if>
+		
 
-                        <div class="comment" id="comment_${loop.index}"
-                           data-user-code="${comment.userCode}">
-                           <div class="comment_name">${comment.nickname}</div>
-                           <input type="hidden" class="modiCommentCode" value="${comment.commentCode}">
-                           <div class="comment_content">${comment.commentContent}</div>
-                           <div class="comment_date">${comment.commentDate}</div>
-                           <button class="btnModi" onclick="editComment(this)">수정</button>
-                           <button class="btnDel" onclick="delComment(this)">삭제</button>
-                        </div>
-                     </c:forEach>
-                  </div>
-                         
-                        <!-- <div class="each-comment">
-                            <div class="comment-nickname">
-                                <p>예원의 뽀대왕쟈님</p>
-                            </div>
-                            <div class="comment-content">
-                                김예원님 한글 공백포함 400글자로 제한하겠습니다. 감사합니다. 수정 / 삭제 버튼은 css 안 넣어두겠습니다.
-                            </div>
-                            <div class="comment-date">2024.05.18</div>
-                            <div class="edit-section">
-                                <button class="edit-button">수정</button>
-                                <button class="delete-button">삭제</button>
-                            </div>
-                        </div> -->
-                    
-                    <form action="#">
-                        <div class="write-comment-section">
-
-                            <textarea class="write-comment-form" name="" id="" placeholder="불쾌감을 주는 댓글은 무통보 삭제됩니다."></textarea>
-                            <!-- <button class="add-comment-button">등록</button> -->
-                            <button class="add-comment-button arrow"><i class="fa-solid fa-arrow-up"></i></button>
-                        </div>
-                    </form>
-
-                </div>
-            </div><!-- 댓글 영역 끝-->
-            <div class="return-to-list-button"><button>목록보기</button></div>
         </div>
 		<%@ include file="../footer-sub.jsp" %>
     </div>
@@ -201,6 +187,36 @@
 </body>
 
 <script>
+
+$(document).ready(function() {
+    $('#buyBtn').click(function() {
+        var formData = $('#buyBoardForm').serialize();
+
+        $.ajax({
+            url: '/project/point/buyBoard_process.do',
+            type: 'post',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response > 0) {
+                    alert('구매가 성공적으로 처리되었습니다.');
+                    
+                } else {
+                	alert('포인트를 충전해주세요');
+                    window.location.href = '/project/user/mypage.do';
+                }
+            },
+            error: function(error) {
+                console.error('error:', error);
+                alert('구매 요청 중 오류가 발생하였습니다.');
+            }
+        });
+    });
+});
+
+
+
+
 
     var indexBtn = document.getElementsByClassName("index-button");
 
@@ -383,6 +399,8 @@
         };
         map = new kakao.maps.Map(mapContainer, mapOption);
         updateMapMarkers(0);
+        
+        
     });
 
     var indexBtn = document.getElementsByClassName("index-button");
