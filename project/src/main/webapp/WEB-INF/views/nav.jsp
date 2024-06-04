@@ -78,7 +78,7 @@ nav {
                     <ul>
                         <li><a href="/project/tourlist">관광지</a></li>
                         <li><a href="/project/eventlist">축제/행사</a></li>
-                        <li><a href="/project/board/route">경로게시판</a></li>
+                        <li><a href="/project/board/route?type=0">경로게시판</a></li>
                         <li><a href="/project/board/free?type=-1">자유게시판</a></li>
                         <li><a href="/project/board/faq">고객센터</a></li>
                     </ul>

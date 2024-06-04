@@ -4,29 +4,29 @@
 ----------------------
 */
 :root{
-     /* 현재 버튼 컬러는 디폴트 */
-    --default-font-size: 16px;
+    /* 현재 버튼 컬러는 디폴트 */
+   --default-font-size: 16px;
 
-    --button-font-color: gray;
-    --point-font-color: gray;
-    
-    --point-1st-color: rgb(237, 237, 237);
-    --point-1st-darken-color: rgb(158, 155, 155);
-    --point-2nd-color: rgb(213, 223, 249);
-    --point-3rd-color: rgb(253, 236, 252);
-    --point-3rd-darken-color: rgb(255, 219, 254);
-
-    --default-divider: 1px solid rgb(168, 168, 168);
+   --button-font-color: gray;
+   --point-font-color: gray;
    
+   --point-1st-color: rgb(237, 237, 237);
+   --point-1st-darken-color: rgb(158, 155, 155);
+   --point-2nd-color: rgb(213, 223, 249);
+   --point-3rd-color: rgb(253, 236, 252);
+   --point-3rd-darken-color: rgb(255, 219, 254);
+
+   --default-divider: 1px solid rgb(168, 168, 168);
+  
 }
 
 button{
-    cursor: pointer;
+   cursor: pointer;
 }
 
 /* 
 ----------------------
-        헤더
+       헤더
 ----------------------
 */
 .wrap {width: 100%; margin: 0 auto;}
@@ -34,124 +34,183 @@ button{
 
 /* 
 ----------------------
-       바디/구조
+      바디/구조
 ----------------------
 */
 
 .container{
-    /* border: 3px dotted rgb(147, 147, 147); */
-    margin: 75px auto;
-    width: 1100px;
-    /* height: 1200px; */
-    
+   /* border: 3px dotted rgb(147, 147, 147); */
+   margin: 75px auto;
+   width: 1100px;
+   /* height: 1200px; */
+   
 }
 
 /* 구분선 */
 .divider{
-    margin: 0 auto;
-    border: var(--default-divider);
-    width: 800px;
+   margin: 0 auto;
+   border: var(--default-divider);
+   width: 800px;
 }
 
 .divider.second{
-    margin: 180px auto;
-    margin-bottom: 50px;
+   margin: 180px auto;
+   margin-bottom: 50px;
 }
 
 /* 
 ----------------------
-  상단 이미지 & 타이틀
+ 상단 이미지 & 타이틀
 ----------------------
 */
 
 .title-container{
-    /* border: 1px solid saddlebrown; */
-    /* margin-top: 30px; */
-    align-items: center;
-    height: 400px;
-    display: flex;
+   /* border: 1px solid saddlebrown; */
+   /* margin-top: 30px; */
+   align-items: center;
+   height: 400px;
+   display: flex;
 }
 
 /* 이미지 영역 */
 .image-box{
-    /* border: 1px solid red; */
-    width: 50%;
-    text-align: center;
+   /* border: 1px solid red; */
+   width: 50%;
+   text-align: center;
 }
 
 .image-box img{
+   width: 400px;
+   height: 300px;
+}
+#img-container{
     width: 400px;
     height: 300px;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    margin: 0 auto;
+    text-align: center;
+    align-content: center;
 }
 
 /* 타이틀 영역 */
 .title-box{
-    /* border: 1px solid blue; */
-    width: 50%;
-    height: 300px;
+   /* border: 1px solid blue; */
+   width: 50%;
+   height: 300px;
+   margin-top: -40px;
 }
 
 .title-box div{
-    /* border: 1px solid salmon; */
-    margin-bottom: 10px;
+   /* border: 1px solid salmon; */
+   margin-bottom: 10px;
 }
 
 .icon-region{
-    background-color: var(--point-1st-color);
-    border-radius: 5px;
-    width: 50px;
+   border-radius: 5px;
+   font-weight: bold;
+   display: inline-block;
+}
+
+.icon-region select {
+    width: 80px;
     height: 25px;
     text-align: center;
-    font-weight: bold;
-}
+ }
 
 /* 글제목 */
 .title-section{
-    font-size: 20pt;
-    font-weight: bold;
+   font-weight: bold;
+    /* display: inline-block; */
 }
 
+.title-section input{
+    width: 400px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-indent: 8px;
+    padding: 20px 0px; 
+ }
+
 .writer-section p{
-    display: inline-block;
-    margin-right: 5px;
+   /* display: inline-block; */
+   margin-right: 5px;
+   font-weight: bold;
 }
 
 .date-section{
-    /* border: 1px solid rgb(192, 172, 0); */
-    margin-top: 20px;
+   /* border: 1px solid rgb(192, 172, 0); */
+   margin-top: 20px;
+    font-weight: bold;
+    color: #5F5F5F;
+}
+.date-section input {
+    width: 30px;
+    border: none;
+    border-bottom: 1px solid;
+    text-align: center;
+    font-weight: bold;
+    color: #5F5F5F;
 }
 
 /* 테마 */
 .theme-section{
-    margin-top: 20px;
-    color: var(--point-font-color);
-    font-size: 14pt;
-    font-weight: bold;
+   margin-top: 20px;
+   color: var(--point-font-color);
+   font-size: 14pt;
+   font-weight: bold;
+   display: inline-block;
 }
+.theme-section select{
+    width: 110px;
+    height: 25px;
+    text-align: center;
+ }
 
 /* 포인트 */
-.point-section{
-	align-content: center;
-    display: flex;
+.point-section {
+    /* border: 1px solid blue; */
 }
+.point-section-input{
+   align-content: center;
+   display: flex;
+   /* float: right;
+   margin-right: 150px; */
+   margin-top: 40px;
 
-.point-section div{
-    /* border: 1px solid black; */
-    margin-right: 20px;
 }
+.point-section-input input{
+    margin-left: 10px;
+    border: none;
+    border-bottom: 1px solid;
+    font-size: 18px;
+    text-align: center;
+ }
+
+.point-section-length{
+    display: block;
+    font-size: 12px;
+    color: #5F5F5F;
+    background-color: #eeeeee;
+    width: 410px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 2px;
+ }
 
 .fa-brands.fa-product-hunt{
-    /* border: 1px solid red; */
-    /* color: var(--point-1st-darken-color); */
+   /* border: 1px solid red; */
+   /* color: var(--point-1st-darken-color); */
 }
 
 .price{
-	margin: 4px 0 0 5px;
-	width: 100px;
-	height: 20px;
-    font-size: 10px;
-    font-weight: bold;
-    color: rgb(139, 139, 139);
+   margin: 4px 0 0 5px;
+   width: 100px;
+   height: 20px;
+   font-size: 10px;
+   font-weight: bold;
+   color: rgb(139, 139, 139);
 
 }
 
@@ -163,153 +222,153 @@ button{
 
 /* 
 ----------------------
-    중간부-루트 영역
+   중간부-루트 영역
 ----------------------
 */
 
 .route-container{
-    /* border: 1px solid rgb(0, 161, 230); */
-    margin-top: 50px;
-    height: 1010px;
+   /* border: 1px solid rgb(0, 161, 230); */
+   margin-top: 50px;
+   height: 1010px;
 }
 
 /* 루트 - 인덱스 */
 .route-index{
-    /* border: 1px solid peru; */
-    height: 10%;
-    display: flex;
+   /* border: 1px solid peru; */
+   height: 10%;
+   display: flex;
 }
 
 .newIndex-button {
-	display:flex;
-	
+   display:flex;
+   
 }
 .index-button{
-    /* border: 3px dashed black; */
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 5px;
-    background-color: var(--point-1st-color);
-    margin-top: 59px;
-    margin-left: 10px;
-    width: 80px;
-    height: 45px;
-    text-align: center;
-    cursor: pointer;
+   /* border: 3px dashed black; */
+   border: 2px solid rgb(0, 0, 0);
+   border-radius: 5px;
+   background-color: var(--point-1st-color);
+   margin-top: 59px;
+   margin-left: 10px;
+   width: 80px;
+   height: 45px;
+   text-align: center;
+   cursor: pointer;
 }
 
 .add-button{
-    /* border: 3px dashed black; */
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 5px;
-    background-color: var(--point-1st-color);
-    margin-top: 59px;
-    margin-left: 10px;
-    width: 80px;
-    height: 45px;
-    text-align: center;
-    cursor: pointer;
+   /* border: 3px dashed black; */
+   border: 2px solid rgb(0, 0, 0);
+   border-radius: 5px;
+   background-color: var(--point-1st-color);
+   margin-top: 59px;
+   margin-left: 10px;
+   width: 80px;
+   height: 45px;
+   text-align: center;
+   cursor: pointer;
 }
 
 
 .add-button button {
-    width: 100%;
-    height: 100%;
-    font-size: 30px;
-    box-sizing: border-box;
+   width: 100%;
+   height: 100%;
+   font-size: 30px;
+   box-sizing: border-box;
 }
 
 /*  클릭 */
 .index-button:last-child {
-	background-color: var(--point-3rd-darken-color);
-    border: 3px solid black;
-    border-bottom: none;
+   background-color: var(--point-3rd-darken-color);
+   border: 3px solid black;
+   border-bottom: none;
 } 
 
 /* 루트 - 컨텐츠 */
 .route-box{
-    /* border: 2px solid rgb(112, 111, 111);  */
-    border: 2px solid black;
-    background: white;
-    border-radius: 5px;
-    height: 100%;
+   /* border: 2px solid rgb(112, 111, 111);  */
+   border: 2px solid black;
+   background: white;
+   border-radius: 5px;
+   height: 100%;
 }
 
 /* 루트 - 윗층 - 맵부분*/
 .route-upperside{
-    /* border: 1px dotted lime; */
-    width: 100%;
-    height: 450px;
+   /* border: 1px dotted lime; */
+   width: 100%;
+   height: 450px;
 }
 
 .map{
-    border: 2px dotted black;
-    border-radius: 5px;
-    margin: 20px auto;
-    width: 95%;
-    height: 100%;
+   border: 2px dotted black;
+   border-radius: 5px;
+   margin: 20px auto;
+   width: 95%;
+   height: 100%;
 }
 
 /* 루트 - 아랫층 - 코멘트부분 */
 .route-lowerside{
-    /* border: 1px solid black; */
-    width: 95%;
-    margin: 30px auto;
-    margin-top: 50px;
-    display: flex;
+   /* border: 1px solid black; */
+   width: 95%;
+   margin: 30px auto;
+   margin-top: 50px;
+   display: flex;
 }
 
 .map-place-list-section{
-    /* border: 1px solid brown; */
-    width: 48%;
-    margin: 0 auto;
+   /* border: 1px solid brown; */
+   width: 48%;
+   margin: 0 auto;
 }
 
 .place-list{
-    border: 1.5px solid rgb(169, 168, 168);
-    border-radius: 5px;
-    margin-top: 10px;
-    height: 370px;
-    overflow-y: auto;
+   border: 1.5px solid rgb(169, 168, 168);
+   border-radius: 5px;
+   margin-top: 10px;
+   height: 370px;
+   overflow-y: auto;
 }
 
 .day-comment-list{
-	width: 48%;
-	margin: 0 auto;
+   width: 48%;
+   margin: 0 auto;
 }
 
 .day-comment{
-    border: 2px solid;
-    border-style: solid none;
-    height: 370px;
-    margin-top: 10px;
-    padding: 20px;
-    text-align: justify;
+   border: 2px solid;
+   border-style: solid none;
+   height: 370px;
+   margin-top: 10px;
+   padding: 20px;
+   text-align: justify;
 }
 
 
 /* 
 ----------------------
-   중간부 - 총평 영역
+  중간부 - 총평 영역
 ----------------------
 */
 
- .review-container{
-    height: 500px;
-    position: absolute;
-    top: 1800px;
-    width: 1100px;
+.review-container{
+   height: 500px;
+   position: absolute;
+   top: 1800px;
+   width: 1100px;
 }
 
- .review-container h2{
-	margin-bottom: 15px;
+.review-container h2{
+   margin-bottom: 15px;
 }
 
 
 /* 목록 돌아가기 버튼 */
 .return-to-list-button{
-    text-align: center;
-    margin: 180px auto;
-    margin-top: 1200px; 
+   text-align: center;
+   margin: 180px auto;
+   margin-top: 1200px; 
 }
 
 .return-to-list-button button{
@@ -318,79 +377,90 @@ button{
 
 /* 코멘트*/
 #dayPlanForm{
-	width: 100%;
+   width: 100%;
 }
 .commentTextarea{
-	width: 100%;
-	height: 330px;
-	border: transparent;
-	resize: none;
-	outline: none;
-	font-size: 12pt;
+   width: 100%;
+   height: 330px;
+   border: transparent;
+   resize: none;
+   outline: none;
+   font-size: 12pt;
 }
 
 /* 버튼 */
 #dayBtn{    
-	display: block;
-    margin: auto;
-    width: 80px;
+   display: block;
+   margin: auto;
+   width: 80px;
+   margin-top: 5px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #e5e2e2;
     margin-top: 5px;
+    border: 0.2px solid;
+    color: #000000;
+    
 }
+
 
 .btn-container{
-	margin-top: 350px;
-    text-align: right;
-    width: 1100px;
- 	text-align: center;
+   margin-top: 350px;
+   text-align: right;
+   width: 1100px;
+    text-align: center;
 
 }
 
+.btn-container button:hover{
+   background-color: #8c8c8c8c;
+}
 
 .cancle-button {
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	background-color: #8c8c8c;
-	color: #fff;
-	cursor: pointer;
-	margin: 0 auto;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   background-color: #8c8c8c;
+   color: #fff;
+   cursor: pointer;
+   margin: 0 auto;
 }
 
 .submit-button {
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	background-color: #8c8c8c;
-	color: #fff;
-	cursor: pointer;
-	margin: 0 auto;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   background-color: #8c8c8c;
+   color: #fff;
+   cursor: pointer;
+   margin: 0 auto;
 }
 
 
 .uploadImg {
-	width: 400px;
-	height: 300px;
-	display: inline-block;
-	/* border: 2px dotted rgb(254, 189, 232); */
-	background-color: rgb(238, 248, 251);
-	border-radius: 10px;
-	overflow: hidden;
-	text-align: center;
-	
+   width: 400px;
+   height: 300px;
+   display: inline-block;
+   /* border: 2px dotted rgb(254, 189, 232); */
+   background-color: rgb(238, 248, 251);
+   border-radius: 10px;
+   overflow: hidden;
+   text-align: center;
+   
 
 }
 
 
 .imgUploader {
-	font-size: 10pt;
-	height: 30px;
-	padding-top: 2.5px;
-	margin-left: 0px;
+   font-size: 10pt;
+   height: 30px;
+   padding-top: 2.5px;
+   margin-left: 0px;
 }
 /* 
-	-----------------
-	     map css 
-	-----------------
+   -----------------
+        map css 
+   -----------------
 */
 .toolTab{ position:relative; top: -470px; left: 25.5px; bottom:0; width: 55px; z-index: 2; background-color: rgb(28, 39, 54);padding-top: 20px; height: 100%; border-radius: 5px 0px 0px 5px;}
 .toolBtn{margin: auto; text-align: center;  width: 70%; margin: 10px auto; padding: 1px; }
@@ -401,7 +471,7 @@ button{
 .toolBtn img{width: 70%;}
 
 #searchTab { position:relative; top: -928px; left: 70.5px; bottom:0; width:300px; margin:10px 0  0 10px; padding:5px;overflow-y:auto;background:rgba(255, 255, 255); font-size:12px; transform: translateX(0%); height:99%;
- transition: opacity 0.5s, transform 0.5s; z-index: 1;}
+transition: opacity 0.5s, transform 0.5s; z-index: 1;}
 .bg_white {background:#fff;}
 #searchTab hr {display: block; height: 1px; border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #searchTab .option{text-align: center; height: 50px; width: 100%; align-content: center;}
@@ -425,29 +495,51 @@ button{
 
 
 .addDayBtn {
-	width: 100px;
-	height: 100%;
+   width: 100px;
+   height: 100%;
 }
 .positionInfo {
-    display: flex;
-    align-items: center; /* 세로 중앙 정렬 */
-    margin: 10px 0; /* 아래쪽 간격 */
+   display: flex;
+   align-items: center; /* 세로 중앙 정렬 */
+   margin: 10px 0; /* 아래쪽 간격 */
 }
 
 .number {
-    width: 30px; /* 숫자 부분의 고정 너비 */
-    margin: 0 20px;
-    /* border: 1px solid black; */
+   width: 30px; /* 숫자 부분의 고정 너비 */
+   margin: 0 20px;
+   /* border: 1px solid black; */
 }
 
 .inputs {
-    display: flex;
-    flex-direction: column; /* 입력 요소들을 세로로 배치 */
+   display: flex;
+   flex-direction: column; /* 입력 요소들을 세로로 배치 */
+   width: 400px;
+   border-bottom: 1px solid;
 }
 
 .inputs input {
-    margin-bottom: 5px; /* 입력 요소 사이 간격 */
-    outline: 0;
-  	border-width: 0 0 2px;
-  	border-color: rgb(169, 168, 168);
+   margin-bottom: 5px; /* 입력 요소 사이 간격 */
+   outline: 0;
+     border: none;
+     border-color: rgb(169, 168, 168);
+}
+
+
+/* 상세코스 - 리스트 */
+.markerTitle {
+   font-size: 12pt;
+   font-weight: 600;
+   color: #575656;
+   margin-bottom: 5px;
+}
+
+.explain{
+   color: gray;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

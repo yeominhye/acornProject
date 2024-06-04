@@ -21,6 +21,11 @@ public class BoardService implements BoardServiceI {
 	public List<Board> getBoardBytype(int boardType, int currentPage){		
 		return dao.selectAll(  boardType, currentPage  );
 	}
+	
+	@Override
+	public List<RouteBoard> getRouteBoard(int boardType, int currentPage){		
+		return dao.selectRouteAll(  boardType, currentPage  );
+	}
 
 	@Override
 	public Board getBoardBycode(String board_code) {
