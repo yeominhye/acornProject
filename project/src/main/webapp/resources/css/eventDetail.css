@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.wrap{
+	backgruond-color:white;
+}
+
 .container {
 	width: 1100px;
 	margin: 0 auto;

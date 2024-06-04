@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- reset.css -->
 <link rel="stylesheet" type="text/css"
-    href="${pageContext.request.contextPath}/resources/css/reset.css">
+	href="${pageContext.request.contextPath}/resources/css/reset.css">
 <!-- tourDetail.css -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/tourDetail.css">
@@ -30,47 +30,48 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </head>
 <body>
-<%@ include file="nav.jsp" %>
-    <div class="container tour-detail">
-        <div class="tour-info">
-            <!-- 행사이름 -->
-            <div class="tour-name">${tourInfo[0].addr1}</div>
-            <!-- 지역정보받기 -->
-            <div class="tour-title">${tourInfo[0].title}</div>
-            <!-- 행사/관광 이름 -->
-            <div class="tour-date"></div>
-        </div>
-        <div class="tour-details">
-            <!-- 행사사진, 정보 -->
-            <div class="tour-details-img">
-                <img src="${tourInfo[0].firstimage}">
-            </div>
-            <div class="tour-details-text">
-                <ul>
-                    <li><strong>제목</strong> <span>${tourInfo[0].title}</span></li>
-                    <li><strong>전화번호</strong> <span>${tourInfo[0].tel}</span></li>
-                    <li><strong>홈페이지</strong> <span>${tourInfo[0].homepage}</span></li>
-                    <li><strong>﻿체험안내</strong> <span>${tourInfo2[0].expguide}</span></li>
-                    <li><strong>﻿문의및안내</strong> <span>${tourInfo2[0].infocenter}</span></li>
-                    <li><strong>휴무일</strong> <span>${tourInfo2[0].restdate}</span></li>
-                    <li><strong>주차정보</strong> <span>${tourInfo2[0].parking}</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="tour-description">
-            <!-- 상세정보 -->
-            <h3>상세정보</h3>
-            <div class="tour-description-content">
-                <p>내용: ${tourInfo[0].overview}</p>
-            </div>
-        </div>
-        <div class="tour-map-custom">
-            <!-- 지도 -->
-            <h3>지도</h3>
-            <div class="tour-map" id="map"></div>
-            <script type="text/javascript"
-                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a8047e3c30bd5760407dbe6654a7338"></script>
-            <script>
+	<div class="wrap">
+		<%@ include file="nav.jsp"%>
+		<div class="container tour-detail">
+			<div class="tour-info">
+				<!-- 행사이름 -->
+				<div class="tour-name">${tourInfo[0].addr1}</div>
+				<!-- 지역정보받기 -->
+				<div class="tour-title">${tourInfo[0].title}</div>
+				<!-- 행사/관광 이름 -->
+				<div class="tour-date"></div>
+			</div>
+			<div class="tour-details">
+				<!-- 행사사진, 정보 -->
+				<div class="tour-details-img">
+					<img src="${tourInfo[0].firstimage}">
+				</div>
+				<div class="tour-details-text">
+					<ul>
+						<li><strong>제목</strong> <span>${tourInfo[0].title}</span></li>
+						<li><strong>전화번호</strong> <span>${tourInfo[0].tel}</span></li>
+						<li><strong>홈페이지</strong> <span>${tourInfo[0].homepage}</span></li>
+						<li><strong>﻿체험안내</strong> <span>${tourInfo2[0].expguide}</span></li>
+						<li><strong>﻿문의및안내</strong> <span>${tourInfo2[0].infocenter}</span></li>
+						<li><strong>휴무일</strong> <span>${tourInfo2[0].restdate}</span></li>
+						<li><strong>주차정보</strong> <span>${tourInfo2[0].parking}</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="tour-description">
+				<!-- 상세정보 -->
+				<h3>상세정보</h3>
+				<div class="tour-description-content">
+					<p>내용: ${tourInfo[0].overview}</p>
+				</div>
+			</div>
+			<div class="tour-map-custom">
+				<!-- 지도 -->
+				<h3>지도</h3>
+				<div class="tour-map" id="map"></div>
+				<script type="text/javascript"
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a8047e3c30bd5760407dbe6654a7338"></script>
+				<script>
                 var container = document.getElementById('map');
                 var options = {
                     center : new kakao.maps.LatLng(${tourInfo[0].mapy}, ${tourInfo[0].mapx}),
@@ -79,11 +80,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 var map = new kakao.maps.Map(container, options);
             </script>
-        </div>
+			</div>
 
-        <div class="tour-btn">
-            <button onclick="history.back()">뒤로가기</button>
-        </div>
-    </div>
+			<div class="tour-btn">
+				<button onclick="history.back()">뒤로가기</button>
+			</div>
+		</div>
+		
+		<%@ include file="footer-sub.jsp"%>
+	</div>
 </body>
 </html>

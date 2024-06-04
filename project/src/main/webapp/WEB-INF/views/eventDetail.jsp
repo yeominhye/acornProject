@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </head>
 <body>
+<div class=wrap>
 <%@ include file="nav.jsp" %>
 	<div class="container event-detail">
 		<div class="event-info">
@@ -85,6 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		<div class="event-btn">
 			<button onclick="history.back()">뒤로가기</button>
 		</div>
+	</div>
+	<%@ include file="footer-sub.jsp"%>
 	</div>
 </body>
 </html>

@@ -13,7 +13,7 @@
 	href="${pageContext.request.contextPath}/resources/css/reset.css">
 <!-- tourlist.css -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/tourlist.css">
+	href="${pageContext.request.contextPath}/resources/css/eventlist.css">
 
 </head>
 <body>
