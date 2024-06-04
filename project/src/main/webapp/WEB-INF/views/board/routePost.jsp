@@ -10,12 +10,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" type="text/css"
-   href="${pageContext.request.contextPath}/resources/css/reset.css">
-<link rel="stylesheet" type="text/css"
-   href="${pageContext.request.contextPath}/resources/css/routePost.css">
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css"   rel="stylesheet" />
+<link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+<link rel="stylesheet"   href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- icon key -->
 <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
@@ -232,7 +234,7 @@
          <div class="review-container">
             <h2># 총평</h2>
             <div class="review-section">
-               <p>${routeBoard.boardContent}</p>
+               ${routeBoard.boardContent}
             </div>
          </div>
 
