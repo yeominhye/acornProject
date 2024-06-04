@@ -30,13 +30,53 @@ button{
 }
 
 
+/* 
+----------------------
+         블러 
+----------------------
+*/
+
+.route-container-blur.purchased {
+    backdrop-filter: none;
+}
+
+.route-container-blur.not-purchased {
+    filter: blur(10px);
+    pointer-events: none;
+    user-select: none;
+    padding: 10px;
+}
+
+.alert-box{
+   margin: 0 auto;
+    border: 2px solid black;
+    width: 500px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 50px 30px;
+    background: white;
+    position: relative;
+    bottom: 500px;
+    font-size: 15pt
+}
+
+.button-for-register{
+   background: white;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    font-size: 12pt;
+    background: lightgray;
+    border-radius: 10px;
+}
+
 
 /* 
 ----------------------
         헤더
 ----------------------
 */
-.wrap {width: 100%; margin: 0 auto;}
+.wrap {width: 100%; margin: 0 auto; user-select: none;}
 
 
 /* 
@@ -192,8 +232,6 @@ button{
 
 
 
-
-
 /* 
 ----------------------
     중간부-루트 영역
@@ -240,6 +278,7 @@ button{
     background: white;
     border-radius: 5px;
     height: 90%;
+    user-select: none;
 }
 
 /* 루트 - 윗층 - 맵부분*/
@@ -248,6 +287,7 @@ button{
     margin: 30px;
     height: 400px;
     display: flex;
+    user-select: none;
 }
 
 .map{
@@ -291,6 +331,8 @@ button{
   outline: 0;
   border-width: 0 0 0px;
   border-color: rgb(169, 168, 168);
+  pointer-events: none;
+  
 }
 
 /* 상세코스 - 리스트 */

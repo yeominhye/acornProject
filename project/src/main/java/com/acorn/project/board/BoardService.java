@@ -58,6 +58,36 @@ public class BoardService implements BoardServiceI {
 	}
 	
 	@Override
+	public int MyLikeCount(String user_id) {
+		return dao.MyLikeCount(user_id);
+	}
+	
+	@Override
+	public List<Board> selectUserLike(String user_id, int currentPage){
+		return dao.selectUserLike(user_id, currentPage);
+	}
+	
+	@Override
+	public int MyComCount(String user_id) {
+		return dao.MyComCount(user_id);
+	}
+	
+	@Override
+	public List<Board> selectUserCom(String user_id, int currentPage){
+		return dao.selectUserCom(user_id, currentPage);
+	}
+	
+	@Override
+	public int MyPointCount(String user_id) {
+		return dao.MyPointCount(user_id);
+	}
+	
+	@Override
+	public List<Board> selectUserPoint(String user_id, int currentPage){
+		return dao.selectUserPoint(user_id, currentPage);
+	}
+	
+	@Override
 	public List<Board> getInquByuser(String user_id) {
 		return dao.selectMyinqu(user_id);
 	}

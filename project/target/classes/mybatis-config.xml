@@ -7,6 +7,7 @@
 		<typeAlias alias="Board" type="com.acorn.project.board.Board"/>
 		<typeAlias alias="RouteBoard" type="com.acorn.project.board.RouteBoard"/>
 		<typeAlias alias="Comment" type="com.acorn.project.comment.Comment"/>
+		<typeAlias alias="CommentMy" type="com.acorn.project.comment.Comment_my"/>
 		<typeAlias alias="Like" type="com.acorn.project.like.Like"/>
 		<typeAlias alias="Archive" type="com.acorn.project.archive.Archive"/>
 		<typeAlias alias="Report" type="com.acorn.project.report.Report"/>

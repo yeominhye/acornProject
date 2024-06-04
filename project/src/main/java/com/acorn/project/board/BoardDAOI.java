@@ -31,6 +31,24 @@ public interface BoardDAOI {
 	//userId로 스크랩조회
 	List<Board> selectUserArch(String user_id, int cuurentPage);
 	
+	// 좋아요 게시물 수
+	int MyLikeCount(String user_id);
+	
+	//userId로 스크랩조회
+	List<Board> selectUserLike(String user_id, int cuurentPage);
+	
+	// 댓글 게시물 수
+	int MyComCount(String user_id);
+	
+	//userId로 댓글 조회
+	List<Board> selectUserCom(String user_id, int cuurentPage);
+	
+	// 구매한 글 게시물 수
+	int MyPointCount(String user_id);
+	
+	//userId로 구매한 글 조회
+	List<Board> selectUserPoint(String user_id, int cuurentPage);
+	
 	// user_id+문의 조회
 	List<Board> selectMyinqu(String user_id);
 	

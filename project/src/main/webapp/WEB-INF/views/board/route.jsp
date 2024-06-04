@@ -12,10 +12,12 @@
     
     <!-- style -->
     <style>
-		.container {
-            width: 1100px;
-            margin: 0 auto;
-            padding-bottom: 150px;
+      .container {
+         width: 1100px;
+         height: 1440px;
+         margin: 75px auto;
+         display: flex;
+         justify-content: space-between;
         }
         
         /***********
@@ -23,16 +25,18 @@
         ***********/
         .side-container {
             position: relative;
-            /*height: 페이징 한 후 결정 */ 
+            width: 210px;
+            height: 1440px;
         }
         .side {
-            position: fixed;
-            width: 210px;
-            background-color: #f5f5f5;
-            padding: 20px;
-            border-radius: 10px;
-
-            box-shadow: 4px 4px 4px rgba(0,0,0,0.25);
+              position: -webkit-sticky; /* 사파리를 위한 코드 */
+         position: sticky;
+         top: 100px;
+         width: 210px;
+         background-color: #f5f5f5;
+         padding: 20px;
+         border-radius: 10px;
+         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
         }
         .side-name {
             font-size: 18px;
@@ -104,9 +108,7 @@
         ***********/
         .section {
             position: relative;
-            width: 850px;
-            margin-left: 250px;
-            margin-top: 75px;
+            width: 850px
         }
         .section-name {
             font-size: 24px;
@@ -124,10 +126,10 @@
             margin-bottom: 15px;
             
             border-collapse: separate;
-			border-spacing: 0 20px;
+         border-spacing: 0 20px;
         }
         .route-content {
-        	margin-bottom: 15px;
+           margin-bottom: 15px;
         }
         .route-img {
             /* 가운데정렬 */
@@ -217,58 +219,58 @@
         }
         
         .search_form {
-			width: 600px;
-			/* background-color: aqua; */
-			text-align: center;
-			padding: 20px;
-			margin: 0 auto;
-		}
-		.section-name hr {
-    		height: 2px;
+         width: 600px;
+         /* background-color: aqua; */
+         text-align: center;
+         padding: 20px;
+         margin: 0 auto;
+      }
+      .section-name hr {
+          height: 2px;
             background: black;
         }
-		
-		.search-form-inner {
-			display: flex;
-		}
-		
-		.search_form select {
-			width: 100px;
-			height: 30px;
-			border-radius: 5px;
-			margin-right: 5px;
-		}
-		
-		.search_form input {
-			width: 400px;
-			height: 30px;
-			text-indent: 10px;
-			outline: none;
-			border-radius: 5px;
-			margin-right: 5px;
-			border: 1px solid black;
-		}
-		
-		.search_form button {
-			width: 50px;
-			height: 30px;
-			border-radius: 5px;
-			border: 1px solid black;
-		}
-		.write-link {
-			float: right;
-			border: 1.3px solid rgb(97, 97, 97);
-			border-radius: 5px;
-			/* background-color: rgb(206, 206, 206); */
-			padding: 3px 8px 3px 8px;
-			margin-bottom: 10px;
-			color: black;
-			font-size: 10pt;
-			margin-right: 10px;
-		}
-		.route-tr {
-			margin-bottom: 15px;
-		}
+      
+      .search-form-inner {
+         display: flex;
+      }
+      
+      .search_form select {
+         width: 100px;
+         height: 30px;
+         border-radius: 5px;
+         margin-right: 5px;
+      }
+      
+      .search_form input {
+         width: 400px;
+         height: 30px;
+         text-indent: 10px;
+         outline: none;
+         border-radius: 5px;
+         margin-right: 5px;
+         border: 1px solid black;
+      }
+      
+      .search_form button {
+         width: 50px;
+         height: 30px;
+         border-radius: 5px;
+         border: 1px solid black;
+      }
+      .write-link {
+         float: right;
+         border: 1.3px solid rgb(97, 97, 97);
+         border-radius: 5px;
+         /* background-color: rgb(206, 206, 206); */
+         padding: 3px 8px 3px 8px;
+         margin-bottom: 10px;
+         color: black;
+         font-size: 10pt;
+         margin-right: 10px;
+      }
+      .route-tr {
+         margin-bottom: 15px;
+      }
     </style>
 </head>
 <body>
@@ -279,7 +281,7 @@
         
         <!-- container -->
         <div class="container">
-        	<!-- 사이드 네비 -->
+           <!-- 사이드 네비 -->
             <div class="side-container">
                 <div class="side">
 
@@ -334,58 +336,58 @@
                 </div>
             </div>
         
-        	<!-- 루트 목록 -->
-	        <div class="section">
-		        <div class="section-name">
-		            경로 게시판
-		            <hr>
-		        </div>
-				<a class="write-link" href="/project/board/route/create">글쓰기</a>
-				<table class="route-table">
-				    <tr>
+           <!-- 루트 목록 -->
+           <div class="section">
+              <div class="section-name">
+                  경로 게시판
+                  <hr>
+              </div>
+            <a class="write-link" href="/project/board/route/create">글쓰기</a>
+            <table class="route-table">
+                <tr>
                         <td class="route-info">
-                        	<div class="route-img">
-                        		<img src="https://via.placeholder.com/330x220.jpg" alt="">
-                        	</div>
-                        	<div>
-                        		<div class="info-01">
-	                                <div class="local-icon">경기</div>
-	                                <div class="route-name">
-	                                    <a href="${pageContext.request.contextPath}/board/route/b0022">가평 유럽마을 당일치기 일정</a> 
-	                                </div>
-	                            </div>
-	                            <div class="info-02">
-	                                <div class="route-tag">
-	                                    <span>#당일치기</span>
-	                                    <span>#나홀로</span>
-	                                </div>
-	                                <div class="route-content">
-	                                    2박 3일 가족여행을 떠나보며 적은 소개글입니다.
-	                                    가평 유럽여행의 사진 명소들을 소개합니다.
-	                                </div>
-	                            </div>
-	                            <div class="info-03">
-	                                <div class="likes-info">
-	                                    <div class="like-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-	                                    <span class="like-int">3,180</span>
-	                                    <div class="views-icon">views</div>
-	                                    <span class="views-int">6,200</span>
-	                                </div>
-	                                <div class="user-info">
-	                                    <div class="user-name">뽀대왕자님</div>
-	                                    <div class="check-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-	                                </div>
-	                            </div>
-                        	</div>
+                           <div class="route-img">
+                              <img src="https://via.placeholder.com/330x220.jpg" alt="">
+                           </div>
+                           <div>
+                              <div class="info-01">
+                                   <div class="local-icon">경기</div>
+                                   <div class="route-name">
+                                       <a href="${pageContext.request.contextPath}/board/route/b0022">가평 유럽마을 당일치기 일정</a> 
+                                   </div>
+                               </div>
+                               <div class="info-02">
+                                   <div class="route-tag">
+                                       <span>#당일치기</span>
+                                       <span>#나홀로</span>
+                                   </div>
+                                   <div class="route-content">
+                                       2박 3일 가족여행을 떠나보며 적은 소개글입니다.
+                                       가평 유럽여행의 사진 명소들을 소개합니다.
+                                   </div>
+                               </div>
+                               <div class="info-03">
+                                   <div class="likes-info">
+                                       <div class="like-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
+                                       <span class="like-int">3,180</span>
+                                       <div class="views-icon">views</div>
+                                       <span class="views-int">6,200</span>
+                                   </div>
+                                   <div class="user-info">
+                                       <div class="user-name">뽀대왕자님</div>
+                                       <div class="check-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
+                                   </div>
+                               </div>
+                           </div>
                         </td>
-				    </tr>
-				    <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
-				    
-				    <tr>
+                </tr>
+                <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
+                
+                <tr>
                         <td class="route-info">
-                        	<div class="route-img">
-                        		<img src="https://via.placeholder.com/330x220.jpg" alt="">
-                        	</div>
+                           <div class="route-img">
+                              <img src="https://via.placeholder.com/330x220.jpg" alt="">
+                           </div>
                             <div class="info-01">
                                 <div class="local-icon">경기</div>
                                 <div class="route-name">
@@ -415,14 +417,14 @@
                                 </div>
                             </div>
                         </td>
-				    </tr>
-				    <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
-				    
-				    <tr>
+                </tr>
+                <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
+                
+                <tr>
                         <td class="route-info">
-                        	<div class="route-img">
-                        		<img src="https://via.placeholder.com/330x220.jpg" alt="">
-                        	</div>
+                           <div class="route-img">
+                              <img src="https://via.placeholder.com/330x220.jpg" alt="">
+                           </div>
                             <div class="info-01">
                                 <div class="local-icon">경기</div>
                                 <div class="route-name">
@@ -452,28 +454,28 @@
                                 </div>
                             </div>
                         </td>
-				    </tr>
-				    <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
-				</table>
-	            <div class="search_form">
-					<form action="/project/board/free/search" method="post" class="search-form-inner" onsubmit="return searchCheck()">
-						<select name="condition">
-							<option value="">선택하시오</option>
-							<option value="writer">작성자</option>
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-						</select>
-						<input type="text" name="keyword" class="input-box">
-						<div><button>검색</button></div>
-					</form>
-	            </div>
-	        </div>
-	    </div>
-	    
-	    <!-- footer -->
-		<%@ include file="../footer-sub.jsp" %>
-	</div>
-	
+                </tr>
+                <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
+            </table>
+               <div class="search_form">
+               <form action="/project/board/free/search" method="post" class="search-form-inner" onsubmit="return searchCheck()">
+                  <select name="condition">
+                     <option value="">선택하시오</option>
+                     <option value="writer">작성자</option>
+                     <option value="title">제목</option>
+                     <option value="content">내용</option>
+                  </select>
+                  <input type="text" name="keyword" class="input-box">
+                  <div><button>검색</button></div>
+               </form>
+               </div>
+           </div>
+       </div>
+       
+       <!-- footer -->
+      <%@ include file="../footer-sub.jsp" %>
+   </div>
+   
     <!-- script -->
     <script>
     var localBtns = document.querySelectorAll('.local');

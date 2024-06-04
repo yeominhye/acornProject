@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -11,139 +11,141 @@
 
 <!-- reset.css -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/reset.css">
+   href="${pageContext.request.contextPath}/resources/css/reset.css">
 
 
 <style>
 .container {
-	width: 1100px;
-	height: 1440px;
-	margin: 75px auto;
-	display: flex;
-	justify-content: space-between;
+   width: 1100px;
+   height: 1440px;
+   margin: 75px auto;
+   display: flex;
+   justify-content: space-between;
 }
 
 .side-container {
-	position: relative;
-	width: 210px;
-	margin-top: 90px;
+   position: relative;
+   width: 210px;
+   margin-top: 90px;
 }
 
 .side {
-	position: fixed;
-	width: 210px;
-	background-color: #f5f5f5;
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+   position: -webkit-sticky; /* 사파리를 위한 코드 */
+   position: sticky;
+   top: 100px;
+   width: 210px;
+   background-color: #f5f5f5;
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .side-name {
-	font-size: 18px;
-	font-weight: bold;
-	text-decoration: underline;
+   font-size: 18px;
+   font-weight: bold;
+   text-decoration: underline;
 }
 
 .local-box {
-	margin: 10px auto;
-	width: 98%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+   margin: 10px auto;
+   width: 98%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
 }
 
 .area {
-	display: flex;
-	justify-content: center;
-	align-self: center;
-	width: 40px;
-	height: 20px;
-	font-size: 14px;
-	font-weight: 600;
-	color: #999999;
-	margin-bottom: 5px;
-	border-radius: 50px;
-	cursor: pointer;
+   display: flex;
+   justify-content: center;
+   align-self: center;
+   width: 40px;
+   height: 20px;
+   font-size: 14px;
+   font-weight: 600;
+   color: #999999;
+   margin-bottom: 5px;
+   border-radius: 50px;
+   cursor: pointer;
 }
 
 .filter-reset-btn {
-	display: flex;
-	justify-content: center;
-	align-self: center;
-	margin: 15px auto;
-	width: 125px;
-	height: 25px;
-	border-radius: 25px;
-	background-color: #EAEAEA;
-	color: #5c5c5c;
-	font-weight: bolder;
-	cursor: pointer;
+   display: flex;
+   justify-content: center;
+   align-self: center;
+   margin: 15px auto;
+   width: 125px;
+   height: 25px;
+   border-radius: 25px;
+   background-color: #EAEAEA;
+   color: #5c5c5c;
+   font-weight: bolder;
+   cursor: pointer;
 }
 
 .clickEvent {
-	color: white;
-	background-color: #E78181;
+   color: white;
+   background-color: #E78181;
 }
 .filter-btn-box {
-	margin-top: 25px;
+   margin-top: 25px;
 }
 .filter-btn-box div:hover {
-	color: white;
-	background-color: #E78181;
+   color: white;
+   background-color: #E78181;
 }
 
 .section {
-	position: relative;
-	width: 850px;
+   position: relative;
+   width: 850px;
 }
 
 .section-name {
-	font-size: 24px;
-	font-weight: bold;
+   font-size: 24px;
+   font-weight: bold;
 }
 
 .section-name hr {
-	margin: 10px 0 50px 0;
-	color: black;
+   margin: 10px 0 50px 0;
+   color: black;
 }
 
 .content {
-	width: 250px;
-	height: 315px;
-	margin-bottom: 15px;
+   width: 250px;
+   height: 315px;
+   margin-bottom: 15px;
 }
 
 .content-img, .content-img img {
-	width: 250px;
-	height: 250px;
+   width: 250px;
+   height: 250px;
 }
 
 .content-info {
-	width: 95%;
-	height: 65px;
-	margin: 0 auto;
-	font-size: 12px;
-	overflow: hidden;
+   width: 95%;
+   height: 65px;
+   margin: 0 auto;
+   font-size: 12px;
+   overflow: hidden;
 }
 
 .info-name {
-	font-size: 16px;
-	font-weight: bolder;
-	margin: 5px 0;
+   font-size: 16px;
+   font-weight: bolder;
+   margin: 5px 0;
 }
 
 .info-local {
-	color: #747474;
+   color: #747474;
 }
 
 .content-box {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
 }
 
 .hidden {
-	display: none; /* 숨김 처리할 스타일 */
+   display: none; /* 숨김 처리할 스타일 */
 }
 </style>
 </head>
@@ -151,7 +153,7 @@
     <div class="wrap">
         <!-- nav 들어갈 부분 -->
         
-   		<%@ include file="../nav.jsp" %>
+         <%@ include file="../nav.jsp" %>
 
         <div class="container">
             <div class="side-container">
@@ -178,9 +180,9 @@
                     </div>
                     
                     <div class="filter-btn-box sort-options">
-	                    <div class="filter-reset-btn arrange-option" data-arrange="S">거리순</div>
-	                    <div class="filter-reset-btn arrange-option" data-arrange="Q">최신순</div>
-	                </div>
+                       <div class="filter-reset-btn arrange-option" data-arrange="S">거리순</div>
+                       <div class="filter-reset-btn arrange-option" data-arrange="Q">최신순</div>
+                   </div>
                 </div>
             </div>
             <div class="section">
@@ -217,7 +219,7 @@
             </div>
         </div>
         
-   		<%@ include file="../footer-sub.jsp" %>
+         <%@ include file="../footer-sub.jsp" %>
     </div>
 
     <!-- 위치 정보 및 페이지 이동 스크립트 -->
@@ -282,7 +284,7 @@ var resetBtn = document.querySelector('.filter-reset-btn');
 
 var previousAreaBtn = null;
 var previousMonthBtn = null;
-    	
+       
 function areaBtnEvent() {
     this.classList.add('clickEvent');
     
@@ -293,7 +295,7 @@ function areaBtnEvent() {
 
     previousAreaBtn = this;
 }
-    	
+       
 function monthBtnEvent() {
     this.classList.add('clickEvent');
 
@@ -307,7 +309,7 @@ function monthBtnEvent() {
 }
 
 function resetBtnEvent() {
-	areaBtns.forEach(function(btn) {
+   areaBtns.forEach(function(btn) {
         btn.classList.remove('clickEvent');
     });
 

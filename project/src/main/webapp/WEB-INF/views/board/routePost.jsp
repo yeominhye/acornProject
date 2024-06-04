@@ -1,189 +1,262 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <%@ page import="com.acorn.project.user.User"%>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost.css" >
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" type="text/css"
+   href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet" type="text/css"
+   href="${pageContext.request.contextPath}/resources/css/routePost.css">
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!-- icon key -->
-    <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
+<!-- icon key -->
+<script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-       
-    <div class="wrap">
-     <!-- nav -->
-       <%@ include file="../nav.jsp" %>
-        
-        <!-- header -->
 
-        <div class="container">
-           <div class="btn-container"></div>
-           
 
-            <div class="title-container">
-                <!-- 이미지 영역 -->
-                <div class="image-box">
-                    <img src="https://via.placeholder.com/300x400.jpg" alt="">
-                </div>
-                <!-- 타이틀 영역 -->
-                <div class="title-box">
-                    <div class="icon-region">
-                        <p><c:choose>
-                                <c:when test="${routeBoard.boardRegion == 0}">서울</c:when>
-                                <c:when test="${routeBoard.boardRegion == 1}">인천</c:when>
-                                <c:when test="${routeBoard.boardRegion == 2}">대전</c:when>
-                                <c:when test="${routeBoard.boardRegion == 3}">대구</c:when>
-                                <c:when test="${routeBoard.boardRegion == 4}">경기</c:when>
-                                <c:when test="${routeBoard.boardRegion == 5}">부산</c:when>
-                                <c:when test="${routeBoard.boardRegion == 6}">울산</c:when>
-                                <c:when test="${routeBoard.boardRegion == 7}">광주</c:when>
-                                <c:when test="${routeBoard.boardRegion == 8}">강원</c:when>
-                                <c:when test="${routeBoard.boardRegion == 9}">충북</c:when>
-                                <c:when test="${routeBoard.boardRegion == 10}">충남</c:when>
-                                <c:when test="${routeBoard.boardRegion == 11}">경북</c:when>
-                                <c:when test="${routeBoard.boardRegion == 12}">경남</c:when>
-                                <c:when test="${routeBoard.boardRegion == 13}">전북</c:when>
-                                <c:when test="${routeBoard.boardRegion == 14}">전남</c:when>
-                                <c:when test="${routeBoard.boardRegion == 15}">제주</c:when>
-                                <c:when test="${routeBoard.boardRegion == 16}">세종</c:when>
-                            </c:choose></p>
-                    </div>
-                    <div class="title-section">${routeBoard.boardTitle}</div>
-                    <div class="writer-section">
-                        <p>${routeBoard.nickname}</p><img src="check.png" alt="">
-                    </div>
-                    <div class="date-section">${routeBoard.boardTourdays}일</div>
-                    <div class="theme-section"><c:choose>
-                                <c:when test="${routeBoard.boardTheme == 1}">#나홀로 힐링</c:when>
-                                <c:when test="${routeBoard.boardTheme == 2}">#연인과 데이트</c:when>
-                                <c:when test="${routeBoard.boardTheme == 3}">#친구들과</c:when>
-                                <c:when test="${routeBoard.boardTheme == 4}">#가족 나들이</c:when>
-                                <c:when test="${routeBoard.boardTheme == 5}">#모임 단체 여행</c:when>
-                            </c:choose></div>
-                    <div class="mark-section">
-                        <div class="likes">
-                            <i class="fa-regular fa-heart"></i>
-                            <!-- 클릭 변경 아이콘 -->
-                            <!-- <i class="fa-solid fa-heart"></i> -->
-                            <span>123</span>
-                        </div>
-                        <div class="bookmark">
-                            <i class="fa-regular fa-bookmark"></i>
-                            <!-- 글 스크랩 시 변경 아이콘 -->
-                            <!-- <i class="fa-solid fa-bookmark"></i>  -->
-                        </div>
-                        <div class="views"><span>views</span><span> ${routeBoard.boardViews }</span></div>
-                    </div>
+   <%
+   User user = (User) session.getAttribute("user");
+   String userCode = (user != null) ? user.getUserCode() : null;
+   %>
 
-                    <div class="point-section">
-                        <!-- 아이콘 못 고르겠어.. -->
-                        <i class="fa-brands fa-product-hunt fa-2x"></i>
-                        <i class="fa-solid fa-coins fa-2x"></i>
-                        <i class="fa-solid fa-sack-dollar fa-2x"></i>
-                        <span class="price">${routeBoard.boardPoint }</span>
-                    </div>
-                </div>
+   <div class="wrap">
+      <!-- nav -->
+      <%@ include file="../nav.jsp"%>
 
+      <!-- header -->
+
+      <div class="container">
+         <div class="btn-container"></div>
+
+
+         <div class="title-container">
+            <!-- 이미지 영역 -->
+            <div class="image-box">
+               <img src="https://via.placeholder.com/300x400.jpg" alt="">
+            </div>
+            <!-- 타이틀 영역 -->
+            <div class="title-box">
+               <div class="icon-region">
+                  <p>
+                     <c:choose>
+                        <c:when test="${routeBoard.boardRegion == 0}">서울</c:when>
+                        <c:when test="${routeBoard.boardRegion == 1}">인천</c:when>
+                        <c:when test="${routeBoard.boardRegion == 2}">대전</c:when>
+                        <c:when test="${routeBoard.boardRegion == 3}">대구</c:when>
+                        <c:when test="${routeBoard.boardRegion == 4}">경기</c:when>
+                        <c:when test="${routeBoard.boardRegion == 5}">부산</c:when>
+                        <c:when test="${routeBoard.boardRegion == 6}">울산</c:when>
+                        <c:when test="${routeBoard.boardRegion == 7}">광주</c:when>
+                        <c:when test="${routeBoard.boardRegion == 8}">강원</c:when>
+                        <c:when test="${routeBoard.boardRegion == 9}">충북</c:when>
+                        <c:when test="${routeBoard.boardRegion == 10}">충남</c:when>
+                        <c:when test="${routeBoard.boardRegion == 11}">경북</c:when>
+                        <c:when test="${routeBoard.boardRegion == 12}">경남</c:when>
+                        <c:when test="${routeBoard.boardRegion == 13}">전북</c:when>
+                        <c:when test="${routeBoard.boardRegion == 14}">전남</c:when>
+                        <c:when test="${routeBoard.boardRegion == 15}">제주</c:when>
+                        <c:when test="${routeBoard.boardRegion == 16}">세종</c:when>
+                     </c:choose>
+                  </p>
+               </div>
+               <div class="title-section">${routeBoard.boardTitle}</div>
+               <div class="writer-section">
+                  <p>${routeBoard.nickname}</p>
+                  <img src="check.png" alt="">
+               </div>
+               <div class="date-section">${routeBoard.boardTourdays}일</div>
+               <div class="theme-section">
+                  <c:choose>
+                     <c:when test="${routeBoard.boardTheme == 1}">#나홀로 힐링</c:when>
+                     <c:when test="${routeBoard.boardTheme == 2}">#연인과 데이트</c:when>
+                     <c:when test="${routeBoard.boardTheme == 3}">#친구들과</c:when>
+                     <c:when test="${routeBoard.boardTheme == 4}">#가족 나들이</c:when>
+                     <c:when test="${routeBoard.boardTheme == 5}">#모임 단체 여행</c:when>
+                  </c:choose>
+               </div>
+               <div class="mark-section">
+                  <div class="likes">
+                     <i class="fa-regular fa-heart"></i>
+                     <span>123</span>
+                  </div>
+                  <div class="bookmark">
+                     <i class="fa-regular fa-bookmark"></i>
+                  </div>
+                  <div class="views">
+                     <span>views</span><span> ${routeBoard.boardViews }</span>
+                  </div>
+               </div>
+
+               <div class="point-section">
+                  <i class="fa-brands fa-product-hunt fa-2x"></i> 
+                  <span class="price">${routeBoard.boardPoint }</span>
+               </div>
             </div>
 
-            <hr class="divider first">
+         </div>
 
-            <!-- 경로 영역 -->
-            <div class="route-container">
-                 <div class="route-index">
-                     <c:forEach var="day" items="${routeBoard.days}" varStatus="loop">
-                       <div class="index-button">
-                           <h1>${loop.index+1}</h1>
-                       </div>
-                    </c:forEach>
-                </div>
+         <hr class="divider first">
 
-               <div class="route-box">
-   
-                       <div class="route-upperside">
-                           <div class="map" id="map" style="width: 60%; height:380px;"></div>
+         <!-- 경로 영역 -->
+         <div class="route-container">
+            <div class="route-index">
+               <c:forEach var="day" items="${routeBoard.days}" varStatus="loop">
+                  <div class="index-button">
+                     <h1>${loop.index+1}</h1>
+                  </div>
+               </c:forEach>
+            </div>
+
+            <div class="route-box">
+               <c:choose>
+                  
+                  <c:when test="${message eq 'X'}">
+                     <div class="route-container-blur not-purchased">
+
+
+                        <div class="route-upperside">
+                           <div class="map" id="map" style="width: 60%; height: 380px;"></div>
                            <div class="map-place-list-section">
-                               <h2>#상세코스</h2>
-                               <div class="place-list" id="place-list">
-                               
-                               </div>
+                              <h2>#상세코스</h2>
+                              <div class="place-list" id="place-list"></div>
                            </div>
-                       </div>
-   
-                       <div class="route-lowerside">
+                        </div>
+
+                        <div class="route-lowerside">
                            <h2># 코멘트</h2>
                            <div class="day-comment">
-                               <!-- test -->
-                               <p class="dayCommentP">
-                                   하루의 코멘트
-                               </p>
-   
+                              <!-- test -->
+                              <p class="dayCommentP">하루의 코멘트</p>
+
                            </div>
-                       </div>
-   
-                   </div>
+                        </div>
+
+                     </div>
+
+                     <div class="alert-box">
+
+                        <p class="alert-message">결제 후, 열람 가능합니다.</p>
+
+                        <form action="/project/point/buyBoard_process.do" method="post"
+                           id="buyBoardForm">
+                           <div class="buybtnWrap">
+                              <input type="hidden" name="userCode" value="<%=userCode%>">
+                              <input type="hidden" name="writerCode"
+                                 value="${routeBoard.userCode}"> <input type="hidden"
+                                 name="boardCode" value="${routeBoard.boardCode}"> <input
+                                 type="hidden" name="pointAmount"
+                                 value="${routeBoard.boardPoint}">
+                              <button type="button" id="buyBtn" class="button-for-register">구매하기</button>
+                           </div>
+                        </form>
+
+                     </div>
+
+                  </c:when>
+
+                  
+                  <c:when test="${message eq 'login'}">
+                     <div class="route-container-blur not-purchased">
+
+
+                        <div class="route-upperside">
+                           <div class="map" id="map" style="width: 60%; height: 380px;"></div>
+                           <div class="map-place-list-section">
+                              <h2>#상세코스</h2>
+                              <div class="place-list" id="place-list"></div>
+                           </div>
+                        </div>
+
+                        <div class="route-lowerside">
+                           <h2># 코멘트</h2>
+                           <div class="day-comment">
+                              <!-- test -->
+                              <p class="dayCommentP">하루의 코멘트</p>
+
+                           </div>
+                        </div>
+
+                     </div>
+
+                     <div class="alert-box">
+
+                        <p class="alert-message">로그인 진행 후, 열람 가능합니다.</p>
+
+                        <button type="button" class="button-for-register"
+                           onclick="location.href='/project/user/login.do'">로그인</button>
+
+                     </div>
+                  </c:when>
+
+                  <c:otherwise>
+                     <div class="route-container-blur purchased">
+                        <div class="route-upperside">
+                           <div class="map" id="map" style="width: 60%; height: 380px;"></div>
+                           <div class="map-place-list-section">
+                              <h2>#상세코스</h2>
+                              <div class="place-list" id="place-list"></div>
+                           </div>
+                        </div>
+
+                        <div class="route-lowerside">
+                           <h2># 코멘트</h2>
+                           <div class="day-comment">
+                              <!-- test -->
+                              <p class="dayCommentP">하루의 코멘트</p>
+
+                           </div>
+                        </div>
+
+                     </div>
+
+                  </c:otherwise>
+               </c:choose>
 
 
             </div>
+         </div>
 
-            <hr class="divider second">
+         <hr class="divider second">
 
-            <!-- 총평 영역 -->
-            <div class="review-container">
-                <h2># 총평</h2>
-                <div class="review-section">
-                    <p>
-                       ${routeBoard.boardContent}
-                    </p>
-                </div>
+         <!-- 총평 영역 -->
+         <div class="review-container">
+            <h2># 총평</h2>
+            <div class="review-section">
+               <p>${routeBoard.boardContent}</p>
             </div>
+         </div>
 
-            <!-- 댓글영역 -->
-            <div class="comment-container">
-               <%
-               User user = (User) session.getAttribute("user");
-               String userCode = (user != null) ? user.getUserCode() : null;
-            %>
-                 <input type="hidden" class="boardUsercode"   value="${routeBoard.userCode}"> 
-               <input type="hidden" class="userCode" value=<%=userCode%>> 
-               <input type="hidden" class="boardCode" value="${routeBoard.boardCode}">
-               <%@ include file="comment.jsp" %>
-            </div>
-            <!-- 댓글 영역 끝-->
-       
-       
-       <c:if test="${message eq 'X'}">
-          <div class="hiddenBox" style="background: red; width:250px; height:250px;">구매하시오.</div>
-          <form action="/project/point/buyBoard_process.do" method="post" id="buyBoardForm">
-                <div class="buybtnWrap">
-                    <input type="hidden" name="userCode" value="<%=userCode %>">
-                    <input type="hidden" name="writerCode" value="${routeBoard.userCode}">
-                    <input type="hidden" name="boardCode" value="${routeBoard.boardCode}">
-                    <input type="hidden" name="pointAmount" value="${routeBoard.boardPoint}">
-                    <button type="button" id="buyBtn">구매하기</button>
-                </div>
-            </form>
-       </c:if>
-       <c:if test="${message eq 'login'}">
-          <div class="hiddenBox" style="background: red; width:250px; height:250px;">로그인하시오.</div>
-          <button type="button" onclick="location.href='/project/user/login.do'">회원가입</button>
-       </c:if>
-      
+         <!-- 댓글영역 -->
+         <div class="comment-container">
 
-        </div>
-      <%@ include file="../footer-sub.jsp" %>
-    </div>
-   
-    
+            <input type="hidden" class="boardUsercode"
+               value="${routeBoard.userCode}"> <input type="hidden"
+               class="userCode" value=<%=userCode%>> <input type="hidden"
+               class="boardCode" value="${routeBoard.boardCode}">
+            <%@ include file="comment.jsp"%>
+         </div>
+         <!-- 댓글 영역 끝-->
+
+
+
+
+
+
+      </div>
+      <%@ include file="../footer-sub.jsp"%>
+   </div>
+
+
 </body>
 
 <script>
@@ -200,6 +273,8 @@ $(document).ready(function() {
             success: function(response) {
                 if (response > 0) {
                     alert('구매가 성공적으로 처리되었습니다.');
+                    
+                    location.reload(); 
                     
                 } else {
                    alert('포인트를 충전해주세요');
@@ -264,8 +339,9 @@ $(document).ready(function() {
     });
 </script>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b9e8d47e0abc983759ff27255e96150"></script>
-    <script>
+<script type="text/javascript"
+   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b9e8d47e0abc983759ff27255e96150"></script>
+<script>
     var markersData = {};
     var dayInfo = [];
     <c:forEach var="day" items="${routeBoard.days}" varStatus="loop">
@@ -300,7 +376,11 @@ $(document).ready(function() {
 
         var positions = markersData[dayIndex];
         var dayInfoElement = document.querySelector(".dayCommentP");
-        dayInfoElement.textContent = dayInfo[dayIndex];
+        var preElement = document.createElement("pre");
+        preElement.textContent = dayInfo[dayIndex];
+        
+        dayInfoElement.innerHTML = '';
+        dayInfoElement.appendChild(preElement);
 
         if (positions.length > 0) {
             map.setCenter(new kakao.maps.LatLng(positions[0].latlng.lat, positions[0].latlng.lng));

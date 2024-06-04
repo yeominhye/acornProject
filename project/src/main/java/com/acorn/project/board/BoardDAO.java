@@ -98,6 +98,69 @@ public class BoardDAO implements BoardDAOI {
 		return session.selectList(namespace+"selectMyarchive",info);
 	}
 	
+	// userId, 좋아요 수 
+	@Override
+	public int MyLikeCount(String user_id) {
+		return session.selectOne(namespace+"MyLikeCount",user_id);
+	}
+	
+	// userId로 좋아요 조회
+	@Override
+	public List<Board> selectUserLike(String user_id, int currentPage){
+		//현재페이지정보,  전체레코드수      
+	  	int  pageSize  =   10;		
+		 int offset = (currentPage - 1) * pageSize;  
+
+		Map<String, Object> info = new  HashMap();
+		info.put("userId", user_id);
+		info.put("offset",  offset);   
+		info.put("pageSize", pageSize);
+		
+		return session.selectList(namespace+"selectMylike",info);
+	}
+	
+	// userId, 댓글 수 
+	@Override
+	public int MyComCount(String user_id) {
+		return session.selectOne(namespace+"MyComCount",user_id);
+	}
+	
+	// userId로 댓글 조회
+	@Override
+	public List<Board> selectUserCom(String user_id, int currentPage){
+		//현재페이지정보,  전체레코드수      
+	  	int  pageSize  =   10;		
+		 int offset = (currentPage - 1) * pageSize;  
+
+		Map<String, Object> info = new  HashMap();
+		info.put("userId", user_id);
+		info.put("offset",  offset);   
+		info.put("pageSize", pageSize);
+		
+		return session.selectList(namespace+"selectMycom",info);
+	}
+	
+	// userId, 구매 게시글 수 
+	@Override
+	public int MyPointCount(String user_id) {
+		return session.selectOne(namespace+"MyPointCount",user_id);
+	}
+	
+	// userId로 구매 게시글 조회
+	@Override
+	public List<Board> selectUserPoint(String user_id, int currentPage){
+		//현재페이지정보,  전체레코드수      
+	  	int  pageSize  =   10;		
+		 int offset = (currentPage - 1) * pageSize;  
+
+		Map<String, Object> info = new  HashMap();
+		info.put("userId", user_id);
+		info.put("offset",  offset);   
+		info.put("pageSize", pageSize);
+		
+		return session.selectList(namespace+"selectMypoint",info);
+	}
+	
 	// user_id+문의 조회
 	@Override
 	public List<Board> selectMyinqu(String user_id) {

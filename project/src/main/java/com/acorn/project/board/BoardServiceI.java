@@ -22,6 +22,18 @@ public interface BoardServiceI {
 	
 	List<Board> selectUserArch(String user_id, int cuurentPage);
 	
+	int MyLikeCount(String user_id);
+	
+	List<Board> selectUserLike(String user_id, int cuurentPage);
+	
+	int MyComCount(String user_id);
+	
+	List<Board> selectUserCom(String user_id, int cuurentPage);
+	
+	int MyPointCount(String user_id);
+	
+	List<Board> selectUserPoint(String user_id, int cuurentPage);
+	
 	List<Board> getInquByuser(String user_id);
 
 	int regBoard(Board board);

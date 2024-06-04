@@ -41,21 +41,22 @@ String userCode = (user != null) ? user.getUserCode() : null;
       <%@ include file="../nav.jsp" %>
       <!-- 게시판 -->
       <div class="container">
-         <div class="side_menu">
-            <div class="side_menu_set">
-               <h3>
-                  <a href="/project/board/free?type=-1">자유게시판</a>
-               </h3>
-               <ul>
-                  <li><a href="/project/board/free?type=-1"> 전체글</a></li>
-                  <li><a href="/project/board/free?type=1"> 여행후기</a></li>
-                  <li><a href="/project/board/free?type=2"> 꿀팁공유</a></li>
-                  <li><a href="/project/board/free?type=3"> 질문있어요!</a></li>
-                  <li><a href="/project/board/free?type=4"> 수다방</a></li>
-                  <li><a href="/project/board/free?type=5"> 동행구해요!</a></li>
-               </ul>
-            </div>
+         <!-- 사이드 메뉴 -->
+           <div class="side_menu">
+             <div class="side_menu_set">
+                 <h3>자유게시판</h3>
+                 <ul>
+                     <li><a href="/project/board/free?type=-1">전체글</a></li>
+                     <li><a href="/project/board/free?type=1">여행후기</a></li>
+                     <li><a href="/project/board/free?type=2">꿀팁공유</a></li>
+                     <li><a href="/project/board/free?type=3">질문있어요!</a></li>
+                     <li><a href="/project/board/free?type=4">수다방</a></li>
+                     <li><a href="/project/board/free?type=5">동행구해요!</a></li>
+                 </ul>
+             </div>
          </div>
+         
+         
          <div class="content_wrap">
             <!-- 게시판이름 -->
             <div class="boardType">${freeboard.boardType}</div>
@@ -81,8 +82,8 @@ String userCode = (user != null) ? user.getUserCode() : null;
                <div class="content">${freeboard.boardContent}</div>
             </div>
             
-			<%@ include file="comment.jsp" %>
-			
+         <%@ include file="comment.jsp" %>
+         
          </div>
       </div>
    </div>

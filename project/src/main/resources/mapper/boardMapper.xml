@@ -109,6 +109,82 @@
 		ORDER BY b.boardWritedate DESC
 		LIMIT #{pageSize} OFFSET #{offset};
     </select>
+    
+    <select id="MyLikeCount" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		JOIN liketbl a
+		ON b.boardCode = a.boardCode
+		WHERE u.userId=#{userId}
+		AND b.boardType IN (0,1,2,3,4,5)
+    </select>
+
+   <select id="selectMylike" resultType="Board" parameterType="map">
+		SELECT 
+			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
+			b.boardViews,b.boardType
+		FROM boardtbl b 
+		JOIN usertbl u 
+		ON b.userCode=u.userCode
+		JOIN liketbl a
+		ON b.boardCode = a.boardCode
+		WHERE u.userId=#{userId}
+		ORDER BY b.boardWritedate DESC
+		LIMIT #{pageSize} OFFSET #{offset};
+    </select>
+    
+    <select id="MyComCount" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		JOIN commenttbl a
+		ON b.boardCode = a.boardCode
+		WHERE u.userId=#{userId}
+		AND b.boardType IN (0,1,2,3,4,5)
+    </select>
+
+   <select id="selectMycom" resultType="CommentMy" parameterType="map">
+		SELECT 
+			 a.commentContent, b.boardType, b.boardTitle,b.boardCode,
+			DATE_FORMAT(a.commentDate, '%Y-%m-%d') AS commentDate
+		FROM boardtbl b 
+		JOIN usertbl u 
+		ON b.userCode=u.userCode
+		JOIN commenttbl a
+		ON b.boardCode = a.boardCode
+		WHERE u.userId=#{userId}
+		ORDER BY b.boardWritedate DESC
+		LIMIT #{pageSize} OFFSET #{offset};
+    </select>
+    
+   <select id="MyPointCount" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		JOIN pointtbl p
+		ON b.boardCode = p.boardCode
+		WHERE u.userId=#{userId}
+		AND b.boardType IN (0,1,2,3,4,5)
+		And p.pointStatus=3
+    </select>
+
+   <select id="selectMypoint" resultType="Board" parameterType="map">
+		SELECT 
+			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
+			b.boardViews,b.boardType
+		FROM boardtbl b 
+		JOIN usertbl u 
+		ON b.userCode=u.userCode
+		JOIN pointtbl p
+		ON b.boardCode = p.boardCode
+		WHERE u.userId=#{userId}
+		And p.pointStatus=3
+		ORDER BY b.boardWritedate DESC
+		LIMIT #{pageSize} OFFSET #{offset};
+    </select>
    
    <select id="selectMyinqu" resultType="Board" parameterType="String">
 		SELECT 
