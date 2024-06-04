@@ -1,5 +1,4 @@
-        <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -8,51 +7,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>관광</title>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/reset.css">
+    href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/tourlist.css">
+    href="${pageContext.request.contextPath}/resources/css/tourlist.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
-.filter-keep-btn:hover {
-	color: white;
-	background-color: #E78181;
+.filter-keep-btn:hover,
+.filter-keep-btn.hovered {
+    color: white;
+    background-color: #E78181;
 }
 .filter-keep-btn.clicked {
-	color: white;
-	background-color: #E78181;
+    color: white;
+    background-color: #E78181;
 }
-
-
 </style>
 </head>
 <body>
-	<div class="wrap">
-		<%@ include file="../nav.jsp"%>
-		<div class="container">
-			<div class="side-container">
-				<div class="side">
-					<div class="side-name">지역</div>
-					<div class="local-box">
-						<div class="area filter-keep-btn" data-area="1">서울</div>
-						<div class="area filter-keep-btn" data-area="2">인천</div>
-						<div class="area filter-keep-btn" data-area="3">대전</div>
-						<div class="area filter-keep-btn" data-area="4">대구</div>
-						<div class="area filter-keep-btn" data-area="31">경기</div>
-						<div class="area filter-keep-btn" data-area="6">부산</div>
-						<div class="area filter-keep-btn" data-area="7">울산</div>
-						<div class="area filter-keep-btn" data-area="5">광주</div>
-						<div class="area filter-keep-btn" data-area="32">강원</div>
-						<div class="area filter-keep-btn" data-area="33">충북</div>
-						<div class="area filter-keep-btn" data-area="34">충남</div>
-						<div class="area filter-keep-btn" data-area="35">경북</div>
-						<div class="area filter-keep-btn" data-area="36">경남</div>
-						<div class="area filter-keep-btn" data-area="37">전북</div>
-						<div class="area filter-keep-btn" data-area="38">전남</div>
-						<div class="area filter-keep-btn" data-area="39">제주</div>
-						<div class="area filter-keep-btn" data-area="8">세종</div>
-					</div>
+    <div class="wrap">
+        <%@ include file="../nav.jsp"%>
+        <div class="container">
+            <div class="side-container">
+                <div class="side">
+                    <div class="side-name">지역</div>
+                    <div class="local-box">
+                        <div class="area filter-keep-btn" data-area="1">서울</div>
+                        <div class="area filter-keep-btn" data-area="2">인천</div>
+                        <div class="area filter-keep-btn" data-area="3">대전</div>
+                        <div class="area filter-keep-btn" data-area="4">대구</div>
+                        <div class="area filter-keep-btn" data-area="31">경기</div>
+                        <div class="area filter-keep-btn" data-area="6">부산</div>
+                        <div class="area filter-keep-btn" data-area="7">울산</div>
+                        <div class="area filter-keep-btn" data-area="5">광주</div>
+                        <div class="area filter-keep-btn" data-area="32">강원</div>
+                        <div class="area filter-keep-btn" data-area="33">충북</div>
+                        <div class="area filter-keep-btn" data-area="34">충남</div>
+                        <div class="area filter-keep-btn" data-area="35">경북</div>
+                        <div class="area filter-keep-btn" data-area="36">경남</div>
+                        <div class="area filter-keep-btn" data-area="37">전북</div>
+                        <div class="area filter-keep-btn" data-area="38">전남</div>
+                        <div class="area filter-keep-btn" data-area="39">제주</div>
+                        <div class="area filter-keep-btn" data-area="8">세종</div>
+                    </div>
 
-					<div class="filter-btn-box sort-options">
+                    <div class="filter-btn-box sort-options">
                        <div class="filter-reset-btn filter-keep-btn arrange-option" data-arrange="S">거리순</div>
                        <div class="filter-reset-btn filter-keep-btn arrange-option" data-arrange="Q">최신순</div>
                    </div>
@@ -64,62 +62,69 @@
                     <hr>
                 </div>     
 
-				<div class="content-box">
-					<c:forEach var="item" items="${tourList}">
-						<div class="content" data-contentid="${item.contentid}"
-							data-contenttypeid="${item.contenttypeid}">
-							<div class="content-img">
-								<img src="${item.firstimage}">
-							</div>
-							<div class="content-info">
-								<div class="info-name">${item.title}</div>
-								<div class="info-local">${item.addr1}</div>
-								<div class="info-dist">${item.dist}</div>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
+                <div class="content-box">
+                    <c:forEach var="item" items="${tourList}">
+                        <div class="content" data-contentid="${item.contentid}"
+                            data-contenttypeid="${item.contenttypeid}">
+                            <div class="content-img">
+                                <img src="${item.firstimage}">
+                            </div>
+                            <div class="content-info">
+                                <div class="info-name">${item.title}</div>
+                                <div class="info-local">${item.addr1}</div>
+                                <div class="info-dist">${item.dist}</div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
 
-				<div class="more-btn-box">
-					<c:if test="${currentPage > 1}">
-						<a
-							href="${pageContext.request.contextPath}/tourlist?pageNo=${currentPage - 1}&area=${selectedArea}&arrange=${selectedArrange}&mapX=${mapX}&mapY=${mapY}"
-							class="prev">이전</a>
-					</c:if>
-					<c:if test="${currentPage < totalPages}">
-						<a
-							href="${pageContext.request.contextPath}/tourlist?pageNo=${currentPage + 1}&area=${selectedArea}&arrange=${selectedArrange}&mapX=${mapX}&mapY=${mapY}"
-							class="next">다음</a>
-					</c:if>
-				</div>
+                <div class="more-btn-box">
+                    <c:if test="${currentPage > 1}">
+                        <a
+                            href="${pageContext.request.contextPath}/tourlist?pageNo=${currentPage - 1}&area=${selectedArea}&arrange=${selectedArrange}&mapX=${mapX}&mapY=${mapY}"
+                            class="prev">이전</a>
+                    </c:if>
+                    <c:if test="${currentPage < totalPages}">
+                        <a
+                            href="${pageContext.request.contextPath}/tourlist?pageNo=${currentPage + 1}&area=${selectedArea}&arrange=${selectedArrange}&mapX=${mapX}&mapY=${mapY}"
+                            class="next">다음</a>
+                    </c:if>
+                </div>
 
-				<!-- 페이지 번호 표시 -->
-				<div class="page-number-box">
-					<c:forEach var="i" begin="1" end="${totalPages}">
-						<c:choose>
-							<c:when test="${i == currentPage}">
-								<span class="current-page">${i}</span>
-							</c:when>
-							<c:otherwise>
-								<a
-									href="${pageContext.request.contextPath}/tourlist?pageNo=${i}&area=${selectedArea}&arrange=${selectedArrange}&mapX=${mapX}&mapY=${mapY}"
-									class="page-number">${i}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</div>
+                <!-- 페이지 번호 표시 -->
+                <div class="page-number-box">
+                    <c:forEach var="i" begin="1" end="${totalPages}">
+                        <c:choose>
+                            <c:when test="${i == currentPage}">
+                                <span class="current-page">${i}</span>
+                            </c:when>
+                            <c:otherwise>
+                                <a
+                                    href="${pageContext.request.contextPath}/tourlist?pageNo=${i}&area=${selectedArea}&arrange=${selectedArrange}&mapX=${mapX}&mapY=${mapY}"
+                                    class="page-number">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </div>
 
-			</div>
-		</div>
-	</div>
-	
+            </div>
+        </div>
+    </div>
+    
 <script>
 $(document).ready(function() {
     // 페이지 로드 시 저장된 클릭 상태 복구
     var clickedButton = localStorage.getItem("clickedButton");
+    var clickedArea = localStorage.getItem("clickedArea");
+    
     if (clickedButton) {
         $(".filter-keep-btn").removeClass("clicked");
         $(".filter-keep-btn[data-arrange='" + clickedButton + "']").addClass("clicked");
+    }
+
+    if (clickedArea) {
+        $(".filter-keep-btn").removeClass("clicked");
+        $(".filter-keep-btn[data-area='" + clickedArea + "']").addClass("clicked");
     }
 
     // 거리 정보 표시 및 거리순 정렬 유지
@@ -171,6 +176,7 @@ $(document).ready(function() {
         $(".arrange-option").removeClass("clicked");
         $(".filter-keep-btn").removeClass("clicked");
         localStorage.removeItem("clickedButton"); // 클릭 상태 초기화
+        localStorage.removeItem("clickedArea"); // 클릭 상태 초기화
         window.location.href = "${pageContext.request.contextPath}/tourlist";
     });
 
@@ -184,7 +190,17 @@ $(document).ready(function() {
         
         // localStorage에 클릭한 버튼 저장
         var clickedButton = $(this).data("arrange");
-        localStorage.setItem("clickedButton", clickedButton);
+        var clickedArea = $(this).data("area");
+        
+        if (clickedButton) {
+            localStorage.setItem("clickedButton", clickedButton);
+            localStorage.removeItem("clickedArea");
+        }
+        
+        if (clickedArea) {
+            localStorage.setItem("clickedArea", clickedArea);
+            localStorage.removeItem("clickedButton");
+        }
     });
 
     // filter-reset-btn에 대한 호버 이벤트 핸들러
