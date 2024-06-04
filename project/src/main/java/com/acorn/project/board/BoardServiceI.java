@@ -22,6 +22,18 @@ public interface BoardServiceI {
 	
 	List<Board> selectUserArch(String user_id, int cuurentPage);
 	
+	int MyLikeCount(String user_id);
+	
+	List<Board> selectUserLike(String user_id, int cuurentPage);
+	
+	int MyComCount(String user_id);
+	
+	List<Board> selectUserCom(String user_id, int cuurentPage);
+	
+	int MyPointCount(String user_id);
+	
+	List<Board> selectUserPoint(String user_id, int cuurentPage);
+	
 	List<Board> getInquByuser(String user_id);
 
 	int regBoard(Board board);
@@ -39,6 +51,12 @@ public interface BoardServiceI {
 	int insertRoute(RouteBoard routeBoard) throws Exception;
 
 	List<String> selectMyBuyBoard(String userCode);
+
+	List<RouteBoard> getRouteBoard(int boardType, int currentPage);
+
+	List<RouteBoard> getRouteList(SearchCondition search, int currentPage);
+
+	int getRouteListCount(SearchCondition search);
 
 
 

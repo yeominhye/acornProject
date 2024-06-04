@@ -21,6 +21,11 @@ public class BoardService implements BoardServiceI {
 	public List<Board> getBoardBytype(int boardType, int currentPage){		
 		return dao.selectAll(  boardType, currentPage  );
 	}
+	
+	@Override
+	public List<RouteBoard> getRouteBoard(int boardType, int currentPage){		
+		return dao.selectRouteAll(  boardType, currentPage  );
+	}
 
 	@Override
 	public Board getBoardBycode(String board_code) {
@@ -58,6 +63,36 @@ public class BoardService implements BoardServiceI {
 	}
 	
 	@Override
+	public int MyLikeCount(String user_id) {
+		return dao.MyLikeCount(user_id);
+	}
+	
+	@Override
+	public List<Board> selectUserLike(String user_id, int currentPage){
+		return dao.selectUserLike(user_id, currentPage);
+	}
+	
+	@Override
+	public int MyComCount(String user_id) {
+		return dao.MyComCount(user_id);
+	}
+	
+	@Override
+	public List<Board> selectUserCom(String user_id, int currentPage){
+		return dao.selectUserCom(user_id, currentPage);
+	}
+	
+	@Override
+	public int MyPointCount(String user_id) {
+		return dao.MyPointCount(user_id);
+	}
+	
+	@Override
+	public List<Board> selectUserPoint(String user_id, int currentPage){
+		return dao.selectUserPoint(user_id, currentPage);
+	}
+	
+	@Override
 	public List<Board> getInquByuser(String user_id) {
 		return dao.selectMyinqu(user_id);
 	}
@@ -84,8 +119,18 @@ public class BoardService implements BoardServiceI {
 	}
 	
 	@Override
+	public List<RouteBoard> getRouteList(SearchCondition search, int currentPage) {
+		return dao.getRouteList(search, currentPage);
+	}
+	
+	@Override
 	public int getListCount(SearchCondition search) {
 		return dao.getListCount(search);
+	}
+	
+	@Override
+	public int getRouteListCount(SearchCondition search) {
+		return dao.getRouteListCount(search);
 	}
 
 

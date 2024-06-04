@@ -20,7 +20,9 @@ import com.acorn.project.event.*;
 
 @Component
 public class HomeService {
+
 	private static final String SERVICE_KEY = "Mtsr7%2Fz9fZNbpd18JZN6Hn5ajAgA5Xe%2BfTLdZsdjvva%2B%2BSCjy6dsRzvwgaGh0YanVpHvzedGbifxr%2BUIkJcOnA%3D%3D";
+
 
 	private String buildUrl(String baseUrl, String... queryParams) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(baseUrl);

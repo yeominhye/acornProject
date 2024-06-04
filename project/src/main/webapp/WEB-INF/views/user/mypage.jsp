@@ -180,7 +180,29 @@ hr {
    border-bottom: 1px solid #a7a7a7;
    
 }
+.list-no{	
+	width: 10%;
+}
+.head-title {
+ 	max-width: 100px;
+   overflow: hidden; 
+   text-overflow: ellipsis; 
+   white-space: nowrap;
+   text-align: left !important;
+}
 
+
+.list-title{
+	max-width: 200px;
+   padding-left: 5px !important;
+   overflow: hidden;
+   text-overflow: ellipsis; 
+   white-space: nowrap;
+   text-align: left !important;
+}
+.list-date{
+	width: 25%;
+}
 .list-head td {
    padding: 10px 20px;
 }
@@ -213,6 +235,8 @@ td{
 .head-title, .post-title {
    padding-left: 5px !important;
 }
+
+
 </style>
 
 </head>
@@ -256,55 +280,111 @@ td{
       </div>
 
       <!-- my_list -->
-      <div class="my-list">
-           <div class="my-list-ul">
-            <ul>
-               <li><a href="#">작성한 글</a></li>
-               <li><a href="#">스크랩</a></li>
-               <li><a href="#">추천한 글</a></li>
-               <li><a href="#">구매한 글</a></li>
-               <li><a href="#">내 댓글</a></li>
-            </ul>
-        </div>
+   <div class="my-list">
+    <div class="my-list-ul">
+        <ul>
+            <li><a href="/project/user/mypage.do">작성한 글</a></li>
+            <li><a href="/project/user/mypage.do/arch">스크랩</a></li>
+            <li><a href="/project/user/mypage.do/like">추천한 글</a></li>
+            <li><a href="/project/user/mypage.do/point">구매한 글</a></li>
+            <li><a href="/project/user/mypage.do/com" onclick="">내 댓글</a></li>
+        </ul>
+    </div>
 
-      <table class="list-tbl">
-               <tr class="list-head">
-                  <td>No.</td>
-                  <td class="head-title">제목</td>
-                  <td>카테고리</td>
-                  <td>작성일</td>
-               </tr>
-
-               <c:forEach var="board" items="${list}" varStatus="status">
-                  <tr class="list-data">
-                     <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize))+1}</td>
-                     <td class="post-title">
-                     	<c:if test="${board.boardType != 0}">
-						    <a title="<c:out value='${board.boardTitle}' />" href="/project/board/free/${board.boardCode}"> 
-						        <c:out value="${board.boardTitle}" />
-						    </a>
-						</c:if>
-						
-						<c:if test="${board.boardType == 0}">
-						    <a title="<c:out value='${board.boardTitle}' />" href="/project/board/route/${board.boardCode}"> 
-						        <c:out value="${board.boardTitle}" />
-						    </a>
-						</c:if>
-                     <td><c:choose>
-                           <c:when test="${board.boardType == 0}">루트게시판</c:when>
-                           <c:when test="${board.boardType == 1}">여행후기</c:when>
-                           <c:when test="${board.boardType == 2}">꿀팁공유</c:when>
-                           <c:when test="${board.boardType == 3}">질문있어요</c:when>
-                           <c:when test="${board.boardType == 4}">수방</c:when>
-                           <c:when test="${board.boardType == 5}">동행 구해요!</c:when>
-                           <c:when test="${board.boardType == 6}">문의</c:when>
-                           <c:otherwise>알 수 없음</c:otherwise>
-                        </c:choose></td>
-                     <td><c:out value="${board.boardWritedate}" /></td>
-                  </tr>
-               </c:forEach>
-            </table>
-
+	<c:choose>
+	    <c:when test="${url.contains('com')}">
+	        <table class="list-tbl">
+	            <tr class="list-head">
+	                <td>No.</td>
+	                <td>내용</td>
+	                <td>글 제목</td>
+	                <td>작성일</td>
+	            </tr>
+	
+	            <c:forEach var="board" items="${list}" varStatus="status">
+	                <tr class="list-data">
+	                    <td  class="list-no">${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)) + 1}</td>
+	                    <td class="head-title" >
+	                        <c:if test="${board.boardType != 0}">
+	                            <a title="<c:out value='${board.commentContent}' />" href="/project/board/free/${board.boardCode}">
+	                                <c:out value="${board.commentContent}" />
+	                            </a>
+	                        </c:if>
+	
+	                        <c:if test="${board.boardType == 0}">
+	                            <a title="<c:out value='${board.commentContent}' />" href="/project/board/route/${board.boardCode}">
+	                                <c:out value="${board.commentContent}" />
+	                            </a>
+	                        </c:if>
+	                    </td>
+	
+	                    <td class="list-title">
+	                         <c:if test="${board.boardType != 0}">
+	                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/free/${board.boardCode}">
+	                                <c:out value="${board.boardTitle}" />
+	                            </a>
+	                        </c:if>
+	
+	                        <c:if test="${board.boardType == 0}">
+	                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/route/${board.boardCode}">
+	                                <c:out value="${board.boardTitle}" />
+	                            </a>
+	                        </c:if>
+	                    </td>
+	
+	                    <td class="list-date"><c:out value="${board.commentDate}" /></td>
+	                </tr>
+	            </c:forEach>
+	        </table>
+	    </c:when>
+	    <c:otherwise>
+	        <table class="list-tbl">
+	            <tr class="list-head">
+	                <td>No.</td>
+	                <td>내용</td>
+	                <td>글 제목</td>
+	                <td>작성일</td>
+	            </tr>
+	
+	            <c:forEach var="board" items="${list}" varStatus="status">
+	                <tr class="list-data">
+	                    <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)) + 1}</td>
+	                    <td class="post-title">
+	                        <c:if test="${board.boardType != 0}">
+	                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/free/${board.boardCode}">
+	                                <c:out value="${board.boardTitle}" />
+	                            </a>
+	                        </c:if>
+	
+	                        <c:if test="${board.boardType == 0}">
+	                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/route/${board.boardCode}">
+	                                <c:out value="${board.boardTitle}" />
+	                            </a>
+	                        </c:if>
+	                    </td>
+	
+	                    <td>
+	                        <c:choose>
+	                            <c:when test="${board.boardType == 0}">루트게시판</c:when>
+	                            <c:when test="${board.boardType == 1}">여행후기</c:when>
+	                            <c:when test="${board.boardType == 2}">꿀팁공유</c:when>
+	                            <c:when test="${board.boardType == 3}">질문있어요</c:when>
+	                            <c:when test="${board.boardType == 4}">수방</c:when>
+	                            <c:when test="${board.boardType == 5}">동행 구해요!</c:when>
+	                            <c:when test="${board.boardType == 6}">문의</c:when>
+	                            <c:otherwise>알 수 없음</c:otherwise>
+	                        </c:choose>
+	                    </td>
+	
+	                    <td><c:out value="${board.boardWritedate}" /></td>
+	                </tr>
+	            </c:forEach>
+	        </table>
+	     </c:otherwise>
+	</c:choose>
+ </div>
+			
+	 
 
          <div class="paging">
           <c:if test="${ empty search.condition}">

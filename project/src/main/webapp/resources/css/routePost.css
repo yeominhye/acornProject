@@ -24,12 +24,62 @@ button{
     cursor: pointer;
 }
 
+/* tool-tip */
+.ql-tooltip{
+   display: none;
+}
+
+.ql-editor{
+   outline: none;
+}
+
+/* 
+----------------------
+         블러 
+----------------------
+*/
+
+.route-container-blur.purchased {
+    backdrop-filter: none;
+}
+
+.route-container-blur.not-purchased {
+    filter: blur(10px);
+    pointer-events: none;
+    user-select: none;
+    padding: 10px;
+}
+
+.alert-box{
+   margin: 0 auto;
+    border: 2px solid black;
+    width: 500px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 50px 30px;
+    background: white;
+    position: relative;
+    bottom: 500px;
+    font-size: 15pt
+}
+
+.button-for-register{
+   background: white;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    font-size: 12pt;
+    background: lightgray;
+    border-radius: 10px;
+}
+
+
 /* 
 ----------------------
         헤더
 ----------------------
 */
-.wrap {width: 100%; margin: 0 auto;}
+.wrap {width: 100%; margin: 0 auto; user-select: none;}
 
 
 /* 
@@ -162,10 +212,6 @@ button{
     margin-right: 20px;
 }
 
-.fa-solid.fa-bookmark{
-    color: var(--point-3rd-color);
-}
-
 /* 포인트 */
 .point-section{
     /* border: 1px solid pink; */
@@ -185,8 +231,6 @@ button{
     color: rgb(139, 139, 139);
 
 }
-
-
 
 
 
@@ -237,6 +281,7 @@ button{
     background: white;
     border-radius: 5px;
     height: 90%;
+    user-select: none;
 }
 
 /* 루트 - 윗층 - 맵부분*/
@@ -245,6 +290,7 @@ button{
     margin: 30px;
     height: 400px;
     display: flex;
+    user-select: none;
 }
 
 .map{
@@ -265,7 +311,7 @@ button{
     border: 1.5px solid rgb(169, 168, 168);
     border-radius: 5px;
     margin-top: 10px;
-    height: 330px;
+    height: 340px;
     overflow-y: auto;
 }
 
@@ -278,14 +324,30 @@ button{
 .markerInputs {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 75%;
+    border-bottom: 1px dotted gray;
+    padding-bottom: 5px;
 }
 
 .markerInputs>input {
-	width: 100%;
-	outline: 0;
-  border-width: 0 0 2px;
+  width: 100%;
+  outline: 0;
+  border-width: 0 0 0px;
   border-color: rgb(169, 168, 168);
+  pointer-events: none;
+  
+}
+
+/* 상세코스 - 리스트 */
+.markerTitle {
+   font-size: 12pt;
+   font-weight: 600;
+   color: #575656;
+   margin-bottom: 5px;
+}
+
+.markerExplain{
+   color: gray;
 }
 
 .number {

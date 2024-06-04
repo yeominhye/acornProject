@@ -160,8 +160,8 @@ function delComment(btn) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-	var userCode = document.querySelector('.userCode').value;   
-	
+   var userCode = document.querySelector('.userCode').value;   
+   
     if (userCode === 'null') {
         // #regComment 요소가 없는 경우 실행됩니다.
         // .my_comment_sender 요소의 내용을 변경합니다.
