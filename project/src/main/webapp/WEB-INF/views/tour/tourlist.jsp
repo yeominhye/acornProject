@@ -1,9 +1,4 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -26,156 +21,11 @@
 .filter-keep-btn.clicked {
     color: white;
     background-color: #E78181;
-=======
-   href="${pageContext.request.contextPath}/resources/css/reset.css">
-
-
-<style>
-.container {
-   width: 1100px;
-   height: 1440px;
-   margin: 75px auto;
-   display: flex;
-   justify-content: space-between;
-}
-
-.side-container {
-   position: relative;
-   width: 210px;
-   margin-top: 90px;
-}
-
-.side {
-   position: -webkit-sticky; /* 사파리를 위한 코드 */
-   position: sticky;
-   top: 100px;
-   width: 210px;
-   background-color: #f5f5f5;
-   padding: 20px;
-   border-radius: 10px;
-   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.side-name {
-   font-size: 18px;
-   font-weight: bold;
-   text-decoration: underline;
-}
-
-.local-box {
-   margin: 10px auto;
-   width: 98%;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-between;
-}
-
-.area {
-   display: flex;
-   justify-content: center;
-   align-self: center;
-   width: 40px;
-   height: 20px;
-   font-size: 14px;
-   font-weight: 600;
-   color: #999999;
-   margin-bottom: 5px;
-   border-radius: 50px;
-   cursor: pointer;
-}
-
-.filter-reset-btn {
-   display: flex;
-   justify-content: center;
-   align-self: center;
-   margin: 15px auto;
-   width: 125px;
-   height: 25px;
-   border-radius: 25px;
-   background-color: #EAEAEA;
-   color: #5c5c5c;
-   font-weight: bolder;
-   cursor: pointer;
-}
-
-.clickEvent {
-   color: white;
-   background-color: #E78181;
-}
-.filter-btn-box {
-   margin-top: 25px;
-}
-.filter-btn-box div:hover {
-   color: white;
-   background-color: #E78181;
-}
-
-.section {
-   position: relative;
-   width: 850px;
-}
-
-.section-name {
-   font-size: 24px;
-   font-weight: bold;
-}
-
-.section-name hr {
-   margin: 10px 0 50px 0;
-   color: black;
-}
-
-.content {
-   width: 250px;
-   height: 315px;
-   margin-bottom: 15px;
-}
-
-.content-img, .content-img img {
-   width: 250px;
-   height: 250px;
-}
-
-.content-info {
-   width: 95%;
-   height: 65px;
-   margin: 0 auto;
-   font-size: 12px;
-   overflow: hidden;
-}
-
-.info-name {
-   font-size: 16px;
-   font-weight: bolder;
-   margin: 5px 0;
-}
-
-.info-local {
-   color: #747474;
-}
-
-.content-box {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-between;
-}
-
-.hidden {
-   display: none; /* 숨김 처리할 스타일 */
->>>>>>> cdca20d2d50a0bbc97931e8ca14ffa0c61f76286
-}
 </style>
 </head>
 <body>
     <div class="wrap">
-<<<<<<< HEAD
         <%@ include file="../nav.jsp"%>
-=======
-        <!-- nav 들어갈 부분 -->
-        
-         <%@ include file="../nav.jsp" %>
-
->>>>>>> cdca20d2d50a0bbc97931e8ca14ffa0c61f76286
         <div class="container">
             <div class="side-container">
                 <div class="side">
@@ -201,13 +51,8 @@
                     </div>
 
                     <div class="filter-btn-box sort-options">
-<<<<<<< HEAD
                        <div class="filter-reset-btn filter-keep-btn arrange-option" data-arrange="S">거리순</div>
                        <div class="filter-reset-btn filter-keep-btn arrange-option" data-arrange="Q">최신순</div>
-=======
-                       <div class="filter-reset-btn arrange-option" data-arrange="S">거리순</div>
-                       <div class="filter-reset-btn arrange-option" data-arrange="Q">최신순</div>
->>>>>>> cdca20d2d50a0bbc97931e8ca14ffa0c61f76286
                    </div>
                 </div>
             </div>
@@ -264,11 +109,9 @@
 
             </div>
         </div>
-<<<<<<< HEAD
-=======
+
         
          <%@ include file="../footer-sub.jsp" %>
->>>>>>> cdca20d2d50a0bbc97931e8ca14ffa0c61f76286
     </div>
     
 <script>
@@ -384,9 +227,7 @@ $(document).ready(function() {
         window.location.href = "${pageContext.request.contextPath}/tourlist/tourInfo?contentId=" + contentId + "&contentTypeId=" + contentTypeId;
     });
 });
-<<<<<<< HEAD
-=======
-        
+
         
 var areaBtns = document.querySelectorAll('.area');
 var monthBtns = document.querySelectorAll('.month');
@@ -439,7 +280,7 @@ monthBtns.forEach(function(btn) {
 });
 
 resetBtn.addEventListener("click", resetBtnEvent);
->>>>>>> cdca20d2d50a0bbc97931e8ca14ffa0c61f76286
+
 </script>
 
 </body>
