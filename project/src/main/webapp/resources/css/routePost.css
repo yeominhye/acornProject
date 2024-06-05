@@ -153,6 +153,7 @@ button{
 .image-box img{
     width: 400px;
     height: 300px;
+    object-fit: cover;
 }
 
 /* 타이틀 영역 */

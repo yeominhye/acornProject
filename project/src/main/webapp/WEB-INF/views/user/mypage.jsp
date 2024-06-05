@@ -387,8 +387,73 @@ td{
 	 
 
          <div class="paging">
-          <c:if test="${ empty search.condition}">
-            <c:if test="${paging.currentGrp > 1}">
+         <c:choose>
+         
+         	<c:when test="${url.contains('arch')}">
+	         	<c:if test="${paging.currentGrp > 1}">
+	                 <a href="/project/user/mypage.do/arch?page=${paging.grpStartPage - 1}">이전</a>
+	             </c:if>
+	             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+	                 <a class="paging_i" href="/project/user/mypage.do/arch?page=${i}">${i}</a>
+	             </c:forEach>
+	             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+	                 <a href="/project/user/mypage.do/arch?page=${paging.grpEndPage + 1}">다음</a>
+	             </c:if>
+         	</c:when>
+         	
+    	   	<c:when test="${url.contains('like')}">
+	         	<c:if test="${paging.currentGrp > 1}">
+	                 <a href="/project/user/mypage.do/like?page=${paging.grpStartPage - 1}">이전</a>
+	             </c:if>
+	             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+	                 <a class="paging_i" href="/project/user/mypage.do/like?page=${i}">${i}</a>
+	             </c:forEach>
+	             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+	                 <a href="/project/user/mypage.do/like?page=${paging.grpEndPage + 1}">다음</a>
+	             </c:if>
+         	</c:when>
+         	
+    	  	<c:when test="${url.contains('com')}">
+	         	<c:if test="${paging.currentGrp > 1}">
+	                 <a href="/project/user/mypage.do/com?page=${paging.grpStartPage - 1}">이전</a>
+	             </c:if>
+	             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+	                 <a class="paging_i" href="/project/user/mypage.do/com?page=${i}">${i}</a>
+	             </c:forEach>
+	             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+	                 <a href="/project/user/mypage.do/com?page=${paging.grpEndPage + 1}">다음</a>
+	             </c:if>
+         	</c:when>
+         	
+         	<c:when test="${url.contains('point')}">
+	         	<c:if test="${paging.currentGrp > 1}">
+	                 <a href="/project/user/mypage.do/point?page=${paging.grpStartPage - 1}">이전</a>
+	             </c:if>
+	             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+	                 <a class="paging_i" href="/project/user/mypage.do/point?page=${i}">${i}</a>
+	             </c:forEach>
+	             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+	                 <a href="/project/user/mypage.do/point?page=${paging.grpEndPage + 1}">다음</a>
+	             </c:if>
+         	</c:when>
+         	
+         	
+         	<c:otherwise>
+        		<c:if test="${paging.currentGrp > 1}">
+	                 <a href="/project/user/mypage.do?page=${paging.grpStartPage - 1}">이전</a>
+	             </c:if>
+	             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+	                 <a class="paging_i" href="/project/user/mypage.do?page=${i}">${i}</a>
+	             </c:forEach>
+	             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+	                 <a href="/project/user/mypage.do?page=${paging.grpEndPage + 1}">다음</a>
+	             </c:if>
+         	</c:otherwise>
+         
+         </c:choose>
+         
+         <%--  <c:if test="${ empty search.condition}">
+           	 <c:if test="${paging.currentGrp > 1}">
                  <a href="/project/user/mypage.do?page=${paging.grpStartPage - 1}">이전</a>
              </c:if>
              <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
@@ -397,7 +462,9 @@ td{
              <c:if test="${paging.grpEndPage <  paging.totalPage}">
                  <a href="/project/user/mypage.do?page=${paging.grpEndPage + 1}">다음</a>
              </c:if>
-          </c:if>
+          </c:if> --%>
+          
+          
          </div>
     </div>
 </div>

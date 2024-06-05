@@ -57,7 +57,8 @@ public interface BoardServiceI {
 	List<RouteBoard> getRouteList(SearchCondition search, int currentPage);
 
 	int getRouteListCount(SearchCondition search);
+	
+	int likeCount(String boardCode);
 
-
-
+	int archCount(String boardCode);
 }

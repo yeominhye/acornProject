@@ -47,7 +47,8 @@
          <div class="title-container">
             <!-- 이미지 영역 -->
             <div class="image-box">
-               <img src="<c:url value="/images/${fileName}" />" > 
+           <%--  ${routeBoard} --%>
+               <img src="<c:url value="/board/images/${routeBoard.boardImgReal}" />" > 
             </div>
             <!-- 타이틀 영역 -->
             <div class="title-box">
@@ -92,10 +93,11 @@
                <div class="mark-section">
                   <div class="likes">
                      <i class="fa-regular fa-heart"></i>
-                     <span>123</span>
+                     <span>${like}</span>
                   </div>
                   <div class="bookmark">
                      <i class="fa-regular fa-bookmark"></i>
+                      <span>${arch}</span>
                   </div>
                   <div class="views">
                      <span>views</span><span> ${routeBoard.boardViews }</span>

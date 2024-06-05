@@ -148,4 +148,14 @@ public class BoardService implements BoardServiceI {
 	public List<String> selectMyBuyBoard(String userCode) {
 		return dao.selectMyBuyBoard(userCode);
 	}
+	
+	@Override
+	public int likeCount (String boardCode) {
+		return dao.likeCount(boardCode);
+	}
+	
+	@Override
+	public int archCount (String boardCode) {
+		return dao.archCount(boardCode);
+	}
 }

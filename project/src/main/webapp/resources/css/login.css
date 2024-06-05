@@ -22,6 +22,20 @@
   .valid-password {
 	    background-color: red;
 	}
+	
+	  /* 
+  ----------------------
+   Social-login hidden 
+  ----------------------
+  */
+  .social-media-buttons {
+     display: none !important;
+  }
+  
+  #pwError{
+	     font-size: 11pt;
+  }
+	
   /* 
   ----------------------
         Overlay
@@ -241,6 +255,7 @@
     display: inline-block;
     border-bottom: 2px solid #efebeb;
     padding-bottom: 3px;
+    margin-bottom: 20px;
   }
   
   .forgot-password:hover{

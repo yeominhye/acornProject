@@ -340,7 +340,7 @@
 	<select id="selectRoute" resultType="RouteBoard" parameterType="String">
    		SELECT 
 			b.userCode, b.boardCode, u.nickname, b.boardImgReal, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, b.boardWritedate, 
-			b.boardViews, b.boardPoint, b.boardType, b.boardRegion, b.days
+			b.boardViews, b.boardPoint, b.boardType, b.boardRegion, b.days	
 		FROM boardtbl b 
 		JOIN usertbl u
 		ON b.userCode = u.userCode
@@ -351,5 +351,16 @@
    <select id="selectMyBuyBoard" parameterType="String" resultType="String">
    		select boardCode from pointtbl where userCode = #{userCode}
    </select>
+   
+   <select id="LikeCount" parameterType="String" resultType="int">
+	   SELECT COUNT(*) 
+	   FROM liketbl 
+	   WHERE boardCode = #{boardCode}
+   </select>
 	
+   <select id="ArchCount" parameterType="String" resultType="int">
+	   SELECT COUNT(*) 
+	   FROM archivetbl 
+	   WHERE boardCode = #{boardCode}
+   </select>
 </mapper>

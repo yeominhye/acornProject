@@ -575,7 +575,10 @@ public class BoardController {
      RouteBoard routeBoard = boardService.selectRoute(boardCode);
      boardService.updateViews(boardCode);
      model.addAttribute("routeBoard", routeBoard);
-     
+     int like =boardService.likeCount(boardCode);
+     model.addAttribute("like",like);
+     int arch =boardService.archCount(boardCode);
+     model.addAttribute("arch",arch);
      String message;
      if(user != null) {
         List<String> buyBoardCheck = boardService.selectMyBuyBoard(user.getUserCode());
@@ -620,6 +623,8 @@ public class BoardController {
          response.put("redirect", "/project/user/login.do");
          return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
      }
+     
+  
  }
    
    

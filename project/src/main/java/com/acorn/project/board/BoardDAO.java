@@ -249,5 +249,14 @@ public class BoardDAO implements BoardDAOI {
 	public List<String> selectMyBuyBoard(String userCode) {
 		return session.selectList(namespace + "selectMyBuyBoard", userCode);
 	}
-
+	
+	@Override
+	public int likeCount(String boardCode) {
+		return session.selectOne(namespace + "LikeCount", boardCode);
+	}
+	
+	@Override
+	public int archCount(String boardCode) {
+		return session.selectOne(namespace + "ArchCount", boardCode);
+	}
 }
