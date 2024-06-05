@@ -119,8 +119,18 @@ public class BoardService implements BoardServiceI {
 	}
 	
 	@Override
+	public List<RouteBoard> getRouteList(SearchCondition search, int currentPage) {
+		return dao.getRouteList(search, currentPage);
+	}
+	
+	@Override
 	public int getListCount(SearchCondition search) {
 		return dao.getListCount(search);
+	}
+	
+	@Override
+	public int getRouteListCount(SearchCondition search) {
+		return dao.getRouteListCount(search);
 	}
 
 

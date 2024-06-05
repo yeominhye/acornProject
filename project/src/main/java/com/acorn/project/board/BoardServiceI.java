@@ -54,6 +54,10 @@ public interface BoardServiceI {
 
 	List<RouteBoard> getRouteBoard(int boardType, int currentPage);
 
+	List<RouteBoard> getRouteList(SearchCondition search, int currentPage);
+
+	int getRouteListCount(SearchCondition search);
+
 
 
 }

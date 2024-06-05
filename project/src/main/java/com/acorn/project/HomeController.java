@@ -1,35 +1,29 @@
 package com.acorn.project;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import com.acorn.project.event.*;
+import com.acorn.project.tour.*;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
-
-import com.acorn.project.tour.*;
-import com.acorn.project.user.User;
-import com.acorn.project.board.Board;
-import com.acorn.project.event.*;
 
 @Controller
 public class HomeController {
 
 	@Autowired
 	private HomeService homeService;
-	
-	@GetMapping(value = "/", produces = "application/json;charset=utf-8")
+
+	@GetMapping(value = "/", produces = "text/html;charset=UTF-8")
 	public String main(@RequestParam(value = "year", defaultValue = "") String year,
 			@RequestParam(value = "month", defaultValue = "") String month,
 			@RequestParam(value = "area", defaultValue = "") String area,
@@ -45,7 +39,7 @@ public class HomeController {
 		area = getOrDefault(area, "1", session, "selectedArea");
 
 		addTourListToModel(numOfRows, pageNo, area, model);
-		addEventListToModel(numOfRows, pageNo, year, month, model);
+		addEventListToModel(numOfRows, pageNo, year, month, area, model);
 
 		model.addAttribute("selectedYear", year);
 		model.addAttribute("selectedMonth", month);
@@ -58,13 +52,8 @@ public class HomeController {
 	@ResponseBody
 	public List<TourDTO1> getTourListAjax(@RequestParam(value = "area", defaultValue = "1") String area,
 			@RequestParam(value = "pageNo", defaultValue = "1") String pageNo) {
-		try {
-			String numOfRows = "3";
-			return homeService.extractTours(homeService.getDataTour(numOfRows, pageNo, area));
-		} catch (IOException | JSONException e) {
-			e.printStackTrace();
-			return Collections.emptyList();
-		}
+		String numOfRows = "3"; // numOfRows 설정
+		return getTourList(numOfRows, pageNo, area);
 	}
 
 	@GetMapping("/ajax/eventlist")
@@ -72,35 +61,8 @@ public class HomeController {
 	public List<EventDTO1> getEventListAjax(@RequestParam(value = "year", defaultValue = "2024") String year,
 			@RequestParam(value = "month", defaultValue = "01") String month,
 			@RequestParam(value = "pageNo", defaultValue = "1") String pageNo) {
-		try {
-			String numOfRows = "3";
-			return homeService.extractEvents(homeService.getDataEvent(numOfRows, pageNo, year, month));
-		} catch (IOException | JSONException e) {
-			e.printStackTrace();
-			return Collections.emptyList();
-		}
-	}
-
-	@GetMapping(value = "/eventlist", produces = "application/json;charset=utf-8")
-	public String eventList(@RequestParam(value = "pageNo", defaultValue = "1") String pageNo,
-			@RequestParam(value = "year", defaultValue = "") String year,
-			@RequestParam(value = "month", defaultValue = "") String month,
-			@RequestParam(value = "area", defaultValue = "") String area, Model model, HttpServletRequest request)
-			throws IOException {
-
-		HttpSession session = request.getSession();
-		String numOfRows = "12";
-
-		year = getOrDefault(year, "2023", session, "selectedYear");
-		month = getOrDefault(month, "01", session, "selectedMonth");
-		area = getOrDefault(area, "1", session, "selectedArea");
-
-		addEventListToModel(numOfRows, pageNo, year, month, model);
-
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalPages", calculateTotalPages(100, Integer.parseInt(numOfRows)));
-
-		return "/event/eventlist";
+		String numOfRows = "3"; // numOfRows 설정
+		return getEventList(numOfRows, pageNo, year, month);
 	}
 
 	@GetMapping(value = "/tourlist", produces = "application/json;charset=utf-8")
@@ -119,13 +81,38 @@ public class HomeController {
 		mapX = getOrDefault(mapX, "", session, "mapX");
 		mapY = getOrDefault(mapY, "", session, "mapY");
 
-		addTourListToModel(numOfRows, pageNo, area, arrange, mapX, mapY, model);
+		addTourListToModel2(numOfRows, pageNo, area, arrange, mapX, mapY, model);
 
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", calculateTotalPages(100, Integer.parseInt(numOfRows)));
-		model.addAttribute("selectedArea", area);
+		model.addAttribute("selectedArrange", arrange);
 
 		return "/tour/tourlist";
+	}
+
+	@GetMapping(value = "/eventlist", produces = "application/json;charset=utf-8")
+	public String eventList(@RequestParam(value = "pageNo", defaultValue = "1") String pageNo,
+			@RequestParam(value = "year", defaultValue = "") String year,
+			@RequestParam(value = "month", defaultValue = "") String month,
+			@RequestParam(value = "area", defaultValue = "") String area, Model model, HttpServletRequest request)
+			throws IOException {
+
+		HttpSession session = request.getSession();
+		String numOfRows = "12";
+
+		year = getOrDefault(year, "2023", session, "selectedYear");
+		month = getOrDefault(month, "01", session, "selectedMonth");
+		area = getOrDefault(area, "1", session, "selectedArea");
+
+		addEventListToModel(numOfRows, pageNo, year, month, area, model);
+
+		model.addAttribute("currentPage", pageNo);
+		model.addAttribute("totalPages", calculateTotalPages(100, Integer.parseInt(numOfRows)));
+		model.addAttribute("selectedYear", year);
+		model.addAttribute("selectedMonth", month);
+		model.addAttribute("selectedArea", area);
+
+		return "/event/eventlist";
 	}
 
 	@GetMapping(value = { "/tourInfo", "/tourlist/tourInfo" })
@@ -142,49 +129,71 @@ public class HomeController {
 		return "/event/eventDetail";
 	}
 
-	private String getOrDefault(String value, String defaultValue, HttpSession session, String sessionKey) {
-		if (value.isEmpty()) {
-			value = (String) session.getAttribute(sessionKey);
-			if (value == null) {
-				value = defaultValue;
-			}
+	private String getOrDefault(String param, String defaultValue, HttpSession session, String attributeName) {
+		if (param != null && !param.isEmpty()) {
+			session.setAttribute(attributeName, param);
+			return param;
 		} else {
-			session.setAttribute(sessionKey, value);
+			Object value = session.getAttribute(attributeName);
+			return value != null ? value.toString() : defaultValue;
 		}
-		return value;
 	}
 
 	private void addTourListToModel(String numOfRows, String pageNo, String area, Model model) throws IOException {
 		try {
-			model.addAttribute("tourList",
-					homeService.extractTours(homeService.getDataTour(numOfRows, pageNo, area)));
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void addTourListToModel(String numOfRows, String pageNo, String area, String arrange, String mapX,
-			String mapY, Model model) throws IOException {
-		try {
-			if (arrange.equals("S")) {
-				model.addAttribute("tourList",
-						homeService.extractTours2(homeService.getDataTour2(numOfRows, pageNo, arrange, mapX, mapY)));
+			List<TourDTO1> tourList = homeService.extractTours(homeService.getDataTour(numOfRows, pageNo, area));
+			if (tourList != null) {
+				model.addAttribute("tourList", tourList);
+				System.out.println("메인페이지tourList" + tourList);
 			} else {
-				model.addAttribute("tourList",
-						homeService.extractTours(homeService.getDataTour(numOfRows, pageNo, area)));
+				model.addAttribute("tourList", Collections.emptyList());
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
+			model.addAttribute("tourList", Collections.emptyList());
+			
 		}
+		
 	}
 
-	private void addEventListToModel(String numOfRows, String pageNo, String year, String month, Model model)
-			throws IOException {
+	private void addTourListToModel2(String numOfRows, String pageNo, String area, String arrange, String mapX,
+			String mapY, Model model) throws IOException {
+		List<?> tourList = null;
+
+		if ("S".equals(arrange)) {
+			List<TourDTO_dist> tourList2 = homeService
+					.extractTours2(homeService.getDataTour2(numOfRows, pageNo, arrange, mapX, mapY));
+			if (tourList2 != null && !tourList2.isEmpty()) {
+				tourList = tourList2;
+			}
+		} else {
+			List<TourDTO1> tourList1 = homeService.extractTours(homeService.getDataTour(numOfRows, pageNo, area));
+			if (tourList1 != null && !tourList1.isEmpty()) {
+				tourList = tourList1;
+			}
+		}
+
+		if (tourList == null || tourList.isEmpty()) {
+			tourList = Collections.emptyList();
+		}
+
+		model.addAttribute("tourList", tourList);
+		System.out.println(tourList);
+	}
+
+	private void addEventListToModel(String numOfRows, String pageNo, String year, String month, String area,
+			Model model) throws IOException {
 		try {
-			model.addAttribute("eventList",
-					homeService.extractEvents(homeService.getDataEvent(numOfRows, pageNo, year, month)));
+			List<EventDTO1> eventList = homeService
+					.extractEvents2(homeService.getDataEvent1(numOfRows, pageNo, year, month, area));
+			if (eventList != null) {
+				model.addAttribute("eventList", eventList);
+			} else {
+				model.addAttribute("eventList", Collections.emptyList());
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
+			model.addAttribute("eventList", Collections.emptyList());
 		}
 	}
 
@@ -207,6 +216,24 @@ public class HomeController {
 					homeService.extractEventInfo2(homeService.getEventInfo3(contentId, contentTypeId)));
 		} catch (JSONException e) {
 			e.printStackTrace();
+		}
+	}
+
+	private List<TourDTO1> getTourList(String numOfRows, String pageNo, String area) {
+		try {
+			return homeService.extractTours(homeService.getDataTour(numOfRows, pageNo, area));
+		} catch (IOException | JSONException e) {
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
+	}
+
+	private List<EventDTO1> getEventList(String numOfRows, String pageNo, String year, String month) {
+		try {
+			return homeService.extractEvents(homeService.getDataEvent(numOfRows, pageNo, year, month));
+		} catch (IOException | JSONException e) {
+			e.printStackTrace();
+			return Collections.emptyList();
 		}
 	}
 

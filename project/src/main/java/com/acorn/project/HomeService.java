@@ -20,6 +20,7 @@ import com.acorn.project.event.*;
 
 @Component
 public class HomeService {
+
 	private static final String SERVICE_KEY = "XHhofBD0jO01cbj7mByrLZmfjk4RCQk%2Fv5Rvx7oXy%2FdhxB0PpL5LIVKGrw3jMiYMphG8vIw8BJTsL876ezO44A%3D%3D";
 
 	private String buildUrl(String baseUrl, String... queryParams) throws IOException {
@@ -72,6 +73,38 @@ public class HomeService {
 
 		return sendHttpRequest(url);
 	}
+	
+	// 행사정보 리스트
+		public ArrayList<EventDTO1> extractEvents(String jsonData) {
+			try {
+				JSONObject response = new JSONObject(jsonData).optJSONObject("response");
+				if (response != null) {
+					JSONObject body = response.optJSONObject("body");
+					if (body != null) {
+						JSONObject items = body.optJSONObject("items");
+						if (items != null) {
+							JSONArray eventArr = items.optJSONArray("item");
+							if (eventArr != null) {
+								ArrayList<EventDTO1> eventList = new ArrayList<>();
+								for (int i = 0; i < eventArr.length(); i++) {
+									JSONObject item = eventArr.getJSONObject(i);
+									EventDTO1 event = new EventDTO1(item.getString("title"), item.getString("firstimage"),
+											item.getString("addr1"), item.getString("addr2"),
+											item.getString("eventstartdate"), item.getString("eventenddate"),
+											item.getString("contentid"), item.getString("contenttypeid"));
+									eventList.add(event);
+								}
+								System.out.println(eventList);
+								return eventList;
+							}
+						}
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return new ArrayList<>();
+		}
 
 	// 행사페이지 행사정보
 	public String getDataEvent1(String numOfRows, String pageNo, String year, String month, String area)
@@ -79,7 +112,6 @@ public class HomeService {
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, Integer.parseInt(year));
 		cal.set(Calendar.MONTH, Integer.parseInt(month) - 1);
-		int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
 		String url = buildUrl("http://apis.data.go.kr/B551011/KorService1/searchFestival1",
 				URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode(numOfRows, "UTF-8"),
@@ -89,15 +121,13 @@ public class HomeService {
 				URLEncoder.encode("listYN", "UTF-8") + "=Y",
 				URLEncoder.encode("eventStartDate", "UTF-8") + "="
 						+ String.format("%s%02d01", year, Integer.parseInt(month)),
-				URLEncoder.encode("eventEndDate", "UTF-8") + "="
-						+ String.format("%s%02d%02d", year, Integer.parseInt(month), lastDayOfMonth),
 				URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode(area, "UTF-8"));
 
 		return sendHttpRequest(url);
 	}
 
 	// 행사정보 리스트
-	public ArrayList<EventDTO1> extractEvents(String jsonData) {
+	public ArrayList<EventDTO1> extractEvents2(String jsonData) {
 		try {
 			JSONObject response = new JSONObject(jsonData).optJSONObject("response");
 			if (response != null) {
