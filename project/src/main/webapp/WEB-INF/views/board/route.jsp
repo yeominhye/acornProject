@@ -347,7 +347,6 @@
             <a class="write-link" href="/project/board/route/create">글쓰기</a>
             <table class="route-table">
                 <c:forEach var="list" items="${routeBoardList}" varStatus="status">
-                <span id="cif"></span>
 					<tr>
 						<td class="route-info">
 							<div class="route-img">
@@ -417,7 +416,6 @@
 				            </div>
 				        </td>
 				    </tr>
-				    <span id="/cif"></span>
                 </c:forEach>
             <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
             </table>
