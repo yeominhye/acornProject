@@ -1,7 +1,11 @@
 package com.acorn.project;
 
 import com.acorn.project.event.*;
+import com.acorn.project.event.domain.EventDTO1;
 import com.acorn.project.tour.*;
+import com.acorn.project.tour.domain.TourDTO1;
+import com.acorn.project.tour.domain.TourDTO_dist;
+
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -334,7 +334,7 @@
 			boardViews, boardPoint, boardType, boardRegion, days)
 		VALUES 
 		(#{userCode}, #{boardImgOrigin}, #{boardImgReal}, #{boardTitle}, #{boardContent},#{boardTheme},#{boardTourdays},now(),
-		#{boardViews},#{boardPoint}, 0, #{boardRegion}, #{days, typeHandler=com.acorn.project.board.JsonListTypeHandler})
+		#{boardViews},#{boardPoint}, 0, #{boardRegion}, #{days, typeHandler=com.acorn.project.board.domain.JsonListTypeHandler})
 	</insert>
 	
 	<select id="selectRoute" resultType="RouteBoard" parameterType="String">

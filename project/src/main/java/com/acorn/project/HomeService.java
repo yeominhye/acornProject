@@ -15,7 +15,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.acorn.project.tour.*;
+import com.acorn.project.tour.domain.TourDTO1;
+import com.acorn.project.tour.domain.TourDTO2;
+import com.acorn.project.tour.domain.TourDTO3;
+import com.acorn.project.tour.domain.TourDTO_dist;
 import com.acorn.project.event.*;
+import com.acorn.project.event.domain.EventDTO1;
+import com.acorn.project.event.domain.EventDTO2;
+import com.acorn.project.event.domain.EventDTO3;
 
 
 @Component

@@ -1,4 +1,4 @@
-<%@ page import="com.acorn.project.point.Point" %>
+<%@ page import="com.acorn.project.point.domain.Point" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>

@@ -15,9 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.acorn.project.user.UserDAO;
-import com.acorn.project.user.UserDAOI;
-import com.acorn.project.user.User;
+import com.acorn.project.user.domain.User;
+import com.acorn.project.user.repository.UserDAO;
+import com.acorn.project.user.repository.UserDAOI;
+import com.acorn.project.point.domain.Point;
+import com.acorn.project.point.repository.PointDAO;
 
 import lombok.extern.log4j.Log4j;
 

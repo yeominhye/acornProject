@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.acorn.project.user.User"%>
+<%@ page import="com.acorn.project.user.domain.User"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- icon key -->
-<script src="https://kit.fontawesome.com/7fa6781ad2.js"   crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" type="text/css"   href="${pageContext.request.contextPath}/resources/css/freeBoardDetail.css">
 <link rel="stylesheet" type="text/css"   href="${pageContext.request.contextPath}/resources/css/reset.css">
@@ -24,10 +24,8 @@
 }
 
 </style>
-<script defer
-   src="${pageContext.request.contextPath}/resources/js/changeType.js"></script>
-<script defer
-   src="${pageContext.request.contextPath}/resources/js/report.js"></script>
+<script defer src="${pageContext.request.contextPath}/resources/js/changeType.js"></script>
+<script defer src="${pageContext.request.contextPath}/resources/js/report.js"></script>
 
 
 <%

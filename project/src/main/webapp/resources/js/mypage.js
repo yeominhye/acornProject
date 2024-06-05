@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
             data: { pointAmount: amount },
             success: function(response){
                 $(".my_point_text").html(response + "P");
+                alert("충천되었습니다");
             },
             error: function(){
             }
@@ -110,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
             data: { exchangeAmount: amount2 },
             success: function(response){
                 $(".my_point_text").html(response + "P");
+                alert("환전되었습니다");
             },
             error: function(){
                 alert("오류 발생");

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ page import="com.acorn.project.user.User"%>
+<%@ page import="com.acorn.project.user.domain.User"%>
 
 
 <!DOCTYPE html>
