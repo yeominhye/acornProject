@@ -82,4 +82,6 @@ public interface BoardDAOI {
 	int likeCount(String boardCode);
 	
 	int archCount(String boardCode);
+
+	List<RouteBoard> getRouteBoardBySearch(String region, String theme, String tourdays, int currentPage);
 }
