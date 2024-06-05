@@ -433,6 +433,8 @@ public class BoardController {
       return new  UrlResource("file:c:\\test\\upload\\"+ fileName);
       
    }
+   
+
 
    /* 종범 추가*/
 //   @RequestMapping(value = "/route", method = RequestMethod.GET)

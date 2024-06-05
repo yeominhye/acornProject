@@ -2,10 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ page import="com.acorn.project.user.User"%>
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css"   rel="stylesheet" />
-<link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
-<link rel="stylesheet"   href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +19,8 @@
 <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
 <link rel="stylesheet"   href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 
 <!-- icon key -->
 <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
@@ -48,7 +47,7 @@
          <div class="title-container">
             <!-- 이미지 영역 -->
             <div class="image-box">
-               <img src="https://via.placeholder.com/300x400.jpg" alt="">
+               <img src="<c:url value="/images/${fileName}" />" > 
             </div>
             <!-- 타이틀 영역 -->
             <div class="title-box">
