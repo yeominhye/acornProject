@@ -315,8 +315,8 @@ public class BoardController {
    }
     
 
-   
-    @PostMapping("/free/report/{code}")
+    @ResponseBody
+    @PostMapping("/free/{code}/report/")
     public  Map<String, Object> regReport(@PathVariable String code, @RequestBody Report report, HttpSession session) {
         User user = (User) session.getAttribute("user");
         Map<String, Object> response = new HashMap<>();
