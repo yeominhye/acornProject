@@ -131,7 +131,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td id="t_list">
                             <a href="/project/board/free/${point.boardCode}"><c:out value="${point.boardTitle}"/></a>
                         </td>
-                        <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
+                        <td id="t_use_point">
+							<c:choose>
+                        		<c:when test="${point.pointStatus == 0}">-<c:out value="${point.pointAmount}"/></c:when>
+                        		<c:when test="${point.pointStatus == 1}"><c:out value="${point.pointAmount}"/></c:when>
+                        		<c:when test="${point.pointStatus == 2}">-<c:out value="${point.pointAmount}"/></c:when>
+                        		<c:when test="${point.pointStatus == 3}"><c:out value="${point.pointAmount}"/></c:when>
+                        	</c:choose>
+						</td>
                         <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
                     </tr>
                 </c:forEach>

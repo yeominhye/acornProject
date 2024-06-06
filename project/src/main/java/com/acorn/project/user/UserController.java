@@ -448,7 +448,7 @@ public class UserController {
 	    ModelAndView mv = new ModelAndView();
 	    String userId = (String) session.getAttribute("userId");
 	    if (userId != null) {
-	        mv.setViewName("redirect:/user/foundMyPw.do");
+	        mv.setViewName("user/foundMyPw");
 	        mv.addObject("userId", userId);
 	    } else {
 	        mv.setViewName("errorPage");

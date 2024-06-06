@@ -47,9 +47,17 @@
          <div class="title-container">
             <!-- 이미지 영역 -->
             <div class="image-box">
-           <%--  ${routeBoard} --%>
-               <img src="<c:url value="/board/images/${routeBoard.boardImgReal}" />" > 
-            </div>
+           		<c:choose>
+			        <c:when test="${not empty routeBoard.boardImgReal}">
+			            <img src="<c:url value='/board/images/${routeBoard.boardImgReal}' />" >
+			        </c:when>
+			        <c:otherwise>
+			            <img src="${pageContext.request.contextPath}/resources/img/blankimg.png" >
+			        </c:otherwise>
+			    </c:choose>
+            </div>            
+            
+            
             <!-- 타이틀 영역 -->
             <div class="title-box">
                <div class="icon-region">

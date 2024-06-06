@@ -77,7 +77,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-text01">
-                <a href="index.html">
+                <a href="/project/">
                     <img src="${pageContext.request.contextPath}/resources/img/logo2.png" alt="logo-icon">  
                 </a>
             </div>
