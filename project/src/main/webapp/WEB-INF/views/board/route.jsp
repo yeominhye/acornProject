@@ -44,14 +44,14 @@
             border-bottom: 1.5px solid black;
             padding-bottom: 3px;
         }
-        .local-box, .month-box, .time-box {
+        .local-box, .theme-box, .tourdays-box {
             margin: 10px auto 25px auto;
             width: 98%;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
-        .local, .month, .time {
+        .local, .theme, .tourdays {
             display: flex;
             justify-content: center;
             align-self: center;
@@ -94,12 +94,12 @@
             color: white;
             background-color: #E78181;
         }
-        .time {
+        .tourdays {
             width: 55px;
             height: 25px;
             line-height: 25px;
         }
-        #time-4, #time-5 {
+        #tourdays-4, #tourdays-5 {
             width: 75px;
         }
         
@@ -287,53 +287,51 @@
 
                     <div class="side-name">지역</div>
                     <div class="local-box">
-                    	<div class="local" id="local01">서울</div>
-                        <div class="local" id="local02">인천</div>
-                        <div class="local" id="local03">대전</div>
-                        <div class="local" id="local04">대구</div>
-                        <div class="local" id="local05">경기</div>
-                        <div class="local" id="local06">부산</div>
-                        <div class="local" id="local07">울산</div>
-                        <div class="local" id="local08">광주</div>
-                        <div class="local" id="local09">강원</div>
-                        <div class="local" id="local10">충북</div>
-                        <div class="local" id="local11">충남</div>
-                        <div class="local" id="local12">경북</div>
+                    	<div class="local" id="local0">서울</div>
+                        <div class="local" id="local1">인천</div>
+                        <div class="local" id="local2">대전</div>
+                        <div class="local" id="local3">대구</div>
+                        <div class="local" id="local4">경기</div>
+                        <div class="local" id="local5">부산</div>
+                        <div class="local" id="local6">울산</div>
+                        <div class="local" id="local7">광주</div>
+                        <div class="local" id="local8">강원</div>
+                        <div class="local" id="local9">충북</div>
+                        <div class="local" id="local10">충남</div>
+                        <div class="local" id="local11">경북</div>
+                        <div class="local" id="local12">경남</div>
                         <div class="local" id="local13">전북</div>
                         <div class="local" id="local14">전남</div>
                         <div class="local" id="local15">제주</div>
                         <div class="local" id="local16">세종</div>
                     </div>
 
-                    <div class="side-name">월</div>
-                    <div class="month-box">
-                        <div class="month" id="month-1">1월</div>
-                        <div class="month" id="month-2">2월</div>
-                        <div class="month" id="month-3">3월</div>
-                        <div class="month" id="month-4">4월</div>
-                        <div class="month" id="month-5">5월</div>
-                        <div class="month" id="month-6">6월</div>
-                        <div class="month" id="month-7">7월</div>
-                        <div class="month" id="month-8">8월</div>
-                        <div class="month" id="month-9">9월</div>
-                        <div class="month" id="month-10">10월</div>
-                        <div class="month" id="month-11">11월</div>
-                        <div class="month" id="month-12">12월</div>
+                    <div class="side-name">테마</div>
+                    <div class="theme-box">
+                    	<div class="theme" id="theme1">#나홀로 힐링</div>
+                        <div class="theme" id="theme2">#연인과 데이트</div>
+                        <div class="theme" id="theme3">#친구들과</div>
+                        <div class="theme" id="theme4">#가족 나들이</div>
+                        <div class="theme" id="theme5">#모임 단체 여행</div>
                     </div>
-
+                    
                     <div class="side-name">기간</div>
-                    <div class="time-box">
-                        <div class="time" id="time-1">당일</div>
-                        <div class="time" id="time-2">1~3일</div>
-                        <div class="time" id="time-3">4~9일</div>
-                        <div class="time" id="time-4">10일이상</div>
-                        <div class="time" id="time-5">20일이상</div>
+                    <div class="tourdays-box">
+                        <div class="tourdays" id="tourdays1">당일</div>
+                        <div class="tourdays" id="tourdays2">2~4일</div>
+                        <div class="tourdays" id="tourdays3">5~9일</div>
+                        <div class="tourdays" id="tourdays4">10~19일</div>
+                        <div class="tourdays" id="tourdays5">20일 이상</div>
                     </div>
 
                     <div class="filter-btn-box">
+                    <div class="filter-reset-btn" id="searchBtn">
+                            검색
+                        </div>
                         <div class="filter-reset-btn" id="resetBtn">
                             초기화
                         </div>
+                        
                         <!-- 보류 -->
                     </div>
                     
@@ -349,6 +347,7 @@
             <a class="write-link" href="/project/board/route/create">글쓰기</a>
             <table class="route-table">
                 <c:forEach var="list" items="${routeBoardList}" varStatus="status">
+                <span id="cif"></span>
 					<tr>
 						<td class="route-info">
 							<div class="route-img">
@@ -418,38 +417,38 @@
 				            </div>
 				        </td>
 				    </tr>
+				    <span id="/cif"></span>
                 </c:forEach>
             <tr></tr> <!-- 이거 지우면 저 울어요 -종범- -->
             </table>
             
             
             		<div class="page_number"> <!-- page_number -->
-                    <div class="paging"> <!-- paging -->
-                    
-                    <c:if test="${ empty search.condition}">
-                       <c:if test="${paging.currentGrp > 1}">
-                            <a href="/project/board/route?type=0&page=${paging.grpStartPage - 1}">이전</a>
-                        </c:if>
-                        <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
-                            <a class="paging_i" href="/project/board/route?type=0&page=${i}">${i}</a>
-                        </c:forEach>
-                        <c:if test="${paging.grpEndPage <  paging.totalPage}">
-                            <a href="/project/board/route?type=0&page=${paging.grpEndPage + 1}">다음</a>
-                        </c:if>
-                    </c:if>
-                    
-                   <c:if test="${ not empty search.condition}">
-                       <c:if test="${paging.currentGrp > 1}">
-                            <a href="/project/board/route/search?page=${paging.grpStartPage - 1}" >이전</a>
-                        </c:if>
-                        <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
-                            <a class="paging_i" href="/project/board/route/search?condition=${search.condition}&keyword=${search.keyword}&start=${search.start}&page=${i}">${i}</a>
-                        </c:forEach>
-                        <c:if test="${paging.grpEndPage <  paging.totalPage}">
-                            <a href="/project/board/route/search?page=${paging.grpEndPage + 1}">다음</a>
-                        </c:if>
-                    </c:if> 
-                    </div>
+                    <<div class="paging">
+					    <c:if test="${empty search.condition}">
+					        <c:if test="${paging.currentGrp > 1}">
+					            <a href="/project/board/route?page=${paging.grpStartPage - 1}&region=${param.region}&theme=${param.theme}&tourdays=${tourdays}">이전</a>
+					        </c:if>
+					        <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+					            <a class="paging_i" href="/project/board/route?page=${i}&region=${param.region}&theme=${param.theme}&tourdays=${tourdays}">${i}</a>
+					        </c:forEach>
+					        <c:if test="${paging.grpEndPage < paging.totalPage}">
+					            <a href="/project/board/route?page=${paging.grpEndPage + 1}&region=${param.region}&theme=${param.theme}&tourdays=${tourdays}">다음</a>
+					        </c:if>
+					    </c:if>
+					    <c:if test="${not empty search.condition}">
+					        <c:if test="${paging.currentGrp > 1}">
+					            <a href="/project/board/route/search?page=${paging.grpStartPage - 1}&condition=${search.condition}&keyword=${search.keyword}&start=${search.start}">이전</a>
+					        </c:if>
+					        <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+					            <a class="paging_i" href="/project/board/route/search?page=${i}&condition=${search.condition}&keyword=${search.keyword}&start=${search.start}">${i}</a>
+					        </c:forEach>
+					        <c:if test="${paging.grpEndPage < paging.totalPage}">
+					            <a href="/project/board/route/search?page=${paging.grpEndPage + 1}&condition=${search.condition}&keyword=${search.keyword}&start=${search.start}">다음</a>
+					        </c:if>
+					    </c:if>
+					</div>
+
                 </div>
               <div class="search_form">
                     <form action="/project/board/route/search" method="get" class="search-form-inner" onsubmit="return searchCheck()">
@@ -478,45 +477,49 @@
     <!-- script -->
     <script>
     var localBtns = document.querySelectorAll('.local');
-    var monthBtns = document.querySelectorAll('.month');
-    var timeBtns = document.querySelectorAll('.time');
-    var resetBtn = document.querySelector('.filter-reset-btn');
+    var themeBtns = document.querySelectorAll('.theme');
+    var tourdaysBtns = document.querySelectorAll('.tourdays');
+    var resetBtn = document.querySelector('#resetBtn');
+    var searchBtn = document.querySelector('#searchBtn');
+
+    var selectedRegion = null;
+    var selectedTheme = null;
+    var selectedTourdays = null;
 
     var previousLocalBtn = null;
-    var previousMonthBtn = null;
-    var previousTimeBtn = null;
-
+    var previousthemeBtn = null;
+    var previoustourdaysBtn = null;
+    
+    
     function localBtnEvent() {
         this.classList.add('clickEvent');
-        
-        // 중복 클릭 방지
+        selectedRegion = this.id.replace('local', '');
         if (previousLocalBtn && previousLocalBtn !== this) {
             previousLocalBtn.classList.remove('clickEvent');
         }
 
         previousLocalBtn = this;
+
     }
 
-    function monthBtnEvent() {
+    function themeBtnEvent() {
         this.classList.add('clickEvent');
-
-        //중복 클릭 방지
-        if (previousMonthBtn && previousMonthBtn !== this) {
-            previousMonthBtn.classList.remove('clickEvent');
+        selectedTheme = this.id.replace('theme', ''); 
+        if (previousthemeBtn && previousthemeBtn !== this) {
+        	previousthemeBtn.classList.remove('clickEvent');
         }
 
-        previousMonthBtn = this;
+        previousthemeBtn = this;
     }
 
-    function timeBtnEvent() {
+    function tourdaysBtnEvent() {
         this.classList.add('clickEvent');
-
-        //중복 클릭 방지
-        if (previousTimeBtn && previousTimeBtn !== this) {
-            previousTimeBtn.classList.remove('clickEvent');
+        selectedTourdays = this.id.replace('tourdays', '');
+        if (previoustourdaysBtn && previoustourdaysBtn !== this) {
+        	previoustourdaysBtn.classList.remove('clickEvent');
         }
 
-        previousTimeBtn = this;
+        previoustourdaysBtn = this;
     }
 
     function resetBtnEvent() {
@@ -524,31 +527,58 @@
             btn.classList.remove('clickEvent');
         });
 
-        monthBtns.forEach(function(btn) {
+        themeBtns.forEach(function(btn) {
             btn.classList.remove('clickEvent');
         });
 
-        timeBtns.forEach(function(btn) {
+        tourdaysBtns.forEach(function(btn) {
             btn.classList.remove('clickEvent');
         });
 
-        previousLocalBtn = null;
-        previousMonthBtn = null;
-        previousTimeBtn = null;
+        selectedRegion = null;
+        selectedTheme = null;
+        selectedTourdays = null;
+    }
+
+    function searchBtnEvent() {
+        var url = "/project/board/route?";
+        if (selectedRegion) {
+            url += "region=" + selectedRegion + "&";
+        } else {
+        	url += "region=&";	
+        }
+        
+        if (selectedTheme) {
+            url += "theme=" + selectedTheme + "&";
+        } else {
+        	url += "theme=&";
+        }
+        if (selectedTourdays) {
+            url += "tourdays=" + selectedTourdays;
+        } else {
+        	url += "tourdays=&";
+        }
+        if (url.endsWith("&")) {
+            url = url.slice(0, -1); // 맨 끝의 & 제거
+        }
+        window.location.href = url;
     }
 
     localBtns.forEach(function(btn) {
         btn.addEventListener("click", localBtnEvent);
     });
-    monthBtns.forEach(function(btn) {
-        btn.addEventListener("click", monthBtnEvent);
+
+    themeBtns.forEach(function(btn) {
+        btn.addEventListener("click", themeBtnEvent);
     });
-    timeBtns.forEach(function(btn) {
-        btn.addEventListener("click", timeBtnEvent);
+
+    tourdaysBtns.forEach(function(btn) {
+        btn.addEventListener("click", tourdaysBtnEvent);
     });
 
     resetBtn.addEventListener("click", resetBtnEvent);
-
+    searchBtn.addEventListener("click", searchBtnEvent);
+    
     function searchCheck() {
         var condition = document.getElementsByName("condition")[0].value;
         if (condition === "") {
@@ -557,6 +587,7 @@
         }
         return true;
     }
-    </script>
+</script>
+
 </body>
 </html>

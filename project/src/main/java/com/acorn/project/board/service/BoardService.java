@@ -163,4 +163,9 @@ public class BoardService implements BoardServiceI {
 	public int archCount (String boardCode) {
 		return dao.archCount(boardCode);
 	}
+	
+	@Override
+	public List<RouteBoard> getRouteBoardBySearch(String region, String theme, String tourdays, int currentPage) {
+	    return dao.getRouteBoardBySearch(region, theme, tourdays, currentPage);
+	}
 }

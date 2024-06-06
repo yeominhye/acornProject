@@ -263,4 +263,19 @@ public class BoardDAO implements BoardDAOI {
 	public int archCount(String boardCode) {
 		return session.selectOne(namespace + "ArchCount", boardCode);
 	}
+	
+	@Override
+	public List<RouteBoard> getRouteBoardBySearch(String region, String theme, String tourdays, int currentPage) {
+	    int pageSize = 15;
+	    int offset = (currentPage - 1) * pageSize;
+	    
+	    Map<String, Object> info = new HashMap<>();
+	    info.put("region", region);
+	    info.put("theme", theme);
+	    info.put("tourdays", tourdays);
+	    info.put("offset", offset);
+	    info.put("pageSize", pageSize);
+	    
+	    return session.selectList(namespace + "getRouteBoardBySearch", info);
+	}
 }

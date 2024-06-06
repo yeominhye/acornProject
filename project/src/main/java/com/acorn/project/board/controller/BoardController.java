@@ -459,32 +459,36 @@ public class BoardController {
       
    }
    
+   @RequestMapping(value = "/route", method = RequestMethod.GET)
+   public String routeBoardList(
+           @RequestParam(name = "region", required = false, defaultValue = "") String region,
+           @RequestParam(name = "theme", required = false, defaultValue = "") String theme,
+           @RequestParam(name = "tourdays", required = false, defaultValue = "") String tourdays,
+           Model model,
+           @RequestParam(defaultValue = "1") int page) {
 
+       int boardType = 0;
 
-   /* 종범 추가*/
-//   @RequestMapping(value = "/route", method = RequestMethod.GET)
-//   public String festival(HttpServletRequest request) {
-//	  
-//      return "/board/route";
-//   }
-   
-   
-   @RequestMapping(value = "/route", method=RequestMethod.GET)
-   public String routeBoardListType(String type, Model model, @RequestParam(defaultValue = "1") int page) {
+       List<RouteBoard> routeBoardList;
 
-      int board_type = Integer.parseInt(type);
-      List<RouteBoard> routeBoardList = boardService.getRouteBoard(board_type ,page);
-      model.addAttribute("routeBoardList",routeBoardList);
-      model.addAttribute("type",board_type);
-      
-      SearchCondition search = new SearchCondition(null,null,0);
-      model.addAttribute("search", search);
+       if (region.isEmpty()) region = null;
+       if (theme.isEmpty()) theme = null;
+       if (tourdays.isEmpty()) tourdays = null;
 
-      int totRecords = boardService.selectTotalCount(board_type);
-      int pageSize = 15;
-      PagingHandler handler = new PagingHandler( page , totRecords ,pageSize);
-      model.addAttribute("paging", handler);
-      return "/board/route";
+       routeBoardList = boardService.getRouteBoardBySearch(region, theme, tourdays, page);
+
+       model.addAttribute("routeBoardList", routeBoardList);
+       model.addAttribute("type", boardType);
+
+       SearchCondition search = new SearchCondition(null, null, 0);
+       model.addAttribute("search", search);
+
+       int totRecords = boardService.selectTotalCount(boardType);
+       int pageSize = 15;
+       PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
+       model.addAttribute("paging", handler);
+
+       return "/board/route";
    }
    
   
@@ -538,7 +542,7 @@ public class BoardController {
            boardService.insertRoute(routeBoard);
        }
 
-       return "redirect:/board/route?type=0";
+       return "redirect:/board/route";
 }
  
 
