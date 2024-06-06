@@ -106,104 +106,114 @@
 	
 	
 	<select id="MyArchCount" resultType="int" parameterType="String">
-		SELECT count(*)
-		FROM boardtbl b 
-		JOIN usertbl u on b.userCode=u.userCode
-		JOIN archivetbl a
+		SELECT 
+		Count(*)
+		FROM boardtbl b
+		JOIN archivetbl a 
 		ON b.boardCode = a.boardCode
-		WHERE u.userId=#{userId}
-		AND b.boardType IN (0,1,2,3,4,5)
+		JOIN usertbl u
+		ON a.userCode = u.userCode
+		WHERE userId = #{userId};
     </select>
 
    <select id="selectMyarchive" resultType="Board" parameterType="map">
 		SELECT 
-			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
-			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
-			b.boardViews,b.boardType
-		FROM boardtbl b 
-		JOIN usertbl u 
-		ON b.userCode=u.userCode
-		JOIN archivetbl a
+			b.boardCode, b.boardTitle,b.userCode, b.boardType,	
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate,
+			a.boardCode, a.userCode,
+			u.nickname, u.userId
+		FROM boardtbl b
+		JOIN archivetbl a 
 		ON b.boardCode = a.boardCode
-		WHERE u.userId=#{userId}
+		JOIN usertbl u
+		ON a.userCode = u.userCode
+		WHERE userId =#{userId}
 		ORDER BY b.boardWritedate DESC
-		LIMIT #{pageSize} OFFSET #{offset};
+		LIMIT #{pageSize} OFFSET #{offset}
     </select>
     
     <select id="MyLikeCount" resultType="int" parameterType="String">
-		SELECT count(*)
-		FROM boardtbl b 
-		JOIN usertbl u on b.userCode=u.userCode
-		JOIN liketbl a
+		SELECT 
+		Count(*)
+		FROM boardtbl b
+		JOIN liketbl a 
 		ON b.boardCode = a.boardCode
-		WHERE u.userId=#{userId}
-		AND b.boardType IN (0,1,2,3,4,5)
+		JOIN usertbl u
+		ON a.userCode = u.userCode
+		WHERE userId = #{userId};
     </select>
 
    <select id="selectMylike" resultType="Board" parameterType="map">
 		SELECT 
-			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
-			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
-			b.boardViews,b.boardType
-		FROM boardtbl b 
-		JOIN usertbl u 
-		ON b.userCode=u.userCode
-		JOIN liketbl a
+			b.boardCode, b.boardTitle,b.userCode, b.boardType,	
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate,
+			a.boardCode, a.userCode,
+			u.nickname, u.userId
+		FROM boardtbl b
+		JOIN liketbl a 
 		ON b.boardCode = a.boardCode
-		WHERE u.userId=#{userId}
+		JOIN usertbl u
+		ON a.userCode = u.userCode
+		WHERE userId =#{userId}
 		ORDER BY b.boardWritedate DESC
-		LIMIT #{pageSize} OFFSET #{offset};
+		LIMIT #{pageSize} OFFSET #{offset}
     </select>
     
     <select id="MyComCount" resultType="int" parameterType="String">
-		SELECT count(*)
-		FROM boardtbl b 
-		JOIN usertbl u on b.userCode=u.userCode
-		JOIN commenttbl a
+		SELECT 
+		Count(*)
+		FROM boardtbl b
+		JOIN commenttbl a 
 		ON b.boardCode = a.boardCode
-		WHERE u.userId=#{userId}
-		AND b.boardType IN (0,1,2,3,4,5)
+		JOIN usertbl u
+		ON a.userCode = u.userCode
+		WHERE userId = #{userId}
+		AND  b.boardType IN (0,1,2,3,4,5);
     </select>
 
    <select id="selectMycom" resultType="CommentMy" parameterType="map">
 		SELECT 
-			 a.commentContent, b.boardType, b.boardTitle,b.boardCode,
-			DATE_FORMAT(a.commentDate, '%Y-%m-%d') AS commentDate
-		FROM boardtbl b 
-		JOIN usertbl u 
-		ON b.userCode=u.userCode
-		JOIN commenttbl a
-		ON b.boardCode = a.boardCode
-		WHERE u.userId=#{userId}
-		ORDER BY b.boardWritedate DESC
+			b.boardCode, b.boardTitle,b.userCode, b.boardWritedate,
+			c.commentContent, DATE_FORMAT(c.commentDate, '%Y-%m-%d') AS commentDate,
+			u.nickname, u.userId
+			from boardtbl b
+			join commenttbl c 
+			on b.boardCode = c.boardCode
+			join usertbl u
+			on c.userCode = u.userCode
+			where userId = #{userId}
+		ORDER BY c.commentDate DESC
 		LIMIT #{pageSize} OFFSET #{offset};
     </select>
     
    <select id="MyPointCount" resultType="int" parameterType="String">
-		SELECT count(*)
-		FROM boardtbl b 
-		JOIN usertbl u on b.userCode=u.userCode
-		JOIN pointtbl p
+		SELECT 
+		Count(*)
+		FROM boardtbl b
+		JOIN pointtbl p 
 		ON b.boardCode = p.boardCode
-		WHERE u.userId=#{userId}
-		AND b.boardType IN (0,1,2,3,4,5)
+		JOIN usertbl u
+		ON p.userCode = u.userCode
+		WHERE userId = #{userId}
+		And b.boardType IN (0,1,2,3,4,5)
 		And p.pointStatus=3
     </select>
 
    <select id="selectMypoint" resultType="Board" parameterType="map">
 		SELECT 
-			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
-			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
-			b.boardViews,b.boardType
-		FROM boardtbl b 
-		JOIN usertbl u 
-		ON b.userCode=u.userCode
+			b.boardCode, b.boardTitle,b.userCode, b.boardType,	
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate,
+			p.boardCode, p.userCode,
+			u.nickname, u.userId
+		FROM boardtbl b
 		JOIN pointtbl p
 		ON b.boardCode = p.boardCode
-		WHERE u.userId=#{userId}
+		JOIN usertbl u
+		ON p.userCode = u.userCode
+		WHERE userId =#{userId}
 		And p.pointStatus=3
 		ORDER BY b.boardWritedate DESC
-		LIMIT #{pageSize} OFFSET #{offset};
+		LIMIT #{pageSize} OFFSET #{offset}
     </select>
    
    <select id="selectMyinqu" resultType="Board" parameterType="String">
@@ -383,9 +393,7 @@
 
 </sql>
 
-   
-   
-   
+ 
  <select id="getRouteBoardBySearch" resultType="RouteBoard" parameterType="Map">
     SELECT 
         u.nickname, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 

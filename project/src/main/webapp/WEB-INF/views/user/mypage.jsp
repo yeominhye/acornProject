@@ -341,8 +341,8 @@ td{
 	        <table class="list-tbl">
 	            <tr class="list-head">
 	                <td>No.</td>
-	                <td>내용</td>
 	                <td>글 제목</td>
+	                <td>카테고리</td>
 	                <td>작성일</td>
 	            </tr>
 	
