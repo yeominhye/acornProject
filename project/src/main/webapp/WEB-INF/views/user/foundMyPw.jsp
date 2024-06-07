@@ -1,9 +1,13 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Change Password</title>
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
+
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/foundPw.css" >
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -46,34 +50,39 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<div class="form-container">
-	<div class="form-title">
-		<h1>비밀번호 변경</h1>
+<div class="wrap">
+	
+   	<%@ include file="../nav.jsp" %>
+	<div class="container">
+		<div class="form-title">
+			<h1>비밀번호 변경</h1>
+		</div>
+	    <form  action="/project/user/updateMyPw.do" method="post">
+	    <input type="hidden" id="userId" name="userId" value="${userId}">
+	    	<table class="input-table">
+	    		<tr class="form-table-tr1">
+	    			<td class="form-label">새 비밀번호 : </td>
+		        	<td class="form-input"><input type="password" class="input-box" id="new_password" name="newPw" required></td>
+		        	
+		        </tr>
+		        <tr class="form-table-tr1">
+		        	<td class="form-label">비밀번호 확인 : </td>
+		        	<td class="form-input"><input type="password" class="input-box" id="confirm_password" name="confirmPw" oninput="checkPassword()" required></td>
+		        	
+		        </tr>
+		        <tr>
+		        	<td colspan="2" class="span-td"><span id="pwError" style="color:red;"></span>
+		        	<span id="message" style="color: red;"></span>
+		        	</td>
+		        </tr>
+	        </table>
+	        
+	        <div class="btnContainer">
+	        	<button type="submit" class="btn-register" id="submitBtn">비밀번호 변경</button>
+	       	</div>
+	    </form>
 	</div>
-    <form  action="/project/user/updateMyPw.do" method="post">
-    <input type="hidden" id="userId" name="userId" value="${userId}">
-    	<table class="input-table">
-    		<tr class="form-table-tr1">
-    			<td class="form-label">새 비밀번호 : </td>
-	        	<td class="form-input"><input type="password" class="input-box" id="new_password" name="newPw" required></td>
-	        	
-	        </tr>
-	        <tr class="form-table-tr1">
-	        	<td class="form-label">비밀번호 확인 : </td>
-	        	<td class="form-input"><input type="password" class="input-box" id="confirm_password" name="confirmPw" oninput="checkPassword()" required></td>
-	        	
-	        </tr>
-	        <tr>
-	        	<td colspan="2" class="span-td"><span id="pwError" style="color:red;"></span>
-	        	<span id="message" style="color: red;"></span>
-	        	</td>
-	        </tr>
-        </table>
-        
-        <div class="btnContainer">
-        	<button type="submit" class="btn-register" id="submitBtn">비밀번호 변경</button>
-       	</div>
-    </form>
+	<%@ include file="../footer-sub.jsp" %>
 </div>
 </body>
 </html>

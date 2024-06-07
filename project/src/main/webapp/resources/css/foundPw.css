@@ -1,13 +1,11 @@
 @charset "UTF-8";
-.container {
-    /*border: 1px solid #000000;*/
-    margin: 0px auto;
-    width: 1100px; 
+
+.container{
+   position: relative;
+   width: 750px;
+   margin: 75px auto;
+   padding-bottom: 150px;
 }
-
-
-
-
 
 
 .btnContainer {
@@ -25,6 +23,7 @@
 }
 .form-title{
     margin: 0 auto;
+    margin-bottom: 20px;
     text-align: center;
     /* padding-bottom: 80px;
     margin-bottom: 50px;

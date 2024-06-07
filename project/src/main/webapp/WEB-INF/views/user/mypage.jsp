@@ -138,6 +138,36 @@ hr {
    margin: 15px auto;
 }
 
+/* 페이징 */
+.paging {
+   padding: 30px;
+   text-align: center;
+   width: 400px;
+   align-items: center;
+   margin: 0 auto;
+}
+
+.paging a {
+   width: 40px;
+   height: 30px;
+   line-height: 30px;
+   display: inline-block;
+   border-radius: 5px;
+   color: rgb(53, 53, 53)
+   
+}
+.paging a:hover {
+   text-decoration: none;
+   color: #d1d1d1;
+}
+.paging_i{
+   background-color: #ffffff;
+}
+.paging_i.active {
+    font-weight: bold;
+    color: black;
+}
+
 .list-tbl {
    width: 90%;
    margin: 10px auto;
@@ -148,8 +178,31 @@ hr {
    font-weight: bold;
    text-align: left;
    border-bottom: 1px solid #a7a7a7;
+   
+}
+.list-no{	
+	width: 10%;
+}
+.head-title {
+ 	max-width: 100px;
+   overflow: hidden; 
+   text-overflow: ellipsis; 
+   white-space: nowrap;
+   text-align: left !important;
 }
 
+
+.list-title{
+	max-width: 200px;
+   padding-left: 5px !important;
+   overflow: hidden;
+   text-overflow: ellipsis; 
+   white-space: nowrap;
+   text-align: left !important;
+}
+.list-date{
+	width: 25%;
+}
 .list-head td {
    padding: 10px 20px;
 }
@@ -166,6 +219,23 @@ hr {
 #account-holder{
    width: 200px;
 }
+td{
+	text-align: center;
+}
+.post-title {
+   display: block;
+   width: 330px;
+   text-align: left !important;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   cursor: pointer;
+}
+
+.head-title, .post-title {
+   padding-left: 5px !important;
+}
+
 
 </style>
 
@@ -184,10 +254,10 @@ hr {
       <div class="my_top">
            <div class="my_side">
                <ul>
-                  <a href="/project/board/my/inquiry6"><li>1:1문의내역</li></a>
-                   <a href="/project/point/showMyPoint.do"><li>포인트 내역</li></a>
-                   <a href="/project/user/modifyInfo.do"><li>정보수정</li></a>
-                   <a href="" onclick="deleteAccount()" style="cursor: pointer;"><li>회원탈퇴</li></a>
+                  <li><a href="/project/board/my/inquiry6">1:1문의내역</a></li>
+                   <li><a href="/project/point/showMyPoint.do">포인트 내역</a></li>
+                   <li><a href="/project/user/modifyInfo.do">정보수정</a></li>
+                   <li><a href="" onclick="deleteAccount()" style="cursor: pointer;">회원탈퇴</a></li>
               </ul>
          </div>
 
@@ -210,58 +280,185 @@ hr {
       </div>
 
       <!-- my_list -->
-      <div class="my-list">
-           <div class="my-list-ul">
-            <ul>
-               <li><a href="#">작성한 글</a></li>
-               <li><a href="#">스크랩</a></li>
-               <li><a href="#">추천한 글</a></li>
-               <li><a href="#">구매한 글</a></li>
-               <li><a href="#">내 댓글</a></li>
-            </ul>
-        </div>
+   <div class="my-list">
+    <div class="my-list-ul">
+        <ul>
+            <li><a href="/project/user/mypage.do">작성한 글</a></li>
+            <li><a href="/project/user/mypage.do/arch">스크랩</a></li>
+            <li><a href="/project/user/mypage.do/like">추천한 글</a></li>
+            <li><a href="/project/user/mypage.do/point">구매한 글</a></li>
+            <li><a href="/project/user/mypage.do/com" onclick="">내 댓글</a></li>
+        </ul>
+    </div>
 
-      <table class="list-tbl">
-         <tr class="list-head">
-            <td>No.</td>
-            <td>제목</td>
-            <td>카테고리</td>
-            <td>작성일</td>
-         </tr>
+	<c:choose>
+	    <c:when test="${url.contains('com')}">
+	        <table class="list-tbl">
+	            <tr class="list-head">
+	                <td>No.</td>
+	                <td>내용</td>
+	                <td>글 제목</td>
+	                <td>작성일</td>
+	            </tr>
+	
+	            <c:forEach var="board" items="${list}" varStatus="status">
+	                <tr class="list-data">
+	                    <td  class="list-no">${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)) + 1}</td>
+	                    <td class="head-title" >
+	                        <c:if test="${board.boardType != 0}">
+	                       
+	                            <a title="<c:out value='${board.commentContent}' />" href="/project/board/free/${board.boardCode}">
+	                                <c:out value="${board.commentContent}" />
+	                            </a>
+	                        </c:if>
+	
+	                        <c:if test="${board.boardType == 0}">
+	                            <a title="<c:out value='${board.commentContent}' />" href="/project/board/route/${board.boardCode}">
+	                                <c:out value="${board.commentContent}" />
+	                            </a>
+	                        </c:if>
+	                    </td>
+	
+	                    <td class="list-title">
+	                         <c:if test="${board.boardType != 0}">
+	                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/free/${board.boardCode}">
+	                                <c:out value="${board.boardTitle}" />
+	                            </a>
+	                        </c:if>
+	
+	                        <c:if test="${board.boardType == 0}">
+	                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/route/${board.boardCode}">
+	                                <c:out value="${board.boardTitle}" />
+	                            </a>
+	                        </c:if>
+	                    </td>
+	
+	                    <td class="list-date"><c:out value="${board.commentDate}" /></td>
+	                </tr>
+	            </c:forEach>
+	        </table>
+	    </c:when>
+	    <c:otherwise>
+	        <table class="list-tbl">
+	            <tr class="list-head">
+	                <td>No.</td>
+	                <td>글 제목</td>
+	                <td>카테고리</td>
+	                <td>작성일</td>
+	            </tr>
+	
+	            <c:forEach var="board" items="${list}" varStatus="status">
+	                <tr class="list-data">
+	                    <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)) + 1}</td>
+	                    <td class="post-title">
+	                        <c:if test="${board.boardType != 0}">
+	                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/free/${board.boardCode}">
+	                                <c:out value="${board.boardTitle}" />
+	                            </a>
+	                        </c:if>
+	
+	                        <c:if test="${board.boardType == 0}">
+	                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/route/${board.boardCode}">
+	                                <c:out value="${board.boardTitle}" />
+	                            </a>
+	                        </c:if>
+	                    </td>
+	
+	                    <td>
+	                        <c:choose>
+	                            <c:when test="${board.boardType == 0}">경로게시판</c:when>
+	                            <c:when test="${board.boardType == 1}">여행후기</c:when>
+	                            <c:when test="${board.boardType == 2}">꿀팁공유</c:when>
+	                            <c:when test="${board.boardType == 3}">질문있어요</c:when>
+	                            <c:when test="${board.boardType == 4}">수방</c:when>
+	                            <c:when test="${board.boardType == 5}">동행 구해요!</c:when>
+	                            <c:when test="${board.boardType == 6}">문의</c:when>
+	                            <c:otherwise>알 수 없음</c:otherwise>
+	                        </c:choose>
+	                    </td>
+	
+	                    <td><c:out value="${board.boardWritedate}" /></td>
+	                </tr>
+	            </c:forEach>
+	        </table>
+	     </c:otherwise>
+	</c:choose>
+ </div>
+			
+	 
 
-            <c:forEach var="board" items="${list}" varStatus="status">
-               <tr class="list-data">
-                  <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize))+1}</td>
-                  <td><a><c:out value="${board.boardTitle}" /></a></td>
-                  <td><c:choose>
-                        <c:when test="${board.boardType == 0}">루트게시판</c:when>
-                        <c:when test="${board.boardType == 1}">여행후기</c:when>
-                        <c:when test="${board.boardType == 2}">꿀팁공유</c:when>
-                        <c:when test="${board.boardType == 3}">질문있어요</c:when>
-                        <c:when test="${board.boardType == 4}">수방</c:when>
-                        <c:when test="${board.boardType == 5}">동행 구해요!</c:when>
-                        <c:when test="${board.boardType == 6}">문의</c:when>
-                        <c:otherwise>알 수 없음</c:otherwise>
-                     </c:choose></td>
-                  <td><c:out value="${board.boardWritedate}" /></td>
-               </tr>
-            </c:forEach> 
-         </table>
+         <div class="paging">
+         <c:choose>
          
-          <c:if test="${ empty search.condition}">
-            <c:if test="${paging.currentGrp > 1}">
-                 <a href="/project/user/mypage.do?page=${paging.grpStartPage - 1}">[ 이전 ]</a>
-             </c:if>
-             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
-                 <a href="/project/user/mypage.do?page=${i}" onclick="typeTitle()" >[ ${i} ]</a>
-             </c:forEach>
-             <c:if test="${paging.grpEndPage <  paging.totalPage}">
-                 <a href="/project/user/mypage.do?page=${paging.grpEndPage + 1}">[ 다음 ]</a>
-             </c:if>
-          </c:if>
-      </div>
-
-      <!-- 모달 -->
+         	<c:when test="${url.contains('arch')}">
+	         	<c:if test="${paging.currentGrp > 1}">
+	                 <a href="/project/user/mypage.do/arch?page=${paging.grpStartPage - 1}">이전</a>
+	             </c:if>
+	             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+	                 <a class="paging_i" href="/project/user/mypage.do/arch?page=${i}">${i}</a>
+	             </c:forEach>
+	             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+	                 <a href="/project/user/mypage.do/arch?page=${paging.grpEndPage + 1}">다음</a>
+	             </c:if>
+         	</c:when>
+         	
+    	   	<c:when test="${url.contains('like')}">
+	         	<c:if test="${paging.currentGrp > 1}">
+	                 <a href="/project/user/mypage.do/like?page=${paging.grpStartPage - 1}">이전</a>
+	             </c:if>
+	             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+	                 <a class="paging_i" href="/project/user/mypage.do/like?page=${i}">${i}</a>
+	             </c:forEach>
+	             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+	                 <a href="/project/user/mypage.do/like?page=${paging.grpEndPage + 1}">다음</a>
+	             </c:if>
+         	</c:when>
+         	
+    	  	<c:when test="${url.contains('com')}">
+	         	<c:if test="${paging.currentGrp > 1}">
+	                 <a href="/project/user/mypage.do/com?page=${paging.grpStartPage - 1}">이전</a>
+	             </c:if>
+	             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+	                 <a class="paging_i" href="/project/user/mypage.do/com?page=${i}">${i}</a>
+	             </c:forEach>
+	             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+	                 <a href="/project/user/mypage.do/com?page=${paging.grpEndPage + 1}">다음</a>
+	             </c:if>
+         	</c:when>
+         	
+         	<c:when test="${url.contains('point')}">
+	         	<c:if test="${paging.currentGrp > 1}">
+	                 <a href="/project/user/mypage.do/point?page=${paging.grpStartPage - 1}">이전</a>
+	             </c:if>
+	             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+	                 <a class="paging_i" href="/project/user/mypage.do/point?page=${i}">${i}</a>
+	             </c:forEach>
+	             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+	                 <a href="/project/user/mypage.do/point?page=${paging.grpEndPage + 1}">다음</a>
+	             </c:if>
+         	</c:when>
+         	
+         	
+         	<c:otherwise>
+        		<c:if test="${paging.currentGrp > 1}">
+	                 <a href="/project/user/mypage.do?page=${paging.grpStartPage - 1}">이전</a>
+	             </c:if>
+	             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+	                 <a class="paging_i" href="/project/user/mypage.do?page=${i}">${i}</a>
+	             </c:forEach>
+	             <c:if test="${paging.grpEndPage <  paging.totalPage}">
+	                 <a href="/project/user/mypage.do?page=${paging.grpEndPage + 1}">다음</a>
+	             </c:if>
+         	</c:otherwise>
+         
+         </c:choose>
+         
+          
+          
+         </div>
+    </div>
+</div>
+	<!-- 모달 -->
       <div class="modal" id="modal">
          <div class="modal-content">
             <div class="tab-container">
@@ -273,16 +470,16 @@ hr {
                   <!-- <label for="points" class="points-label">보유 포인트: ${user.userPoint}p</label> -->
                   <div class="points">
                      <input type="radio" id="1000p" name="pointAmount" value="1000">
-                     <label for="1000p" class="point-btn">1000p</label> <input
-                        type="radio" id="5000p" name="pointAmount" value="5000">
-                     <label for="5000p" class="point-btn">5000p</label> <input
-                        type="radio" id="10000p" name="pointAmount" value="10000">
-                     <label for="10000p" class="point-btn">10,000p</label> <input
-                        type="radio" id="50000p" name="pointAmount" value="50000">
-                     <label for="50000p" class="point-btn">50,000p</label> <input
-                        type="radio" id="100000p" name="pointAmount" value="100000">
-                     <label for="100000p" class="point-btn">100,000p</label> <input
-                        type="radio" id="300000p" name="pointAmount" value="300000">
+                     <label for="1000p" class="point-btn">1000p</label> 
+                     <input type="radio" id="5000p" name="pointAmount" value="5000">
+                     <label for="5000p" class="point-btn">5000p</label> 
+                     <input type="radio" id="10000p" name="pointAmount" value="10000">
+                     <label for="10000p" class="point-btn">10,000p</label> 
+                     <input type="radio" id="50000p" name="pointAmount" value="50000">
+                     <label for="50000p" class="point-btn">50,000p</label> 
+                     <input type="radio" id="100000p" name="pointAmount" value="100000">
+                     <label for="100000p" class="point-btn">100,000p</label> 
+                     <input type="radio" id="300000p" name="pointAmount" value="300000">
                      <label for="300000p" class="point-btn">300,000p</label>
                   </div>
                   <div class="buttons">
@@ -345,14 +542,15 @@ hr {
                      <input type="radio" id="5000p2" name="extend" value="5000">
                      <label for="5000p2" class="point-btn">5000p</label> 
                      <input type="radio" id="10000p2" name="extend" value="10000">
-                     <label for="10000p2" class="point-btn">10,000p</label> <input
-                        type="radio" id="20000p2" name="extend" value="20000">
-                     <label for="20000p2" class="point-btn">20,000p</label> <input
+                     <label for="10000p2" class="point-btn">10,000p</label> 
+                     <input type="radio" id="20000p2" name="extend" value="20000">
+                     <label for="20000p2" class="point-btn">20,000p</label> 
+                     <input
                         type="radio" id="30000p2" name="extend" value="30000">
-                     <label for="30000p2" class="point-btn">30,000p</label> <input
-                        type="radio" id="50000p2" name="extend" value="50000">
-                     <label for="50000p2" class="point-btn">50,000p</label> <input
-                        type="radio" id="100000p2" name="extend" value="100000">
+                     <label for="30000p2" class="point-btn">30,000p</label> 
+                     <input type="radio" id="50000p2" name="extend" value="50000">
+                     <label for="50000p2" class="point-btn">50,000p</label> 
+                     <input type="radio" id="100000p2" name="extend" value="100000">
                      <label for="100000p2" class="point-btn">100,000p</label>
                   </div>
                   <div class="buttons">
@@ -384,10 +582,11 @@ hr {
                         <input type="number" oninput='handleOnInput(this, 15)' id="account-number" placeholder="계좌번호 입력" name="account-number" pattern="\d*"  maxlength="10" required>
 
                      </div>
-                     <br> <label for="account-holder">예금주명: </label> <input
-                        type="text" id="account-holder" name="account-holder" maxlength="5" required>
-
+                     <br> 
+                     <label for="account-holder">예금주명: </label> 
+                     <input type="text" id="account-holder" name="account-holder" maxlength="5" required>
                   </div>
+                  
                   <div class="buttons">
                      <button type="button" class="btn2" id="cancel2">취소</button>
                      <button type="button" class="btn2" id="back2">이전</button>
@@ -396,11 +595,9 @@ hr {
                </div>
 
             </form>
-         </div>
-      </div>
-
-
-    </div>
+        
+            </div>
+        </div>
    <%@ include file="../footer-sub.jsp" %>
 </div>
 </body>

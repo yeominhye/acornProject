@@ -1,20 +1,13 @@
 package com.acorn.project;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		return "home";
-	}
-	
-	@RequestMapping(value = "/whdqja", method = RequestMethod.GET)
-	public String footer() {
-		return "/footer-sub";
-	}
-}
 
+    @GetMapping(value = "/", produces = "text/html;charset=UTF-8")
+    public String main() {
+        return "home";
+    }
+}

@@ -10,6 +10,7 @@
 		JOIN usertbl u
 		ON c.userCode = u.userCode
 		WHERE c.boardCode = #{boardCode}	
+		ORDER BY c.commentDate
 	</select>
 	
 	<select id="count" parameterType="String" resultType="int">

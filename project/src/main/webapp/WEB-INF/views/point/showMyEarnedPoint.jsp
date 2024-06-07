@@ -1,4 +1,3 @@
-<%@ page import="com.acorn.project.point.Point" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -64,92 +63,92 @@ document.addEventListener('DOMContentLoaded', function() {
 <body>
 <div class="wrap">
 <%@ include file="../nav.jsp" %>
-	<div class="container">
-	    <!-- 왼쪽 네비 위-->
-	    <div class="pt_nav">
-	        <div class="pt_nav_up">
-	            <div class="pt_nav_h2"><h2>${user.nickname}님</h2></div>
-	            <div class="pt_nav_pt"><span>포인트</span> <span style="color: rgba(253, 177, 177, 0.924);">${user.userPoint}</span></div>
-	        </div>
-	        <div class="pt_nav_down">
-	            <div class="pt_nav_char">
-	            <h1><a href="/project/point/showMyPoint.do">전체내역</a></h1>
-	             <a href="/project/point/showMyUsePoint.do"> <p>사용내역</p> </a>
-	             <a href="/project/point/showMyEarnedPoint.do"> <p>획득내역</p> </a>
-	            </div>
-	        </div>
-	    </div>
-	    
-	    <div class="pt_content">
-	        <div class="pt_title">#포인트 획득 내역</div>
-	        <div class="pt_categori">
-	            <form action="/project/point/showMyEarnedPoint.do" method="GET">
-	                <div class="point-wrap">
-	                    <div><button class="pt_cont_btn" id="resetButton" type="button" onclick="location.href='/project/point/showMyEarnedPoint.do'">날짜 초기화</button></div>
-	                    <div><span class="pt_span">검색 기간</span></div>
-	                    <div class="pt_date1">
-	                        <input type="text" id="startDate" name="startDate" class="flatpickr" placeholder="시작 날짜">
-	                    </div>
-	                    <div><span class="pt_span"> ~ </span></div>
-	                    <div class="pt_date2">
-	                        <input type="text" id="endDate" name="endDate" class="flatpickr" placeholder="종료 날짜">
-	                    </div>
-	                    
-	                    
-	                    <div><button type="submit" class="pt_cont_btn">날짜 검색</button></div>
-	                    <div class="pt_search">
-	                        <input id="search" name="search" placeholder="사용내역을 입력하세요">
-	                    </div>
-	                </div>
-	            </form>
-	        </div>
-	
-	        <table class="pt_table" border="1">
-	            <thead>
-	                <tr style="background-color: rgb(201, 201, 201);">
-	                    <th>날짜</th>
-	                    <th>사용구분</th>
-	                    <th>내역</th>
-	                    <th>사용 포인트</th>
-	                    <th>잔여 포인트</th>
-	                </tr>
-	            </thead>
-	            <tbody id="pointList">
-	                <c:if test="${not empty pointList}">
-	                    <c:forEach var="point" items="${pointList}">
-						    <c:if test="${point.pointStatus == 1 || point.pointStatus == 3}">
-						        <tr class="pt_table_info">
-						            <td id="t_date"><c:out value="${point.pointDate}"/></td>
-						            <td id="t_division">
-						                <c:choose>
-						                    <c:when test="${point.pointStatus == 1}">포인트 충전</c:when>
-						                    <c:when test="${point.pointStatus == 3}">게시글 판매</c:when>
-						                </c:choose>
-						            </td>
-						            <td id="t_list"><a href="/project/board/free/${point.boardCode}"><c:out value="${point.boardTitle}"/></a></td>
-						            <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
-						            <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
-						        </tr>
-						    </c:if>
-						</c:forEach>
-	                </c:if>
-	                <c:if test="${empty pointList}">
-	                    <tr>
-	                        <td colspan="5">No points found.</td>
-	                    </tr>
-	                </c:if>
-	            </tbody>
-	            <tfoot>
-	                <tr>
-	                    <td colspan="5"><span style="margin-left: 42px;">합계</span> <span style="float: right; color:black; margin-right: 20px;">${user.userPoint}</span></td>
-	                </tr>
-	            </tfoot>
-	        </table>
-	        
-	<div class="pagination" id="pagination"></div>
-	    </div>
-	</div>
-	<%@ include file="../footer-sub.jsp" %>
+   <div class="container">
+       <!-- 왼쪽 네비 위-->
+       <div class="pt_nav">
+           <div class="pt_nav_up">
+               <div class="pt_nav_h2"><h2>${user.nickname}님</h2></div>
+               <div class="pt_nav_pt"><span>포인트</span> <span style="color: rgba(253, 177, 177, 0.924);">${user.userPoint}</span></div>
+           </div>
+           <div class="pt_nav_down">
+               <div class="pt_nav_char">
+                  <a href="/project/point/showMyPoint.do">전체내역</a>
+                  <a href="/project/point/showMyUsePoint.do">사용내역</a>
+                  <h1><a href="/project/point/showMyEarnedPoint.do">획득내역</a></h1>
+               </div>
+           </div>
+       </div>
+       
+       <div class="pt_content">
+           <div class="pt_title">#포인트 획득 내역</div>
+           <div class="pt_categori">
+               <form action="/project/point/showMyEarnedPoint.do" method="GET">
+                   <div class="point-wrap">
+                       <div><button class="pt_cont_btn" id="resetButton" type="button" onclick="location.href='/project/point/showMyEarnedPoint.do'">날짜 초기화</button></div>
+                       <div><span class="pt_span">검색 기간</span></div>
+                       <div class="pt_date1">
+                           <input type="text" id="startDate" name="startDate" class="flatpickr" placeholder="시작 날짜">
+                       </div>
+                       <div><span class="pt_span"> ~ </span></div>
+                       <div class="pt_date2">
+                           <input type="text" id="endDate" name="endDate" class="flatpickr" placeholder="종료 날짜">
+                       </div>
+                       
+                       
+                       <div><button type="submit" class="pt_cont_btn">날짜 검색</button></div>
+                       <div class="pt_search">
+                           <input id="search" name="search" placeholder="사용내역을 입력하세요">
+                       </div>
+                   </div>
+               </form>
+           </div>
+   
+           <table class="pt_table" border="1">
+               <thead>
+                   <tr style="background-color: rgb(201, 201, 201);">
+                       <th>날짜</th>
+                       <th>사용구분</th>
+                       <th>내역</th>
+                       <th>사용 포인트</th>
+                       <th>잔여 포인트</th>
+                   </tr>
+               </thead>
+               <tbody id="pointList">
+                   <c:if test="${not empty pointList}">
+                       <c:forEach var="point" items="${pointList}">
+                      <c:if test="${point.pointStatus == 1 || point.pointStatus == 3}">
+                          <tr class="pt_table_info">
+                              <td id="t_date"><c:out value="${point.pointDate}"/></td>
+                              <td id="t_division">
+                                  <c:choose>
+                                      <c:when test="${point.pointStatus == 1}">포인트 충전</c:when>
+                                      <c:when test="${point.pointStatus == 3}">게시글 판매</c:when>
+                                  </c:choose>
+                              </td>
+                              <td id="t_list"><a href="/project/board/free/${point.boardCode}"><c:out value="${point.boardTitle}"/></a></td>
+                              <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
+                              <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
+                          </tr>
+                      </c:if>
+                  </c:forEach>
+                   </c:if>
+                   <c:if test="${empty pointList}">
+                       <tr>
+                           <td colspan="5">No points found.</td>
+                       </tr>
+                   </c:if>
+               </tbody>
+               <tfoot>
+                   <tr>
+                       <td colspan="5"><span style="margin-left: 42px;">합계</span> <span style="float: right; color:black; margin-right: 20px;">${user.userPoint}</span></td>
+                   </tr>
+               </tfoot>
+           </table>
+           
+   <div class="pagination" id="pagination"></div>
+       </div>
+   </div>
+   <%@ include file="../footer-sub.jsp" %>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

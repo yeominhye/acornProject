@@ -27,7 +27,7 @@ var boardCode = document.querySelector('.boardCode').value;
              
              $.ajax({
                  type: "post",
-                 url: boardCode+"/likeCheck",
+                 url: "/project/board/"+boardCode+"/likeCheck",
                  data: likeString,
                  contentType: "application/json",
                  
@@ -78,7 +78,7 @@ $(document).ready(function() {
 
           $.ajax({
               type: "post",
-              url: boardCode + "/archCheck",
+              url: "/project/board/"+boardCode + "/archCheck",
               data: archiveString,
               contentType: "application/json",
 
@@ -129,15 +129,18 @@ $(document).ready(function() {
 
             $.ajax({
                 type: "delete",
-                url: boardCode + "/likes",
+                url: "/project/board/"+boardCode + "/likes",
                 data: likeString,
                 contentType: "application/json",
-                success: function(data) {
+                success: function(response) {
                     // console.log('성공');
-                    window.location.href = "http://localhost:8080/project/board/free/" + boardCode;
+                    console.log(response);
+                    window.location.href = response.redirect;
+                     
                 },
                 error: function(xhr, status, error) {
                     // console.error('실패:');
+                    
                 }
             });
 
@@ -148,12 +151,18 @@ $(document).ready(function() {
 
             $.ajax({
                 type: "post",
-                url: boardCode + "/likes",
+                url: "/project/board/"+boardCode + "/likes",
                 data: likeString,
                 contentType: "application/json",
-                success: function(data) {
+                success: function( response) {
+                
+                    console.log(response);
                     // console.log('성공');
-                    window.location.href = "http://localhost:8080/project/board/free/" + boardCode;
+                   window.location.href = response.redirect; 
+                   
+                    console.log(boardCode);
+                    //console.log(response);
+                    
                 },
                 error: function(xhr, status, error) {
                     // console.error('실패:');
@@ -189,12 +198,12 @@ $(document).ready(function() {
 
             $.ajax({
                 type: "delete",
-                url: boardCode + "/arch",
+                url: "/project/board/"+boardCode + "/arch",
                 data: archiveString,
                 contentType: "application/json",
-                success: function(data) {
+                success: function(response) {
                     // console.log('성공');
-                    window.location.href = "http://localhost:8080/project/board/free/" + boardCode;
+                   window.location.href = response.redirect;
                 },
                 error: function(xhr, status, error) {
                     // console.error('실패:');
@@ -208,12 +217,12 @@ $(document).ready(function() {
 
             $.ajax({
                 type: "post",
-                url: boardCode + "/arch",
+                url: "/project/board/"+boardCode + "/arch",
                 data: archiveString,
                 contentType: "application/json",
-                success: function(data) {
+                success: function(response) {
                     // console.log('성공');
-                    window.location.href = "http://localhost:8080/project/board/free/" + boardCode;
+                   window.location.href = response.redirect;
                 },
                 error: function(xhr, status, error) {
                     // console.error('실패:');

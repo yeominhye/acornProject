@@ -40,7 +40,7 @@
                     <fieldset>
                         <div>
                             <label for="title">제목</label>
-                            <input type="text" name="boardTitle" id="boardTitle" required>
+                            <input type="text" name="boardTitle" id="boardTitle" maxlength="20" required>
                             <span class="form-input-required">*</span>
                         </div>
 

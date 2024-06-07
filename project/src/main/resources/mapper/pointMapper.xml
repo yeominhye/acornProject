@@ -19,9 +19,14 @@
         WHERE p.userCode = #{userCode}
     </select>
 
-    <insert id="buyBoard" parameterType="Point">
+    <insert id="buyBoard" parameterType="map">
         INSERT INTO pointtbl (userCode, boardCode, pointStatus, pointAmount) 
         VALUES (#{userCode}, #{boardCode}, 0, #{pointAmount})
+    </insert>
+    
+    <insert id="sellBoard" parameterType="map">
+    	INSERT INTO pointtbl (userCode, boardCode, pointStatus, pointAmount) 
+        VALUES (#{userCode}, #{boardCode}, 3, #{pointAmount})
     </insert>
     
     <insert id="buyPoint" parameterType="map">
@@ -40,6 +45,7 @@
         LEFT JOIN boardtbl b ON p.boardCode = b.boardCode
         WHERE p.userCode = #{userCode}
         AND p.pointDate BETWEEN #{startDate} AND DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+        ORDER BY p.pointDate
     </select>
 </mapper>
 

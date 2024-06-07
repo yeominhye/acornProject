@@ -76,8 +76,8 @@ nav {
            </div>
            <div class="nav-menu">
                     <ul>
-                        <li><a href="/project/event/tour">관광지</a></li>
-                        <li><a href="/project/event/festival">축제/행사</a></li>
+                        <li><a href="/project/tourlist">관광지</a></li>
+                        <li><a href="/project/eventlist">축제/행사</a></li>
                         <li><a href="/project/board/route">경로게시판</a></li>
                         <li><a href="/project/board/free?type=-1">자유게시판</a></li>
                         <li><a href="/project/board/faq">고객센터</a></li>
@@ -85,8 +85,8 @@ nav {
                 </div> 
           <div class="nav-proflie">
                <div class="nav-proflie-text">
-                       <c:if test="${empty sessionScope.user}">
-                            <a href="/project/user/login.do">로그인/회원가입</a>
+                   <c:if test="${empty sessionScope.user}">
+                      <a href="/project/user/login.do">로그인 / 회원가입</a>
                    </c:if>
                    <c:if test="${not empty sessionScope.user}">
                       <a href="/project/user/logout.do">로그아웃</a>
