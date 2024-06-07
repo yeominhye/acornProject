@@ -116,7 +116,7 @@ public class BoardController {
       model.addAttribute("routeBoardList",routeBoardList);
       model.addAttribute("search",search);
       
-      int pageSize=15;   
+      int pageSize= 5;   
       int  start  =   (page  -1) *pageSize+1;
       int totRecords = boardService.getRouteListCount(search);
       search.setStart(start);
@@ -484,7 +484,7 @@ public class BoardController {
        model.addAttribute("search", search);
 
        int totRecords = boardService.selectTotalCount(boardType);
-       int pageSize = 15;
+       int pageSize = 5;
        PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
        model.addAttribute("paging", handler);
 
@@ -509,7 +509,7 @@ public class BoardController {
 
  @RequestMapping(value="/createMap_process.do", method=RequestMethod.POST)
    public String createRoute_process (RouteBoardVO vo, HttpSession session) throws Exception {
-       System.out.println("촥인"+vo);
+       System.out.println("확인"+vo);
       List<Day> dayPlans = (List<Day>) session.getAttribute("dayPlans");
       MultipartFile file = vo.getBoardImg();
        System.out.println(vo);

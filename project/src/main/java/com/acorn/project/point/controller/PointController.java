@@ -206,7 +206,7 @@ public class PointController {
       User user = (User) session.getAttribute("user");
            if (user != null) {
                if (user.getUserPoint() >= exchangeAmount) {
-                   int result = service.pointExchange(-exchangeAmount, user.getUserCode());
+                   int result = service.pointExchange(exchangeAmount, user.getUserCode());
                    if (result > 0) {
                        userService.updatePoint(-exchangeAmount, user);
                        user = userService.getUserById(user.getUserId());

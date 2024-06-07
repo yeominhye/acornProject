@@ -196,7 +196,7 @@ function resetForms() {
       open(
             url,
             "confirm",
-            "menubar=no, statusbar=no, scrollbar=no, width=450, height=500, left=600, top=350");
+            "menubar=no, statusbar=no, scrollbar=no, width=450, height=600, left=600, top=350");
    }
 
    function reload() {

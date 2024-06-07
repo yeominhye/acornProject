@@ -101,15 +101,15 @@
 
             <div class="notice-box">
                 <div class="notice">
-                    <div class="img"><img src="img/!.png" alt=""></div>
+                    <div class="img"><img src="${pageContext.request.contextPath}/resources/img/delete-icon.png" alt=""></div>
                     <span>지금 탈퇴하시면 보유하신 포인트도 함께 사라져요. 추후에 동일 계정으로 재가입하셔도 포인트 내역은 복구되지 않습니다.</span>
                 </div>
                 <div class="notice">
-                    <div class="img"><img src="img/!.png" alt=""></div>
+                    <div class="img"><img src="${pageContext.request.contextPath}/resources/img/delete-icon.png" alt=""></div>
                     <span>탈퇴 후에는 작성하신 게시판이나 댓글을 수정 혹은 삭제하실 수 없습니다. 탈퇴 전에 꼭 확인해주세요!</span>
                 </div>
                 <div class="notice">
-                    <div class="img"><img src="img/!.png" alt=""></div>
+                    <div class="img"><img src="${pageContext.request.contextPath}/resources/img/delete-icon.png" alt=""></div>
                     <span>탈퇴 후에는 계정 복구가 불가능합니다.</span>
                 </div>
             </div>
@@ -117,7 +117,7 @@
             <div class="check">
                 <label>
                     <input type="checkbox" id="delUserCheck">
-                    <span>회원 탈퇴 유의사항을 학인하였으며 동의합니다.</span>
+                    <span>회원 탈퇴 유의사항을 확인하였으며 동의합니다.</span>
                 </label>
             </div>
 

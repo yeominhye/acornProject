@@ -451,7 +451,7 @@ public class UserController {
 	    
 	    String userId = (String) session.getAttribute("userId");
 	    if (userId != null) {
-	        mv.setViewName("redirect:/user/foundMyPw.do");
+	        mv.setViewName("user/foundMyPw");
 	        mv.addObject("userId", userId);
 	        
 	    } else {
