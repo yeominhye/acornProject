@@ -69,7 +69,7 @@
         </div>
         <div class="section">
             <div class="section-name">
-                # 행사/축제
+                # 축제/행사
                 <hr>
             </div>
             <div class="content-box">
