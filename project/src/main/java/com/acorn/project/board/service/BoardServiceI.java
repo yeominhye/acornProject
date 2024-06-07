@@ -67,4 +67,6 @@ public interface BoardServiceI {
 	int archCount(String boardCode);
 
 	List<RouteBoard> getRouteBoardBySearch(String region, String theme, String tourdays, int currentPage);
+
+	int getTotalCountBySearch(String region, String theme, String tourdays);
 }

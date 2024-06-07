@@ -482,11 +482,17 @@ public class BoardController {
 
        SearchCondition search = new SearchCondition(null, null, 0);
        model.addAttribute("search", search);
+       
+       
 
        int totRecords = boardService.selectTotalCount(boardType);
        int pageSize = 5;
        PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
        model.addAttribute("paging", handler);
+       
+       int totSearchRecords = boardService.getTotalCountBySearch(region, theme, tourdays);
+       PagingHandler searchHandler = new PagingHandler(page, totSearchRecords, pageSize);
+       model.addAttribute("searchPaging", searchHandler);
 
        return "/board/route";
    }

@@ -220,7 +220,7 @@ public class BoardDAO implements BoardDAOI {
 	@Override
 	public List<RouteBoard> getRouteList(SearchCondition search, int currentPage){		
 		
-		int pageSize=15;	
+		int pageSize=5;	
 		int  start  =   (currentPage  -1) *pageSize;
 	 	search.setStart(start);
 
@@ -278,4 +278,15 @@ public class BoardDAO implements BoardDAOI {
 	    
 	    return session.selectList(namespace + "getRouteBoardBySearch", info);
 	}
+	
+	@Override
+	public int getTotalCountBySearch(String region, String theme, String tourdays) {
+	    Map<String, Object> info = new HashMap<>();
+	    info.put("region", region);
+	    info.put("theme", theme);
+	    info.put("tourdays", tourdays);
+	    
+	    return session.selectOne(namespace + "getTotalCountBySearch", info);
+	}
+
 }
