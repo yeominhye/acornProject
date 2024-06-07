@@ -45,6 +45,7 @@
         LEFT JOIN boardtbl b ON p.boardCode = b.boardCode
         WHERE p.userCode = #{userCode}
         AND p.pointDate BETWEEN #{startDate} AND DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+        ORDER BY p.pointDate
     </select>
 </mapper>
 
