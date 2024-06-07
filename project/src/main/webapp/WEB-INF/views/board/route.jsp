@@ -34,8 +34,8 @@
 span.active {color: orangered; font-weight: bold;}
 
 .filter-reset-btn a {
-	text-decoration: none;
-	color: #5c5c5c;
+   text-decoration: none;
+   color: #5c5c5c;
 }
 </style>
 
@@ -56,7 +56,7 @@ span.active {color: orangered; font-weight: bold;}
 
                     <div class="side-name">지역</div>
                     <div class="local-box">
-                    	<div class="local" id="local0">서울</div>
+                       <div class="local" id="local0">서울</div>
                         <div class="local" id="local1">인천</div>
                         <div class="local" id="local2">대전</div>
                         <div class="local" id="local3">대구</div>
@@ -106,107 +106,123 @@ span.active {color: orangered; font-weight: bold;}
                     
                 </div>
             </div>
-		
+      
 <!-- 루트 목록 -->
 <div class="section">
-	<div class="section-name">경로 게시판<hr></div>
+   <div class="section-name">경로 게시판<hr></div>
     <a class="write-link" href="/project/board/route/create">글쓰기</a>
-    <table class="route-table">
     
-  
-	
-		<c:forEach var="list" items="${routeBoardList}" varStatus="status">
-			<tr class="route-item">
-				<td class="route-info">
-					<a href="${pageContext.request.contextPath}/board/route/${list.boardCode}">
-						<div class="boardImg">
-						    <c:choose>
-						        <c:when test="${not empty list.boardImgReal}">
-						            <img class="boardImg" src="<c:url value='/board/images/${list.boardImgReal}' />" alt="Board Image">
-						        </c:when>
-						        <c:otherwise>
-						            <img class="boardImg" src="${pageContext.request.contextPath}/resources/img/blankimg.png" alt="Default Image">
-						        </c:otherwise>
-						    </c:choose>
-						</div>
-					</a> 
-              		<div class="info-box">
-              		
-              			<!-- info-01 -->
-              			<div class="info-01">
-              				<div class="local-icon">
-		              			<c:choose>
-									<c:when test="${list.boardRegion == 0}">서울</c:when>
-									<c:when test="${list.boardRegion == 1}">인천</c:when>
-									<c:when test="${list.boardRegion == 2}">대전</c:when>
-									<c:when test="${list.boardRegion == 3}">대구</c:when>
-									<c:when test="${list.boardRegion == 4}">경기</c:when>
-									<c:when test="${list.boardRegion == 5}">부산</c:when>
-									<c:when test="${list.boardRegion == 6}">울산</c:when>
-									<c:when test="${list.boardRegion == 7}">광주</c:when>
-									<c:when test="${list.boardRegion == 8}">강원</c:when>
-									<c:when test="${list.boardRegion == 9}">충북</c:when>
-									<c:when test="${list.boardRegion == 10}">충남</c:when>
-									<c:when test="${list.boardRegion == 11}">경북</c:when>
-									<c:when test="${list.boardRegion == 12}">경남</c:when>
-									<c:when test="${list.boardRegion == 13}">전북</c:when>
-									<c:when test="${list.boardRegion == 14}">전남</c:when>
-									<c:when test="${list.boardRegion == 15}">제주</c:when>
-									<c:when test="${list.boardRegion == 16}">세종</c:when>
-								</c:choose>
-							</div>
-							<div class="route-name">
-								<span>${list.boardTitle}</span>
-							</div>
-							<div class="user-info">
-								<span>by </span>
-								<span class="user-name">${list.nickname}</span>
-							</div>
-						</div>
-						
-						<!-- info-02 -->
-						<div class="info-02">
-							<div class="route-tag">
-								<span>${list.boardTourdays}일 여행</span>
-								<span>
-									<c:choose>
-										<c:when test="${list.boardTheme == 1}">#나홀로 힐링</c:when>
-										<c:when test="${list.boardTheme == 2}">#연인과 데이트</c:when>
-										<c:when test="${list.boardTheme == 3}">#친구들과</c:when>
-										<c:when test="${list.boardTheme == 4}">#가족 나들이</c:when>
-										<c:when test="${list.boardTheme == 5}">#모임 단체 여행</c:when>
-									</c:choose>
-								</span>
-							</div>
-						</div>
-						
-						<!-- info-03 -->
-						<div class="info-03">
-							<div class="route-content">${list.boardContent}</div>
-						</div>
-				
-						<!-- info-04 -->
-						<div class="info-04">
-							<div class="route-writeDate">${list.boardWritedate}</div>
-							<div class="views-icon">views <span class="views-int">${list.boardViews}</span></div>
-						</div>
-					</div> <!-- .info-box -->
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
+    <table class="route-table">
+       <c:forEach var="list" items="${routeBoardList}" varStatus="status">
+         <tr class="route-item" onclick="location.href='${pageContext.request.contextPath}/board/route/${list.boardCode}'">
+            <td class="route-info">
+               <div class="route-img">
+                   <c:choose>
+                       <c:when test="${not empty list.boardImgReal}">
+                           <img class="boardImg" src="<c:url value='/board/images/${list.boardImgReal}' />" alt="Board Image">
+                       </c:when>
+                       <c:otherwise>
+                           <img class="boardImg" src="${pageContext.request.contextPath}/resources/img/blankimg.png" alt="Default Image">
+                       </c:otherwise>
+                   </c:choose>
+                   
+                   <div class="route-point">
+                      <span class="route-price">
+                          <c:choose>
+                              <c:when test="${list.boardPoint != 0}">
+                                 <div>
+                                     price ${list.boardPoint}
+                                  </div>
+                              </c:when>
+                              <c:otherwise>
+                                  <div style="display: none;">
+                                   price 0
+                               </div>
+                              </c:otherwise>
+                          </c:choose>
+                      </span>
+                  </div>
+               </div>
+                    <div class="info-box">
+                    
+                       <!-- info-01 -->
+                       <div class="info-01">
+                          <div class="left-content">
+                             <div class="local-icon">
+                                <c:choose>
+                              <c:when test="${list.boardRegion == 0}">서울</c:when>
+                              <c:when test="${list.boardRegion == 1}">인천</c:when>
+                              <c:when test="${list.boardRegion == 2}">대전</c:when>
+                              <c:when test="${list.boardRegion == 3}">대구</c:when>
+                              <c:when test="${list.boardRegion == 4}">경기</c:when>
+                              <c:when test="${list.boardRegion == 5}">부산</c:when>
+                              <c:when test="${list.boardRegion == 6}">울산</c:when>
+                              <c:when test="${list.boardRegion == 7}">광주</c:when>
+                              <c:when test="${list.boardRegion == 8}">강원</c:when>
+                              <c:when test="${list.boardRegion == 9}">충북</c:when>
+                              <c:when test="${list.boardRegion == 10}">충남</c:when>
+                              <c:when test="${list.boardRegion == 11}">경북</c:when>
+                              <c:when test="${list.boardRegion == 12}">경남</c:when>
+                              <c:when test="${list.boardRegion == 13}">전북</c:when>
+                              <c:when test="${list.boardRegion == 14}">전남</c:when>
+                              <c:when test="${list.boardRegion == 15}">제주</c:when>
+                              <c:when test="${list.boardRegion == 16}">세종</c:when>
+                           </c:choose>
+                        </div>
+                        <div class="route-name">
+                           <span>${list.boardTitle}</span>
+                        </div>
+                     </div>
+                     <div class="user-info">
+                        <span>by </span>
+                        <span class="user-name">${list.nickname}</span>
+                     </div>
+                  </div>
+                  
+                  <!-- info-02 -->
+                  <div class="info-02">
+                     <div class="route-tag">
+                        <span>${list.boardTourdays}일 여행</span>
+                        <span>
+                           <c:choose>
+                              <c:when test="${list.boardTheme == 1}">#나홀로 힐링</c:when>
+                              <c:when test="${list.boardTheme == 2}">#연인과 데이트</c:when>
+                              <c:when test="${list.boardTheme == 3}">#친구들과</c:when>
+                              <c:when test="${list.boardTheme == 4}">#가족 나들이</c:when>
+                              <c:when test="${list.boardTheme == 5}">#모임 단체 여행</c:when>
+                           </c:choose>
+                        </span>
+                     </div>
+                  </div>
+                  <hr class="info-hr">
+                  <!-- info-03 -->
+                  <div class="info-03">
+                     <div class="route-content">${list.boardContent}</div>
+                  </div>
             
-            		<div class="page_number"> <!-- page_number -->
+                  <!-- info-04 -->
+                  <div class="info-04">
+                     <div class="route-writeDate">${list.boardWritedate}</div>
+                     <div class="views-icon">views <span class="views-int">${list.boardViews}</span></div>                  
+                  </div>
+               </div><!-- .info-box -->
+            </td>
+         </tr>
+      </c:forEach>
+   </table>
+            
+                  <div class="page_number"> <!-- page_number -->
                     <div class="paging">
 					    <c:if test="${empty search.condition}">
-					        <c:if test="${paging.currentGrp > 1}">
-					            <a href="/project/board/route?page=${paging.grpStartPage - 1}&region=${param.region}&theme=${param.theme}&tourdays=${tourdays}">이전</a>
+					    	
+					        <c:if test="${searchPaging.currentGrp > 1}">
+					            <a href="/project/board/route?page=${searchPaging.grpStartPage - 1}&region=${param.region}&theme=${param.theme}&tourdays=${tourdays}">이전</a>
 					        </c:if>
-					        <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+					        <c:forEach var="i" begin="${searchPaging.grpStartPage}" end="${searchPaging.grpEndPage}">
 					            <a class="paging_i" href="/project/board/route?page=${i}&region=${param.region}&theme=${param.theme}&tourdays=${tourdays}">${i}</a>
 					        </c:forEach>
-					        <c:if test="${paging.grpEndPage < paging.totalPage}">
-					            <a href="/project/board/route?page=${paging.grpEndPage + 1}&region=${param.region}&theme=${param.theme}&tourdays=${tourdays}">다음</a>
+					        <c:if test="${searchPaging.grpEndPage < searchPaging.totalPage}">
+					            <a href="/project/board/route?page=${searchPaging.grpEndPage + 1}&region=${param.region}&theme=${param.theme}&tourdays=${tourdays}">다음</a>
 					        </c:if>
 					    </c:if>
 					    <c:if test="${not empty search.condition}">
@@ -279,7 +295,7 @@ span.active {color: orangered; font-weight: bold;}
         this.classList.add('clickEvent');
         selectedTheme = this.id.replace('theme', ''); 
         if (previousthemeBtn && previousthemeBtn !== this) {
-        	previousthemeBtn.classList.remove('clickEvent');
+           previousthemeBtn.classList.remove('clickEvent');
         }
 
         previousthemeBtn = this;
@@ -289,14 +305,14 @@ span.active {color: orangered; font-weight: bold;}
         this.classList.add('clickEvent');
         selectedTourdays = this.id.replace('tourdays', '');
         if (previoustourdaysBtn && previoustourdaysBtn !== this) {
-        	previoustourdaysBtn.classList.remove('clickEvent');
+           previoustourdaysBtn.classList.remove('clickEvent');
         }
 
         previoustourdaysBtn = this;
     }
 
     function resetBtnEvent() {
-    	window.location.href = '/project/board/route';
+       window.location.href = '/project/board/route';
 
         selectedRegion = null;
         selectedTheme = null;
@@ -308,18 +324,18 @@ span.active {color: orangered; font-weight: bold;}
         if (selectedRegion) {
             url += "region=" + selectedRegion + "&";
         } else {
-        	url += "region=&";	
+           url += "region=&";   
         }
         
         if (selectedTheme) {
             url += "theme=" + selectedTheme + "&";
         } else {
-        	url += "theme=&";
+           url += "theme=&";
         }
         if (selectedTourdays) {
             url += "tourdays=" + selectedTourdays;
         } else {
-        	url += "tourdays=&";
+           url += "tourdays=&";
         }
         if (url.endsWith("&")) {
             url = url.slice(0, -1); // 맨 끝의 & 제거
@@ -350,6 +366,8 @@ span.active {color: orangered; font-weight: bold;}
         }
         return true;
     }
+
+    
 </script>
 
 </body>
