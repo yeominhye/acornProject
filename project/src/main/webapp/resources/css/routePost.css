@@ -33,6 +33,11 @@ button{
    outline: none;
 }
 
+.ql-blank{
+   display: none;
+}
+
+
 /* 
 ----------------------
          블러 

@@ -86,6 +86,10 @@
     padding-bottom: 5px;
 }
 
+.tour-description p{
+	padding:10px;
+}
+
 /* 지도 정보 */
 .tour-map-custom {
     padding-top: 30px;
@@ -107,7 +111,7 @@
 .tour-map {
     border: 1px solid black;
     width: 80%;
-    height: 300px;
+    height: 320px;
     margin: 0 auto;
     margin-top: 20px;
 }

@@ -365,7 +365,7 @@ td{
 	
 	                    <td>
 	                        <c:choose>
-	                            <c:when test="${board.boardType == 0}">루트게시판</c:when>
+	                            <c:when test="${board.boardType == 0}">경로게시판</c:when>
 	                            <c:when test="${board.boardType == 1}">여행후기</c:when>
 	                            <c:when test="${board.boardType == 2}">꿀팁공유</c:when>
 	                            <c:when test="${board.boardType == 3}">질문있어요</c:when>

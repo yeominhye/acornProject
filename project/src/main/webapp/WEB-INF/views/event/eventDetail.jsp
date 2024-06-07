@@ -68,11 +68,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			<div class="event-details-info">
 				<ul>
 					<c:if test="${not empty eventInfo[0].eventstartdate}">
-						<li><strong>행사 날짜</strong> <span>${eventInfo[0].eventstartdate}
+						<li><strong>행사날짜</strong> <span>${eventInfo[0].eventstartdate}
 								~ ${eventInfo[0].eventenddate}</span></li>
 					</c:if>
 					<c:if test="${not empty eventInfo2[0].addr1}">
-						<li><strong>주소</strong> <span>${eventInfo2[0].addr1}${eventInfo2[0].addr2}</span></li>
+						<li><strong>주소</strong> <span>${eventInfo2[0].add	r1}${eventInfo2[0].addr2}</span></li>
 					</c:if>
 					<c:if test="${not empty eventInfo[0].sponsor1}">
 						<li><strong>주최</strong> <span>${eventInfo[0].sponsor1}</span></li>

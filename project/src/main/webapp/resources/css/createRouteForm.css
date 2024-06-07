@@ -24,6 +24,7 @@ button{
    cursor: pointer;
 }
 
+
 /* 
 ----------------------
        헤더
@@ -51,6 +52,7 @@ button{
    margin: 0 auto;
    border: var(--default-divider);
    width: 800px;
+   margin-top: -40px;
 }
 
 .divider.second{
@@ -542,4 +544,157 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+/* 사용설명 모달창 */
+.route-modal {
+    text-align: center;
+    margin-right: -200px;
+    position: relative;
+    top: -50px;
+    right: -900px;
+    width: 50px;
+}
+#btn-modal{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+#modal.modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed; /* 'fixed'로 변경하여 화면 전체에 고정 */
+    left: 0;
+    top: 0;
+    display: none; /* 초기에는 숨김 */
+    align-items: center;
+    justify-content: center;
+    background: rgba(71, 58, 58, 0.25);
+    z-index: 1000; /* 높은 z-index 값 추가 */
+}
+#modal .modal-window {
+    background: white;
+    width: 890px;
+    height: 600px;
+    position: relative;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+
+#modal .title {
+    padding-left: 10px;
+    display: inline;
+    color: rgb(45, 45, 45);
+}
+#modal .title h2 {
+    display: inline;
+    line-height: 2;
+}
+#modal .close-area {
+    display: inline;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    color: rgb(45, 45, 45);
+    padding-top: 10px;
+}
+
+#modal .content {
+    height: calc(100% - 40px); /* Adjust based on header and padding */
+    overflow-y: auto;
+}
+
+#modal .content img {
+    width: 100%;
+    height: auto;
+}     
+.img-color {
+    display: none;
+}
+
+#btn-madal {
+   margin-top: 50px;
+    margin-right: -200px;
+}
+#btn-modal:hover .img-color {
+    display: inline;
+}
+
+#btn-modal:hover .img-black {
+    display: none;
+}
+#modal {
+    z-index: 1000; /* 모달을 최상단에 배치 */
+}
+
+#modal.modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed; /* 'fixed'로 변경하여 화면 전체에 고정 */
+    left: 0;
+    top: 0;
+    display: none; /* 초기에는 숨김 */
+    align-items: center;
+    justify-content: center;
+    background: rgba(71, 58, 58, 0.25);
+    z-index: 1000; /* 높은 z-index 값 추가 */
+}
+#modal .modal-window {
+    background: white;
+    width: 890px;
+    height: 600px;
+    position: relative;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+
+#modal .title {
+    padding-left: 10px;
+    display: inline;
+    color: rgb(45, 45, 45);
+}
+#modal .title h2 {
+    display: inline;
+    line-height: 2;
+}
+#modal .close-area {
+    display: inline;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    color: rgb(45, 45, 45);
+    padding-top: 10px;
+}
+
+#modal .content {
+    height: calc(100% - 40px); /* Adjust based on header and padding */
+    overflow-y: auto;
+}
+
+#modal .content img {
+    width: 100%;
+    height: auto;
+}     
+
+#btn-madal {
+    margin-top: 50px;
+    margin-right: -200px;
+}
+#btn-modal:hover .img-color {
+    display: inline;
+}
+
+#btn-modal:hover .img-black {
+    display: none;
+}
+
+#modal {
+    z-index: 1000; /* 모달을 최상단에 배치 */
+}
+
+/* 인풋 박스 z-index 수정 */
+.title-section input {
+    z-index: 999; /* 모달보다 낮은 값으로 설정 */
+    position: relative; /* z-index 적용을 위해 position 속성 추가 */
 }
