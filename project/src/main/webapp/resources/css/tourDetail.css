@@ -6,6 +6,7 @@
     margin-top: 75px;
     /* border: 1px solid black; */
 }
+
 /* 행사 이름 - 제목라인 */
 .tour-info {
     border-bottom: 1px solid black;
@@ -17,7 +18,7 @@
     box-sizing: border-box;
 }
 
-.tour-name {
+.tour-addr {
     display: inline;
     border: 1px solid rgb(255, 159, 159);
     background-color: rgb(255, 192, 192);
@@ -56,27 +57,14 @@
     position: relative;
     /* background-color: rgb(240, 162, 60); */
     padding: 30px 20px 20px 20px;
-    width: 50%;
+    width: 100%;
     text-align: center;
     box-sizing: border-box;
 }
 
 .tour-details-img>img {
-    width: 330px;
-    height: 440px;
-    object-fit: cover;
-}
-
-.tour-details-text {
-    /* border: 1px solid black; */
-    display: inline-block;
-    position: absolute;
-    font-size: 16px;
-    width: 400px;
-    height: 440px;
-    padding: 0px 20px 50px 0px;
-    font-size: 20px;
-    line-height: 57px;
+    max-width: 100%;
+    height: auto;
 }
 
 .tour-details-text ul li strong {
@@ -85,11 +73,6 @@
     /* background-color: #717171; */
 }
 
-.tour-details-text ul li strong {
-    float: left;
-    width: 120px;
-    /* background-color: #717171; */
-}
 /* 행사 상세정보 */
 .tour-description {
     width: 80%;
@@ -127,6 +110,32 @@
     height: 300px;
     margin: 0 auto;
     margin-top: 20px;
+}
+
+.tour-details-info {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.tour-details-info ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tour-details-info ul li {
+    width: 50%; /* 두 칸씩 배치 */
+    margin-bottom: 10px;
+}
+
+.tour-details-info ul li strong {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
 }
 
 /* 버튼 */
