@@ -168,4 +168,9 @@ public class BoardService implements BoardServiceI {
 	public List<RouteBoard> getRouteBoardBySearch(String region, String theme, String tourdays, int currentPage) {
 	    return dao.getRouteBoardBySearch(region, theme, tourdays, currentPage);
 	}
+	
+	@Override
+	public int getTotalCountBySearch(String region, String theme, String tourdays) {
+		return dao.getTotalCountBySearch(region, theme, tourdays);
+	}
 }

@@ -304,16 +304,16 @@
 	</select>
 	
 	<select id="selectRouteSearch" resultType="RouteBoard" parameterType="SearchCondition">
-		SELECT 
-			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
+		SELECT
+			b.userCode, b.boardCode, u.nickname, b.boardImgReal, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
 			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
-			b.boardViews,b.boardType 
+			b.boardViews, b.boardPoint, b.boardType, b.boardRegion, b.days	
 		FROM boardtbl b
 		JOIN usertbl u
 		ON b.userCode = u.userCode
 		<include refid="searchRoute"/>
 		ORDER BY boardWritedate DESC
-		 LIMIT 15 OFFSET #{start}
+		 LIMIT 5 OFFSET #{start}
 	</select>
 	
 	
@@ -404,6 +404,15 @@
     <include refid="searchRouteDiv"/>
     ORDER BY b.boardWritedate DESC
     LIMIT #{pageSize} OFFSET #{offset}
+</select>
+   
+   
+   <select id="getTotalCountBySearch" resultType="int" parameterType="Map">
+    SELECT COUNT(*)
+    FROM boardtbl b
+    JOIN usertbl u ON b.userCode = u.userCode
+    WHERE b.boardType = 0
+    <include refid="searchRouteDiv"/>
 </select>
    
 </mapper>

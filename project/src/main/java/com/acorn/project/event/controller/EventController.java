@@ -1,7 +1,7 @@
 package com.acorn.project.event.controller;
 
 import com.acorn.project.HomeService;
-import com.acorn.project.event.domain.EventDTO1;
+import com.acorn.project.event.domain.*;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

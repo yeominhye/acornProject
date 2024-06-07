@@ -28,6 +28,45 @@ document.addEventListener('DOMContentLoaded', function() {
     addr1Element.textContent = shortAddr1;
 });
 </script>
+<style>
+@charset "UTF-8";
+
+.container {
+    width: 1100px;
+    margin: 0 auto;
+    margin-top: 75px;
+}
+
+.tour-details-info {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.tour-details-info ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tour-details-info ul li {
+    width: 50%;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.tour-details-info ul li strong {
+    width: 80px;
+    font-weight: bold;
+}
+
+.tour-details-info ul li span {
+    flex: 1;
+}
+</style>
 </head>
 <body>
 	<div class="wrap">
