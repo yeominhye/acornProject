@@ -306,6 +306,7 @@ td{
 	                    <td  class="list-no">${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)) + 1}</td>
 	                    <td class="head-title" >
 	                        <c:if test="${board.boardType != 0}">
+	                       
 	                            <a title="<c:out value='${board.commentContent}' />" href="/project/board/free/${board.boardCode}">
 	                                <c:out value="${board.commentContent}" />
 	                            </a>
@@ -452,17 +453,6 @@ td{
          
          </c:choose>
          
-         <%--  <c:if test="${ empty search.condition}">
-           	 <c:if test="${paging.currentGrp > 1}">
-                 <a href="/project/user/mypage.do?page=${paging.grpStartPage - 1}">이전</a>
-             </c:if>
-             <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
-                 <a class="paging_i" href="/project/user/mypage.do?page=${i}">${i}</a>
-             </c:forEach>
-             <c:if test="${paging.grpEndPage <  paging.totalPage}">
-                 <a href="/project/user/mypage.do?page=${paging.grpEndPage + 1}">다음</a>
-             </c:if>
-          </c:if> --%>
           
           
          </div>

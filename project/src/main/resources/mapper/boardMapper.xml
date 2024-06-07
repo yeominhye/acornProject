@@ -173,7 +173,7 @@
 
    <select id="selectMycom" resultType="CommentMy" parameterType="map">
 		SELECT 
-			b.boardCode, b.boardTitle,b.userCode, b.boardWritedate,
+			b.boardCode, b.boardTitle,b.userCode, b.boardWritedate, b.boardType,
 			c.commentContent, DATE_FORMAT(c.commentDate, '%Y-%m-%d') AS commentDate,
 			u.nickname, u.userId
 			from boardtbl b
@@ -196,13 +196,13 @@
 		ON p.userCode = u.userCode
 		WHERE userId = #{userId}
 		And b.boardType IN (0,1,2,3,4,5)
-		And p.pointStatus=3
+		And p.pointStatus=0
     </select>
 
    <select id="selectMypoint" resultType="Board" parameterType="map">
 		SELECT 
 			b.boardCode, b.boardTitle,b.userCode, b.boardType,	
-			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate,
+			DATE_FORMAT(p.pointDate, '%Y-%m-%d') AS pointDate,
 			p.boardCode, p.userCode,
 			u.nickname, u.userId
 		FROM boardtbl b
@@ -211,7 +211,7 @@
 		JOIN usertbl u
 		ON p.userCode = u.userCode
 		WHERE userId =#{userId}
-		And p.pointStatus=3
+		And p.pointStatus=0
 		ORDER BY b.boardWritedate DESC
 		LIMIT #{pageSize} OFFSET #{offset}
     </select>
