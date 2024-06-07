@@ -289,4 +289,9 @@ public class BoardDAO implements BoardDAOI {
 	    return session.selectOne(namespace + "getTotalCountBySearch", info);
 	}
 
+	@Override
+    public List<RouteBoard> homeRouteData() {
+        return session.selectList(namespace + "homeRouteData");
+    }
+
 }
