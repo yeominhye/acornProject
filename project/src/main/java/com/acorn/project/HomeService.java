@@ -14,21 +14,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.acorn.project.tour.*;
-import com.acorn.project.tour.domain.TourDTO1;
-import com.acorn.project.tour.domain.TourDTO2;
-import com.acorn.project.tour.domain.TourDTO3;
-import com.acorn.project.tour.domain.TourDTO_dist;
-import com.acorn.project.event.*;
-import com.acorn.project.event.domain.EventDTO1;
-import com.acorn.project.event.domain.EventDTO2;
-import com.acorn.project.event.domain.EventDTO3;
-
+import com.acorn.project.tour.domain.*;
+import com.acorn.project.event.domain.*;
 
 @Component
 public class HomeService {
 
-	private static final String SERVICE_KEY = "XHhofBD0jO01cbj7mByrLZmfjk4RCQk%2Fv5Rvx7oXy%2FdhxB0PpL5LIVKGrw3jMiYMphG8vIw8BJTsL876ezO44A%3D%3D";
+	private static final String SERVICE_KEY = "Mtsr7%2Fz9fZNbpd18JZN6Hn5ajAgA5Xe%2BfTLdZsdjvva%2B%2BSCjy6dsRzvwgaGh0YanVpHvzedGbifxr%2BUIkJcOnA%3D%3D";
 
 	private String buildUrl(String baseUrl, String... queryParams) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(baseUrl);
@@ -62,56 +54,56 @@ public class HomeService {
 
 	// 메인페이지 행사정보
 	public String getDataEvent(String numOfRows, String pageNo, String year, String month) throws IOException {
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.YEAR, Integer.parseInt(year));
-		cal.set(Calendar.MONTH, Integer.parseInt(month) - 1);
-		int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, Integer.parseInt(year));
+        cal.set(Calendar.MONTH, Integer.parseInt(month) - 1);
+        int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-		String url = buildUrl("http://apis.data.go.kr/B551011/KorService1/searchFestival1",
-				URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode(numOfRows, "UTF-8"),
-				URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode(pageNo, "UTF-8"),
-				URLEncoder.encode("MobileOS", "UTF-8") + "=ETC", URLEncoder.encode("MobileApp", "UTF-8") + "=EventApp",
-				URLEncoder.encode("_type", "UTF-8") + "=json", URLEncoder.encode("arrange", "UTF-8") + "=Q",
-				URLEncoder.encode("listYN", "UTF-8") + "=Y",
-				URLEncoder.encode("eventStartDate", "UTF-8") + "="
-						+ String.format("%s%02d01", year, Integer.parseInt(month)),
-				URLEncoder.encode("eventEndDate", "UTF-8") + "="
-						+ String.format("%s%02d%02d", year, Integer.parseInt(month), lastDayOfMonth));
+        System.out.println("Service Year: " + year);
+        System.out.println("Service Month: " + month);
 
-		return sendHttpRequest(url);
-	}
-	
-	// 행사정보 리스트
-		public ArrayList<EventDTO1> extractEvents(String jsonData) {
-			try {
-				JSONObject response = new JSONObject(jsonData).optJSONObject("response");
-				if (response != null) {
-					JSONObject body = response.optJSONObject("body");
-					if (body != null) {
-						JSONObject items = body.optJSONObject("items");
-						if (items != null) {
-							JSONArray eventArr = items.optJSONArray("item");
-							if (eventArr != null) {
-								ArrayList<EventDTO1> eventList = new ArrayList<>();
-								for (int i = 0; i < eventArr.length(); i++) {
-									JSONObject item = eventArr.getJSONObject(i);
-									EventDTO1 event = new EventDTO1(item.getString("title"), item.getString("firstimage"),
-											item.getString("addr1"), item.getString("addr2"),
-											item.getString("eventstartdate"), item.getString("eventenddate"),
-											item.getString("contentid"), item.getString("contenttypeid"));
-									eventList.add(event);
-								}
-								System.out.println(eventList);
-								return eventList;
-							}
-						}
-					}
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			return new ArrayList<>();
-		}
+        String url = buildUrl("http://apis.data.go.kr/B551011/KorService1/searchFestival1",
+                URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode(numOfRows, "UTF-8"),
+                URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode(pageNo, "UTF-8"),
+                URLEncoder.encode("MobileOS", "UTF-8") + "=ETC", URLEncoder.encode("MobileApp", "UTF-8") + "=EventApp",
+                URLEncoder.encode("_type", "UTF-8") + "=json", URLEncoder.encode("arrange", "UTF-8") + "=Q",
+                URLEncoder.encode("listYN", "UTF-8") + "=Y",
+                URLEncoder.encode("eventStartDate", "UTF-8") + "="
+                        + String.format("%s%02d01", year, Integer.parseInt(month)),
+                URLEncoder.encode("eventEndDate", "UTF-8") + "="
+                        + String.format("%s%02d%02d", year, Integer.parseInt(month), lastDayOfMonth));
+        return sendHttpRequest(url);
+    }
+
+    public ArrayList<EventDTO1> extractEvents(String jsonData) {
+        try {
+            JSONObject response = new JSONObject(jsonData).optJSONObject("response");
+            if (response != null) {
+                JSONObject body = response.optJSONObject("body");
+                if (body != null) {
+                    JSONObject items = body.optJSONObject("items");
+                    if (items != null) {
+                        JSONArray eventArr = items.optJSONArray("item");
+                        if (eventArr != null) {
+                            ArrayList<EventDTO1> eventList = new ArrayList<>();
+                            for (int i = 0; i < eventArr.length(); i++) {
+                                JSONObject item = eventArr.getJSONObject(i);
+                                EventDTO1 event = new EventDTO1(item.getString("title"), item.getString("firstimage"),
+                                        item.getString("addr1"), item.getString("addr2"),
+                                        item.getString("eventstartdate"), item.getString("eventenddate"),
+                                        item.getString("contentid"), item.getString("contenttypeid"));
+                                eventList.add(event);
+                            }
+                            return eventList;
+                        }
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
 
 	// 행사페이지 행사정보
 	public String getDataEvent1(String numOfRows, String pageNo, String year, String month, String area)
@@ -262,7 +254,7 @@ public class HomeService {
 								JSONObject item = eventArr.getJSONObject(i);
 								EventDTO3 edetail = new EventDTO3(item.getString("firstimage"),
 										item.getString("overview"), item.getDouble("mapx"), item.getDouble("mapy"),
-										item.getString("addr1"), item.getString("title"));
+										item.getString("addr1"), item.getString("addr2"), item.getString("title"));
 
 								edetailList.add(edetail);
 							}

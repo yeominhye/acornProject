@@ -19,6 +19,7 @@ public class EventDTO3 {
 	double mapx;
 	double mapy;
 	Object addr1;
+	Object addr2;
 	Object title;
 
 }
