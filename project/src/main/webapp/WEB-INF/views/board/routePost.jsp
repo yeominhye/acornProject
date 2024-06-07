@@ -24,6 +24,12 @@
 
 <!-- icon key -->
 <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
+
+<style type="text/css">
+#boardModi{
+	display: none !important;
+}
+</style>
 </head>
 
 <body>
