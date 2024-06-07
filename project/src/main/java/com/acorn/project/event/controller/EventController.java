@@ -1,4 +1,4 @@
-package com.acorn.project.event.domain;
+package com.acorn.project.event.controller;
 
 import com.acorn.project.HomeService;
 import com.acorn.project.event.domain.EventDTO1;

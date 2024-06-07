@@ -1,7 +1,7 @@
-package com.acorn.project.tour.domain;
+package com.acorn.project.tour.controller;
 
 import com.acorn.project.HomeService;
-import com.acorn.project.tour.domain.TourDTO1;
+import com.acorn.project.tour.domain.*;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

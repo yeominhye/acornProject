@@ -20,8 +20,6 @@
 <link rel="stylesheet"   href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-
 <!-- icon key -->
 <script src="https://kit.fontawesome.com/7fa6781ad2.js" crossorigin="anonymous"></script>
 
@@ -30,6 +28,7 @@
 	display: none !important;
 }
 </style>
+
 </head>
 
 <body>

@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -29,26 +28,39 @@
     
 </head>
 <script type="text/javascript">    
-    function previewImage(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                $('#coverImagePreview').attr('src', e.target.result).show();
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
- // editor의 내용 input으로 전달
-      function send(){
-      
-         let boardTitle = document.getElementById("boardTitle").value.trim();
-         let boardPoint = document.getElementById("boardPoint").value;
-          if (boardTitle === '') {
-              alert("제목을 입력해주세요.");
-              return false;
-          }
-     
+   function previewImage(input) {
+       if (input.files && input.files[0]) {
+           var reader = new FileReader();
+   
+           reader.onload = function(e) {
+               $('#coverImagePreview').attr('src', e.target.result).show();
+           };
+           reader.readAsDataURL(input.files[0]);
+       }
+   }
+   
+   // editor의 내용 input으로 전달
+   function send() {
+       let boardTitle = document.getElementById("boardTitle").value.trim();
+       let boardPoint = document.getElementById("boardPoint").value;
+       let boardRegion = document.getElementById("boardRegion").value;
+       let boardTheme = document.getElementById("boardTheme").value;
+   
+       if (boardTitle === '') {
+           alert("제목을 입력해주세요.");
+           return false;
+       }
+   
+       if (boardRegion == "-1") {
+           alert("지역을 선택하세요.");
+           return false;
+       }
+   
+       if (boardTheme == "0") {
+           alert("여행 테마를 선택하세요.");
+           return false;
+       }
+        
          document.getElementById("contentMessage").style.display = "none";
   
            let editor  = document.querySelector(".ql-container");
@@ -64,8 +76,8 @@
            }
            
            if(boardPoint > 10000) {
-        	   alert('포인트는 최대 10000 포인트까지 가능합니다. 다시 입력해주세요.');
-        	   return false;
+              alert('포인트는 최대 10000 포인트까지 가능합니다. 다시 입력해주세요.');
+              return false;
            }
            
            if (toggle === 0) {
@@ -78,237 +90,257 @@
   
 </script>
 <body>
-       
-    <div class="wrap">
-     <!-- nav -->
-       <%@ include file="../nav.jsp" %>
-        
-        <!-- header -->
+      
+   <div class="wrap">
+    <!-- nav -->
+     <%@ include file="../nav.jsp" %>
+      
+      <!-- header -->
 
-        <div class="container">
-         <form action="/project/board/createMap_process.do" method="post" id="createMapForm" name="frm" enctype="multipart/form-data">   
-            <div class="title-container">
-                <!-- 이미지 영역 -->
-                <div class="image-box">
-                    <div id="img-container"> < 파일을 첨부해주세요 > </div>
-                    <input class="imgUploader" type="file"  name="boardImg" accept="image/*" onchange="loadFiles(this)" >
-                </div>
-                <!-- 타이틀 영역 -->
-               
-                <div class="title-box">
-                   <input type="hidden" id="userCode" name="userCode" value="${user.userCode}">
-                    <div class="icon-region">
-                        <select name="boardRegion" id="boardRegion" required>
-                            <option value="-1">지역선택</option>
-                          <option value="0">서울</option>
-                          <option value="1">인천</option>
-                          <option value="2">대전</option>
-                          <option value="3">대구</option>
-                          <option value="4">경기</option>
-                          <option value="5">부산</option>
-                          <option value="6">울산</option>
-                          <option value="7">광주</option>
-                          <option value="8">강원</option>
-                          <option value="9">충북</option>
-                          <option value="10">충남</option>
-                          <option value="11">경북</option>
-                          <option value="12">경남</option>
-                          <option value="13">전북</option>
-                          <option value="14">전남</option>
-                          <option value="15">제주</option>
-                          <option value="16">세종</option>
-                      </select>
-                    </div>
-                    <div class="theme-section"> 
-                       <select name="boardTheme" id="boardTheme" required>
-                            <option value="0">여행테마선택</option>
-                          <option value="1">나홀로 힐링</option>
-                          <option value="2">연인과 함께</option>
-                          <option value="3">친목 다지기~</option>
-                          <option value="4">가족 나들이</option>
-                          <option value="5">모임 여행</option>
-                      </select>
-                    </div>
-                    <div class="title-section"><input type="text" id="boardTitle" name="boardTitle" placeholder="제목을 입력하세요" required maxlength="40"></div>
-                    <div class="date-section">여행일수 : <input type="text" id="boardTourdays" name="boardTourdays" readonly required>일 여행</div>
-
-                    
-                    <div class="point-section">
-                        <div class="point-section-input">
-                            <i class="fa-brands fa-product-hunt fa-2x"></i>
-                            <input type="number" id ="boardPoint" min="0" value="0" max="10000" step="50" name="boardPoint" class="price" required>
-                        </div>
-                       <div class="point-section-length">
-                            <b>[포인트사용 주의사항]</b><br>
-                            포인트는 기본 0포인트 이며, 포인트는 최대 10000 포인트까지 가능합니다. <br>
-                            유료 포스트로 작성하시려면 받고 싶은 포인트를 입력하세요.
-                        </div>
-                    </div>
-                </div>
-                
-                 <div class="review-container">
-                   <h2># 총평</h2>
-                    <!-- Create the editor container -->
-                <div id="contentMessage" style="display:none; color:red;"></div>
-                <div id="toolbar-container">
-                  
-                    <span class="ql-formats">
-                      <select class="ql-font"></select>
-                      <select class="ql-size"></select>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-bold"></button>
-                      <button class="ql-italic"></button>
-                      <button class="ql-underline"></button>
-                      <button class="ql-strike"></button>
-                    </span>
-                    <span class="ql-formats">
-                      <select class="ql-color"></select>
-                      <select class="ql-background"></select>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-script" value="sub"></button>
-                      <button class="ql-script" value="super"></button>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-header" value="1"></button>
-                      <button class="ql-header" value="2"></button>
-                      <button class="ql-blockquote"></button>
-                      <button class="ql-code-block"></button>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-list" value="ordered"></button>
-                      <button class="ql-list" value="bullet"></button>
-                      <button class="ql-indent" value="-1"></button>
-                      <button class="ql-indent" value="+1"></button>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-direction" value="rtl"></button>
-                      <select class="ql-align"></select>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-link"></button>
-                      <button class="ql-image"></button>
-                      <button class="ql-video"></button>
-                      <button class="ql-formula"></button>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-clean"></button>
-                    </span>
+      <div class="container">
+       <form action="/project/board/createMap_process.do" method="post" id="createMapForm" name="frm" enctype="multipart/form-data">   
+          <div class="title-container">
+              <!-- 이미지 영역 -->
+              <div class="image-box">
+                  <div id="img-container"> < 파일을 첨부해주세요 > </div>
+                  <input class="imgUploader" type="file"  name="boardImg" accept="image/*" onchange="loadFiles(this)" >
+              </div>
+              <!-- 타이틀 영역 -->
+             
+              <div class="title-box">
+                 <input type="hidden" id="userCode" name="userCode" value="${user.userCode}">
+                  <div class="icon-region">
+                      <select name="boardRegion" id="boardRegion" required>
+                          <option value="-1">지역선택</option>
+                        <option value="0">서울</option>
+                        <option value="1">인천</option>
+                        <option value="2">대전</option>
+                        <option value="3">대구</option>
+                        <option value="4">경기</option>
+                        <option value="5">부산</option>
+                        <option value="6">울산</option>
+                        <option value="7">광주</option>
+                        <option value="8">강원</option>
+                        <option value="9">충북</option>
+                        <option value="10">충남</option>
+                        <option value="11">경북</option>
+                        <option value="12">경남</option>
+                        <option value="13">전북</option>
+                        <option value="14">전남</option>
+                        <option value="15">제주</option>
+                        <option value="16">세종</option>
+                    </select>
                   </div>
-                
-                  <div id="editor"></div>
-                  <input type="hidden" id="boardContent" name="boardContent" required>
-               </div>
-            </div>
-         </form>
-         
-         
-            <hr class="divider first">
+                  <div class="theme-section"> 
+                     <select name="boardTheme" id="boardTheme" required>
+                          <option value="0">여행테마선택</option>
+                        <option value="1">나홀로 힐링</option>
+                        <option value="2">연인과 함께</option>
+                        <option value="3">친목 다지기~</option>
+                        <option value="4">가족 나들이</option>
+                        <option value="5">모임 여행</option>
+                    </select>
+                  </div>
+                  <div class="title-section"><input type="text" id="boardTitle" name="boardTitle" placeholder="제목을 입력하세요" required maxlength="40"></div>
+                  <div class="date-section">여행일수 : <input type="text" id="boardTourdays" name="boardTourdays" readonly required>일 여행</div>
 
-            <!-- 경로 영역 -->
-            <div class="route-container">
-
-                <div class="route-index">
-                   <div class="newIndex-button">
-                       <div class="index-button">
-                           <h1>1</h1>
-                       </div>
-                      
+                  
+                  <div class="point-section">
+                      <div class="point-section-input">
+                          <i class="fa-brands fa-product-hunt fa-2x"></i>
+                          <input type="number" id ="boardPoint" min="0" value="0" max="10000" step="50" name="boardPoint" class="price" required>
                       </div>
-                    <div class="add-button">
-                        <button type="button" id="addDayBtn">+</button>
-                    </div>
+                     <div class="point-section-length">
+                          <b>[포인트사용 주의사항]</b><br>
+                          포인트는 기본 0포인트 이며, 포인트는 최대 10000 포인트까지 가능합니다. <br>
+                          유료 포스트로 작성하시려면 받고 싶은 포인트를 입력하세요.
+                      </div>
+                  </div>
+              </div>
+              
+               <div class="review-container">
+                 <h2># 총평</h2>
+                  <!-- Create the editor container -->
+              <div id="contentMessage" style="display:none; color:red;"></div>
+              <div id="toolbar-container">
+                
+                  <span class="ql-formats">
+                    <select class="ql-font"></select>
+                    <select class="ql-size"></select>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-strike"></button>
+                  </span>
+                  <span class="ql-formats">
+                    <select class="ql-color"></select>
+                    <select class="ql-background"></select>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-script" value="sub"></button>
+                    <button class="ql-script" value="super"></button>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-header" value="1"></button>
+                    <button class="ql-header" value="2"></button>
+                    <button class="ql-blockquote"></button>
+                    <button class="ql-code-block"></button>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-list" value="ordered"></button>
+                    <button class="ql-list" value="bullet"></button>
+                    <button class="ql-indent" value="-1"></button>
+                    <button class="ql-indent" value="+1"></button>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-direction" value="rtl"></button>
+                    <select class="ql-align"></select>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-link"></button>
+                    <button class="ql-image"></button>
+                    <button class="ql-video"></button>
+                    <button class="ql-formula"></button>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-clean"></button>
+                  </span>
                 </div>
-
-                <div class="route-box">
-
-                    <div class="route-upperside">
-                        <div class="map" id="map" ></div>
-                        <div class="toolTab">
-                         <div class="toolBtn">
-                             <button id="myButton">
-                                 <div class="btnImg">
-                                     <img src="${pageContext.request.contextPath}/resources/img/search.png" alt="">
-                                 </div>
-                                 Search
-                             </button>
-                         </div>
-                         <div class="toolBtn">
-                             <button id="test">
-                                 <div class="btnImg">
-                                     <img src="${pageContext.request.contextPath}/resources/img/checkmark.png" alt="">
-                                 </div>
-                                 Test
-                             </button>
-                         </div>
-                         <div class="toolBtn">
-                             <button id="line">
-                                 <div class="btnImg">
-                                     <img src="${pageContext.request.contextPath}/resources/img/gps-route.png" alt="">
-                                 </div>
-                                 Line
-                             </button>
-                         </div>
-                         <div class="toolBtn">
-                             <button id="linedelete">
-                                 <div class="btnImg">
-                                     <img src="${pageContext.request.contextPath}/resources/img/eraser.png" alt="">
-                                 </div>
-                                 Delete
-                             </button>
-                         </div>
-                     </div>
-                        
-                        <div id="searchTab" class="bg_white" class="slide">
-                         <div class="option">
-                             <div>
-                             <form onsubmit="searchPlaces(); return false;">
-                             <input type="text" class="searchInput" value="이태원 맛집" id="keyword" size="5"> 
-                             <button type="submit">검색하기</button> 
-                            </form>
-                             </div>
-                        </div>
-                         <hr>
-                         <ul id="placesList"></ul>
-                         <div id="pagination"></div>
-                     </div>
-                     
-                        <div class="btn-container">
-                        <button class="cancle-button" onclick="history.back()">목록보기</button>
-                        <button type="button" id="submitBtn" onclick="send()" class="submit-button" > 전체 저장</button>
-                        </div>
-                    </div>
-
-               <form action="/project/board/dayPlans.do" method="post" id="dayPlanForm">
-                       <div class="route-lowerside">
-                          <div class="map-place-list-section">
-                               <h2>#상세코스</h2>
-                               <div class="place-list">
-                            <input type="hidden" name="days[${dayIndex - 1}].day" id="dayIndex" placeholder="dayIndex" required> 
-                            <div id="clickLatlng" class="click"></div>
-                              </div>
-                           </div>
-                          <div class="day-comment-list">
-                              <h2 id="dayCommentH2"># 코멘트</h2>
-                              <div class="day-comment">
-                              <textarea rows="" cols="" name="days[${dayIndex - 1}].dayInfo" id="dayInfo" placeholder="해당 일차 후기를 작성해 주세요." required class="commentTextarea"></textarea>                           </div>
-                           </div>
-                          
-                       </div>
-                       <button type="button" id="dayBtn">일정 저장</button>
-               </form>
-                </div>
-
-
+              
+                <div id="editor"></div>
+                <input type="hidden" id="boardContent" name="boardContent" required>
+             </div>
+          </div>
+       </form>
+       
+                              <!-- 경로 사용법 모달 -->
+         <div class="route-modal"> 
+              <button id="btn-modal">
+                  <img class="img-black" src="${pageContext.request.contextPath}/resources/img/question.png" alt="" style="width: 25px; height: 25px;">
+                  <img class="img-color" src="${pageContext.request.contextPath}/resources/img/question-color.png" alt="" style="width: 25px; height: 25px;">
+              </button>
+          </div>
+          <div id="modal" class="modal-overlay">
+              <div class="modal-window">
+                  <div class="title">
+                      <h2><img src="${pageContext.request.contextPath}/resources/img/question.png" alt="" style="width: 25px; height: 25px;"> 경로게시판 작성방법</h2>
+                  </div>
+                  <div class="close-area">X</div>
+                  <div class="content">
+                      <img src="${pageContext.request.contextPath}/resources/img/route_manual.jpg" alt="">
+                  </div>
+              </div>
             </div>
+              
+       
+          <hr class="divider first">
 
-     
-            <div class="return-to-list-button"></div>
-        </div>
-      <%@ include file="../footer-sub.jsp" %>
-    </div>
+          <!-- 경로 영역 -->
+          <div class="route-container">
+
+              <div class="route-index">
+                 <div class="newIndex-button">
+                     <div class="index-button">
+                         <h1>1</h1>
+                     </div>
+                    
+                    </div>
+                  <div class="add-button">
+                      <button type="button" id="addDayBtn">+</button>
+                  </div>
+              </div>
+
+              <div class="route-box">
+
+                  <div class="route-upperside">
+                      <div class="map" id="map" ></div>
+                      <div class="toolTab">
+                       <div class="toolBtn">
+                           <button id="myButton">
+                               <div class="btnImg">
+                                   <img src="${pageContext.request.contextPath}/resources/img/search.png" alt="">
+                               </div>
+                               Search
+                           </button>
+                       </div>
+                       <div class="toolBtn">
+                           <button id="test">
+                               <div class="btnImg">
+                                   <img src="${pageContext.request.contextPath}/resources/img/checkmark.png" alt="">
+                               </div>
+                               Test
+                           </button>
+                       </div>
+                       <div class="toolBtn">
+                           <button id="line">
+                               <div class="btnImg">
+                                   <img src="${pageContext.request.contextPath}/resources/img/gps-route.png" alt="">
+                               </div>
+                               Line
+                           </button>
+                       </div>
+                       <div class="toolBtn">
+                           <button id="linedelete">
+                               <div class="btnImg">
+                                   <img src="${pageContext.request.contextPath}/resources/img/eraser.png" alt="">
+                               </div>
+                               Delete
+                           </button>
+                       </div>
+                   </div>
+                      
+                      <div id="searchTab" class="bg_white" class="slide">
+                       <div class="option">
+                           <div>
+                           <form onsubmit="searchPlaces(); return false;">
+                           <input type="text" class="searchInput" value="이태원 맛집" id="keyword" size="5"> 
+                           <button type="submit">검색하기</button> 
+                          </form>
+                           </div>
+                      </div>
+                       <hr>
+                       <ul id="placesList"></ul>
+                       <div id="pagination"></div>
+                   </div>
+                   
+                      <div class="btn-container">
+                      <button class="cancle-button" onclick="history.back()">목록보기</button>
+                      <button type="button" id="submitBtn" onclick="send()" class="submit-button" > 전체 저장</button>
+                      </div>
+                  </div>
+
+             <form action="/project/board/dayPlans.do" method="post" id="dayPlanForm">
+                     <div class="route-lowerside">
+                        <div class="map-place-list-section">
+                             <h2>#상세코스</h2>
+                             <div class="place-list">
+                          <input type="hidden" name="days[${dayIndex - 1}].day" id="dayIndex" placeholder="dayIndex" required> 
+                          <div id="clickLatlng" class="click"></div>
+                            </div>
+                         </div>
+                        <div class="day-comment-list">
+                            <h2 id="dayCommentH2"># 코멘트</h2>
+                            <div class="day-comment">
+                            <textarea rows="" cols="" name="days[${dayIndex - 1}].dayInfo" id="dayInfo" placeholder="해당 일차 후기를 작성해 주세요." required class="commentTextarea"></textarea>                           </div>
+                         </div>
+                        
+                     </div>
+                     <button type="button" id="dayBtn">일정 저장</button>
+             </form>
+             </div>
+
+
+          </div>
+
    
+          <div class="return-to-list-button"></div>
+      </div>
+    <%@ include file="../footer-sub.jsp" %>
+  </div>
+
+
    <!-- Include the Quill library -->
    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
    
@@ -458,8 +490,40 @@
             container.appendChild(imgContainer);
         }
     }
+    </script>
 
-   </script>
+   <script>
+        const modal = document.getElementById("modal");
+        
+        function modalOn() {
+            modal.style.display = "flex";
+        }
+
+        function isModalOn() {
+            return modal.style.display === "flex";
+        }
+
+        function modalOff() {
+            modal.style.display = "none";
+        }
+
+        const btnModal = document.getElementById("btn-modal");
+
+        btnModal.addEventListener("click", e => {
+            modalOn();
+        });
+
+        // 모달 닫기 기능 추가
+        const closeArea = document.querySelector("#modal .close-area");
+        closeArea.addEventListener("click", e => {
+            modalOff();
+        });
+
+        // 외부 스크립트 동적 로드
+        var script = document.createElement('script');
+        script.src = 'http://t1.daumcdn.net/mapjsapi/js/libs/services/1.0.2/services.js';
+        document.head.appendChild(script);
+    </script>
 
 </body>
 </html>

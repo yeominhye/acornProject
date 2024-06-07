@@ -86,6 +86,10 @@
     padding-bottom: 5px;
 }
 
+.event-description-content p{
+	padding:10px;
+}
+
 /* 지도 정보 */
 .event-map-custom {
     padding-top: 30px;

@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						<li><strong>체험안내</strong> <span>${tourInfo2[0].expguide}</span></li>
 					</c:if>
 					<c:if test="${not empty tourInfo2[0].infocenter}">
-						<li><strong>문의및안내</strong> <span>${tourInfo2[0].infocenter}</span></li>
+						<li><strong>문의 및 안내</strong> <span>${tourInfo2[0].infocenter}</span></li>
 					</c:if>
 					<c:if test="${not empty tourInfo2[0].restdate}">
 						<li><strong>휴무일</strong> <span>${tourInfo2[0].restdate}</span></li>

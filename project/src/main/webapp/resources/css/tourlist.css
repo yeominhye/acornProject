@@ -1,14 +1,18 @@
+@charset "UTF-8";
+
 .container {
 	width: 1100px;
-	height: 1440px;
+	height: 1440px; /*페이징 구현 후 수정*/
 	margin: 75px auto;
 	display: flex;
 	justify-content: space-between;
 }
 
+/* side-nav */
 .side-container {
 	position: relative;
 	width: 210px;
+	height: 1440px; /*페이징 구현 후 수정*/
 	margin-top: 90px;
 }
 
@@ -26,15 +30,31 @@
 .side-name {
 	font-size: 18px;
 	font-weight: bold;
-	text-decoration: underline;
+	border-bottom: 1.5px solid black;
+	padding-bottom: 3px;
 }
 
 .local-box {
-	margin: 10px auto;
+	margin: 10px auto 25px auto;
 	width: 98%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+}
+
+.local{
+	display: flex;
+	justify-content: center;
+	align-self: center;
+	width: 40px;
+	height: 20px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #999999;
+	margin-bottom: 5px;
+	border-radius: 50px;
+	cursor: pointer;
+	line-height: 20px;
 }
 
 .area {
@@ -55,7 +75,8 @@
 	display: flex;
 	justify-content: center;
 	align-self: center;
-	margin: 15px auto;
+	margin: 0 auto;
+	margin-top: 10px;
 	width: 125px;
 	height: 25px;
 	border-radius: 25px;
