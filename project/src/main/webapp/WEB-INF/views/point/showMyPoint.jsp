@@ -1,4 +1,3 @@
-<%@ page import="com.acorn.project.point.domain.Point" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <body>
 <div class="wrap">
 <%@ include file="../nav.jsp" %>
-	<div class="container">
+   <div class="container">
     <!-- 왼쪽 네비 위-->
     <div class="pt_nav">
         <div class="pt_nav_up">
@@ -74,9 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="pt_nav_down">
             <div class="pt_nav_char">
-	            <h1><a href="/project/point/showMyPoint.do">전체내역</a></h1>
-	             <a href="/project/point/showMyUsePoint.do"> <p>사용내역</p> </a>
-	             <a href="/project/point/showMyEarnedPoint.do"> <p>획득내역</p> </a>
+               <h1><a href="/project/point/showMyPoint.do">전체내역</a></h1>
+               <a href="/project/point/showMyUsePoint.do">사용내역</a>
+               <a href="/project/point/showMyEarnedPoint.do">획득내역</a>
             </div>
         </div>
     </div>
@@ -132,13 +131,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             <a href="/project/board/free/${point.boardCode}"><c:out value="${point.boardTitle}"/></a>
                         </td>
                         <td id="t_use_point">
-							<c:choose>
-                        		<c:when test="${point.pointStatus == 0}">-<c:out value="${point.pointAmount}"/></c:when>
-                        		<c:when test="${point.pointStatus == 1}"><c:out value="${point.pointAmount}"/></c:when>
-                        		<c:when test="${point.pointStatus == 2}">-<c:out value="${point.pointAmount}"/></c:when>
-                        		<c:when test="${point.pointStatus == 3}"><c:out value="${point.pointAmount}"/></c:when>
-                        	</c:choose>
-						</td>
+                     <c:choose>
+                              <c:when test="${point.pointStatus == 0}">-<c:out value="${point.pointAmount}"/></c:when>
+                              <c:when test="${point.pointStatus == 1}"><c:out value="${point.pointAmount}"/></c:when>
+                              <c:when test="${point.pointStatus == 2}">-<c:out value="${point.pointAmount}"/></c:when>
+                              <c:when test="${point.pointStatus == 3}"><c:out value="${point.pointAmount}"/></c:when>
+                           </c:choose>
+                  </td>
                         <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
                     </tr>
                 </c:forEach>
@@ -156,8 +155,8 @@ document.addEventListener('DOMContentLoaded', function() {
         </tfoot>
     </table>
     <div class="pagination" id="pagination"></div>
-	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	    <script src="${pageContext.request.contextPath}/resources/js/pagination.js"></script>
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+       <script src="${pageContext.request.contextPath}/resources/js/pagination.js"></script>
     </div>
 </div>
 

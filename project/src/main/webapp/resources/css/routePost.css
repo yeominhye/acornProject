@@ -33,11 +33,6 @@ button{
    outline: none;
 }
 
-.ql-blank{
-   display: none;
-}
-
-
 /* 
 ----------------------
          블러 
@@ -180,6 +175,7 @@ button{
     height: 25px;
     text-align: center;
     font-weight: bold;
+    padding-top: 3px;
 }
 
 /* 글제목 */

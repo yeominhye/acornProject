@@ -19,29 +19,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-    <style>
-    .content {
-	cursor:pointer;
-}
-</style>
 </head>
 <body>
    <div class="wrap">
-        <!-- header --> 
-        <header>
-            <div class="header-container">
-                <div class="header-text-box">
-                    <div class="header-text01">경로를 공유하는 당신</div>
-                    <div class="header-text02">경로당</div>
-                   <img class="header-img4" src="${pageContext.request.contextPath}/resources/img/header-img04.png" alt="">
-                </div>
-            </div>
-            <div class="header-img-box">
-                <img class="header-img2" src="${pageContext.request.contextPath}/resources/img/header-map.png" alt="">
-                <img class="header-img0" src="${pageContext.request.contextPath}/resources/img/header-img.png" alt="">
-                <img class="header-img1" src="${pageContext.request.contextPath}/resources/img/header-img01.png" alt="">
-            </div>
-        </header>
+   <!-- header --> 
+   <header>
+      <div class="header-container">
+         <div class="header-text-box">
+            <div class="header-text01">경로를 공유하는 당신</div>
+            <div class="header-text02">경로당</div>
+            <img class="header-img4" src="${pageContext.request.contextPath}/resources/img/header-img04.png" alt="">
+         </div>
+      </div>
+      <div class="header-img-box">
+         <img class="header-img2" src="${pageContext.request.contextPath}/resources/img/header-map.png" alt="">
+         <img class="header-img0" src="${pageContext.request.contextPath}/resources/img/header-img.png" alt="">
+         <img class="header-img1" src="${pageContext.request.contextPath}/resources/img/header-img01.png" alt="">
+      </div>
+   </header>
 
       <!-- section-01 -->
       <section>
@@ -125,30 +120,32 @@
             <div class="route-box">
                     <div class="title-text"><span class="local-name">서울,</span> 인기루트</div>
                     <div class="route-text"><a href="/project/board/route">더보기</a></div>
-                    <div class="route-items">                        
-                        <div class="route-item route-item01">
-                            <a href="#"> <!-- 루트 상세 페이지 -->
-                                <div class="route-img-box">
-                                    <img class="route-img" src="https://via.placeholder.com/250x250.jpg" alt="">
-                                </div>
-                                <div class="route-top-info">
-                                    <div class="likes-info">
-                                        <div class="like-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                        <div class="like-int">3,180</div>
-                                    </div>
-                                    <div class="user-info">
-                                        <div class="user-name">뽀대왕자님</div>
-                                        <div class="check-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                    </div>
-                                <!-- 잠금 아이콘도 여기 넣기 -->
-                                </div>
-                         <div class="route-title">
-                            <div class="local-box">경기</div>
-                                   <div class="route-name-box">
-                                <div class="route-name">가평 유럽마을 당일치기 일정</div>
-                            </div>
+                    <div class="route-items">   
+                                         
+                                         
+                        <div class="route-item">
+                            
+                     <div class="route-img-box">
+                        <img class="route-img" src="https://via.placeholder.com/250x250.jpg" alt="">
+                     </div>
+                     
+                     <div class="route-top-info">
+                        <div class="likes-info">
+                           <div class="like-int">3,180</div>
                         </div>
-                            </a>
+                        <div class="user-info">
+                           <div class="user-name">뽀대왕자님</div>
+                        </div>
+                        <!-- 잠금 아이콘도 여기 넣기 -->
+                     </div>
+                                   
+                     <div class="route-title">
+                        <div class="local-box">경기</div>
+                        <div class="route-name-box">
+                           <div class="route-name">가평 유럽마을 당일치기 일정</div>
+                        </div>
+                     </div>
+                              
                         </div>
                         
                         <!-- 임시 데이터들 -->
