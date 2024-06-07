@@ -121,110 +121,59 @@
                     <div class="title-text"><span class="local-name">서울,</span> 인기루트</div>
                     <div class="route-text"><a href="/project/board/route">더보기</a></div>
                     <div class="route-items">   
-                                         
-                                         
+                                       
+					<c:forEach var="board" items="${homeRouteData}">
                         <div class="route-item">
-                            
-                     <div class="route-img-box">
-                        <img class="route-img" src="https://via.placeholder.com/250x250.jpg" alt="">
-                     </div>
-                     
-                     <div class="route-top-info">
-                        <div class="likes-info">
-                           <div class="like-int">3,180</div>
-                        </div>
-                        <div class="user-info">
-                           <div class="user-name">뽀대왕자님</div>
-                        </div>
-                        <!-- 잠금 아이콘도 여기 넣기 -->
-                     </div>
-                                   
-                     <div class="route-title">
-                        <div class="local-box">경기</div>
-                        <div class="route-name-box">
-                           <div class="route-name">가평 유럽마을 당일치기 일정</div>
-                        </div>
-                     </div>
-                              
-                        </div>
-                        
-                        <!-- 임시 데이터들 -->
-                        <div class="route-item route-item02">
-                            <a href="#"> <!-- 루트 상세 페이지 -->
-                                <div class="route-img-box">
-                                    <img class="route-img" src="https://via.placeholder.com/250x250.jpg" alt="">
-                                </div>
-                                <div class="route-top-info">
-                                    <div class="likes-info">
-                                        <div class="like-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                        <div class="like-int">3,180</div>
-                                    </div>
-                                    <div class="user-info">
-                                        <div class="user-name">뽀대왕자님</div>
-                                        <div class="check-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                    </div>
-                                <!-- 잠금 아이콘도 여기 넣기 -->
-                                </div>
-                                <div class="route-title">
-                                    <div class="local-box">경기</div>
-                                    <div class="route-name-box">
-                                        <div class="route-name">부천 맛집만 쏙쏙 다녀오는 2박 3일 일정</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="route-item route-item03">
-                            <a href="#"> <!-- 루트 상세 페이지 -->
-                                <div class="route-img-box">
-                                    <img class="route-img" src="https://via.placeholder.com/250x250.jpg" alt="">
-                                </div>
-                                <div class="route-top-info">
-                                    <div class="likes-info">
-                                        <div class="like-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                        <div class="like-int">3,180</div>
-                                    </div>
-                                    <div class="user-info">
-                                        <div class="user-name">뽀대왕자님</div>
-                                        <div class="check-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                    </div>
-                                <!-- 잠금 아이콘도 여기 넣기 -->
-                                </div>
-                                <div class="route-title">
-                                    <div class="local-box">경기</div>
-                                    <div class="route-name-box">
-                                        <div class="route-name">부평 술집거리 3박 4일 탐험</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="route-item route-item04">
-                            <a href="#"> <!-- 루트 상세 페이지 -->
-                                <div class="route-img-box">
-                                    <img class="route-img" src="https://via.placeholder.com/250x250.jpg" alt="">
-                                </div>
-                                <div class="route-top-info">
-                                    <div class="likes-info">
-                                        <div class="like-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                        <div class="like-int">3,180</div>
-                                    </div>
-                                    <div class="user-info">
-                                        <div class="user-name">뽀대왕자님</div>
-                                        <div class="check-icon"><img src="https://via.placeholder.com/25x25.jpg" alt=""></div>
-                                    </div>
-                                <!-- 잠금 아이콘도 여기 넣기 -->
-                                </div>
-                                <div class="route-title">
-                                    <div class="local-box">경기</div>
-                                    <div class="route-name-box">
-                                        <div class="route-name">제주도 오름 위주 5박 6일 일정</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                       <!-- 임시 데이터 끝 -->
-                    </div>
-                    <hr class="section-hr">
-                </div>
+							<div class="route-img-box">
+	                        	<c:choose>
+									<c:when test="${not empty board.boardImgReal}">
+							        	<img class="boardImg" src="<c:url value='/board/images/${board.boardImgReal}' />" alt="Board Image">
+							        </c:when>
+									<c:otherwise>
+							        	<img class="boardImg" src="${pageContext.request.contextPath}/resources/img/blankimg.png" alt="Default Image">
+									</c:otherwise>
+								</c:choose>
+								<div class="route-top-info">
+			                    	<div class="views-info">
+			                        	<div class="view-int">views<span> ${board.boardViews}</span></div>
+									</div>
+			                        <div class="user-info">
+			                        	<div class="user-name"><span>${board.nickname}</span></div>
+									</div>
+			                    </div>
+							</div>
+	                                		
+							<div class="route-title">
+	                        	<div class="local-box">
+					        		<c:choose>
+							        	<c:when test="${board.boardRegion == 0}">서울</c:when>
+							            <c:when test="${board.boardRegion == 1}">인천</c:when>
+							            <c:when test="${board.boardRegion == 2}">대전</c:when>
+							            <c:when test="${board.boardRegion == 3}">대구</c:when>
+							            <c:when test="${board.boardRegion == 4}">경기</c:when>
+							            <c:when test="${board.boardRegion == 5}">부산</c:when>
+							            <c:when test="${board.boardRegion == 6}">울산</c:when>
+							            <c:when test="${board.boardRegion == 7}">광주</c:when>
+							            <c:when test="${board.boardRegion == 8}">강원</c:when>
+							            <c:when test="${board.boardRegion == 9}">충북</c:when>
+							            <c:when test="${board.boardRegion == 10}">충남</c:when>
+							            <c:when test="${board.boardRegion == 11}">경북</c:when>
+							            <c:when test="${board.boardRegion == 12}">경남</c:when>
+							            <c:when test="${board.boardRegion == 13}">전북</c:when>
+							            <c:when test="${board.boardRegion == 14}">전남</c:when>
+							            <c:when test="${board.boardRegion == 15}">제주</c:when>
+							            <c:when test="${board.boardRegion == 16}">세종</c:when>
+					                </c:choose>
+								</div>
+		                        <div class="route-name-box">
+			                        <div class="route-name">${board.boardTitle}</div>
+								</div>
+							</div>                        	
+						</div>
+					</c:forEach>
+				</div>
+                <hr class="section-hr">
+			</div>
                 
             <div class="tour-box">
                <div class="title-text">
