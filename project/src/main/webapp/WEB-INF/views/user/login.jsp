@@ -12,6 +12,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+        	//아이디 기억
+        	if (localStorage.getItem('rememberedUserId')) {
+                $("#loginUserId").val(localStorage.getItem('rememberedUserId'));
+                $("#rememberMe").prop('checked', true);
+            }
+        	//자동
+        	/*
+        	  if (localStorage.getItem('autoLogin') === 'true') {
+        	        $("#loginUserId").val(localStorage.getItem('rememberedUserId'));
+        	        $("#loginUserPw").val(localStorage.getItem('rememberedUserPw'));
+        	        $("#autoLogin").prop('checked', true);
+        	        submitLoginForm();  // 자동 로그인 
+        	    }
+        	*/
             $("#btnLogin").click(function(){
                 var userId = $("#loginUserId").val();
                 var userPw = $("#loginUserPw").val(); 
@@ -23,9 +37,27 @@
                     $("#loginUserPw").focus();
                     return;
                 }
-                document.loginForm.action = "${path}/user/login_check.do";
-                document.loginForm.submit();
-            });
+            
+            
+         // 아이디 기억하기
+            if ($("#rememberMe").is(':checked')) {
+                localStorage.setItem('rememberedUserId', userId);
+            } else {
+                localStorage.removeItem('rememberedUserId');
+            }
+         /*
+            // "자동 로그인" 체크박스 상태에 따라 아이디와 비밀번호 저장 또는 삭제
+            if ($("#autoLogin").is(':checked')) {
+                localStorage.setItem('autoLogin', 'true');
+                localStorage.setItem('rememberedUserPw', userPw); 
+            } else {
+                localStorage.removeItem('autoLogin');
+                localStorage.removeItem('rememberedUserPw');
+            } */
+
+            document.loginForm.action = "${path}/user/login_check.do";
+            document.loginForm.submit();
+        });
 
             $("#registerUserId").on('input', function() {
                 var userId = $(this).val();
@@ -83,6 +115,13 @@
                 }
             });
 
+            
+            
+            
+            
+            
+            
+            
             $("#registerUserPw").on('input', function() {
                 var userPw = $(this).val();
                 var regex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
@@ -182,6 +221,7 @@
                 <form id="sign-in-form" name="loginForm" method="post" onsubmit="return submitLoginForm();">
                     <input type="text" id="loginUserId" name="userId" placeholder="ID" required/><br>
                     <input type="password" id="loginUserPw" name="userPw" placeholder="Password" required/><br>
+                     <input type="checkbox" id="rememberMe" style="width:15px;"><span style="margin-right:150px;">아이디 저장</span><br>
                     <c:if test="${message == 'error'}">
                         <div style="color:red;">아이디 또는 비밀번호가 일치하지 않습니다.</div>
                     </c:if>
