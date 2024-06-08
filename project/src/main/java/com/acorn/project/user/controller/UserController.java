@@ -297,6 +297,69 @@ public class UserController {
 	}
 	
 	
+	@RequestMapping("mypage.do/inquiry")
+	public ModelAndView myPageInquiry(HttpSession session,  @RequestParam(defaultValue = "1") int page, HttpServletRequest request) {
+	    ModelAndView mv = new ModelAndView();
+	    String url = request.getRequestURL().toString();
+	    session.setAttribute("url", url);
+	    try {
+	        User user = (User) session.getAttribute("user");
+	        if (user != null) {
+	            mv.setViewName("user/mypage");
+	            mv.addObject("user", user);
+	            String userId = user.getUserId();
+	            List<Board> myboard = boardService.selectUserPoint(userId,page); 
+	            mv.addObject("list",myboard);
+	            
+	            int pageSize= 10;
+	            int totRecords = boardService.MyPointCount(userId);
+	            PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
+	            mv.addObject("paging",handler);
+	            
+	        } else {
+	            mv.setViewName("errorPage");
+	            mv.addObject("message", "User information not found");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        mv.setViewName("errorPage");
+	        mv.addObject("message", "Error");
+	    }
+	    return mv;
+	}
+	
+	@RequestMapping("mypage.do/report")
+	public ModelAndView myPageReport(HttpSession session,  @RequestParam(defaultValue = "1") int page, HttpServletRequest request) {
+	    ModelAndView mv = new ModelAndView();
+	    String url = request.getRequestURL().toString();
+	    session.setAttribute("url", url);
+	    try {
+	        User user = (User) session.getAttribute("user");
+	        if (user != null) {
+	            mv.setViewName("user/mypage");
+	            mv.addObject("user", user);
+	            String userId = user.getUserId();
+	            List<Board> myboard = boardService.selectUserPoint(userId,page); 
+	            mv.addObject("list",myboard);
+	            
+	            int pageSize= 10;
+	            int totRecords = boardService.MyPointCount(userId);
+	            PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
+	            mv.addObject("paging",handler);
+	            
+	        } else {
+	            mv.setViewName("errorPage");
+	            mv.addObject("message", "User information not found");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        mv.setViewName("errorPage");
+	        mv.addObject("message", "Error");
+	    }
+	    return mv;
+	}
+	
+	
 	
 
 	

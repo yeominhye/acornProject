@@ -22,3 +22,8 @@
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 </beans>
+
+
+	<!-- 	<property name="url" value="jdbc:mysql://43.201.147.55/testdb?useUnicode=true&amp;characterEncoding=utf8"></property>
+      <property name="username" value="chs"></property>
+      <property name="password" value="1234"></property> -->

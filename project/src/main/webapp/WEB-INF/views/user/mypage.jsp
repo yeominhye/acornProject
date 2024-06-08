@@ -236,11 +236,10 @@ td{
    padding-left: 5px !important;
 }
 .inquiry{
-	margin-right: 100px;
-	text-align: center;
+	margin-left: 160px;
 }
 .report{
-
+	margin-right: 160px;
 }
 
 </style>
@@ -291,8 +290,8 @@ td{
     	<c:when test="${user.userId eq 'admin'}">
 			<div class="my-list-ul">
 		        <ul>
-		            <li class="inquiry"><a href="/project/user/mypage.do">문의 내역</a></li>
-		            <li class="report"><a href="/project/user/mypage.do/arch">신고 내역</a></li>
+		            <li class="inquiry"><a href="/project/user/mypage.do/inquiry">문의 내역</a></li>
+		            <li class="report"><a href="/project/user/mypage.do/report">신고 내역</a></li>
 		        </ul>
 		    </div>
     	</c:when>

@@ -174,12 +174,15 @@ public class BoardController {
             System.out.println(comment);
             response.put("status", "success");
             response.put("message", "Comment posted successfully");
-            if (currentUrl.equals("http://localhost:8080/project/board/free/"+code)) {
-               response.put("redirect", "/project/board/free/"+code);
-               
-            } else {
-               response.put("redirect", "/project/board/route/"+code);
-            }
+            
+            if (currentUrl.contains("free")) {
+                response.put("redirect", "/project/board/free/"+code);
+                System.out.println(response);
+             } 
+              if (currentUrl.contains("route")) {
+                response.put("redirect", "/project/board/route/"+code);
+                System.out.println(response);
+             }
             
             return ResponseEntity.ok(response);
         } else {
