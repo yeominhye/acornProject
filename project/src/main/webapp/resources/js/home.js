@@ -1,3 +1,4 @@
+// 상단 지역 슬라이드 코드 //
 let localPage = 0;
 let localValue = 0;
 const localWidth = 110; //수정
@@ -30,19 +31,38 @@ function localNext() {
         localBackBtn.setAttribute('disabled', 'true');
     }
 }
-// ------- //
-// 루트 이름에 쓸 기능
-function setRouteItemWidth(routeItemClass) {
-    const routeNameWidth = document.querySelector(`.${routeItemClass} .route-name`).getBoundingClientRect().width;
-    const cssWidth = 180 - routeNameWidth;
-    document.documentElement.style.setProperty(`--${routeItemClass}-value`, `${cssWidth}px`);
-}
 
-setRouteItemWidth('route-item01');
-setRouteItemWidth('route-item02');
-setRouteItemWidth('route-item03');
-setRouteItemWidth('route-item04');
-// -------//
+
+// 상단 지역 아이콘 클릭 효과 //
+document.addEventListener('DOMContentLoaded', function () {
+        const slideItems = document.querySelectorAll('.slide-item img');
+
+        slideItems.forEach(item => {
+            item.addEventListener('click', function () {
+                document.querySelectorAll('.slide-item img.clicked').forEach(img => img.classList.remove('clicked'));
+                this.classList.add('clicked');
+            });
+        });
+        
+        // Set the first image as clicked by default
+        slideItems[0].classList.add('clicked');
+    });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const slideItems = document.querySelectorAll('.slide-item');
+    const localNames = document.querySelectorAll('.local-name');
+
+    slideItems.forEach(item => {
+        item.addEventListener('click', function () {
+            const areaName = item.getAttribute('data-name');
+            localNames.forEach(localName => {
+                localName.textContent = areaName + ',';
+            });
+        });
+    });
+});
+
+
 //section 2에 쓸 달력 코드
 /* 현재 월 효과 입히기 */
 var previousMonthBtn = null;
@@ -70,41 +90,36 @@ months.forEach(month => {
 });
 
 
+// 경로 제목 슬라이더 //
+document.addEventListener("DOMContentLoaded", function() {
+
+    const routeItems = document.querySelectorAll('.route-item');
+    
+    routeItems.forEach(function(item) {
+        const routeImgBox = item.querySelector('.boardImg');
+        const routeNameBox = item.querySelector('.route-name-box');
+        const routeName = item.querySelector('.route-name');
+
+        const routeNameWidth = routeName.offsetWidth;
+        const routeNameBoxWidth = routeNameBox.offsetWidth;
+        
+        const moveDistance = routeNameBoxWidth - routeNameWidth;
+
+        routeImgBox.addEventListener('mouseenter', function() {
+        	if ( moveDistance < 0 ) {
+            	routeName.style.transform = `translateX(${moveDistance}px)`;
+        	} else {
+            	routeName.style.transform = `translateX(0px)`;
+        	}
+        });
+    });
+});
+
+
 function init() {  //초기 화면 상태
     localBackBtn.setAttribute('disabled', 'true');
     localBackBtn.addEventListener("click", localNext);
     localNextBtn.addEventListener("click", localBack);
 }
 init();
-
-
-document.addEventListener('DOMContentLoaded', function () {
-        const slideItems = document.querySelectorAll('.slide-item img');
-
-        slideItems.forEach(item => {
-            item.addEventListener('click', function () {
-                document.querySelectorAll('.slide-item img.clicked').forEach(img => img.classList.remove('clicked'));
-                this.classList.add('clicked');
-            });
-        });
-        
-        // Set the first image as clicked by default
-        slideItems[0].classList.add('clicked');
-    });
-    
-
-    
-document.addEventListener('DOMContentLoaded', function () {
-    const slideItems = document.querySelectorAll('.slide-item');
-    const localNames = document.querySelectorAll('.local-name');
-
-    slideItems.forEach(item => {
-        item.addEventListener('click', function () {
-            const areaName = item.getAttribute('data-name');
-            localNames.forEach(localName => {
-                localName.textContent = areaName + ',';
-            });
-        });
-    });
-});
     

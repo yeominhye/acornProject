@@ -235,7 +235,13 @@ td{
 .head-title, .post-title {
    padding-left: 5px !important;
 }
+.inquiry{
+	margin-right: 100px;
+	text-align: center;
+}
+.report{
 
+}
 
 </style>
 
@@ -281,15 +287,27 @@ td{
 
       <!-- my_list -->
    <div class="my-list">
-    <div class="my-list-ul">
-        <ul>
-            <li><a href="/project/user/mypage.do">작성한 글</a></li>
-            <li><a href="/project/user/mypage.do/arch">스크랩</a></li>
-            <li><a href="/project/user/mypage.do/like">추천한 글</a></li>
-            <li><a href="/project/user/mypage.do/point">구매한 글</a></li>
-            <li><a href="/project/user/mypage.do/com" onclick="">내 댓글</a></li>
-        </ul>
-    </div>
+    <c:choose>
+    	<c:when test="${user.userId eq 'admin'}">
+			<div class="my-list-ul">
+		        <ul>
+		            <li class="inquiry"><a href="/project/user/mypage.do">문의 내역</a></li>
+		            <li class="report"><a href="/project/user/mypage.do/arch">신고 내역</a></li>
+		        </ul>
+		    </div>
+    	</c:when>
+    	<c:otherwise>
+	   		 <div class="my-list-ul">
+		        <ul>
+		            <li><a href="/project/user/mypage.do">작성한 글</a></li>
+		            <li><a href="/project/user/mypage.do/arch">스크랩</a></li>
+		            <li><a href="/project/user/mypage.do/like">추천한 글</a></li>
+		            <li><a href="/project/user/mypage.do/point">구매한 글</a></li>
+		            <li><a href="/project/user/mypage.do/com" onclick="">내 댓글</a></li>
+		        </ul>
+		    </div>
+    	</c:otherwise>
+    </c:choose>
 
 	<c:choose>
 	    <c:when test="${url.contains('com')}">

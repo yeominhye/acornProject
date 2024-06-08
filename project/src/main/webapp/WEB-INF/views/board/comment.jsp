@@ -30,6 +30,7 @@
 
           </div>
        
+       <input type="hidden" class="admin" value="${user.userId}">
        
        <h3 class="count-comment">댓글 ${count}</h3>
        </div>
@@ -37,14 +38,12 @@
        <!-- 댓글 보기 -->
        <div class="freeboard_page_comments">
 
-          <div id="no-comments-message" style="display: none;">작성된 댓글이
-             없습니다.</div>
+          <div id="no-comments-message" style="display: none;">작성된 댓글이 없습니다.</div>
           <div class="comment-box">
              <!-- test -->
              <c:forEach var="comment" items="${comments}" varStatus="loop">
 
-                <div class="comment" id="comment_${loop.index}"
-                   data-user-code="${comment.userCode}">
+                <div class="comment" id="comment_${loop.index}"  data-user-code="${comment.userCode}">
                    <div class="comment_name">${comment.nickname}</div>
                    <input type="hidden" class="modiCommentCode" value="${comment.commentCode}">
                    <div class="comment_content">${comment.commentContent}</div>
