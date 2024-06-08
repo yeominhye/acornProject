@@ -415,4 +415,15 @@
     <include refid="searchRouteDiv"/>
 </select>
    
+<select id="homeRouteData" resultType="RouteBoard" parameterType="String">
+    SELECT 
+        b.userCode, b.boardCode, u.nickname, b.boardImgReal, b.boardTitle, b.boardWritedate, 
+        b.boardViews, b.boardPoint, b.boardType, b.boardRegion    
+    FROM boardtbl b 
+    JOIN usertbl u ON b.userCode = u.userCode
+    WHERE b.boardType = 0
+    ORDER BY b.boardViews DESC
+    LIMIT 4
+</select>
+
 </mapper>

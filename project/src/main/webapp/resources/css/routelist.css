@@ -139,10 +139,6 @@
     border-radius: 6px;
 }
 
-.route-name {
-   width: 270px;
-   overflow-x: hidden;
-}
 
 
 /* info-box */
@@ -192,6 +188,21 @@
    color: #5c5c5c;
    line-height: 22px;
 }
+
+/* 루트 제목 슬라이더 */
+.route-name {
+	white-space: nowrap;
+    width: 180px;
+    margin-top: 3.5px;
+    overflow: hidden;
+    position: relative;
+	
+}
+.route-name span {
+	display: inline-block;
+    transition: transform 5s;
+}
+
 
 /* info-02 */
 .info-02 {

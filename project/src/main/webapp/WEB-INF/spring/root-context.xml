@@ -6,9 +6,11 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+
 		<property name="url" value="jdbc:mysql://52.79.148.41/testdb?useUnicode=true&amp;characterEncoding=utf8"></property>
 		<property name="username" value="chs"></property>
 		<property name="password" value="ghkstjr13794682!"></property>
+
 
 	</bean>
 	

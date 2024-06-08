@@ -150,24 +150,24 @@ span.active {color: orangered; font-weight: bold;}
                           <div class="left-content">
                              <div class="local-icon">
                                 <c:choose>
-                              <c:when test="${list.boardRegion == 0}">서울</c:when>
-                              <c:when test="${list.boardRegion == 1}">인천</c:when>
-                              <c:when test="${list.boardRegion == 2}">대전</c:when>
-                              <c:when test="${list.boardRegion == 3}">대구</c:when>
-                              <c:when test="${list.boardRegion == 4}">경기</c:when>
-                              <c:when test="${list.boardRegion == 5}">부산</c:when>
-                              <c:when test="${list.boardRegion == 6}">울산</c:when>
-                              <c:when test="${list.boardRegion == 7}">광주</c:when>
-                              <c:when test="${list.boardRegion == 8}">강원</c:when>
-                              <c:when test="${list.boardRegion == 9}">충북</c:when>
-                              <c:when test="${list.boardRegion == 10}">충남</c:when>
-                              <c:when test="${list.boardRegion == 11}">경북</c:when>
-                              <c:when test="${list.boardRegion == 12}">경남</c:when>
-                              <c:when test="${list.boardRegion == 13}">전북</c:when>
-                              <c:when test="${list.boardRegion == 14}">전남</c:when>
-                              <c:when test="${list.boardRegion == 15}">제주</c:when>
-                              <c:when test="${list.boardRegion == 16}">세종</c:when>
-                           </c:choose>
+		                              <c:when test="${list.boardRegion == 0}">서울</c:when>
+		                              <c:when test="${list.boardRegion == 1}">인천</c:when>
+		                              <c:when test="${list.boardRegion == 2}">대전</c:when>
+		                              <c:when test="${list.boardRegion == 3}">대구</c:when>
+		                              <c:when test="${list.boardRegion == 4}">경기</c:when>
+		                              <c:when test="${list.boardRegion == 5}">부산</c:when>
+		                              <c:when test="${list.boardRegion == 6}">울산</c:when>
+		                              <c:when test="${list.boardRegion == 7}">광주</c:when>
+		                              <c:when test="${list.boardRegion == 8}">강원</c:when>
+		                              <c:when test="${list.boardRegion == 9}">충북</c:when>
+		                              <c:when test="${list.boardRegion == 10}">충남</c:when>
+		                              <c:when test="${list.boardRegion == 11}">경북</c:when>
+		                              <c:when test="${list.boardRegion == 12}">경남</c:when>
+		                              <c:when test="${list.boardRegion == 13}">전북</c:when>
+		                              <c:when test="${list.boardRegion == 14}">전남</c:when>
+		                              <c:when test="${list.boardRegion == 15}">제주</c:when>
+		                              <c:when test="${list.boardRegion == 16}">세종</c:when>
+                           	</c:choose>
                         </div>
                         <div class="route-name">
                            <span>${list.boardTitle}</span>
@@ -264,111 +264,7 @@ span.active {color: orangered; font-weight: bold;}
    </div>
    
     <!-- script -->
-    <script>
-    var localBtns = document.querySelectorAll('.local');
-    var themeBtns = document.querySelectorAll('.theme');
-    var tourdaysBtns = document.querySelectorAll('.tourdays');
-    var resetBtn = document.querySelector('#resetBtn');
-    var searchBtn = document.querySelector('#searchBtn');
-
-    var selectedRegion = null;
-    var selectedTheme = null;
-    var selectedTourdays = null;
-
-    var previousLocalBtn = null;
-    var previousthemeBtn = null;
-    var previoustourdaysBtn = null;
-    
-    
-    function localBtnEvent() {
-        this.classList.add('clickEvent');
-        selectedRegion = this.id.replace('local', '');
-        if (previousLocalBtn && previousLocalBtn !== this) {
-            previousLocalBtn.classList.remove('clickEvent');
-        }
-
-        previousLocalBtn = this;
-
-    }
-
-    function themeBtnEvent() {
-        this.classList.add('clickEvent');
-        selectedTheme = this.id.replace('theme', ''); 
-        if (previousthemeBtn && previousthemeBtn !== this) {
-           previousthemeBtn.classList.remove('clickEvent');
-        }
-
-        previousthemeBtn = this;
-    }
-
-    function tourdaysBtnEvent() {
-        this.classList.add('clickEvent');
-        selectedTourdays = this.id.replace('tourdays', '');
-        if (previoustourdaysBtn && previoustourdaysBtn !== this) {
-           previoustourdaysBtn.classList.remove('clickEvent');
-        }
-
-        previoustourdaysBtn = this;
-    }
-
-    function resetBtnEvent() {
-       window.location.href = '/project/board/route';
-
-        selectedRegion = null;
-        selectedTheme = null;
-        selectedTourdays = null;
-    }
-
-    function searchBtnEvent() {
-        var url = "/project/board/route?";
-        if (selectedRegion) {
-            url += "region=" + selectedRegion + "&";
-        } else {
-           url += "region=&";   
-        }
-        
-        if (selectedTheme) {
-            url += "theme=" + selectedTheme + "&";
-        } else {
-           url += "theme=&";
-        }
-        if (selectedTourdays) {
-            url += "tourdays=" + selectedTourdays;
-        } else {
-           url += "tourdays=&";
-        }
-        if (url.endsWith("&")) {
-            url = url.slice(0, -1); // 맨 끝의 & 제거
-        }
-        window.location.href = url;
-    }
-
-    localBtns.forEach(function(btn) {
-        btn.addEventListener("click", localBtnEvent);
-    });
-
-    themeBtns.forEach(function(btn) {
-        btn.addEventListener("click", themeBtnEvent);
-    });
-
-    tourdaysBtns.forEach(function(btn) {
-        btn.addEventListener("click", tourdaysBtnEvent);
-    });
-
-    resetBtn.addEventListener("click", resetBtnEvent);
-    searchBtn.addEventListener("click", searchBtnEvent);
-    
-    function searchCheck() {
-        var condition = document.getElementsByName("condition")[0].value;
-        if (condition === "") {
-            alert("검색 조건을 선택해주세요.");
-            return false;
-        }
-        return true;
-    }
-
-    
-</script>
+    <script src="${pageContext.request.contextPath}/resources/js/route.js" defer></script>
 
 </body>
 </html>

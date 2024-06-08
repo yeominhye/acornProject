@@ -16,6 +16,22 @@
             color: white;
             background-color: #E78181;
         }
+        
+        .info-name {
+			white-space: nowrap;
+		    width: 230px;
+		    margin-top: 3.5px;
+		    overflow: hidden;
+		    position: relative;
+			
+		}
+		
+		.info-name span {
+			display: inline-block;
+		    transition: transform 5s;
+		}
+		
+		img {cursor: pointer;}
     </style>    
 </head>
 <body>
@@ -62,7 +78,7 @@
                                 <img src="${item.firstimage}">
                             </div>
                             <div class="content-info">
-                                <div class="info-name">${item.title}</div>
+                                <div class="info-name"><span>${item.title}</span></div>
                                 <div class="info-local">${item.addr1}</div>
                                 <div class="info-dist">${item.dist}</div>
                             </div>
@@ -93,7 +109,7 @@
         </div>
         <%@ include file="../footer-sub.jsp" %>
     </div>
-    
+    <script src="${pageContext.request.contextPath}/resources/js/textSlide.js" defer></script>
     <script>
     $(document).ready(function() {
         // 페이지 로드 시 초기 설정
