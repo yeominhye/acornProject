@@ -71,4 +71,8 @@ public interface BoardServiceI {
 	int getTotalCountBySearch(String region, String theme, String tourdays);
 	
 	List<RouteBoard> getHomeRouteData();
+	
+	int selectInquiryCount();
+			
+	List<Board> selectInquiry(int currentPage);
 }

@@ -91,22 +91,21 @@
     position: relative;
 }
 .section-name hr {
-    margin: 10px 0 50px 0;
+    margin: 10px 0 40px 0;
     color: black;
 }
 
-.write-link { /* 글쓰기 */
-    position: absolute;
-    top: 5px;
-    right: 0;
+.write-link {
+    position: relative;
+    bottom: 80px;
+    left: 740px;
     border: 1.3px solid rgb(97, 97, 97);
-   border-radius: 5px;
+    border-radius: 5px;
     padding: 3px 8px 3px 8px;
     color: black;
     font-size: 10pt;
     margin-right: 10px;
 }
-
 
 .route-table { /* 경로 테이블 */
     width: 800px;
@@ -129,6 +128,8 @@
 }
 .route-img .boardImg {
    object-fit: cover;
+    position: relative;
+    top: 2px;
 }
 .route-img .route-point div {
    position: absolute;
@@ -252,3 +253,7 @@
    background-size: 100%;
 }
 
+
+hr {
+    width: 800px;
+}

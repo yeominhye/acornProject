@@ -162,3 +162,6 @@
 .event-btn button:hover {
     background-color: #73b7ff;
 }
+.detailContent{
+	text-align: justify;
+}

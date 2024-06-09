@@ -92,4 +92,12 @@ public interface BoardDAOI {
 	int getTotalCountBySearch(String region, String theme, String tourdays);
 	
 	List<RouteBoard> homeRouteData();
+	
+	// 게시글 수
+	int selectInquiryCount();
+		
+	// 목록 전체조회
+	List<Board> selectInquiry(int currentPage);
+
+	
 }

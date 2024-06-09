@@ -1,6 +1,8 @@
 package com.acorn.project.board.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -177,5 +179,28 @@ public class BoardService implements BoardServiceI {
 	@Override
 	public List<RouteBoard> getHomeRouteData() {
 		return dao.homeRouteData();
+	}
+	
+	@Override
+	// 게시판 수
+	public int selectInquiryCount() {
+		return dao.selectInquiryCount();
+	}
+	
+	// 전체 목록 조회
+	@Override
+	public List<Board> selectInquiry(int currentPage){
+		
+		 //현재페이지정보,  전체레코드수      
+	  	int  pageSize  =   10;		
+		 int offset = (currentPage - 1) * pageSize;  
+	 	
+		
+	 	
+		Map info = new  HashMap();
+		info.put("offset",  offset);   
+		info.put("pageSize", pageSize);
+		
+		return dao.selectInquiry(currentPage);
 	}
 }

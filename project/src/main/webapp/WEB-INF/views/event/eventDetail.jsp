@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h3>상세정보</h3>
                 <c:if test="${not empty eventInfo2[0].overview}">
                     <div class="event-description-content">
-                        <p>내용: ${eventInfo2[0].overview}</p>
+                        <p class="detailContent">${eventInfo2[0].overview}</p>
                     </div>
                 </c:if>
             </div>

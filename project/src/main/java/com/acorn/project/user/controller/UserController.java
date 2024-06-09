@@ -308,11 +308,11 @@ public class UserController {
 	            mv.setViewName("user/mypage");
 	            mv.addObject("user", user);
 	            String userId = user.getUserId();
-	            List<Board> myboard = boardService.selectUserPoint(userId,page); 
+	            List<Board> myboard = boardService.selectInquiry(page); 
 	            mv.addObject("list",myboard);
 	            
 	            int pageSize= 10;
-	            int totRecords = boardService.MyPointCount(userId);
+	            int totRecords = boardService.selectInquiryCount();
 	            PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
 	            mv.addObject("paging",handler);
 	            
