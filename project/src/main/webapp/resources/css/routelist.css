@@ -193,9 +193,9 @@
 .route-name {
 	white-space: nowrap;
     width: 180px;
-    margin-top: 3.5px;
     overflow: hidden;
     position: relative;
+    padding-bottom: 5px;
 	
 }
 .route-name span {

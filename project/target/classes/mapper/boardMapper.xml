@@ -396,7 +396,7 @@
  
  <select id="getRouteBoardBySearch" resultType="RouteBoard" parameterType="Map">
     SELECT 
-        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
+        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, b.boardPoint,
         DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion
     FROM boardtbl b 
     JOIN usertbl u ON b.userCode = u.userCode
@@ -417,7 +417,7 @@
    
 <select id="homeRouteData" resultType="RouteBoard" parameterType="int">
     SELECT 
-        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
+        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, b.boardPoint,
         DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion    
     FROM boardtbl b 
     JOIN usertbl u ON b.userCode = u.userCode
