@@ -259,7 +259,7 @@ td{
       <div class="my_top">
            <div class="my_side">
                <ul>
-                  <li><a href="/project/board/my/inquiry6">1:1문의내역</a></li>
+                  <li><a href="/project/board/my/inquiry6">1:1 문의내역</a></li>
                    <li><a href="/project/point/showMyPoint.do">포인트 내역</a></li>
                    <li><a href="/project/user/modifyInfo.do">정보수정</a></li>
                    <li><a href="" onclick="deleteAccount()" style="cursor: pointer;">회원탈퇴</a></li>
