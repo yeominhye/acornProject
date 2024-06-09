@@ -415,13 +415,13 @@
     <include refid="searchRouteDiv"/>
 </select>
    
-<select id="homeRouteData" resultType="RouteBoard" parameterType="String">
+<select id="homeRouteData" resultType="RouteBoard" parameterType="int">
     SELECT 
-        b.userCode, b.boardCode, u.nickname, b.boardImgReal, b.boardTitle, b.boardWritedate, 
-        b.boardViews, b.boardPoint, b.boardType, b.boardRegion    
+        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
+        DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion    
     FROM boardtbl b 
     JOIN usertbl u ON b.userCode = u.userCode
-    WHERE b.boardType = 0
+    WHERE b.boardType = 0 and b.boardRegion = #{boardRegion}
     ORDER BY b.boardViews DESC
     LIMIT 4
 </select>

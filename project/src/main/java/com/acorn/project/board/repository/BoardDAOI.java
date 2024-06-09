@@ -90,6 +90,6 @@ public interface BoardDAOI {
 	List<RouteBoard> getRouteBoardBySearch(String region, String theme, String tourdays, int currentPage);
 
 	int getTotalCountBySearch(String region, String theme, String tourdays);
-	
-	List<RouteBoard> homeRouteData();
+
+	List<RouteBoard> homeRouteData(int boardRegion);
 }

@@ -175,7 +175,7 @@ public class BoardService implements BoardServiceI {
 	}
 
 	@Override
-	public List<RouteBoard> getHomeRouteData() {
-		return dao.homeRouteData();
+	public List<RouteBoard> getHomeRouteData(int boardRegion) {
+		return dao.homeRouteData(boardRegion);
 	}
 }

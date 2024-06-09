@@ -69,6 +69,6 @@ public interface BoardServiceI {
 	List<RouteBoard> getRouteBoardBySearch(String region, String theme, String tourdays, int currentPage);
 
 	int getTotalCountBySearch(String region, String theme, String tourdays);
-	
-	List<RouteBoard> getHomeRouteData();
+
+	List<RouteBoard> getHomeRouteData(int boardRegion);
 }

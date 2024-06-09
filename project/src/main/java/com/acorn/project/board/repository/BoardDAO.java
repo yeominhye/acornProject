@@ -290,8 +290,8 @@ public class BoardDAO implements BoardDAOI {
 	}
 
 	@Override
-    public List<RouteBoard> homeRouteData() {
-        return session.selectList(namespace + "homeRouteData");
+    public List<RouteBoard> homeRouteData(int boardRegion) {
+        return session.selectList(namespace + "homeRouteData", boardRegion);
     }
 
 }
