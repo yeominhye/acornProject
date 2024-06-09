@@ -19,7 +19,7 @@ public class HomeController {
 
     @GetMapping(value = "/", produces = "text/html;charset=UTF-8")
     public String main(Model model) { 
-    	List<RouteBoard> homeRouteData = boardService.getHomeRouteData();
+    	List<RouteBoard> homeRouteData = boardService.getHomeRouteData(0);
         model.addAttribute("homeRouteData", homeRouteData);
         return "home";
     }
