@@ -91,7 +91,6 @@
                <div class="title-section">${routeBoard.boardTitle}</div>
                <div class="writer-section">
                   <p>${routeBoard.nickname}</p>
-                  <img src="check.png" alt="">
                </div>
                <div class="date-section">${routeBoard.boardTourdays}일</div>
                <div class="theme-section">

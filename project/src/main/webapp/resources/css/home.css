@@ -52,6 +52,7 @@ header {
     width: 250px;
     top: 235px;
     right: 0px;
+    letter-spacing: 5px;
 }
 .header-img-box > img {
     position: absolute;

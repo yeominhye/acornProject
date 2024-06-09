@@ -355,6 +355,46 @@ td{
 	            </c:forEach>
 	        </table>
 	    </c:when>
+	    
+	     <c:when test="${url.contains('inquiry')}">
+	        <table class="list-tbl">
+	            <tr class="list-head">
+	                <td>No.</td>
+	                <td>내용</td>
+	                <td>글 제목</td>
+	                <td>작성일</td>
+	            </tr>
+	
+	              <c:forEach var="board" items="${list}" varStatus="status">
+	                <tr class="list-data">
+	                    <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)) + 1}</td>
+	                    <td class="post-title">
+                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/my/inquiry/detail${board.boardCode}">
+                                <c:out value="${board.boardTitle}" />
+                            </a>
+	
+	                    </td>
+	
+	                    <td>
+	                        <c:choose>
+	                            <c:when test="${board.boardType == 0}">경로게시판</c:when>
+	                            <c:when test="${board.boardType == 1}">여행후기</c:when>
+	                            <c:when test="${board.boardType == 2}">꿀팁공유</c:when>
+	                            <c:when test="${board.boardType == 3}">질문있어요</c:when>
+	                            <c:when test="${board.boardType == 4}">수방</c:when>
+	                            <c:when test="${board.boardType == 5}">동행 구해요!</c:when>
+	                            <c:when test="${board.boardType == 6}">문의</c:when>
+	                            <c:otherwise>알 수 없음</c:otherwise>
+	                        </c:choose>
+	                    </td>
+	
+	                    <td><c:out value="${board.boardWritedate}" /></td>
+	                </tr>
+	            </c:forEach>
+	            
+	        </table>
+	    </c:when>
+	    
 	    <c:otherwise>
 	        <table class="list-tbl">
 	            <tr class="list-head">
