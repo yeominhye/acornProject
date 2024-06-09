@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                       <c:when test="${point.pointStatus == 2}">포인트 환전</c:when>
                                   </c:choose>
                               </td>
-                              <td id="t_list"><a href="/project/board/free/${point.boardCode}"><c:out value="${point.boardTitle}"/></a></td>
+                              <td id="t_list"><a href="/project/board/route/${point.boardCode}"><c:out value="${point.boardTitle}"/></a></td>
                               <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
                               <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
                           </tr>
