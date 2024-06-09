@@ -1,6 +1,8 @@
 package com.acorn.project.tour.controller;
 
 import com.acorn.project.HomeService;
+import com.acorn.project.board.domain.RouteBoard;
+import com.acorn.project.board.service.BoardServiceI;
 import com.acorn.project.tour.domain.*;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class TourController {
 
     @Autowired
     private HomeService homeService;
+    
+    @Autowired
+    private BoardServiceI boardService;
 
     @GetMapping("/ajax/tourlist")
     @ResponseBody
@@ -30,6 +35,14 @@ public class TourController {
         return getTourList(numOfRows, pageNo, area);
     }
 
+    
+    @GetMapping("/ajax/routeList")
+    @ResponseBody
+    public List<RouteBoard> getRouteListAjax(@RequestParam(value="boardRegion", defaultValue="0") int boardRegion) {
+    System.out.println(boardService.getHomeRouteData(boardRegion));
+        return boardService.getHomeRouteData(boardRegion);
+    }
+    
     @GetMapping(value = "/tourlist", produces = "application/json;charset=utf-8")
     public String tourList(@RequestParam(value = "pageNo", defaultValue = "1") String pageNo,
                            @RequestParam(value = "area", defaultValue = "1") String area,

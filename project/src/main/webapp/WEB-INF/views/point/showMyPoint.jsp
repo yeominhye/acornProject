@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </c:choose>
                         </td>
                         <td id="t_list">
-                            <a href="/project/board/free/${point.boardCode}"><c:out value="${point.boardTitle}"/></a>
+                            <a href="/project/board/route/${point.boardCode}"><c:out value="${point.boardTitle}"/></a>
                         </td>
                         <td id="t_use_point">
                      <c:choose>

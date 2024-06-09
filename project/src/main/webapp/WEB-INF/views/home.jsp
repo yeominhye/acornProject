@@ -291,6 +291,7 @@
 
         // Click handler for area selection
         $(".area").click(function() {
+        	
             var selectedArea = $(this).data("area");
             $.ajax({
                 url: "${pageContext.request.contextPath}/ajax/tourlist",
@@ -305,6 +306,139 @@
                     console.error("Error fetching tour list:", error);
                 }
             });
+            
+            
+            var regionValue;
+            
+            switch(selectedArea) {
+                case 1:
+                    regionValue = 0;
+                    break;
+                case 2:
+                    regionValue = 1;
+                    break;
+                case 3:
+                    regionValue = 2;
+                    break;
+                case 4:
+                    regionValue = 3;
+                    break;
+                case 31:
+                    regionValue = 4;
+                    break;
+                case 6:
+                    regionValue = 5;
+                    break;
+                case 7:
+                    regionValue = 6;
+                    break;
+                case 5:
+                    regionValue = 7;
+                    break;
+                case 32:
+                    regionValue = 8;
+                    break;
+                case 33:
+                    regionValue = 9;
+                    break;
+                case 34:
+                    regionValue = 10;
+                    break;
+                case 35:
+                    regionValue = 11;
+                    break;
+                case 36:
+                    regionValue = 12;
+                    break;
+                case 37:
+                    regionValue = 13;
+                    break;
+                case 38:
+                    regionValue = 14;
+                    break;
+                case 39:
+                    regionValue = 15;
+                    break;
+                case 8:
+                    regionValue = 16;
+                    break;
+                default:
+                    regionValue = 0; // 기본값
+            }
+
+            
+            $.ajax({
+                url: "${pageContext.request.contextPath}/ajax/routeList",
+                type: "GET",
+                data: {
+                    boardRegion: regionValue
+                },
+                success: function(data) {
+                    updateRouteList(data);
+                    data.forEach(function(Board) {
+                        console.log("Title: " + Board.boardTitle);  // 각 객체의 boardTitle 출력
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching route list:", error);
+                }
+            });
+
+            function updateRouteList(data) {
+                var routeContainer = $(".route-items");
+                routeContainer.empty(); // 기존의 내용을 비움
+                
+                data.forEach(function(board) {
+                    var boardRegionName = getRegionName(board.boardRegion);
+                    var boardImg = board.boardImgReal ? `<img class="boardImg" src="${pageContext.request.contextPath}/board/images/${board.boardImgReal}" alt="Board Image">` : `<img class="boardImg" src="${pageContext.request.contextPath}/resources/img/blankimg.png" alt="Default Image">`;
+                    
+                    var routeItem = 
+                        '<div class="route-item">'+
+                            '<div class="route-img-box">'+
+                                boardImg+
+                                '<div class="route-top-info">'+
+                                    '<div class="views-info">'+
+                                        '<div class="view-int">views<span>'+ board.boardViews +'</span></div>'+
+                                    '</div>'+
+                                    '<div class="user-info">'+
+                                        '<div class="user-name"><span>'+ board.nickname +'</span></div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="route-title">'+
+                                '<div class="local-box">'+ boardRegionName +'</div>'+
+                                '<div class="route-name-box">'+
+                                    '<div class="route-name">'+ board.boardTitle +'</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
+                    
+                    routeContainer.append(routeItem);
+                });
+            }
+
+            function getRegionName(region) {
+                switch(region) {
+                    case 0: return "서울";
+                    case 1: return "인천";
+                    case 2: return "대전";
+                    case 3: return "대구";
+                    case 4: return "경기";
+                    case 5: return "부산";
+                    case 6: return "울산";
+                    case 7: return "광주";
+                    case 8: return "강원";
+                    case 9: return "충북";
+                    case 10: return "충남";
+                    case 11: return "경북";
+                    case 12: return "경남";
+                    case 13: return "전북";
+                    case 14: return "전남";
+                    case 15: return "제주";
+                    case 16: return "세종";
+                    default: return "서울";
+                }
+            }
         });
 
         // Click handler for month selection
