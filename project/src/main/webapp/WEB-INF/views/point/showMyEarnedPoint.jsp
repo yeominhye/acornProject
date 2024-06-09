@@ -109,8 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
                        <th>날짜</th>
                        <th>사용구분</th>
                        <th>내역</th>
-                       <th>사용 포인트</th>
-                       <th>잔여 포인트</th>
+                       <th>획득 포인트</th>
                    </tr>
                </thead>
                <tbody id="pointList">
@@ -127,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
                               </td>
                               <td id="t_list"><a href="/project/board/route/${point.boardCode}"><c:out value="${point.boardTitle}"/></a></td>
                               <td id="t_use_point"><c:out value="${point.pointAmount}"/></td>
-                              <td id="t_left_point"><c:out value="${point.remainingPoints}"/></td>
                           </tr>
                       </c:if>
                   </c:forEach>
