@@ -39,6 +39,21 @@
 	        LIMIT #{pageSize} OFFSET #{offset}
 	</select>
 	
+	<select id="selectInquiry" resultType="Board"  parameterType="Map" >
+	    SELECT u.nickname, b.boardCode, b.boardTitle, b.boardContent, 
+	           DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews 
+	    FROM boardtbl b 
+	    JOIN usertbl u ON b.userCode = u.userCode
+	    WHERE boardType = 6
+	    ORDER BY b.boardWritedate DESC
+	    LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	<select id="selectInquiryCount" resultType="int" >
+	     SELECT COUNT(*) FROM boardtbl
+    	 WHERE boardType= 6;
+	</select>
+	
 	<select id="selectRouteAll" resultType="RouteBoard"  parameterType="Map" >
 	    SELECT u.nickname, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
 	           DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion 
@@ -396,7 +411,7 @@
  
  <select id="getRouteBoardBySearch" resultType="RouteBoard" parameterType="Map">
     SELECT 
-        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
+        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, b.boardPoint,
         DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion
     FROM boardtbl b 
     JOIN usertbl u ON b.userCode = u.userCode
@@ -417,7 +432,7 @@
    
 <select id="homeRouteData" resultType="RouteBoard" parameterType="int">
     SELECT 
-        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
+        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, b.boardPoint,
         DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion    
     FROM boardtbl b 
     JOIN usertbl u ON b.userCode = u.userCode

@@ -118,13 +118,13 @@ span.active {color: orangered; font-weight: bold;}
             <td class="route-info">
                <div class="route-img">
                    <c:choose>
-                       <c:when test="${not empty list.boardImgReal}">
-                           <img class="boardImg" src="<c:url value='/board/images/${list.boardImgReal}' />" alt="Board Image">
-                       </c:when>
-                       <c:otherwise>
-                           <img class="boardImg" src="${pageContext.request.contextPath}/resources/img/blankimg.png" alt="Default Image">
-                       </c:otherwise>
-                   </c:choose>
+	                    <c:when test="${not empty list.boardImgReal}">
+	                        <img class="boardImg" src="<c:url value='/board/images/${list.boardImgReal}' />" alt="Board Image">
+	                    </c:when>
+	                    <c:otherwise>
+	                        <img class="boardImg" src="${pageContext.request.contextPath}/resources/img/blankimg.png" alt="Default Image">
+	                    </c:otherwise>
+	                </c:choose>
                    
                    <div class="route-point">
                       <span class="route-price">
@@ -137,7 +137,7 @@ span.active {color: orangered; font-weight: bold;}
                               <c:otherwise>
                                   <div style="display: none;">
                                    price 0
-                               </div>
+                               	</div>
                               </c:otherwise>
                           </c:choose>
                       </span>

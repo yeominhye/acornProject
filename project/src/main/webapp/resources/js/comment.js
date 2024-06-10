@@ -4,6 +4,7 @@
 
 var boardUserCode = document.querySelector('.boardUsercode').value;
 var userCode = document.querySelector('.userCode').value;
+var adminCode = document.querySelector('.admin').value;
 var boardCode = document.querySelector('.boardCode').value;
 
 $(document).ready(function() {
@@ -18,7 +19,7 @@ $(document).ready(function() {
         var $btnModi = $comment.find('.btnModi');
         var $btnDel = $comment.find('.btnDel');
 
-        if (userCode === commentUserCode) {
+        if (userCode === commentUserCode || adminCode=='admin') {	
             // 해당 댓글의 작성자와 현재 사용자의 코드가 일치할 경우 버튼을 보이도록 설정
             $btnModi.show();
             $btnDel.show();
@@ -195,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
        var userCode = document.querySelector('.userCode').value;
        var boardModi = document.querySelector('#boardModi');
        
-       if (userCode === boardUserCode){
+       if (userCode === boardUserCode || adminCode == 'admin'){
            boardModi.style.display = "inline";
        } else {
            boardModi.style.display = "none";

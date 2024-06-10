@@ -67,8 +67,10 @@ String userCode = (user != null) ? user.getUserCode() : null;
             <div class="freeboard_page_title">
                <div class="title">${freeboard.boardTitle}</div>
                <div class="nickname">${freeboard.nickname}</div>
-               <div class="writeDatw">${freeboard.boardWritedate}</div>
-               <div class="boardViews">조회수 ${freeboard.boardViews}</div>
+               <div class="writeDatw-boardViews">
+                  <div class="writeDatw">${freeboard.boardWritedate}</div>
+                  <div class="boardViews">조회수 ${freeboard.boardViews}</div>
+              </div>
 
                <input type="hidden" class="boardUsercode"   value="${freeboard.userCode}"> 
                <input type="hidden" class="userCode" value=<%=userCode%>> 

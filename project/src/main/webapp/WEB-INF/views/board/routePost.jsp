@@ -25,7 +25,7 @@
 
 <style type="text/css">
 #boardModi{
-   display: none !important;
+	display: none !important;
 }
 </style>
 
@@ -91,7 +91,6 @@
                <div class="title-section">${routeBoard.boardTitle}</div>
                <div class="writer-section">
                   <p>${routeBoard.nickname}</p>
-                  <img src="check.png" alt="">
                </div>
                <div class="date-section">${routeBoard.boardTourdays}일</div>
                <div class="theme-section">
@@ -359,8 +358,7 @@ $(document).ready(function() {
     });
 </script>
 
-<script type="text/javascript"
-   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b9e8d47e0abc983759ff27255e96150"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca5e7589f65f65b86cbe999075611549"></script>
 <script>
     var markersData = {};
     var dayInfo = [];

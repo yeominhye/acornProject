@@ -14,8 +14,6 @@
      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/answer.css" >
 
- 
-
 </head>
 
 <body>
@@ -86,16 +84,7 @@
                         <dl class="inner-each-box">
                             <dt class="inner-title">내용
                             <dd class="inner-content" id="content-answer">
-                                안녕하세요? 맞습니다. 답변 또한 DB로 불러올 예정입니다.
-                                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                                piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
-                                McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of
-                                the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through
-                                the cites of the word in classical literature, discovered the undoubtable source. Lorem
-                                Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The
-                                Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the
-                                theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum,
-                                "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                              답변 준비 중입니다. 잠시만 기다려주세요.
                             </dd>
                             </dt>
                         </dl>

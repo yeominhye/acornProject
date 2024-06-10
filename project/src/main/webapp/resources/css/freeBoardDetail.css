@@ -121,16 +121,16 @@
 }
 
 .writeDatw {
-   font-size: 12px;
-   float: left;
-   margin: 5px 20px 5px 5px;
-   color: #7c7c7c;
+    font-size: 12px;
+    margin: 5px 10px 5px 5px;
+    color: #7c7c7c;
+    display: inline-block;
 }
 
 .boardViews {
    font-size: 12px;
-   float: left;
    color: #7c7c7c;
+   display: inline-block;
 }
 
 .freeboard_page {

@@ -293,5 +293,29 @@ public class BoardDAO implements BoardDAOI {
     public List<RouteBoard> homeRouteData(int boardRegion) {
         return session.selectList(namespace + "homeRouteData", boardRegion);
     }
+	
+	@Override
+	// 게시판 수
+	public int selectInquiryCount() {
+		return session.selectOne(namespace+"selectInquiryCount");
+	}
+	
+	// 전체 목록 조회
+	@Override
+	public List<Board> selectInquiry(int currentPage){
+		
+		 //현재페이지정보,  전체레코드수      
+	  	int  pageSize  =   10;		
+		 int offset = (currentPage - 1) * pageSize;  
+	 	
+		
+	 	
+		Map info = new  HashMap();
+		info.put("offset",  offset);   
+		info.put("pageSize", pageSize);
+		
+		return session.selectList(namespace+"selectInquiry", info );
+	}
+	
 
 }
