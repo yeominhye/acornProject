@@ -62,17 +62,16 @@
        }
         
          document.getElementById("contentMessage").style.display = "none";
-  
-           let editor  = document.querySelector(".ql-container");
-           let content =  editor.innerHTML;
+           var content = $(".ql-editor").html();
            let  boardContent  = document.querySelector("#boardContent");
            boardContent.value= content;
            
            
            
-           if (boardContent.value.length < 384) {
-              alert("총평을 입력해주세요.");
-              return false;
+           if (content === "<p><br></p>") {
+               alert('총평을 입력하세요');
+               $(".ql-editor").focus();
+               return false;
            }
            
            if(boardPoint > 10000) {
@@ -356,7 +355,7 @@
    });
    </script>
    
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca5e7589f65f65b86cbe999075611549&libraries=services,clusterer,drawing"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8187f556bf81de6db4335a04e6bbea27&libraries=services,clusterer,drawing"></script>
    <script>
    var toggle = 0;
       $(document).ready(function() {
