@@ -55,7 +55,7 @@
                     <li>
                         <dl class="inner-each-box">
                             <dt class="inner-title">작성자
-                            <dd class="inner-content">${user.nickname}</dd>
+                            <dd class="inner-content">${myboard.nickname}</dd>
                             </dt>
                         </dl>
                     </li>
