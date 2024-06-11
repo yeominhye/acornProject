@@ -123,7 +123,7 @@
                     <div class="route-items">   
                                        
 					<c:forEach var="board" items="${homeRouteData}">
-                        <div class="route-item">
+                        <div class="route-item" onclick="location.href='${pageContext.request.contextPath}/board/route/${board.boardCode}'">
 							<div class="route-img-box">
 	                        	<c:choose>
 									<c:when test="${not empty board.boardImgReal}">
@@ -390,8 +390,9 @@
                 
                 data.forEach(function(board) {
                     var boardRegionName = getRegionName(board.boardRegion);
-                    var boardImg = board.boardImgReal ? `<img class="boardImg" src="<c:url value='/board/images/${routeBoard.boardImgReal}' />" alt="Board Image">` : `<img class="boardImg" src="${pageContext.request.contextPath}/resources/img/blankimg.png" alt="Default Image">`;
-                    
+                    var boardImgReal = board.boardImgReal;
+  					var boardImg = board.boardImgReal ? '<img class="boardImg" src="/project/board/images/' + boardImgReal + '" alt="Board Image">' : '<img class="boardImg" src="' + pageContext.request.contextPath + '/resources/img/blankimg.png" alt="Default Image">';
+                  
                     var routeItem = 
                         '<div class="route-item">'+
                             '<div class="route-img-box">'+

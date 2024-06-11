@@ -31,6 +31,16 @@
 		    transition: transform 5s;
 		}
 		
+		.page-number-box {
+			width: 400px;
+			margin: 0 auto;
+			text-align: center;
+			padding: 40px;
+		}
+		.page-number-box > * {
+			padding: 0 10px;
+		}
+		
 		img {cursor: pointer;}
     </style>    
 </head>
@@ -85,6 +95,8 @@
                         </div>
                     </c:forEach>
                 </div>
+                
+                <!-- 
                 <div class="more-btn-box">
                     <c:if test="${currentPage > 1}">
                         <a href="${pageContext.request.contextPath}/tourlist?pageNo=${currentPage - 1}&area=${selectedArea}&arrange=${selectedArrange}&mapX=${mapX}&mapY=${mapY}" class="prev">이전</a>
@@ -93,6 +105,8 @@
                         <a href="${pageContext.request.contextPath}/tourlist?pageNo=${currentPage + 1}&area=${selectedArea}&arrange=${selectedArrange}&mapX=${mapX}&mapY=${mapY}" class="next">다음</a>
                     </c:if>
                 </div>
+                -->
+                
                 <div class="page-number-box">
                     <c:forEach var="i" begin="1" end="${totalPages}">
                         <c:choose>
@@ -105,6 +119,7 @@
                         </c:choose>
                     </c:forEach>
                 </div>
+                
             </div>
         </div>
         <%@ include file="../footer-sub.jsp" %>
