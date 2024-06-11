@@ -39,4 +39,14 @@
 		WHERE commentCode = #{commentCode};
 	</delete>
 	
+	<select id="selectInquiry" parameterType="String" resultType="Comment">
+		SELECT u.nickname, c.commentCode,c.boardCode, c.userCode,c.commentContent,c.commentDate
+		FROM commenttbl c
+		JOIN usertbl u
+		ON c.userCode = u.userCode
+		WHERE c.boardCode = #{boardCode}	
+		And u.userId = 'admin'
+		ORDER BY c.commentDate
+	</select>
+	
 </mapper>

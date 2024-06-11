@@ -20,7 +20,7 @@ import com.acorn.project.event.domain.*;
 @Component
 public class HomeService {
 
-	private static final String SERVICE_KEY = "ZJz3l00lzxL5fcH%2B64NGa7DBcoWTq7o0pj0dUJCnaU4zD%2FpIXVg4fjr8SDSzOVJWEwsQ4mmNeH2vxwDeO8CI6g%3D%3D";
+	private static final String SERVICE_KEY = "XHhofBD0jO01cbj7mByrLZmfjk4RCQk%2Fv5Rvx7oXy%2FdhxB0PpL5LIVKGrw3jMiYMphG8vIw8BJTsL876ezO44A%3D%3D";
 
 	private String buildUrl(String baseUrl, String... queryParams) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(baseUrl);

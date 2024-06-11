@@ -264,6 +264,7 @@
                class="boardCode" value="${routeBoard.boardCode}">
             <%@ include file="comment.jsp"%>
          </div>
+
          <!-- 댓글 영역 끝-->
 
 

@@ -15,5 +15,7 @@ public interface CommentServiceI {
 	int modify(Comment comment);
 
 	int delete(String code);
+	
+	Comment selectBoardIn(String boardCode);
 
 }

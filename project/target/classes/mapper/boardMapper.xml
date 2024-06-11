@@ -53,7 +53,7 @@
 	     SELECT COUNT(*) FROM boardtbl
     	 WHERE boardType= 6;
 	</select>
-	
+		
 	<select id="selectRouteAll" resultType="RouteBoard"  parameterType="Map" >
 	    SELECT u.nickname, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
 	           DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion 

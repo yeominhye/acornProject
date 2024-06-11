@@ -90,7 +90,13 @@ nav {
                    </c:if>
                    <c:if test="${not empty sessionScope.user}">
                       <a href="/project/user/logout.do">로그아웃</a>
-                      <a href="/project/user/mypage.do">마이페이지</a>
+                      <c:if test="${user.userId eq 'admin'}">
+                      	<a href="/project/user/mypage.do/inquiry">마이페이지</a>
+                      </c:if>
+                      <c:if test="${user.userId ne 'admin'}">
+                      	<a href="/project/user/mypage.do">마이페이지</a>
+                      </c:if>
+                      
                    </c:if>
                     </div>
            </div>

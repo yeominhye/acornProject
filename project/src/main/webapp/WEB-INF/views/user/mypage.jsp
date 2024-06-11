@@ -369,7 +369,7 @@ td{
 	                <tr class="list-data">
 	                    <td>${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)) + 1}</td>
 	                    <td class="post-title">
-                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/my/inquiry/detail${board.boardCode}">
+                            <a title="<c:out value='${board.boardTitle}' />" href="/project/board/inquiry/answer${board.boardCode}">
                                 <c:out value="${board.boardTitle}" />
                             </a>
 	
@@ -389,6 +389,34 @@ td{
 	                    </td>
 	
 	                    <td><c:out value="${board.boardWritedate}" /></td>
+	                </tr>
+	            </c:forEach>
+	            
+	        </table>
+	    </c:when>
+	    
+	    <c:when test="${url.contains('report')}">
+	        <table class="list-tbl">
+	            <tr class="list-head">
+	                <td>No.</td>
+	                <td>글 제목</td>
+	                <td>신고자 아이디</td>
+	                <td>작성일</td>
+	            </tr>
+	
+	              <c:forEach var="board" items="${list}" varStatus="status">
+	                <tr class="list-data">
+	                    <td class="list-no">${(paging.totRecords - (status.index + 1) - ((paging.currentPage - 1) * paging.pageSize)) + 1}</td>
+	                    <td class="head-title" style="max-width: 300px;">
+                          <a title="<c:out value='${board.boardTitle}' />" href="/project/board/free/${board.boardCode}">
+                                <c:out value="${board.boardTitle}" />
+                            </a>
+							
+	                    </td>
+						
+	                    <td> ${board.reportingUserId} </td>
+					
+	                    <td class="list-date"><c:out value="${board.reportDate}" /></td>
 	                </tr>
 	            </c:forEach>
 	            

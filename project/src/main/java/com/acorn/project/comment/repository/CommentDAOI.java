@@ -20,5 +20,8 @@ public interface CommentDAOI {
 
 	// 삭제
 	int delete(String commentCode);
+	
+	// 문의 댓글
+	Comment selectBoardIn(String boardCode);
 
 }

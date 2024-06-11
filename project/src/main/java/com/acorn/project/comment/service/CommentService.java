@@ -38,6 +38,12 @@ public class CommentService implements CommentServiceI {
 	public int delete(String code) {
 		return dao.delete(code);
 	}
+	
+	// 문의 댓글
+	@Override
+	public Comment selectBoardIn(String boardCode) {
+		return dao.selectBoardIn(boardCode);
+	}
 
 	
 }

@@ -82,7 +82,10 @@ String userCode = (user != null) ? user.getUserCode() : null;
                <div class="content">${freeboard.boardContent}</div>
             </div>
             
+           
+            
          <%@ include file="comment.jsp" %>
+        
          
          </div>
       </div>
