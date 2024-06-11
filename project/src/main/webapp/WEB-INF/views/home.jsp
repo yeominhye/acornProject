@@ -123,7 +123,7 @@
                     <div class="route-items">   
                                        
 					<c:forEach var="board" items="${homeRouteData}">
-                        <div class="route-item">
+                        <div class="route-item" onclick="location.href='${pageContext.request.contextPath}/board/route/${board.boardCode}'">
 							<div class="route-img-box">
 	                        	<c:choose>
 									<c:when test="${not empty board.boardImgReal}">

@@ -72,34 +72,34 @@
                         </tbody>
                     </table>
                 </div>
-                     <div class="page_number"> <!-- page_number -->
-                    <div class="paging"> <!-- paging -->
-                    
-                    <c:if test="${ empty search.condition}">
-                       <c:if test="${paging.currentGrp > 1}">
-                            <a href="/project/board/free?type=${type}&page=${paging.grpStartPage - 1}">이전</a>
-                        </c:if>
-                        <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
-                            <a class="paging_i" href="/project/board/free?type=${type}&page=${i}">${i}</a>
-                        </c:forEach>
-                        <c:if test="${paging.grpEndPage <  paging.totalPage}">
-                            <a href="/project/board/free?type=${type}&page=${paging.grpEndPage + 1}">다음</a>
-                        </c:if>
-                    </c:if>
-                    
-                   <c:if test="${ not empty search.condition}">
-                       <c:if test="${paging.currentGrp > 1}">
-                            <a href="/project/board/free/search?page=${paging.grpStartPage - 1}" >이전</a>
-                        </c:if>
-                        <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
-                            <a class="paging_i" href="/project/board/free/search?condition=${search.condition}&keyword=${search.keyword}&start=${search.start}&page=${i}">${i}</a>
-                        </c:forEach>
-                        <c:if test="${paging.grpEndPage <  paging.totalPage}">
-                            <a href="/project/board/free/search?page=${paging.grpEndPage + 1}">다음</a>
-                        </c:if>
-                    </c:if> 
-                    </div>
-                </div>
+                
+				<div class="page_number"> <!-- page_number -->
+					<div class="paging"> <!-- paging -->
+				    	<c:if test="${ empty search.condition}">
+				        	<c:if test="${paging.currentGrp > 1}">
+				            	<a href="/project/board/free?type=${type}&page=${paging.grpStartPage - 1}">이전</a>
+							</c:if>
+				            <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+				            	<a class="paging_i" href="/project/board/free?type=${type}&page=${i}">${i}</a>
+				            </c:forEach>
+				            <c:if test="${paging.grpEndPage <  paging.totalPage}">
+				            	<a href="/project/board/free?type=${type}&page=${paging.grpEndPage + 1}">다음</a>
+							</c:if>
+						</c:if>
+				        
+				        <c:if test="${ not empty search.condition}">
+				        	<c:if test="${paging.currentGrp > 1}">
+				            	<a href="/project/board/free/search?page=${paging.grpStartPage - 1}" >이전</a>
+				            </c:if>
+				            <c:forEach var="i" begin="${paging.grpStartPage}" end="${paging.grpEndPage}">
+				            	<a class="paging_i" href="/project/board/free/search?condition=${search.condition}&keyword=${search.keyword}&start=${search.start}&page=${i}">${i}</a>
+							</c:forEach>
+				            <c:if test="${paging.grpEndPage <  paging.totalPage}">
+				            	<a href="/project/board/free/search?page=${paging.grpEndPage + 1}">다음</a>
+							</c:if>
+						</c:if> 
+					</div>
+				</div>
 
                 <div class="search_form">
                     <form action="/project/board/free/search" method="get" class="search-form-inner" onsubmit="return searchCheck()">
