@@ -19,6 +19,21 @@
     color: white;
     background-color: #E78181;
 }
+
+img {cursor: pointer;}
+
+.info-name {
+	white-space: nowrap;
+    width: 230px;
+    margin-top: 3.5px;
+    overflow: hidden;
+    position: relative;
+	
+}
+.info-name span {
+	display: inline-block;
+    transition: transform 5s;
+}
 </style>
 </head>
 <body>

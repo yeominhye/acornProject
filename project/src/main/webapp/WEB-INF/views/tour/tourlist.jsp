@@ -50,6 +50,17 @@ img {
 	height: 30px;
 	margin-right: 5px;
 }
+
+.page-number-box {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 40px;
+}
+
+.page-number-box>* {
+	padding: 0 10px;
+}
 </style>
 </head>
 <body>
@@ -107,6 +118,7 @@ img {
 						</div>
 					</c:forEach>
 				</div>
+
 				<div class="paging">
 					<div class="more-btn-box">
 						<c:if test="${currentPage > 5}">
