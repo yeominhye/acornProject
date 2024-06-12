@@ -115,6 +115,7 @@
             </div>
             
             <button class="local-slide-btn local-back"><img src="${pageContext.request.contextPath}/resources/img/slide-back-btn.png" alt="" ></button>
+            <button class="local-slide-btn local-next"><img src="${pageContext.request.contextPath}/resources/img/slide-next-btn.png" alt="" ></button>
             
             <div class="route-box">
                     <div class="title-text"><span class="local-name">서울,</span> 인기루트</div>
@@ -414,7 +415,7 @@
                         '</div>';
                     
                     routeContainer.append(routeItem);
-                });
+                });	
             }
 
             function getRegionName(region) {
