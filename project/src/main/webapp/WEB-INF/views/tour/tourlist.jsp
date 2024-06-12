@@ -51,17 +51,45 @@ img {
 	margin-right: 5px;
 }
 
-.page-number-box {
-	width: 400px;
+.paging {
+	width: 480px;
 	margin: 0 auto;
 	text-align: center;
 	padding: 40px;
 }
 
-.page-number-box>* {
-	padding: 0 10px;
+.paging .more-btn-box {
+	display: inline-block;
+}
+
+.paging .page-number-box {
+	display: inline-block;
+}
+
+.paging .page-number, .paging .current-page
+	{
+	padding: 0 15px;
+	text-decoration: none;
+	color: rgb(53, 53, 53);
+}
+
+.paging .prev-group, .paging .next-group {
+	padding: 0 20px;
+	text-decoration: none;
+	color: rgb(53, 53, 53);
+}
+
+.paging .prev-group:hover, .paging .next-group:hover, .paging .page-number:hover
+	{
+	text-decoration: none;
+	color: #d1d1d1;
+}
+
+.paging .current-page {
+	color: rgb(53, 53, 53);
 }
 </style>
+
 </head>
 <body>
 	<div class="wrap">
@@ -126,11 +154,6 @@ img {
 								href="${pageContext.request.contextPath}/tourlist?pageNo=${currentPage - ((currentPage - 1) % 5) - 5}&arrange=${selectedArrange}&area=${area}&mapX=${mapX}&mapY=${mapY}"
 								class="prev-group">이전</a>
 						</c:if>
-						<c:if test="${currentPage + 5 <= totalPages}">
-							<a
-								href="${pageContext.request.contextPath}/tourlist?pageNo=${currentPage - ((currentPage - 1) % 5) + 5}&arrange=${selectedArrange}&area=${area}&mapX=${mapX}&mapY=${mapY}"
-								class="next-group">다음</a>
-						</c:if>
 					</div>
 					<div class="page-number-box">
 						<c:forEach var="i" begin="1" end="${totalPages}" step="5">
@@ -154,6 +177,13 @@ img {
 								</c:when>
 							</c:choose>
 						</c:forEach>
+					</div>
+					<div class="more-btn-box">
+						<c:if test="${currentPage + 5 <= totalPages}">
+							<a
+								href="${pageContext.request.contextPath}/tourlist?pageNo=${currentPage - ((currentPage - 1) % 5) + 5}&arrange=${selectedArrange}&area=${area}&mapX=${mapX}&mapY=${mapY}"
+								class="next-group">다음</a>
+						</c:if>
 					</div>
 				</div>
 			</div>
