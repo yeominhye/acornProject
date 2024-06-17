@@ -4,9 +4,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
+    <title>경로당</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>경로당</title>
+    
     <!-- reset.css -->   
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
 
@@ -14,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css" >
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    
+
    <!-- google-font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -12,7 +12,7 @@
 <!-- tourDetail.css -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/tourDetail.css">
-<title>관광세부정보</title>
+<title>${tourInfo[0].title}</title>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var addr1Element = document.querySelector('.tour-addr');
@@ -66,6 +66,22 @@ document.addEventListener('DOMContentLoaded', function() {
 .tour-details-info ul li span {
     flex: 1;
 }
+
+.tour-description {
+	position: relative;
+}
+ #content {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+#button {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 </style>
 </head>
 <body>
@@ -75,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			<div class="tour-info">
 				<div class="tour-addr">${tourInfo[0].addr1}</div>
 				<div class="tour-title">${tourInfo[0].title}</div>
-				<div class="tour-date"></div>
 			</div>
 			<div class="tour-details">
 				<div class="tour-details-img">
@@ -85,9 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			<div class="tour-description">
 				<h3>상세정보</h3>
 				<c:if test="${not empty tourInfo[0].overview}">
-					<div class="tour-description-content">
-						<p>내용: ${tourInfo[0].overview}</p>
+					<div class="tour-description-content" id="content">
+						<p>${tourInfo[0].overview}</p>
 					</div>
+					
+    				<div id="button">더보기 +</div>
 				</c:if>
 			</div>
 			<div class="tour-map-custom">
@@ -138,5 +155,35 @@ document.addEventListener('DOMContentLoaded', function() {
 		</div>
 		<%@ include file="../footer-sub.jsp"%>
 	</div>
+	
+	
+	<script>
+    function a() {
+        const content = document.getElementById('content');
+        const button = document.getElementById('button');
+        
+        let contentH = content.clientHeight;
+
+        if (contentH >= 157) {
+            content.style.maxHeight = "152px";
+            button.style.display = "block";
+            button.textContent = "더보기 +";
+        } else {
+            button.style.display = "none";
+        }
+
+        button.addEventListener('click', function() {
+            if (content.style.maxHeight === '100%') {
+                content.style.maxHeight = '152px';
+                button.textContent = "더보기 +";
+            } else {
+                content.style.maxHeight = '100%';
+                button.textContent = "숨기기 -";
+            }
+        });
+    }   
+    
+    a();
+    </script>
 </body>
 </html>
