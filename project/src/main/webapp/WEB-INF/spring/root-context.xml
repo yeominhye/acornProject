@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
    
@@ -10,7 +9,6 @@
       <property name="url" value="jdbc:mysql://localhost:3306/testdb?useUnicode=true&amp;characterEncoding=utf8"></property>
       <property name="username" value="root"></property>
       <property name="password" value="1234"></property>
-
 
    </bean>
    
@@ -26,6 +24,6 @@
 </beans>
 
 
-	<!-- 	<property name="url" value="jdbc:mysql://3.36.353/testdb?useUnicode=true&amp;characterEncoding=utf8"></property>
+   <!--    <property name="url" value="jdbc:mysql://3.36.353/testdb?useUnicode=true&amp;characterEncoding=utf8"></property>
       <property name="username" value="chs"></property>
       <property name="password" value="1234"></property> -->

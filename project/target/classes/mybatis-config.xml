@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias alias="Board" type="com.acorn.project.board.domain.Board"/>
 		<typeAlias alias="RouteBoard" type="com.acorn.project.board.domain.RouteBoard"/>
+		
 		<typeAlias alias="Comment" type="com.acorn.project.comment.domain.Comment"/>
 		<typeAlias alias="CommentMy" type="com.acorn.project.comment.domain.Comment_my"/>
 		<typeAlias alias="Like" type="com.acorn.project.like.domain.Like"/>
