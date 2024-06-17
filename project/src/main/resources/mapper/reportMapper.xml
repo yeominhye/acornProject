@@ -15,4 +15,24 @@
 		VALUES (#{boardCode}, #{reportingUserCode}, #{reportedUserCode}, now(), #{reportContent})
 	</insert>
 	
+	
+	<select id="selectReportCount" resultType="int">
+		SELECT COUNT(*)
+		FROM reporttbl
+	</select>
+	
+	
+	<select id="selectReport" resultType="ReportCheck">
+		SELECT 
+			r.boardCode, r.reportingUserCode, reportedUserCode, 
+			 DATE_FORMAT(r.reportDate, '%Y-%m-%d') AS reportDate,
+			b.boardTitle, u.userId as reportingUserId, m.userId as reportedUserId
+		FROM reporttbl r
+		JOIN boardtbl b
+		ON r.boardCode = b.boardCode
+		JOIN usertbl u
+		ON reportingUserCode = u.userCode
+		JOIN usertbl m
+		ON reportedUserCode = m.userCode
+	</select>
 </mapper>

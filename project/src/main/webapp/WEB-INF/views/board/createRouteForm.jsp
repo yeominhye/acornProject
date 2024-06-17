@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>경로게시판</title>
     
      <link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -356,7 +356,7 @@
    });
    </script>
    
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca5e7589f65f65b86cbe999075611549&libraries=services,clusterer,drawing"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a1bad8097173d4bdec78ed4d2c50c961&libraries=services,clusterer,drawing"></script>
    <script>
    var toggle = 0;
       $(document).ready(function() {

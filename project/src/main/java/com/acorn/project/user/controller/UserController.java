@@ -24,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.acorn.project.board.domain.Board;
 import com.acorn.project.board.domain.PagingHandler;
 import com.acorn.project.board.service.BoardServiceI;
+import com.acorn.project.report.domain.ReportCheck;
+import com.acorn.project.report.service.ReportServiceI;
 import com.acorn.project.user.domain.User;
 import com.acorn.project.user.service.UserServiceI;
 
@@ -44,6 +46,9 @@ public class UserController {
 	
 	@Autowired
 	BoardServiceI boardService;
+	
+	@Autowired
+	ReportServiceI reportService;
 	
 	@RequestMapping("login.do")
 	public String login() {
@@ -307,7 +312,6 @@ public class UserController {
 	        if (user != null) {
 	            mv.setViewName("user/mypage");
 	            mv.addObject("user", user);
-	            String userId = user.getUserId();
 	            List<Board> myboard = boardService.selectInquiry(page); 
 	            mv.addObject("list",myboard);
 	            
@@ -338,12 +342,11 @@ public class UserController {
 	        if (user != null) {
 	            mv.setViewName("user/mypage");
 	            mv.addObject("user", user);
-	            String userId = user.getUserId();
-	            List<Board> myboard = boardService.selectUserPoint(userId,page); 
+	            List<ReportCheck> myboard = reportService.selectReport(page); 
 	            mv.addObject("list",myboard);
 	            
 	            int pageSize= 10;
-	            int totRecords = boardService.MyPointCount(userId);
+	            int totRecords = reportService.reportCount();
 	            PagingHandler handler = new PagingHandler(page, totRecords, pageSize);
 	            mv.addObject("paging",handler);
 	            

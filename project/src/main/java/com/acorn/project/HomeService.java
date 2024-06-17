@@ -22,6 +22,7 @@ public class HomeService {
 
 	private static final String SERVICE_KEY = "l3Qw1xgI0APJ8q5or9PjBb5TKps%2BXl3J18TJWGdXFesqhw0HHU%2F0O5U7xMy1ZRq2zMvHmm97ZsiejGHDDL33Aw%3D%3D";
 
+
 	private String buildUrl(String baseUrl, String... queryParams) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(baseUrl);
 		urlBuilder.append("?").append(URLEncoder.encode("serviceKey", "UTF-8")).append("=").append(SERVICE_KEY);

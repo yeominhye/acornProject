@@ -44,4 +44,10 @@ public class CommentDAO implements CommentDAOI {
 	public int delete(String commentCode) {
 		return session.delete(namespace+"delete",commentCode);
 	}
+	
+	// 문의 댓글
+	@Override
+	public Comment selectBoardIn(String boardCode) {
+		return session.selectOne(namespace+"selectInquiry",boardCode);
+	}
 }

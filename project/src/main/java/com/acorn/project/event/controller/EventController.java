@@ -56,7 +56,7 @@ public class EventController {
         addEventListToModel2(numOfRows, pageNo, year, month, area, model);
 
         model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", calculateTotalPages(100, Integer.parseInt(numOfRows)));
+        model.addAttribute("totalPages", calculateTotalPages(1000, Integer.parseInt(numOfRows)));
         model.addAttribute("selectedYear", year);
         model.addAttribute("selectedMonth", month);
         model.addAttribute("selectedArea", area);

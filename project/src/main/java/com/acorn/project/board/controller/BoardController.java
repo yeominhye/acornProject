@@ -378,6 +378,13 @@ public class BoardController {
       return  "redirect:/board/free?type=-1";
    }
    
+   @RequestMapping(value = "/route/del/{code}", method = RequestMethod.GET)
+   public String routeboardDelete(@PathVariable String code) {
+	System.out.println(code);
+   boardService.delBoard(code);
+      return  "redirect:/board/route";
+   }
+   
    @RequestMapping("/faq")
    public String faq() {
       return "/board/faq";
@@ -445,13 +452,33 @@ public class BoardController {
    @RequestMapping(value = "/my/inquiry/detail{code}", method = RequestMethod.GET)
    public String myInquiry(@PathVariable String code, HttpSession session, Model model) {
       Board board = boardService.getBoardBycode(code);
-      
       String userId = (String)session.getAttribute("user_id");
+      Comment comment = commentService.selectBoardIn(code);
+      model.addAttribute("comment",comment);
       model.addAttribute("myboard", board);
-      
       model.addAttribute("userId",userId);
-      
       return "/board/answer";
+   }
+   
+   @RequestMapping(value = "/inquiry/answer{code}", method = RequestMethod.GET)
+   public String inquiryAnswer(@PathVariable String code, HttpSession session, Model model) {
+      Board board = boardService.getBoardBycode(code);
+      String userId = (String)session.getAttribute("user_id");
+      Comment comment = commentService.selectBoardIn(code);
+      model.addAttribute("comment",comment);
+      model.addAttribute("myboard", board);
+      model.addAttribute("userId",userId);
+      return "/board/answerForm";
+   }
+   
+   @RequestMapping(value = "/inquiry/answer{code}", method = RequestMethod.POST)
+   public String anwser(@PathVariable String code, Comment comment, HttpSession session, Model model) {
+      Board board = boardService.getBoardBycode(code);
+      String userId = (String)session.getAttribute("user_id");
+      commentService.register(comment);
+      model.addAttribute("myboard", board);
+      model.addAttribute("userId",userId);
+      return "redirect:/user/mypage.do/inquiry";
    }
    
    @ResponseBody   

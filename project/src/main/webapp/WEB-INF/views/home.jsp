@@ -4,9 +4,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
+    <title>경로당</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>경로당</title>
+    
     <!-- reset.css -->   
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
 
@@ -14,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css" >
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    
+
    <!-- google-font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,15 +118,15 @@
             </div>
             
             <button class="local-slide-btn local-back"><img src="${pageContext.request.contextPath}/resources/img/slide-back-btn.png" alt="" ></button>
-                <button class="local-slide-btn local-next"><img src="${pageContext.request.contextPath}/resources/img/slide-next-btn.png" alt=""></button>
-
+            <button class="local-slide-btn local-next"><img src="${pageContext.request.contextPath}/resources/img/slide-next-btn.png" alt="" ></button>
+            
             <div class="route-box">
                     <div class="title-text"><span class="local-name">서울,</span> 인기루트</div>
                     <div class="route-text"><a href="/project/board/route">더보기</a></div>
                     <div class="route-items">   
                                        
 					<c:forEach var="board" items="${homeRouteData}">
-                        <div class="route-item" onclick="location.href='${pageContext.request.contextPath}/board/route/${board.boardCode}'">
+                        <div class="route-item">
 							<div class="route-img-box">
 	                        	<c:choose>
 									<c:when test="${not empty board.boardImgReal}">
@@ -391,10 +394,10 @@
                 data.forEach(function(board) {
                     var boardRegionName = getRegionName(board.boardRegion);
                     var boardImgReal = board.boardImgReal;
-  					var boardImg = board.boardImgReal ? '<img class="boardImg" src="/project/board/images/' + boardImgReal + '" alt="Board Image">' : '<img class="boardImg" src="' + pageContext.request.contextPath + '/resources/img/blankimg.png" alt="Default Image">';
+                    var boardImg = board.boardImgReal ? '<img class="boardImg" src="/project/board/images/' + boardImgReal + '" alt="Board Image">' : '<img class="boardImg" src="${pageContext.request.contextPath}/resources/img/blankimg.png" alt="Default Image">';
                   
                     var routeItem = 
-                        '<div class="route-item">'+
+                    	'<div class="route-item" onclick="location.href=\'${pageContext.request.contextPath}/board/route/' + board.boardCode + '\'">'+
                             '<div class="route-img-box">'+
                                 boardImg+
                                 '<div class="route-top-info">'+
@@ -415,7 +418,7 @@
                         '</div>';
                     
                     routeContainer.append(routeItem);
-                });
+                });	
             }
 
             function getRegionName(region) {

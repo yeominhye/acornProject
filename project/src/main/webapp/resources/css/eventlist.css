@@ -19,7 +19,7 @@
 .side {
 	position: -webkit-sticky; /* 사파리를 위한 코드 */
 	position: sticky;
-	top: 100px;
+	top: 40px;
 	width: 210px;
 	background-color: #f5f5f5;
 	padding: 20px;

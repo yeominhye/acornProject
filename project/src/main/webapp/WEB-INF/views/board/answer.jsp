@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>${myboard.boardTitle}</title>
     <!-- CSS -->
      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/answer.css" >
@@ -51,7 +51,7 @@
                     <li>
                         <dl class="inner-each-box">
                             <dt class="inner-title">작성자
-                            <dd class="inner-content">${user.nickname}</dd>
+                            <dd class="inner-content">${myboard.nickname}</dd>
                             </dt>
                         </dl>
                     </li>
@@ -84,7 +84,13 @@
                         <dl class="inner-each-box">
                             <dt class="inner-title">내용
                             <dd class="inner-content" id="content-answer">
-                              답변 준비 중입니다. 잠시만 기다려주세요.
+                            	<c:if test="${empty comment.commentContent}">
+                            		답변을 준비 중 입니다. 잠시만 기다려주세요.
+                            	</c:if>
+                            	
+                            	<c:if test="${not empty comment.commentContent}">
+                            		${comment.commentContent}
+                            	</c:if>
                             </dd>
                             </dt>
                         </dl>

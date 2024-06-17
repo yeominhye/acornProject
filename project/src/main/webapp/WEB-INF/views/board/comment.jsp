@@ -84,6 +84,20 @@
 		<c:if test="${currentURL eq 'http://localhost:8080/project/WEB-INF/views/board/routePost.jsp'}"> 
 		    <button onclick="window.location.href='${pageContext.request.contextPath}/board/route'">목록보기</button> 
 		</c:if>
+		
+		<c:if test="${currentURL eq 'http://localhost:8080/project/WEB-INF/views/board/freeboardDetail.jsp'}"> 
+		  	<c:if test="${user.userId eq 'admin'}">
+            	<button type="button" onclick="location.href='/project/board/my/del/${freeboard.boardCode}'">삭제</button>
+        	</c:if>
+		</c:if>
+		
+		<c:if test="${currentURL eq 'http://localhost:8080/project/WEB-INF/views/board/routePost.jsp'}"> 
+		   <c:if test="${user.userId eq 'admin'}">
+            	<button type="button" onclick="location.href='/project/board/route/del/${routeBoard.boardCode}'">삭제</button>
+          </c:if>
+		</c:if>
+		
+		
       	
        <button id="boardModi" onclick="window.location.href='${pageContext.request.contextPath}/board/my/${freeboard.boardCode}'">수정</button>
     </div>

@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>경로게시판 ${routeBoard.boardTitle}</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/routePost.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -264,6 +264,7 @@
                class="boardCode" value="${routeBoard.boardCode}">
             <%@ include file="comment.jsp"%>
          </div>
+
          <!-- 댓글 영역 끝-->
 
 

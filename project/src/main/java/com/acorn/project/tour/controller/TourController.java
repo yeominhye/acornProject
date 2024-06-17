@@ -35,7 +35,6 @@ public class TourController {
         return getTourList(numOfRows, pageNo, area);
     }
 
-    
     @GetMapping("/ajax/routeList")
     @ResponseBody
     public List<RouteBoard> getRouteListAjax(@RequestParam(value="boardRegion", defaultValue="0") int boardRegion) {
@@ -62,12 +61,16 @@ public class TourController {
         addTourListToModel2(numOfRows, pageNo, area, arrange, mapX, mapY, model);
 
         model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", calculateTotalPages(100, Integer.parseInt(numOfRows)));
+        model.addAttribute("totalPages", calculateTotalPages(1000, Integer.parseInt(numOfRows)));
         model.addAttribute("selectedArrange", arrange);
+        model.addAttribute("area", area);
+        model.addAttribute("mapX", mapX);
+        model.addAttribute("mapY", mapY);
 
         return "/tour/tourlist";
     }
-
+    
+    
     @GetMapping(value = { "/tourInfo", "/tourlist/tourInfo" })
     public String getTourInfo(@RequestParam("contentId") String contentId,
                               @RequestParam("contentTypeId") String contentTypeId, Model model) throws IOException {

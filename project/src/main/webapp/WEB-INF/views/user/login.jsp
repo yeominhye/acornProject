@@ -10,8 +10,8 @@
     <title>로그인 및 회원가입</title>
     
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+   <!--  <script src="https://apis.google.com/js/platform.js" async defer></script>
+     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script> -->
      <meta name="google-signin-client_id" content="188576259803-g78m0a221jlk19jg8f91akb3eu0ehh0b.apps.googleusercontent.com">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
@@ -204,13 +204,13 @@
         
             <div class="sign-in" id="sign-in-info">
                 <h1>로그인</h1>
-                <div class="social-media-buttons">
+               <!--  <div class="social-media-buttons">
                     <div class="icon">
                         <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     </div>
                     <div class="icon">
                          <div>
-					         <!-- 카카오 로그인 버튼 -->
+					         카카오 로그인 버튼
 					          <button id="kakao-login-btn" class="kakao-login-btn">카카오로 로그인</button>
 					     </div>
                     </div>
@@ -219,7 +219,7 @@
                             <path fill="#000000" d="M21,21H17V14.25C17,13.19 15.81,12.31 14.75,12.31C13.69,12.31 13,13.19 13,14.25V21H9V9H13V11C13.66,9.93 15.36,9.24 16.5,9.24C19,9.24 21,11.28 21,13.75V21M7,21H3V9H7V21M5,3A2,2 0 0,1 7,5A2,2 0 0,1 5,7A2,2 0 0,1 3,5A2,2 0 0,1 5,3Z" />
                         </svg>
                     </div>
-                </div>
+                </div> -->
                 <p class="small">혹은 당신의 정보로 로그인하세요:</p>
                 <form id="sign-in-form" name="loginForm" method="post" onsubmit="return submitLoginForm();">
                     <input type="text" id="loginUserId" name="userId" placeholder="ID" required/><br>
