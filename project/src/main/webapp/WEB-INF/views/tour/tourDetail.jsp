@@ -12,7 +12,7 @@
 <!-- tourDetail.css -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/tourDetail.css">
-<title>관광세부정보</title>
+<title>${tourInfo[0].title}</title>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var addr1Element = document.querySelector('.tour-addr');
@@ -36,12 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
     margin: 0 auto;
     margin-top: 75px;
 }
-
-.tour-addr {
-	color: #5c5c5c;
-	font-weight: bold;
-}
-
 
 .tour-details-info {
     width: 80%;
@@ -72,20 +66,20 @@ document.addEventListener('DOMContentLoaded', function() {
 .tour-details-info ul li span {
     flex: 1;
 }
+
 .tour-description {
 	position: relative;
 }
-.tour-description-content {
-	max-height: 297px;
-	overflow-y: hidden;
+ #content {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
 }
-.show-more-button {
-	position: absolute;
-	z-index: 99;
-	bottom: 0;
-	right: 0;
-	cursor: pointer;
-	font-weight: bold;
+#button {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 </style>
@@ -97,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			<div class="tour-info">
 				<div class="tour-addr">${tourInfo[0].addr1}</div>
 				<div class="tour-title">${tourInfo[0].title}</div>
-				<!-- <div class="tour-date"></div>  -->
 			</div>
 			<div class="tour-details">
 				<div class="tour-details-img">
@@ -107,13 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			<div class="tour-description">
 				<h3>상세정보</h3>
 				<c:if test="${not empty tourInfo[0].overview}">
-				    <div class="tour-description-content">
-				        <p><!-- 내용:  -->${tourInfo[0].overview}</p>
-				    </div>
-				    <div class="show-more-button">더보기 +</div>
+					<div class="tour-description-content" id="content">
+						<p>${tourInfo[0].overview}</p>
+					</div>
+					
+    				<div id="button">더보기 +</div>
 				</c:if>
-				
-  				<button id="toggle-button" style="display: none;">더보기</button>
 			</div>
 			<div class="tour-map-custom">
 				<h3>지도</h3>
@@ -164,59 +156,34 @@ document.addEventListener('DOMContentLoaded', function() {
 		<%@ include file="../footer-sub.jsp"%>
 	</div>
 	
-	<script type="text/javascript">
-    const content = document.querySelector('.tour-description-content');
-    const button = document.querySelector('.show-more-button');
-    
-    
-    function a() {    	
-    	button.addEventListener('click', function() {
-    		
-    	    let contentH = content.clientHeight;
-    	    
-    	    if (contentH < 298) {
+	
+	<script>
+    function a() {
+        const content = document.getElementById('content');
+        const button = document.getElementById('button');
+        
+        let contentH = content.clientHeight;
+
+        if (contentH >= 157) {
+            content.style.maxHeight = "152px";
+            button.style.display = "block";
+            button.textContent = "더보기 +";
+        } else {
+            button.style.display = "none";
+        }
+
+        button.addEventListener('click', function() {
+            if (content.style.maxHeight === '100%') {
+                content.style.maxHeight = '152px';
+                button.textContent = "더보기 +";
+            } else {
                 content.style.maxHeight = '100%';
                 button.textContent = "숨기기 -";
-                
-                //alert("T : " + contentH);
-            } else {
-                content.style.maxHeight = '297px';
-                button.textContent = "더보기 +";
-
-                //alert("F : " + contentH);
             }
-    	});
-    	
-    	/*
-        if (contentH >= 297) {
-            alert("넘어요");
-
-            button.addEventListener('click', function() {
-                if (contentH < 298) {
-                    content.style.maxHeight = '100%';
-                    button.textContent = "숨기기";
-                    
-                    alert("T : " + contentH);
-                } else {
-                    content.style.maxHeight = '300px';
-                    button.textContent = "더보기";
-
-                    alert("F : " + contentH);
-                }
-            });
-        } else {
-            alert("안넘어요");
-            button.style.display = 'none';
-        }
-    	*/
-    }
+        });
+    }   
     
-
     a();
-    	
-    	
-    	
-
-	</script>
+    </script>
 </body>
 </html>

@@ -12,7 +12,9 @@
 <!-- eventDetail.css -->
 <link rel="stylesheet" type="text/css"
     href="${pageContext.request.contextPath}/resources/css/eventDetail.css">
-<title>행사세부정보</title>
+    
+<title>${eventInfo2[0].title}</title>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var addr1Element = document.querySelector('.event-addr');
@@ -66,6 +68,19 @@ document.addEventListener('DOMContentLoaded', function() {
 .event-details-info ul li span {
     flex: 1;
 }
+
+ #content {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+#button {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 </style>
 </head>
 <body>
@@ -85,9 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="event-description">
                 <h3>상세정보</h3>
                 <c:if test="${not empty eventInfo2[0].overview}">
-                    <div class="event-description-content">
+                    <div class="event-description-content" id="content">
                         <p class="detailContent">${eventInfo2[0].overview}</p>
                     </div>
+                    
+    				<div id="button">더보기 +</div>
                 </c:if>
             </div>
             <div class="event-map-custom">
@@ -141,5 +158,34 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <%@ include file="../footer-sub.jsp"%>
     </div>
+    
+    <script>
+    function a() {
+        const content = document.getElementById('content');
+        const button = document.getElementById('button');
+        
+        let contentH = content.clientHeight;
+
+        if (contentH >= 157) {
+            content.style.maxHeight = "152px";
+            button.style.display = "block";
+            button.textContent = "더보기 +";
+        } else {
+            button.style.display = "none";
+        }
+
+        button.addEventListener('click', function() {
+            if (content.style.maxHeight === '100%') {
+                content.style.maxHeight = '152px';
+                button.textContent = "더보기 +";
+            } else {
+                content.style.maxHeight = '100%';
+                button.textContent = "숨기기 -";
+            }
+        });
+    }   
+    
+    a();
+    </script>
 </body>
 </html>

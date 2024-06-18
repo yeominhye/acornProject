@@ -5,9 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-
 <!-- index.css -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >
 
@@ -90,13 +87,10 @@ nav {
                    </c:if>
                    <c:if test="${not empty sessionScope.user}">
                       <a href="/project/user/logout.do">로그아웃</a>
-                      <c:if test="${user.userId eq 'admin'}">
-                      	<a href="/project/user/mypage.do/inquiry">마이페이지</a>
-                      </c:if>
-                      <c:if test="${user.userId ne 'admin'}">
-                      	<a href="/project/user/mypage.do">마이페이지</a>
-                      </c:if>
-                      
+                      <c:choose>
+                      	<c:when test="${user.userId eq 'admin'}"><a href="/project/user/mypage.do/inquiry">마이페이지</a></c:when>
+                      	<c:otherwise><a href="/project/user/mypage.do">마이페이지</a></c:otherwise>
+                      </c:choose>
                    </c:if>
                     </div>
            </div>

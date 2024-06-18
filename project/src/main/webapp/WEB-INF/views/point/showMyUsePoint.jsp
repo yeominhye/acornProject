@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Points</title>
+<title>포인트 사용내역</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/showMypoint.css" >
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reset.css" >

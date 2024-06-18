@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Modify Info</title>
+<title>내 정보 변경</title>
 <link rel="stylesheet" type="text/css"
    href="${pageContext.request.contextPath}/resources/css/modify.css">
 <link rel="stylesheet"

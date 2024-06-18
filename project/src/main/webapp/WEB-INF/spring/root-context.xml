@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://43.203.242.180:3306/testdb?useUnicode=true&amp;characterEncoding=utf8"></property>
-		<property name="username" value="scott"></property>
-		<property name="password" value="tiger"></property>
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	</bean>
-	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation"  value="classpath:mybatis-config.xml"/>
-		<property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
-	</bean>
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+      <property name="url" value="jdbc:mysql://localhost:3305/testdb?useUnicode=true&amp;characterEncoding=utf8"/>
+      <property name="username" value="scott"/>
+      <property name="password" value="tiger"/>
+   </bean>
+   
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource"/>
+      <property name="configLocation" value="classpath:mybatis-config.xml"/>
+      <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
+   </bean>
 
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactory"/>
-	</bean>
+   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg ref="sqlSessionFactory"/>
+   </bean>
 </beans>
 
 
-	<!-- 	<property name="url" value="jdbc:mysql://3.36.353/testdb?useUnicode=true&amp;characterEncoding=utf8"></property>
+   <!--   <property name="url" value="jdbc:mysql://3.36.35.33:3306/testdb?useUnicode=true&amp;characterEncoding=utf8"></property>
       <property name="username" value="chs"></property>
-      <property name="password" value="1234"></property> -->
+      <property name="password" value="1234"></property> 3.36.35.33:3306-->
